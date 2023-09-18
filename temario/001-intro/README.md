@@ -7,7 +7,6 @@
 Hemos trabajado con matrices y clases para solucionar problemas básicos y estos conceptos, aunque potentes, no son suficientes para manejar desafíos más complejos en desarrollo de software. 
 La necesidad de manejar estructuras de datos más complejas surge naturalmente:<br>- Al intentar implementar algoritmos y funcionalidades<br>- Al manejar grandes volúmenes de datos<br>- Al tratar de optimizar el rendimiento del software
 
-
 <table>
     <tr>
         <td>
@@ -78,7 +77,7 @@ Se desarrollarán ejercicios prácticos y ejemplos de código para reforzar el a
 |2View:|
 |-|
 [Primitivas, matrices, clases & objetos](PrimitivasMatricesClasesObjetos.md)
-[Estructuras de datos](EstructurasDatos.md)
-[Operaciones básicas sobre estructuras de datos](OperacionesBasicas)
-[Complejidad temporal y espacial de las operaciones](ComplejidadDeOperaciones.md)
-[Relación entre estructuras de datos y eficiencia del software](EstructurasEficiencia.md)
+Estructuras de datos
+Operaciones básicas sobre estructuras de datos
+Complejidad temporal y espacial de las operaciones
+Relación entre estructuras de datos y eficiencia del software
