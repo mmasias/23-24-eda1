@@ -21,6 +21,11 @@ En caso que el usuario ingrese contenido de más de 7 caracteres, se deben mostr
 - El programa debe funcionar de modo elegante.
 - Se valorará ampliamente un código limpio.
 
+### Reglas de entrega
+
+- Guardar el trabajo en la carpeta entregas, dentro una carpeta que siga el formato *nombreApellido*. Ejemplo: **/entregas/fernandezIbuprofeno**
+- El envío debe hacerse al repositorio de la asignatura, a la rama ***Reto-001***
+
 ## Presentación
 
 <div align="center">
