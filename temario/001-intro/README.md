@@ -2,10 +2,14 @@
 
 ## Por qué
 
-| |
-|-|
-Hemos trabajado con matrices y clases para solucionar problemas básicos y estos conceptos, aunque potentes, no son suficientes para manejar desafíos más complejos en desarrollo de software. 
-La necesidad de manejar estructuras de datos más complejas surge naturalmente:<br>- Al intentar implementar algoritmos y funcionalidades<br>- Al manejar grandes volúmenes de datos<br>- Al tratar de optimizar el rendimiento del software
+Hemos trabajado con matrices y clases para solucionar problemas básicos y estos conceptos, aunque potentes, no son suficientes para manejar desafíos más complejos en desarrollo de software.
+
+La necesidad de manejar estructuras de datos más complejas surge naturalmente:
+
+- Al intentar implementar algoritmos y funcionalidades.
+- Al manejar grandes volúmenes de datos.
+- Al tratar de optimizar el rendimiento del software.
+
 
 <table>
     <tr>
@@ -44,12 +48,10 @@ La necesidad de manejar estructuras de datos más complejas surge naturalmente:<
         </td>
         <td width="50%" valign="top">
             <img src="../../imagenes/modelosUML/software.svg">
-            <i>Fuente: Prof. Luis Fernández</i>
+            <i><small>Fuente: Prof. Luis Fernández</small></i>
         </td>
     <tr>
 </table>
-
-
 
 ## Qué
 
