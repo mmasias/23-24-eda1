@@ -19,7 +19,7 @@ Spreadsheet =     [['       ',' A      ',' B      ',' C      ',' D      ',' E   
 
 
 for i in Spreadsheet:
-    print(*i)
+    print( ''.join(i))
 
 
 
