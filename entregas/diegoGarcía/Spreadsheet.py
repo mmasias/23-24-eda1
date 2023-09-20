@@ -39,12 +39,13 @@ class Spreadsheet:
         return cases
 
     def menu(letters, cases, userRow, userColumn):
-        print('Actual case: [' , letters[userColumn] + str(userRow),']')
+        print('Actual case: [' , letters[userColumn] + str(userRow+1),']')
         print('Use "WASD" to move the case')
         print('Use "E" to write in the case')
         print('Use "Q" to exit')
         userOption = input('Introduce an option: ').upper()
-        return
+        return userOption
+
 
 
 
@@ -52,23 +53,30 @@ class Spreadsheet:
     exit = False
     userRow = 0
     userColumn = 0
+    createSpreadsheet(cases,letters,userRow,userColumn)
 
     while exit == False:
-        createSpreadsheet(cases,letters,userRow,userColumn)
- 
-        Election = menu(letters, cases, userRow, userColumn)
-        if Election == 'Q':
-            break
-        elif Election == 'W':
+        userElection = menu(letters, cases, userRow, userColumn)
+        if userElection == 'W':
             userRow -= 1
-        elif Election == 'A':
-            userColumn -= 1
-        elif Election == 'S':
+        elif userElection == 'S':
             userRow += 1
-        elif Election == 'D':
+        elif userElection == 'A':
+            userColumn -= 1
+        elif userElection == 'D':
             userColumn += 1
-        elif Election == 'E':
-            cases[userRow][userColumn] = input('Introduce the text: ')
+        elif userElection == 'E':
+            cases[userRow][userColumn] = input('Introduce a value: ')
+            if len(cases[userRow][userColumn]) > 7:
+                cases[userRow][userColumn] = cases[userRow][userColumn][:7]
+            elif len(cases[userRow][userColumn]) < 7:
+                cases[userRow][userColumn] = cases[userRow][userColumn].ljust(7)
+        elif userElection == 'Q':
+            exit = True
+        else:
+            print('Wrong option')
+
+        createSpreadsheet(cases,letters,userRow,userColumn)
     
 
         
