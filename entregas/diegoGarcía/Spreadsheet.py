@@ -77,16 +77,3 @@ class Spreadsheet:
             print('Wrong option')
 
         createSpreadsheet(cases,letters,userRow,userColumn)
-    
-
-        
-
-    
-
-
-        
-
-
-
-
-    
