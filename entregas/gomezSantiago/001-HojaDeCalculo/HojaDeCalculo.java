@@ -8,7 +8,7 @@ public class HojaDeCalculo {
         String[][] spreadsheet = new String[rows][columns];
         String[][] columnLabels = generateColumnLabels();
         String[][] rowLabels = generateRowLabels();
-        String message = "Bienvenido a tu hoja de calculo";
+        String message = "Bienvenido a tu hoja de calculo ";
         int currentrow = 0;
         int currentcolumn = 0;
         Scanner scanner = new Scanner(System.in);
@@ -40,7 +40,9 @@ public class HojaDeCalculo {
                     }
                     break;
                 case "Q":
-                    System.out.println("Programa finalizado");
+                    System.out.println("+---------------------+");
+                    System.out.println("| Programa finalizado |");
+                    System.out.println("+---------------------+");
                     return;
                 default:
                     if (comand.length() <= 6) {
@@ -55,6 +57,8 @@ public class HojaDeCalculo {
 
 
     private static void showSpreadSheet(String[][] spreadsheet, String[][] columnLabels, String[][] rowLabels, int currentrow, int currentcolumn, String message) {
+        System.out.println("+------------------------------------------------------------------------+");
+        System.out.println("|                    " + message + "                    |");
         System.out.println("+------------------------------------------------------------------------+");
         System.out.print("|" + "  ");
         for (int column = 0; column < columns; column++) {
@@ -72,7 +76,6 @@ public class HojaDeCalculo {
                     content = "      ";
                 }
                 if (row == currentrow && column == currentcolumn) {
-                    // Cambia el fondo de la celda actual para resaltarla
                     System.out.print("|[    ]");
                 } else {
                     System.out.print("|" + content);
@@ -82,11 +85,12 @@ public class HojaDeCalculo {
             System.out.println();
         }
         System.out.println("+--+------+------+------+------+------+------+------+------+------+------+");
-        System.out.println("Celda actual -> [" + rowLabels[currentrow][0] + columnLabels[0][currentcolumn] + " ]");
-        System.out.println("Utilice las teclas W, A, S y D para moverse.");
-        System.out.println("Presione 'E' para ingresar texto en la celda actual.");
-        System.out.println("Presione 'Q' para salir.");
-        System.out.println(message);
+        System.out.println();
+        System.out.println("+------------------------------------------------------------------------+");
+        System.out.println("| Celda actual -> [ " + columnLabels[0][currentcolumn] + rowLabels[currentrow][0] + " ]                                                |");
+        System.out.println("| Utilice las teclas W, A, S y D para moverse.                           |");
+        System.out.println("| Presione 'E' para ingresar texto en la celda actual.                   |");
+        System.out.println("| Presione 'Q' para salir.                                               |");
         System.out.println("+------------------------------------------------------------------------+");
     }
 
