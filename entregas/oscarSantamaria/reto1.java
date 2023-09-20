@@ -60,21 +60,21 @@ public class HojaCalculo {
 
         System.out.println("\nHoja de Cálculo:");
 
-        // Encabezados de columnas
+       
         System.out.print("   ");
         for (int j = 0; j < columnas; j++) {
             System.out.print((char) ('A' + j) + "      ");
         }
         System.out.println();
 
-        // Separador
+        
         System.out.print("   ");
         for (int j = 0; j < columnas; j++) {
             System.out.print("-------");
         }
         System.out.println();
 
-        // Contenido de la hoja de cálculo
+        
         for (int i = 0; i < filas; i++) {
             System.out.print(String.format("%2d ", i + 1));
             for (int j = 0; j < columnas; j++) {
