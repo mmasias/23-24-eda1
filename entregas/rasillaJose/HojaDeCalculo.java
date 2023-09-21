@@ -14,9 +14,12 @@ public class HojaDeCalculo {
         up, down, right, left
     };
 
+    public static void main(String[] args) {
+        setUp();
+    }
+
     public static void setUp() {
         printSpriteSheet();
-
     }
 
     public void buildSpriteSheet() {
@@ -163,19 +166,5 @@ public class HojaDeCalculo {
     public static void modifyCell(String newContent) {
         spreadsheet[xPosition][yPosition] = newContent;
         printSpriteSheet();
-    }
-
-    public static void main(String[] args) {
-
-        setUp();
-
-        // Print the spreadsheet
-
-        // Move cursor
-
-        // Modify value
-
-        // Values storage
-
     }
 }
