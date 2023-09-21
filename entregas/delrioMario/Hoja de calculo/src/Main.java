@@ -37,10 +37,7 @@ public class Main {
         int limiteDerecho = unaMatriz[0].length - 1;
         int skin = 0;
 
-        do {
-            System.out.println("+---------------------------------------------------------------------------------+");
-            System.out.println("| |   A   |   B   |   C   |   D   |   E   |   F   |   G   |   H   |   I   |   J   |");
-            System.out.println("+---------------------------------------------------------------------------------+");
+        do {            
             imprimeTerreno(unaMatriz, posicionCursor);
             System.out.println("CMDs: [W] Arriba | [S] Abajo | [A] Izquierda | [D] Derecha | [E] Editar | [Q] Salir");
             System.out.print("Ingrese un comando: ");
@@ -88,6 +85,10 @@ public class Main {
         final int ANCHO_DE_CELDA = 7;
         String celda = "";
         limpiarPantalla();
+
+        System.out.println("+---------------------------------------------------------------------------------+");
+            System.out.println("| |   A   |   B   |   C   |   D   |   E   |   F   |   G   |   H   |   I   |   J   |");
+            System.out.println("+---------------------------------------------------------------------------------+");
 
         for (int i = 0; i < unaMatriz.length; i++) {
             if (i < 9) {
