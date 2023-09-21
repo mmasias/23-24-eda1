@@ -4,6 +4,7 @@ import java.awt.*;
 public class HojaDeCalculo {
     private static final int columns = 10;
     private static final int rows = 15;
+
     public static void main(String[] args) {
         String[][] spreadsheet = new String[rows][columns];
         String[][] columnLabels = generateColumnLabels();
@@ -19,6 +20,10 @@ public class HojaDeCalculo {
             String comand = scanner.nextLine().trim().toUpperCase();
 
             switch (comand) {
+                case "E":
+                    System.out.println("Ingrese el texto: ");
+                    String textToAssign = scanner.nextLine();
+                    spreadsheet[currentrow][currentcolumn] = textToAssign;
                 case "W":
                     if (currentrow > 0) {
                         currentrow--;
@@ -52,42 +57,49 @@ public class HojaDeCalculo {
                     }
                     break;
             }
+
         }
     }
 
-
-    private static void showSpreadSheet(String[][] spreadsheet, String[][] columnLabels, String[][] rowLabels, int currentrow, int currentcolumn, String message) {
-        System.out.println("+------------------------------------------------------------------------+");
-        System.out.println("|                    " + message + "                    |");
-        System.out.println("+------------------------------------------------------------------------+");
+    private static void showSpreadSheet(String[][] spreadsheet, String[][] columnLabels, String[][] rowLabels,
+            int currentrow, int currentcolumn, String message) {
+        System.out.println("+----------------------------------------------------------------------------------+");
+        System.out.println("|                      " + message + "                            |");
+        System.out.println("+----------------------------------------------------------------------------------+");
         System.out.print("|" + "  ");
+
         for (int column = 0; column < columns; column++) {
-            System.out.print("|   " + columnLabels[0][column] + ("  "));
+            System.out.print("|   " + columnLabels[0][column] + ("   "));
         }
         System.out.print("|");
         System.out.println();
-        System.out.println("+--+------+------+------+------+------+------+------+------+------+------+");
+        System.out.println("+--+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
 
         for (int row = 0; row < rows; row++) {
             System.out.print("|" + rowLabels[row][0]);
             for (int column = 0; column < columns; column++) {
                 String content = spreadsheet[row][column];
                 if (content == null) {
-                    content = "      ";
+                    content = "";
                 }
+                content = String.format("%7s", content);
+                
+                String finalContent = content.substring(0,Math.min(7, content.length()));
+
                 if (row == currentrow && column == currentcolumn) {
-                    System.out.print("|[    ]");
+                    System.out.print("|[     ]");
                 } else {
-                    System.out.print("|" + content);
+                    System.out.print("|" + finalContent);
                 }
             }
             System.out.print("|");
             System.out.println();
         }
-        System.out.println("+--+------+------+------+------+------+------+------+------+------+------+");
+        System.out.println("+--+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
         System.out.println();
         System.out.println("+------------------------------------------------------------------------+");
-        System.out.println("| Celda actual -> [ " + columnLabels[0][currentcolumn] + rowLabels[currentrow][0] + " ]                                                |");
+        System.out.println("| Celda actual -> [ " + columnLabels[0][currentcolumn] + rowLabels[currentrow][0]
+                + " ]                                                |");
         System.out.println("| Utilice las teclas W, A, S y D para moverse.                           |");
         System.out.println("| Presione 'E' para ingresar texto en la celda actual.                   |");
         System.out.println("| Presione 'Q' para salir.                                               |");
@@ -101,7 +113,6 @@ public class HojaDeCalculo {
         }
         return columnLabels;
     }
-
 
     private static String[][] generateRowLabels() {
         String[][] rowLabels = new String[rows][1];
