@@ -41,7 +41,7 @@ public class HojaCalculo {
                 case "E":
                     System.out.print("Ingresa el texto para la celda: ");
                     String texto = scanner.nextLine();
-                    texto = texto.length() > 7 ? texto.substring(0, 7) : String.format("%6s", texto);
+                    texto = texto.length() > 7 ? texto.substring(0, 7) : String.format("%7s", texto);
                     hojaCalculo[filaActual][columnaActual] = texto;
                     break;
                 case "Q":
