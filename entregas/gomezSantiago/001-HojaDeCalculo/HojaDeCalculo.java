@@ -6,16 +6,16 @@ public class HojaDeCalculo {
     private static final int rows = 15;
 
     public static void main(String[] args) {
-        String[][] spreadsheet = new String[rows][columns];
+        String[][] spreadSheet = new String[rows][columns];
         String[][] columnLabels = generateColumnLabels();
         String[][] rowLabels = generateRowLabels();
         String message = "Bienvenido a tu hoja de calculo ";
-        int currentrow = 0;
-        int currentcolumn = 0;
+        int currentRow = 0;
+        int currentColumn = 0;
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            showSpreadSheet(spreadsheet, columnLabels, rowLabels, currentrow, currentcolumn, message);
+            showspreadSheet(spreadSheet, columnLabels, rowLabels, currentRow, currentColumn, message);
             System.out.print("Ingrese comando: ");
             String comand = scanner.nextLine().trim().toUpperCase();
 
@@ -23,25 +23,25 @@ public class HojaDeCalculo {
                 case "E":
                     System.out.println("Ingrese el texto: ");
                     String textToAssign = scanner.nextLine();
-                    spreadsheet[currentrow][currentcolumn] = textToAssign;
+                    spreadSheet[currentRow][currentColumn] = textToAssign;
                 case "W":
-                    if (currentrow > 0) {
-                        currentrow--;
+                    if (currentRow > 0) {
+                        currentRow--;
                     }
                     break;
                 case "A":
-                    if (currentcolumn > 0) {
-                        currentcolumn--;
+                    if (currentColumn > 0) {
+                        currentColumn--;
                     }
                     break;
                 case "S":
-                    if (currentrow < rows - 1) {
-                        currentrow++;
+                    if (currentRow < rows - 1) {
+                        currentRow++;
                     }
                     break;
                 case "D":
-                    if (currentcolumn < columns - 1) {
-                        currentcolumn++;
+                    if (currentColumn < columns - 1) {
+                        currentColumn++;
                     }
                     break;
                 case "Q":
@@ -51,9 +51,9 @@ public class HojaDeCalculo {
                     return;
                 default:
                     if (comand.length() <= 6) {
-                        spreadsheet[currentrow][currentcolumn] = comand;
+                        spreadSheet[currentRow][currentColumn] = comand;
                     } else {
-                        spreadsheet[currentrow][currentcolumn] = comand.substring(0, 6);
+                        spreadSheet[currentRow][currentColumn] = comand.substring(0, 6);
                     }
                     break;
             }
@@ -61,8 +61,8 @@ public class HojaDeCalculo {
         }
     }
 
-    private static void showSpreadSheet(String[][] spreadsheet, String[][] columnLabels, String[][] rowLabels,
-            int currentrow, int currentcolumn, String message) {
+    private static void showspreadSheet(String[][] spreadSheet, String[][] columnLabels, String[][] rowLabels,
+            int currentRow, int currentColumn, String message) {
         System.out.println("+----------------------------------------------------------------------------------+");
         System.out.println("|                      " + message + "                            |");
         System.out.println("+----------------------------------------------------------------------------------+");
@@ -78,15 +78,15 @@ public class HojaDeCalculo {
         for (int row = 0; row < rows; row++) {
             System.out.print("|" + rowLabels[row][0]);
             for (int column = 0; column < columns; column++) {
-                String content = spreadsheet[row][column];
+                String content = spreadSheet[row][column];
                 if (content == null) {
                     content = "";
                 }
                 content = String.format("%7s", content);
-                
-                String finalContent = content.substring(0,Math.min(7, content.length()));
 
-                if (row == currentrow && column == currentcolumn) {
+                String finalContent = content.substring(0, Math.min(7, content.length()));
+
+                if (row == currentRow && column == currentColumn) {
                     System.out.print("|[     ]");
                 } else {
                     System.out.print("|" + finalContent);
@@ -98,7 +98,7 @@ public class HojaDeCalculo {
         System.out.println("+--+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
         System.out.println();
         System.out.println("+------------------------------------------------------------------------+");
-        System.out.println("| Celda actual -> [ " + columnLabels[0][currentcolumn] + rowLabels[currentrow][0]
+        System.out.println("| Celda actual -> [ " + columnLabels[0][currentColumn] + rowLabels[currentRow][0]
                 + " ]                                                |");
         System.out.println("| Utilice las teclas W, A, S y D para moverse.                           |");
         System.out.println("| Presione 'E' para ingresar texto en la celda actual.                   |");
