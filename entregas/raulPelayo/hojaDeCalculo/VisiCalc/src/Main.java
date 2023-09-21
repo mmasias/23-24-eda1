@@ -119,7 +119,7 @@ public class Main {
             texto = texto.substring(texto.length() - largo);
         }
         if (borde) {
-            texto = "[" + limpia(texto, 4, !borde) + "]";
+            texto = "[" + limpia(texto, 5, !borde) + "]";
         }
         return texto;
     }
