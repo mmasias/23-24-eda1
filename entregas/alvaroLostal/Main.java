@@ -85,7 +85,7 @@ public class Main {
     }
 
     static void imprimeTerreno(String[][] unaMatriz, int[] posicionCursor) {
-        final int ANCHO_DE_CELDA = 6;
+        final int ANCHO_DE_CELDA = 7;
         String celda = "";
         limpiarPantalla();
 
@@ -139,8 +139,8 @@ public class Main {
         System.out.println("Ingrese un valor");
         String valor = sc.nextLine();
         String resultado = "";
-        if (valor.length() > 6) {
-            for (int i = 0; i < 6; i++) {
+        if (valor.length() > 7) {
+            for (int i = 0; i < 7; i++) {
                 resultado = resultado + valor.charAt(i);
             }
 
