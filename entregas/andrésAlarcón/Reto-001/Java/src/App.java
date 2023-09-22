@@ -64,7 +64,6 @@ public class App {
         System.out.println("");
         System.out.println("   +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
 
-        // Display rows
         for (int i = 0; i < spreadsheet.length; i++) {
             System.out.printf("%2d ", (i + 1));
             for (int j = 0; j < spreadsheet[i].length; j++) {
