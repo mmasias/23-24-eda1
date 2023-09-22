@@ -4,86 +4,101 @@ import java.util.Scanner;
 
 public class main {
     static Scanner scanner = new Scanner(System.in);
-    static String[] celds = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+    static String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 
     public static void main(String[] args) {
-        int[] user = {0, 1};
-        boolean exit = false;
+
+        int[] userInitialPosition = {0, 1};
+        boolean exitProgram = false;
         String[][] table = new String[15][10];
+        initialDataInTable(table);
 
-        System.out.println("Bienvenido a la hoja de calculo");
-        System.out.println("Para moverte usa las teclas w, a, s, d");
-        System.out.println("Para escribir en una celda usa la tecla e");
-        System.out.println("Para salir usa la tecla q");
-
-
-        while (!exit) {
-            printInitialBody(table, user);
+        while (!exitProgram) {
+            printTableHeader();
+            printTableBody(table, userInitialPosition);
+            printInformation();
             String inputUser = scanner.nextLine();
-
-            exit = programsEnds(inputUser);
-            userInputandMovement(inputUser, user, table);
+            exitProgram = programsEnds(inputUser);
+            userInputAndMovement(inputUser, userInitialPosition, table);
         }
     }
 
-    private static void printInitialBody(String[][] table, int[] user){
-        System.out.print("--");
-        for (int letra = 0; letra < celds.length; letra++){
-            System.out.print("|___ " + celds[letra] + " ___|");
-        }
-        for (int i = 1; i < table.length; i++) {
-            System.out.println("");
-            if(i < 10){ System.out.print("0" + i);} else { System.out.print(i);};
-            for (int j = 0; j < table[0].length; j++) {
-                if (table[i][j] == null) {
-                    System.out.print("|         |");
-                } else {
-                    System.out.print("|" + table[i][j] + "|");
-                }
-                if(user[0] == j && user[1] == i){
-                    System.out.print("\u001B[31m|[       ]|\u001B[0m");
-                }
+    private static void initialDataInTable(String[][] table){
+        for (int column = 0; column < table.length; column++) {
+            for (int row = 0; row < table[0].length; row++){
+                table[column][row] = " ".repeat(7);
             }
         }
     }
-    private static void putTextInCell(int[] user, String[][] table, String textInputinCell){
-        table[user[0]][user[1]] = textInputinCell;
+    private static void printTableHeader(){
+        System.out.print("__");
+        for (int letter = 0; letter < alphabet.length; letter++){
+            System.out.print("|__ " + alphabet[letter] + " __|");
+        }
     }
-
-    private static void userInputandMovement(String inputUser, int[] user, String[][] table) {
+    private static void printNumberOfRows(int column){
+        System.out.println("");
+        if(column < 10){
+            System.out.print("0" + column);
+        } else {
+            System.out.print(column);
+        };
+    }
+    private static void printTableBody(String[][] table, int[] userPosition){
+        for (int column = 1; column < table.length; column++) {
+            printNumberOfRows(column);
+            for (int row = 0; row < table[0].length; row++) {
+                if (userPosition[0] == row && userPosition[1] == column) {
+                    System.out.print("\u001B[31m[" + table[column][row] +"]\u001B[0m");
+                } else{
+                    System.out.print("|" + table[column][row] + "|");
+                }
+            }
+        }
+        System.out.println("");
+    }
+    private static void putTextInCell(int[] userPosition, String[][] table){
+        String textInputInCell = counterLetter(scanner.nextLine());
+        table[userPosition[1]][userPosition[0]] = textInputInCell;
+    }
+    private static void userInputAndMovement(String inputUser, int[] userPosition, String[][] table) {
         switch (inputUser) {
             case "w":
-                if (user[1] >= 1) {
-                    user[1]--;
+                if (userPosition[1] > 1) {
+                    userPosition[1]--;
                 }
                 break;
             case "s":
-                if (user[1] < celds.length - 1) {
-                    user[1]++;
+                if (userPosition[1] < table.length - 1) {
+                    userPosition[1]++;
                 }
                 break;
             case "a":
-                if (user[0] < celds.length - 1) {
-                    user[0]--;
+                if (userPosition[0] > 0) {
+                    userPosition[0]--;
                 }
                 break;
             case "d":
-                if (user[0] < celds.length - 1) {
-                    user[0]++;
+                if (userPosition[0] < table[0].length - 1) {
+                    userPosition[0]++;
                 }
                 break;
-            case "e":
-                System.out.println("Que deseas escribir:");
-                String textInCell = counterLetter(scanner.nextLine());
-                putTextInCell(user, table, textInCell);
+            case ":q":
+                System.out.println("Programa finalizado");
+                break;
+            case ":e":
+                System.out.println("Que deseas escribir: ");
+                putTextInCell(userPosition, table);
                 break;
             default:
-                System.out.println("");
+                System.out.println("Falta una tecla");
+                printTableBody(table, userPosition);
+                break;
         }
     }
     private static String counterLetter(String textInputinCell){
         if (textInputinCell == null) {
-            return "       ";
+            return " ".repeat(8);
         } else if (textInputinCell.length() >= 7) {
             return textInputinCell.substring(0, 7);
         } else {
@@ -96,10 +111,16 @@ public class main {
         }
     }
     private static boolean programsEnds(String inputUser){
-        if (inputUser.charAt(0) == 'q'){
+        if (inputUser.equals(":q")){
             return true;
         } else {
             return false;
         }
+    }
+    private static void printInformation(){
+        System.out.println("Para moverte usa las teclas w, a, s, d");
+        System.out.println("Para escribir en una celda usa ':e'");
+        System.out.println("Para salir usa ':q'");
+        System.out.print("Que deseas hacer: ");
     }
 }
