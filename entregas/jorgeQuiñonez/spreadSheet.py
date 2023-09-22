@@ -70,6 +70,14 @@ def printBorders():
     print("+")
 
 
+def printValues(value):
+    if (len(value) > cellLength):
+        value = value[:cellLength]
+        print("|" + str(value), end="")
+    elif (len(value) <= cellLength):
+        print("|" + str(value) + " " * (cellLength - len(value)), end="")
+
+
 def printSheet():
     for i in range(len(rowNames)):
         if (len(rowNames[i]) < 2):
@@ -79,12 +87,7 @@ def printSheet():
         for j in range(len(columnNames)):
             value = sheet[i][j]
             if (value):
-                if (len(value) > cellLength):
-                    value = value[:cellLength]
-                    print("|" + str(value), end="")
-                elif (len(value) <= cellLength):
-                    print("|" + str(value) + " " *
-                          (cellLength - len(value)), end="")
+                printValues(value)
             elif i == cursor[0] and j == cursor[1]:
                 print("|" + "[" + " "*(cellLength - 2) + "]", end="")
             else:
