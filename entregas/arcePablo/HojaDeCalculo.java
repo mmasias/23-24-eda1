@@ -30,8 +30,7 @@ class HojaDeCalculo {
 
         for (int i = 0; i < sheet.length; i++) {
             for (int j = 0; j < sheet[i].length; j++) {
-                sheet[i][j] = getCellContent(i, j, sheet, currentCell);
-                System.out.print(sheet[i][j]);
+                System.out.print(getCellContent(i, j, sheet, currentCell));
             }
             System.out.println();
         }
@@ -69,7 +68,11 @@ class HojaDeCalculo {
         } else if (getCellName(i - 1, j).equals(currentCell)) {
             return "[" + (" ").repeat(spacing - 2) + "]" + "|";
         } else {
-            return (" ").repeat(spacing) + "|";
+            if (sheet[i][j] == null) {
+                return (" ").repeat(spacing) + "|";
+            } else {
+                return sheet[i][j];
+            }
         }
     }
 
