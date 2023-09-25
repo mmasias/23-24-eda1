@@ -50,11 +50,7 @@ public class HojaDeCalculo {
                     System.out.println("+---------------------+");
                     return;
                 default:
-                    if (comand.length() <= 6) {
-                        spreadSheet[currentRow][currentColumn] = comand;
-                    } else {
-                        spreadSheet[currentRow][currentColumn] = comand.substring(0, 6);
-                    }
+                    System.out.println("Entrada inválida, intenta otra vez");
                     break;
             }
 
