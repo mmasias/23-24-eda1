@@ -1,7 +1,7 @@
 import HojaDeCalculo.Movimiento;
 import HojaDeCalculo.Tabla;
 
-public class Main {
+public class Ejecutar {
     public static void main(String[] args) {
         Tabla tabla = new Tabla(15, 10);
         Movimiento movimiento = new Movimiento();
