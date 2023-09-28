@@ -2,8 +2,6 @@ import java.util.*;
 
 class HojaDeCalculo {
 
-    static ArrayList<String> editedCelds = new ArrayList<>();
-
     public static void main(String[] args) {
         String[][] sheet = new String[18][11];
         String currentCell = "A1";
