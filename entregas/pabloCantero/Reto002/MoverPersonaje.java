@@ -1,4 +1,4 @@
-package VisiCalcPOO;
+package Reto002;
 
 import java.util.Scanner;
 

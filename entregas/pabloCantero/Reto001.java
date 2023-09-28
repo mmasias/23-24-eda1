@@ -1,7 +1,7 @@
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
-public class VisiCalc{
+public class Reto001{
     public static void main(String[] args) {
 
         Scanner entrada = new Scanner(System.in);

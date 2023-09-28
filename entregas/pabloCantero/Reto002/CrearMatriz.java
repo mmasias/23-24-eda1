@@ -1,4 +1,4 @@
-package VisiCalcPOO;
+package Reto002;
 
 public class CrearMatriz {
     static String[][] crearMatriz() {
