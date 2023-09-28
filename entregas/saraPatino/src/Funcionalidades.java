@@ -1,30 +1,12 @@
+package src;
+
 import java.util.Scanner;
 
-public class Excel {
-
+public class Funcionalidades implements IFuncionalidades {
     private static final int ROWS = 15;
     private static final int COLUMNS = 10;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        String[][] excel = new String[ROWS][COLUMNS];
-        startingExcel(excel);
-
-        int[] position = { 0, 0 };
-        boolean operating = true;
-
-        while (operating) {
-            printing(excel, position);
-            char command = scanner.next().toUpperCase().charAt(0);
-            operating = processCommand(command, excel, position);
-        }
-
-        clean();
-        scanner.close();
-    }
-
-    static void startingExcel(String[][] excel) {
+    public void startingExcel(String[][] excel) {
         for (int row = 0; row < ROWS; row++) {
             for (int column = 0; column < COLUMNS; column++) {
                 excel[row][column] = "";
@@ -32,7 +14,7 @@ public class Excel {
         }
     }
 
-    static void printHeaders() {
+    public void printHeaders() {
         System.out.print("      ");
         for (int column = 0; column < COLUMNS; column++) {
             char columnLetter = (char) ('A' + column);
@@ -41,7 +23,7 @@ public class Excel {
         System.out.println();
     }
 
-    static void imprimirRegla() {
+    public void printLine() {
         System.out.print("     +");
         for (int column = 0; column < COLUMNS; column++) {
             System.out.print("-------+");
@@ -49,14 +31,14 @@ public class Excel {
         System.out.println();
     }
 
-    static void printing(String[][] excel, int[] position) {
+    public void printing(String[][] excel, int[] position) {
         int currentRow = position[0];
         int currentColumn = position[1];
 
         clean();
-        imprimirOpciones(position);
+        printOptions(position);
         printHeaders();
-        imprimirRegla();
+        printLine();
 
         for (int row = 0; row < ROWS; row++) {
             System.out.printf("%-5d|", row + 1);
@@ -73,12 +55,12 @@ public class Excel {
             }
             System.out.println();
         }
-        imprimirRegla();
+        printLine();
         moving(2, 5);
 
     }
 
-    static void imprimirOpciones(int[] position) {
+    public void printOptions(int[] position) {
         int currentRow = position[0];
         int currentColumn = position[1];
 
@@ -86,7 +68,7 @@ public class Excel {
         System.out.println("[" + (char) ('A' + currentColumn) + (currentRow + 1) + "] ");
     }
 
-    static boolean processCommand(char command, String[][] excel, int[] position) {
+    public boolean processCommand(char command, String[][] excel, int[] position) {
         int currentRow = position[0];
         int currentColumn = position[1];
 
@@ -119,21 +101,21 @@ public class Excel {
         return true;
     }
 
-    static void insertText(String[][] hoja, int currentRow, int currentColumn) {
+    public void insertText(String[][] page, int currentRow, int currentColumn) {
         Scanner scanner = new Scanner(System.in);
         moving(2, 0);
         System.out.print("Insert text [" + (char) ('A' + currentColumn) + (currentRow + 1) + "]:");
-        String texto = scanner.next();
-        hoja[currentRow][currentColumn] = texto;
+        String text = scanner.nextLine();
+        page[currentRow][currentColumn] = text;
         scanner.close();  
     }
 
-    public static void clean() {
+    public void clean() {
         System.out.print("\033[0;0H\033[0;0J");
         System.out.flush();
     }
 
-    public static void moving(int row, int column) {
+    public void moving(int row, int column) {
         char codigoDeEscape = 0x1B;
         System.out.print(String.format("%c[%d;%df", codigoDeEscape, row, column));
     }
