@@ -1,3 +1,5 @@
+package reto002;
+
 import java.util.Scanner;
 class Spreadsheet {
     private Cell[][] matriz;
