@@ -1,7 +1,9 @@
+package VisiCalcPOO;
+
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
-public class VisiCalc{
+public class HojaCalculo{
     public static void main(String[] args) {
 
         Scanner entrada = new Scanner(System.in);
@@ -9,25 +11,7 @@ public class VisiCalc{
         boolean terminar = false;
 
 
-        String[][] unaMatriz = {
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "}
-
-
-        };
+        String[][] unaMatriz = CrearMatriz.crearMatriz();
 
         int[] posicionCursor = {0, 0};
 
@@ -40,46 +24,25 @@ public class VisiCalc{
         do {
             
             imprimeTerreno(unaMatriz, posicionCursor);
-            System.out.println("CMDs: [w] Arriba | [s] Abajo | [a] Izquierda | [d] Derecha | [e] Ingresar comando | [F] Terminar");
-            System.out.print("Ingrese un comando: ");
+            imprimirInicio();
 
-            inputUsuario = entrada.nextLine().charAt(0);
-            switch (inputUsuario) {
-                case 's', 'S':
-                    posicionCursor[0] = posicionCursor[0] + 1;
-                    break;
-                case 'w', 'W':
-                    posicionCursor[0] = posicionCursor[0] - 1;
-                    break;
-                case 'a', 'A':
-                    posicionCursor[1] = posicionCursor[1] - 1;
-                    break;
-                case 'd', 'D':
-                    posicionCursor[1] = posicionCursor[1] + 1;
-                    break;
-                case 'E', 'e':
-                    modificar(unaMatriz, posicionCursor);
+            terminar = MoverPersonaje.moverUsuario(entrada, terminar, unaMatriz, posicionCursor);
 
-                    break;
-                case 'f', 'F':
-                    terminar = true;
-            }
-
-            if (posicionCursor[0] < limiteInferior) {
-                posicionCursor[0] = limiteSuperior;
-            }
-            if (posicionCursor[0] > limiteSuperior) {
-                posicionCursor[0] = limiteInferior;
-            }
-            if (posicionCursor[1] < limiteIzquierdo) {
-                posicionCursor[1] = limiteDerecho;
-            }
-            if (posicionCursor[1] > limiteDerecho) {
-                posicionCursor[1] = limiteIzquierdo;
-            }
+            MoverPersonaje.comprobarLimites(posicionCursor, limiteInferior, limiteSuperior, limiteIzquierdo, limiteDerecho);
 
 
         } while (!terminar);
+    }
+
+    
+
+    
+
+    
+
+    private static void imprimirInicio() {
+        System.out.println("CMDs: [w] Arriba | [s] Abajo | [a] Izquierda | [d] Derecha | [e] Ingresar comando | [F] Terminar");
+        System.out.print("Ingrese un comando: ");
     }
 
     static void imprimeTerreno(String[][] unaMatriz, int[] posicionCursor) {
@@ -126,8 +89,8 @@ public class VisiCalc{
     }
 
     static void imprimePersonaje(int skin) {
-        String[] pacman = {" - "};
-        System.out.print(pacman[skin]);
+        String[] personaje = {" - "};
+        System.out.print(personaje[skin]);
     }
 
     static void limpiarPantalla() {
@@ -153,7 +116,6 @@ public class VisiCalc{
 
 
 }
-
 
 
 
