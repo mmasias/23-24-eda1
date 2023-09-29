@@ -2,15 +2,6 @@ import java.util.Scanner;
 
 public class SpreadSheet {
 
-    private final String[][] table;
-
-    private final String[] alphabet = {
-            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"
-    };
-
-    private int currentRow = 0;
-    private int currentColumn = 0;
-
     private String reset = "\u001B[0m";
     private String green = "\033[32m";
     private String yellow= "\033[33m";
@@ -19,20 +10,87 @@ public class SpreadSheet {
     private String purple="\033[35m";
     private String white = "\033[37m";
 
-    public SpreadSheet(int rows, int columns){
-        this.table = new String[rows][columns];
+    private final int rows;
+
+    private final int columns;
+
+    private final Cell[][] table;
+
+    private int currentRow = 0;
+
+    private int currentColumn = 0;
+
+    private final String[] alphabet = {
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"
+    };
+
+    public SpreadSheet(int rows, int columns) {
+        this.rows = rows;
+        this.columns = columns;
+        this.table = new Cell[rows][columns];
+        initializeTable();
     }
 
-    private void printColumns(){
-        System.out.print("\t    ");
-
-        for(int i = 0; i < table[0].length; i++){
-            System.out.print(alphabet[i] + "        ");
+    private void initializeTable() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                table[i][j] = new Cell();
+            }
         }
-
-        System.out.println();
     }
 
+
+    public void printSheet() {
+        printHeaderBorders();
+        printColumns();
+        printHorizontalBorders();
+        for (int i = 0; i < table.length; i++) {
+            System.out.print((i + 1) + "\t");
+            for (int j = 0; j < table[i].length; j++) {
+                if (j == 0 || j < table[i].length - 1) {
+                    String cellContent = table[i][j].formatCell();
+                    if (i == currentRow && j == currentColumn) {
+                        System.out.print("|\u001B[47m" + cellContent + " \u001B[0m");
+                    } else {
+                        System.out.print("| " + cellContent);
+                    }
+                }
+                if (j == (table[i].length - 1)) {
+                    String cellContent = table[i][j].formatCell();
+                    if (i == currentRow && j == currentColumn) {
+                        System.out.print("|\u001B[47m" + cellContent + "\u001B[0m|");
+                    } else {
+                        System.out.print("| " + cellContent + "|");
+                    }
+                }
+            }
+            System.out.println();
+        }
+        printHorizontalBorders();
+        System.out.println(this.cyan + "Celda actual → [" + alphabet[currentColumn] + (currentRow + 1) + "]" + this.reset);
+        String currentCellContent = table[currentRow][currentColumn].getContent();
+        System.out.println(this.purple + "Contenido actual: " + (currentCellContent != null ? currentCellContent : "") + this.reset);
+    }
+
+
+
+    public void moveCurrentRow(int delta) {
+        int newRow = currentRow + delta;
+        if (newRow >= 0 && newRow < rows) {
+            currentRow = newRow;
+        }
+    }
+
+    public void moveCurrentColumn(int delta) {
+        int newColumn = currentColumn + delta;
+        if (newColumn >= 0 && newColumn < columns) {
+            currentColumn = newColumn;
+        }
+    }
+
+    public void setCellValue(String value) {
+        table[currentRow][currentColumn].setContent(value);
+    }
 
     private void printHorizontalBorders() {
         System.out.print("\t");
@@ -60,38 +118,34 @@ public class SpreadSheet {
         System.out.println();
     }
 
-    public void printSheet() {
-        printHeaderBorders();
-        printColumns();
-        printHorizontalBorders();
-        for (int i = 0; i < table.length; i++) {
-            System.out.print((i + 1) + "\t");
-            for (int j = 0; j < table[i].length; j++) {
-                if (j == 0 || j < table[i].length - 1) {
-                    String cellContent = formatCell(table[i][j]);
-                    if (i == currentRow && j == currentColumn) {
-                        System.out.print("|\u001B[47m" + cellContent + " \u001B[0m");
-                    } else {
-                        System.out.print("| " + cellContent);
-                    }
-                }
-                if (j == (table[i].length - 1)) {
-                    String cellContent = formatCell(table[i][j]);
-                    if (i == currentRow && j == currentColumn) {
-                        System.out.print("|\u001B[47m" + cellContent + "\u001B[0m|");
-                    } else {
-                        System.out.print("| " + cellContent + "|");
-                    }
-                }
-            }
-            System.out.println();
-        }
-        printHorizontalBorders();
-        System.out.println(this.cyan+"Celda actual → [" + alphabet[currentColumn] + (currentRow + 1) + "]"+this.reset);
-        String currentCellContent = table[currentRow][currentColumn];
-        System.out.println(this.purple+"Contenido actual: " + (currentCellContent != null ? currentCellContent : "")+this.reset);
+    private void printColumns(){
+        System.out.print("\t    ");
 
+        for(int i = 0; i < table[0].length; i++){
+            System.out.print(alphabet[i] + "        ");
+        }
+
+        System.out.println();
     }
+
+
+
+    /*private final String[][] table;
+    private int currentRow = 0;
+    private int currentColumn = 0;
+
+
+
+    public SpreadSheet(int rows, int columns){
+        this.table = new String[rows][columns];
+    }
+
+
+
+
+
+
+
 
     private String formatCell(String cellValue) {
         if (cellValue == null) {
@@ -159,5 +213,5 @@ public class SpreadSheet {
             default:
                 System.out.println("Comando no válido.");
         }
-    }
+    }*/
 }
