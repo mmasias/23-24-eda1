@@ -22,7 +22,7 @@ class SheetRenderer:
         
     def _print_sheet_headers(self):
         Console.clear()
-        print(HEADER_COLOR + "Python Excel App v1.0 By Javier Cáder".center(CELL_WIDTH * len(self.sheet.get_cols()) + 11) + RESET_COLOR)
+        print(HEADER_COLOR + "Python Excel App v1.1 By Javier Cáder".center(CELL_WIDTH * len(self.sheet.get_cols()) + 11) + RESET_COLOR)
         self._print_separator()
         self._print_headers()
         self._print_row_separator()
