@@ -6,6 +6,6 @@ services:
       context: .
       dockerfile: docker/Dockerfile
     volumes:
-      - ./src/app.py:/app/app.py
+      - ./src/:/app/
     stdin_open: true
     tty: true

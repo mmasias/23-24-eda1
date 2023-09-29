@@ -1,5 +1,5 @@
 import os
-from src.constants.colors import SUCCESS_COLOR, RESET_COLOR, ERROR_COLOR
+from constants.colors import SUCCESS_COLOR, RESET_COLOR, ERROR_COLOR
 
 
 class Console:

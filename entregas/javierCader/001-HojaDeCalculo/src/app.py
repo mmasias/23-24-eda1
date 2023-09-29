@@ -1,9 +1,9 @@
-from src.constants.constants import DIRECTIONS
-from src.components.sheet import Sheet
-from src.components.sheet_renderer import SheetRenderer
-from src.components.cursor import Cursor
-from src.components.cell_content_editor import CellContentEditor
-from src.utils.console import Console
+from constants.constants import DIRECTIONS
+from components.sheet import Sheet
+from components.sheet_renderer import SheetRenderer
+from components.cursor import Cursor
+from components.cell_content_editor import CellContentEditor
+from utils.console import Console
 
 class MainApp:
     def __init__(self, rows, cols):

@@ -1,6 +1,6 @@
-from src.constants.colors import HEADER_COLOR, RESET_COLOR
-from src.constants.constants import CELL_WIDTH
-from src.utils.console import Console
+from constants.colors import HEADER_COLOR, RESET_COLOR
+from constants.constants import CELL_WIDTH
+from utils.console import Console
 
 class SheetRenderer:
     def __init__(self, sheet):

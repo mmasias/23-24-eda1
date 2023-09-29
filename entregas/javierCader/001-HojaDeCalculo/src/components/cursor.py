@@ -1,4 +1,4 @@
-from src.constants.constants import DIRECTIONS
+from constants.constants import DIRECTIONS
 
 class Cursor:
     def __init__(self, max_rows, max_cols):
