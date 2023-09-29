@@ -1,29 +1,39 @@
 import java.util.Scanner;
-import java.awt.*;
 
-public class HojaDeCalculo {
-    private static final int columns = 10;
-    private static final int rows = 15;
+class Spreadsheet {
+    private static final int COLUMNS = 10;
+    private static final int ROWS = 15;
 
-    public static void main(String[] args) {
-        String[][] spreadSheet = new String[rows][columns];
-        String[][] columnLabels = generateColumnLabels();
-        String[][] rowLabels = generateRowLabels();
-        String message = "Bienvenido a tu hoja de calculo ";
-        int currentRow = 0;
-        int currentColumn = 0;
-        Scanner scanner = new Scanner(System.in);
+    private String[][] cells;
+    private String[][] columnLabels;
+    private String[][] rowLabels;
+    private int currentRow;
+    private int currentColumn;
+    private String message;
+    private Scanner scanner;
 
+    public Spreadsheet() {
+        cells = new String[ROWS][COLUMNS];
+        columnLabels = generateColumnLabels();
+        rowLabels = generateRowLabels();
+        currentRow = 0;
+        currentColumn = 0;
+        message = "Bienvenido a tu hoja de cálculo";
+        scanner = new Scanner(System.in);
+    }
+
+    public void run() {
         while (true) {
-            showspreadSheet(spreadSheet, columnLabels, rowLabels, currentRow, currentColumn, message);
+            showSpreadsheet();
             System.out.print("Ingrese comando: ");
-            String comand = scanner.nextLine().trim().toUpperCase();
+            String command = scanner.nextLine().trim().toUpperCase();
 
-            switch (comand) {
+            switch (command) {
                 case "E":
                     System.out.println("Ingrese el texto: ");
                     String textToAssign = scanner.nextLine();
-                    spreadSheet[currentRow][currentColumn] = textToAssign;
+                    cells[currentRow][currentColumn] = textToAssign;
+                    break;
                 case "W":
                     if (currentRow > 0) {
                         currentRow--;
@@ -35,12 +45,12 @@ public class HojaDeCalculo {
                     }
                     break;
                 case "S":
-                    if (currentRow < rows - 1) {
+                    if (currentRow < ROWS - 1) {
                         currentRow++;
                     }
                     break;
                 case "D":
-                    if (currentColumn < columns - 1) {
+                    if (currentColumn < COLUMNS - 1) {
                         currentColumn++;
                     }
                     break;
@@ -53,28 +63,26 @@ public class HojaDeCalculo {
                     System.out.println("Entrada inválida, intenta otra vez");
                     break;
             }
-
         }
     }
 
-    private static void showspreadSheet(String[][] spreadSheet, String[][] columnLabels, String[][] rowLabels,
-            int currentRow, int currentColumn, String message) {
+    private void showSpreadsheet() {
         System.out.println("+----------------------------------------------------------------------------------+");
         System.out.println("|                      " + message + "                            |");
         System.out.println("+----------------------------------------------------------------------------------+");
         System.out.print("|" + "  ");
 
-        for (int column = 0; column < columns; column++) {
+        for (int column = 0; column < COLUMNS; column++) {
             System.out.print("|   " + columnLabels[0][column] + ("   "));
         }
         System.out.print("|");
         System.out.println();
         System.out.println("+--+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
 
-        for (int row = 0; row < rows; row++) {
+        for (int row = 0; row < ROWS; row++) {
             System.out.print("|" + rowLabels[row][0]);
-            for (int column = 0; column < columns; column++) {
-                String content = spreadSheet[row][column];
+            for (int column = 0; column < COLUMNS; column++) {
+                String content = cells[row][column];
                 if (content == null) {
                     content = "";
                 }
@@ -102,17 +110,17 @@ public class HojaDeCalculo {
         System.out.println("+------------------------------------------------------------------------+");
     }
 
-    private static String[][] generateColumnLabels() {
-        String[][] columnLabels = new String[1][columns];
-        for (int column = 0; column < columns; column++) {
+    private String[][] generateColumnLabels() {
+        String[][] columnLabels = new String[1][COLUMNS];
+        for (int column = 0; column < COLUMNS; column++) {
             columnLabels[0][column] = Character.toString((char) ('A' + column));
         }
         return columnLabels;
     }
 
-    private static String[][] generateRowLabels() {
-        String[][] rowLabels = new String[rows][1];
-        for (int row = 0; row < rows; row++) {
+    private String[][] generateRowLabels() {
+        String[][] rowLabels = new String[ROWS][1];
+        for (int row = 0; row < ROWS; row++) {
             rowLabels[row][0] = String.format("%2d", row + 1);
         }
         return rowLabels;
