@@ -1,18 +1,21 @@
 package main;
-import classes.Spreadsheet;
 import java.util.Scanner;
+import classes.*;
 
 public class App {
-        public static void main(String[] args) {
-        Spreadsheet spreadsheet = new Spreadsheet(15, 10);
+
+    private static final String[] MOVEMENT_ACTIONS = { "w", "a", "s", "d", "e", "q" };
+    private static Spreadsheet spreadsheet = new Spreadsheet(15, 10);
+    private static Navigation navigation = new Navigation(spreadsheet);
+
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         boolean isRunning = true;
-        while (isRunning) {
-            spreadsheet.display();
 
-            System.out.println("Current cell -> " + "[" + spreadsheet.getCurrentColumnLetter()
-                    + spreadsheet.getCurrentRow() + "]");
+        while (isRunning) {
+            SpreadsheetView.displaySpreadsheet(spreadsheet, navigation);
+
+            System.out.println("Current cell -> " + "[" + navigation.getCurrentColumnLetter() + navigation.getCurrentRow() + "]");
             System.out.println("Use the W, A, S & D keys to move around the spreadsheet.");
             System.out.println("Press 'E' to enter a text in the current cell.");
             System.out.println("Press 'Q' to exit.");
@@ -21,21 +24,21 @@ public class App {
 
             switch (userInput) {
                 case "w":
-                    spreadsheet.moveUp();
+                    navigation.moveUp();
                     break;
                 case "a":
-                    spreadsheet.moveLeft();
+                    navigation.moveLeft();
                     break;
                 case "s":
-                    spreadsheet.moveDown();
+                    navigation.moveDown();
                     break;
                 case "d":
-                    spreadsheet.moveRight();
+                    navigation.moveRight();
                     break;
                 case "e":
                     System.out.println("Enter the text for the cell: ");
                     String text = scanner.nextLine();
-                    spreadsheet.enterText(text);
+                    enterText(text);
                     break;
                 case "q":
                     isRunning = false;
@@ -44,5 +47,9 @@ public class App {
                     System.out.println("Invalid input. Please try again.");
             }
         }
+    }
+
+    public static void enterText(String text) {
+        navigation.enterText(text);
     }
 }
