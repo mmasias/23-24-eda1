@@ -2,145 +2,104 @@ import java.util.Scanner;
 
 public class VisiCalc {
     public static void main(String[] args) {
+        int posX = 0;
+        int posY = 0;
+        int filas = 15;
+        int columnas = 10;
 
-        Scanner entrada = new Scanner(System.in);
-        char inputUsuario;
-        boolean terminar = false;
+        String[][] hojaCalculo = new String[filas][columnas];
 
-        String[][] unaMatriz = {
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "}
-        };
-
-        int[] posicionCursor = {0, 0};
-
-        int limiteInferior = 0;
-        int limiteSuperior = unaMatriz.length - 1;
-        int limiteIzquierdo = 0;
-        int limiteDerecho = unaMatriz[0].length - 1;
-        int skin = 0;
-
-        do {
-            imprimeTerreno(unaMatriz, posicionCursor);
-            System.out.println("CMDs: [W] Arriba | [S] Abajo | [A] Izquierda | [D] Derecha | [E] Editar | [Q] Terminar");
-            System.out.print("Ingrese un comando: ");
-
-            inputUsuario = entrada.nextLine().charAt(0);
-            switch (inputUsuario) {
-                case 's', 'S':
-                    posicionCursor[0] = posicionCursor[0] + 1;
-                    break;
-                case 'w', 'W':
-                    posicionCursor[0] = posicionCursor[0] - 1;
-                    break;
-                case 'a', 'A':
-                    posicionCursor[1] = posicionCursor[1] - 1;
-                    break;
-                case 'd', 'D':
-                    posicionCursor[1] = posicionCursor[1] + 1;
-                    break;
-                case 'e', 'E':
-                    modificar(unaMatriz, posicionCursor);
-
-                    break;
-                case 'q', 'Q':
-                    terminar = true;
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                hojaCalculo[i][j] = "       ";
             }
-
-            if (posicionCursor[0] < limiteInferior) {
-                posicionCursor[0] = limiteSuperior;
-            }
-            if (posicionCursor[0] > limiteSuperior) {
-                posicionCursor[0] = limiteInferior;
-            }
-            if (posicionCursor[1] < limiteIzquierdo) {
-                posicionCursor[1] = limiteDerecho;
-            }
-            if (posicionCursor[1] > limiteDerecho) {
-                posicionCursor[1] = limiteIzquierdo;
-            }
+        }
 
 
-        } while (!terminar);
-    }
-
-    static void imprimeTerreno(String[][] unaMatriz, int[] posicionCursor) {
-        final int ANCHO_DE_CELDA = 7;
-        String celda = "";
-        limpiarPantalla();
-
-        System.out.println("+---------------------------------------------------------------------------------+");
-        System.out.println("| |   A   |   B   |   C   |   D   |   E   |   F   |   G   |   H   |   I   |   J   |");
-        System.out.println("+---------------------------------------------------------------------------------+");
-
-        for (int i = 0; i < unaMatriz.length; i++) {
-            if (i < 9) {
-                System.out.print(" " + (i + 1));
-            } else {
-                System.out.print((i + 1));
-            }
-
-            for (int j = 0; j < unaMatriz[i].length; j++) {
-                boolean borde = false;
-                if (posicionCursor[0] == i && posicionCursor[1] == j) {
-                    borde = true;
+        System.out.println("    A       B       C       D       E       F       G       H       I       J");
+        System.out.println("+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
+        for (int i = 0; i < filas; i++) {
+            System.out.print("|");
+            for (int j = 0; j < columnas; j++) {
+                if (i == posX && j == posY) {
+                    System.out.print("[     ]");
+                } else {
+                    System.out.print(hojaCalculo[i][j]);
                 }
-                celda = limpia(unaMatriz[i][j], ANCHO_DE_CELDA, borde);
-                System.out.print("|" + celda);
+                if (j < columnas - 1) {
+                    System.out.print("|");
+                }
             }
             System.out.println("|");
+        }
+        System.out.println("+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
+        System.out.println("Celda actual : " + (posX + 1) + "  -  " + (posY + 1));
 
-        }
-        System.out.println("x: " + posicionCursor[0] + " | y:" + posicionCursor[1]);
-    }
+        System.out.println("Utilice las teclas a,w,s,d para moverse.");
+        System.out.println("Utilice la tecla e para ingresar un valor.");
+        System.out.println("Utilice la tecla q para finalizar el programa.");
 
-    static String limpia(String texto, int largo, boolean borde) {
-        if (texto.length() < largo) {
-            texto = " ".repeat(largo - texto.length()) + texto;
-        } else {
-            texto = texto.substring(texto.length() - largo);
-        }
-        if (borde) {
-            texto = "[" + limpia(texto, 5, !borde) + "]";
-        }
-        return texto;
-    }
-    static void modificar(String[][] hoja, int[] posicion) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese un valor");
-        String valor = sc.nextLine();
-        String resultado = "";
-        if (valor.length() > 7) {
-            for (int i = 0; i < 7; i++) {
-                resultado = resultado + valor.charAt(i);
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+
+            char movimiento = scanner.next().charAt(0);
+
+            switch (movimiento) {
+                case 'a':
+                    if (posY > 0)
+                        posY--;
+                    break;
+                case 'w':
+                    if (posX > 0)
+                        posX--;
+                    break;
+                case 'd':
+                    if (posY < columnas - 1)
+                        posY++;
+                    break;
+                case 's':
+                    if (posX < filas - 1)
+                        posX++;
+                    break;
+                case 'e':
+                    System.out.print("Ingrese un valor (numérico o carácter, máximo 7 caracteres): ");
+                    scanner.nextLine();
+                    String valor = scanner.nextLine();
+                    valor = valor.length() > 7 ? valor.substring(0, 7) : valor;
+                    hojaCalculo[posX][posY] = String.format("%7s", valor);
+                    break;
+                case 'q':
+                    System.out.println("Programa finalizado.");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Entrada no válida. Usa a, w, d, s para moverte.");
+                    break;
             }
 
-        } else {
-            resultado = valor;
+
+            System.out.println("    A       B       C       D       E       F       G       H       I       J");
+            System.out.println("+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
+            for (int i = 0; i < filas; i++) {
+                System.out.print("|");
+                for (int j = 0; j < columnas; j++) {
+                    if (i == posX && j == posY) {
+                        System.out.print("[     ]");
+                    } else {
+                        System.out.print(hojaCalculo[i][j]);
+                    }
+                    if (j < columnas - 1) {
+                        System.out.print("|");
+                    }
+                }
+                System.out.println("|");
+            }
+            System.out.println("+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+");
+            System.out.println("Celda actual  : " + (posX + 1) + "  -  " + (posY + 1));
+            System.out.println("Utilice las teclas a,w,s,d para moverse.");
+            System.out.println("Utilice la tecla e para ingresar un valor.");
+            System.out.println("Utilice la tecla q para salir.");
         }
-        hoja[posicion[0]][posicion[1]] = resultado;
-    }
-
-    static void imprimecel(int skin) {
-        String[] cel = {" - "};
-        System.out.print(cel[skin]);
-    }
-
-    static void limpiarPantalla() {
-
-        System.out.print("\033[H\033[2J");
     }
 }
