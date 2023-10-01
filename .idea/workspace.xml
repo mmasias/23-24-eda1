@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="40a84cef-18a6-4529-ade5-98f426259923" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/entregas/anibalBayas/reto001/hojaDeCalculo/hojaDeCalculo/hojaDeCalculo.iml" beforeDir="false" />
+    <list default="true" id="40a84cef-18a6-4529-ade5-98f426259923" name="Changes" comment="SubidaReto002">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entregas/anibalBayas/reto001/hojaDeCalculo/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/entregas/anibalBayas/reto001/hojaDeCalculo/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +28,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/MI PC/Documents/EDA"
+    "last_opened_file_path": "C:/Users/MI PC/Documents/EDA/entregas/anibalBayas/reto001/hojaDeCalculo"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -36,6 +40,18 @@
       <option name="presentableId" value="Default" />
       <updated>1695923323191</updated>
     </task>
+    <task id="LOCAL-00001" summary="SubidaReto002">
+      <created>1695923511004</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1695923511004</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="SubidaReto002" />
+    <option name="LAST_COMMIT_MESSAGE" value="SubidaReto002" />
   </component>
 </project>
