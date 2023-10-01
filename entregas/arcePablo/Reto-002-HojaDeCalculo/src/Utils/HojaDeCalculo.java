@@ -9,6 +9,7 @@ public class HojaDeCalculo {
 
     public HojaDeCalculo() {
         sheet = new Sheet(18, 11);
+        movement = new Movement();
         input = new Scanner(System.in);
     }
 
@@ -22,9 +23,9 @@ public class HojaDeCalculo {
             } else if (command.equals("e")) {
                 System.out.println("Ingrese el nuevo valor de la celda " + sheet.getCurrentCell() + ":");
                 String newValue = input.nextLine();
-                sheet.setCellValue(movement.getCurrentRow(), movement.getCurrentColumn(), newValue);
+                sheet.setCellValue(movement.getCurrentRow(sheet.getCurrentCell()), movement.getCurrentColumn(sheet.getCurrentCell()), newValue);
             } else {
-                movement.handleCommand(command);
+                sheet.setCurrentCell(movement.handleCommand(command, sheet.getCurrentCell()));
             }
         }
         input.close();
