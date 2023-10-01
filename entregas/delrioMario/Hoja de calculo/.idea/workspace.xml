@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31b7414b-df8a-432c-be2b-820648158f61" name="Changes" comment="Proyecto 001">
-      <change afterPath="$PROJECT_DIR$/../HojaDeCalculoPoo/src/editarTablero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HojaDeCalculoPoo/src/imprimirCursor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HojaDeCalculoPoo/src/imprimirTablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HojaDeCalculoPoo/src/imprimirTablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +36,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PORTATIL_MSI/Documents/Projectos EDA1/entregas/delrioMario/Hoja de calculo&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PORTATIL_MSI/Documents/Projectos EDA1/entregas/delrioMario/HojaDeCalculoPoo&quot;
   }
 }</component>
   <component name="RunManager">

@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -29,52 +28,52 @@ public class Main {
 
         };
 
-        int[] posicionCursor = {0, 0};
+        int[] posicion = {0, 0};
 
         int limiteInferior = 0;
         int limiteSuperior = unaMatriz.length - 1;
         int limiteIzquierdo = 0;
         int limiteDerecho = unaMatriz[0].length - 1;
-        int skin = 0;
+
 
         do {            
-            imprimeTerreno(unaMatriz, posicionCursor);
+            imprimeTerreno(unaMatriz, posicion);
             System.out.println("CMDs: [W] Arriba | [S] Abajo | [A] Izquierda | [D] Derecha | [E] Editar | [Q] Salir");
             System.out.print("Ingrese un comando: ");
 
             inputUsuario = entrada.nextLine().charAt(0);
             switch (inputUsuario) {
                 case 's', 'S':
-                    posicionCursor[0] = posicionCursor[0] + 1;
+                    posicion[0] = posicion[0] + 1;
                     break;
                 case 'w', 'W':
-                    posicionCursor[0] = posicionCursor[0] - 1;
+                    posicion[0] = posicion[0] - 1;
                     break;
                 case 'a', 'A':
-                    posicionCursor[1] = posicionCursor[1] - 1;
+                    posicion[1] = posicion[1] - 1;
                     break;
                 case 'd', 'D':
-                    posicionCursor[1] = posicionCursor[1] + 1;
+                    posicion[1] = posicion[1] + 1;
                     break;
                 case 'e', 'E':
-                    modificar(unaMatriz, posicionCursor);
+                    editar(unaMatriz, posicion);
 
                     break;
                 case 'q', 'Q':
                     terminar = true;
             }
 
-            if (posicionCursor[0] < limiteInferior) {
-                posicionCursor[0] = limiteSuperior;
+            if (posicion[0] < limiteInferior) {
+                posicion[0] = limiteSuperior;
             }
-            if (posicionCursor[0] > limiteSuperior) {
-                posicionCursor[0] = limiteInferior;
+            if (posicion[0] > limiteSuperior) {
+                posicion[0] = limiteInferior;
             }
-            if (posicionCursor[1] < limiteIzquierdo) {
-                posicionCursor[1] = limiteDerecho;
+            if (posicion[1] < limiteIzquierdo) {
+                posicion[1] = limiteDerecho;
             }
-            if (posicionCursor[1] > limiteDerecho) {
-                posicionCursor[1] = limiteIzquierdo;
+            if (posicion[1] > limiteDerecho) {
+                posicion[1] = limiteIzquierdo;
             }
 
 
@@ -125,26 +124,21 @@ public class Main {
         return texto;
     }
 
-    static void imprimePacman(int skin) {
-        String[] pacman = {" - "};
-        System.out.print(pacman[skin]);
-    }
-
     static void limpiarPantalla() {
 
         System.out.print("\033[H\033[2J");
     }
 
-    static void modificar(String[][] hoja, int[] posicion) {
+    static void editar(String[][] hoja, int[] posicion) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese un valor");
+        System.out.println("Inserta un maximo de 7 caracteres");
         String valor = sc.nextLine();
         String resultado = "";
         if (valor.length() > 7) {
+            System.out.println("Exceso de caracteres, solo se cojeran los 7 primeros");
             for (int i = 0; i < 7; i++) {
-                resultado = resultado + valor.charAt(i);
+                resultado += valor.charAt(i);
             }
-
         } else {
             resultado = valor;
         }
