@@ -15,24 +15,21 @@ class Spreadsheet:
 
 
     def createSpreadsheet(cases,letters,userRow,userColumn, columnSymbol, rowSymbol):
-        Spreadsheet.printLetters(letters)
+        Spreadsheet.printLetters(letters, rowSymbol)
 
-        print(rowSymbol)
-
-        Spreadsheet.fillCases(cases, userRow, userColumn, columnSymbol)
-            
-        print(rowSymbol)
-
-        return userRow, userColumn
+        Spreadsheet.fillCases(cases, userRow, userColumn, columnSymbol, rowSymbol)
     
     
-    def printLetters(letters):
+    def printLetters(letters, rowSymbol):
         for row in range (10):
             print('       ', *letters[row] , end=' ')
         print()
+        
+        print(rowSymbol)
+
 
     
-    def fillCases(cases, userRow, userColumn, columnSymbol):
+    def fillCases(cases, userRow, userColumn, columnSymbol, rowSymbol):
         for row in range (15):
             print(str(row+1).zfill(2), end='   ')
             for column in range (10):
@@ -41,6 +38,8 @@ class Spreadsheet:
                 else:
                     print(columnSymbol +' '+cases[row][column], end=' ')
             print(columnSymbol)
+        print(rowSymbol)
+        
         
 
     def menu(letters, cases, userRow, userColumn):
