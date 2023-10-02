@@ -4,7 +4,6 @@ import classes.*;
 
 public class App {
 
-    private static final String[] MOVEMENT_ACTIONS = { "w", "a", "s", "d", "e", "q" };
     private static Spreadsheet spreadsheet = new Spreadsheet(15, 10);
     private static Navigation navigation = new Navigation(spreadsheet);
 
