@@ -1,4 +1,4 @@
-
+package miJava;
 
 public class Celda {
     private int x;
