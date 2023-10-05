@@ -7,10 +7,10 @@ public class Excel {
     private static final int ROWS = 15;
     private static final int COLUMNS = 10;
 
-    public static void main(String[] args) throws ExceptionsExcel {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ExceptionsExcel exceptionsExcel = new ExceptionsExcel(null);
         Funcionalidades funcionalidades = new Funcionalidades();
+        PrintExcel print = new PrintExcel();
 
         String[][] excel = new String[ROWS][COLUMNS];
         funcionalidades.startingExcel(excel);
@@ -18,19 +18,15 @@ public class Excel {
         int[] position = { 0, 0 };
         boolean operating = true;
 
-        try {
-            while (operating) {
-            funcionalidades.printing(excel, position);
+        while (operating) {
+            print.printing(excel, position);
             char command = scanner.next().toUpperCase().charAt(0);
             operating = funcionalidades.processCommand(command, excel, position);
         }
 
-        funcionalidades.clean();
+        print.clean();
         scanner.close();
-        } catch (Exception e) {
-            System.out.println(exceptionsExcel.getMessage());
-            throw new ExceptionsExcel("Hay un error en la hoja de cálculo");
-        }
+       
         
     }
 }
