@@ -1,21 +1,36 @@
 package esparragozaVeronika.view;
+import esparragozaVeronika.core.*;
 
 public class excelStructure {
     static String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-    public void initialDataInTable(String[][] table){
-        for (int column = 0; column < table.length; column++) {
-            for (int row = 0; row < table[0].length; row++){
-                table[column][row] = " ".repeat(7);
-            }
-        }
+    private cells cells;
+    private user user;
+    public excelStructure(String[][] table, cells cells, user user) {
+        this.cells = cells;
+        this.user = user;
+        printTableHeader(table);
+        printTableBody(table);
     }
-    public void printTableHeader(){
+    public void printTableHeader(String[][] table){
         System.out.print("__");
-        for (int letter = 0; letter < alphabet.length; letter++){
+        for (int letter = 0; letter < table[0].length; letter++){
             System.out.print("|__ " + alphabet[letter] + " __|");
         }
     }
-    private static void printNumberOfRows(int column){
+    public void printTableBody(String[][] table){
+        for (int column = 1; column < table.length; column++) {
+            printNumberOfRows(column);
+            for (int row = 0; row < table[0].length; row++) {
+                if (user.getUserPosition()[0] == row && user.getUserPosition()[1] == column) {
+                    System.out.print("\u001B[31m[" + cells.getCell(column, row ) +"]\u001B[0m");
+                } else{
+                    System.out.print("|" + cells.getCell(column, row ) + "|");
+                }
+            }
+        }
+        System.out.println("");
+    }
+    private void printNumberOfRows(int column){
         System.out.println("");
         if(column < 10){
             System.out.print("0" + column);
@@ -23,25 +38,5 @@ public class excelStructure {
             System.out.print(column);
         };
     }
-    public void printTableBody(String[][] table, int[] userPosition){
-        for (int column = 1; column < table.length; column++) {
-            printNumberOfRows(column);
-            for (int row = 0; row < table[0].length; row++) {
-                if (userPosition[0] == row && userPosition[1] == column) {
-                    System.out.print("\u001B[31m[" + table[column][row] +"]\u001B[0m");
-                } else{
-                    System.out.print("|" + table[column][row] + "|");
-                }
-            }
-        }
-        System.out.println("");
-    }
 
-    public boolean programsEnds(String inputUser){
-        if (inputUser.equals(":q")){
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
