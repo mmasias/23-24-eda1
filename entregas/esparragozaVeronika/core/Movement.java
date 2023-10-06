@@ -1,13 +1,16 @@
 package esparragozaVeronika.core;
 
+import esparragozaVeronika.main;
+
 import java.util.Scanner;
 
-public class movement {
-    public boolean isOperative;
-    private user user;
+public class Movement {
+    private User user;
+    private Cell cell;
     static Scanner scanner = new Scanner(System.in);
-    public movement(user user) {
+    public Movement(User user, Cell cell) {
         this.user = user;
+        this.cell = cell;
     }
     public void inputUserMovement(String userInput, String[][] table) {
         switch (userInput) {
@@ -32,38 +35,17 @@ public class movement {
                 }
                 break;
             case ":q":
-                System.out.println("Programa finalizado");
-                isOperative = true;
+                main.isOperative = false;
                 break;
             case ":e":
                 System.out.println("Que deseas escribir: ");
                 String dataEnter = scanner.nextLine();
-                putTextInCell(table, dataEnter);
+                cell.putTextInCell(table, dataEnter);
+
                 break;
             default:
                 System.out.println("Tecla no permitida");
                 break;
         }
-    }
-    public void putTextInCell(String[][] table, String dataEnter){
-        String textInputInCell = counterLetter(dataEnter);
-        table[user.getUserPosition()[1]][user.getUserPosition()[0]] = textInputInCell;
-    }
-    public String counterLetter(String textInputinCell){
-        if (textInputinCell == null) {
-            return " ".repeat(8);
-        } else if (textInputinCell.length() >= 7) {
-            return textInputinCell.substring(0, 7);
-        } else {
-            int spacesToAdd = 7 - textInputinCell.length();
-            StringBuilder formatted = new StringBuilder(textInputinCell);
-            for (int i = 0; i < spacesToAdd; i++) {
-                formatted.append(" ");
-            }
-            return formatted.toString();
-        }
-    }
-    public boolean isOperative(){
-        return isOperative;
     }
 }

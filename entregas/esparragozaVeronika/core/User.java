@@ -1,6 +1,6 @@
 package esparragozaVeronika.core;
 
-public class user {
+public class User {
     protected int[] userPosition;
     public int[] getUserPosition() {
         return userPosition;

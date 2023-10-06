@@ -1,11 +1,11 @@
 package esparragozaVeronika.view;
 import esparragozaVeronika.core.*;
 
-public class excelStructure {
-    static String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-    private cells cells;
-    private user user;
-    public excelStructure(String[][] table, cells cells, user user) {
+public class ExcelStructure {
+    static String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"};
+    private Cell cells;
+    private User user;
+    public ExcelStructure(String[][] table, Cell cells, User user) {
         this.cells = cells;
         this.user = user;
         printTableHeader(table);
