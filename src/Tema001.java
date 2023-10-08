@@ -1,4 +1,4 @@
-class Intro {
+class Tema001 {
     public static void main(String[] args) {
 
         imprimirTitulo("Primitivos");
@@ -40,39 +40,37 @@ class Intro {
         cadenaTexto = "XYZ";
         System.out.println(cadenaTexto + " - " + otraCadena + " - " + terceraCadena);
 
-
         terceraCadena = "ABC";
         System.out.println(cadenaTexto + " - " + otraCadena + " - " + terceraCadena);
 
         imprimirTitulo("Arrays");
 
-        int[] arr1 = {1, 2, 3};
-        int[] arr2 = arr1;
-        int[] arr3 = new int[]{1, 2, 3};
+        int[] array1 = {1, 2, 3};
+        int[] array2 = array1;
+        int[] array3 = new int[]{1, 2, 3};
 
-        System.out.println(arr1 + " - " + arr2 + " - " + arr3);        
+        System.out.println(array1 + " - " + array2 + " - " + array3);        
 
-        System.out.println("Los arrays tienen el mismo contenido: " + java.util.Arrays.equals(arr1, arr3));
-        System.out.println("Los arrays son el mismo objeto: " + (arr1 == arr2));
-        System.out.println("Los arrays son diferentes objetos: " + (arr1 == arr3));
+        System.out.println("Los arrays tienen el mismo contenido: " + java.util.Arrays.equals(array1, array3));
+        System.out.println("Los arrays son el mismo objeto: " + (array1 == array2));
+        System.out.println("Los arrays son diferentes objetos: " + (array1 == array3));
 
-        arr2[0] = 100;
-        System.out.println("Primer elemento de arr1: " + arr1[0]);
+        array2[0] = 100;
+        System.out.println("Primer elemento de arr1: " + array1[0]);
 
         imprimirTitulo("Objetos Personalizados");
 
-        Persona p1 = new Persona("Alice");
-        Persona p2 = p1;
-        Persona p3 = new Persona("Alice");
+        Persona persona1 = new Persona("Alicia");
+        Persona persona2 = persona1;
+        Persona persona3 = new Persona("Alicia");
 
+        System.out.println(persona1 + " - " + persona2 + " - " + persona3);        
+        System.out.println("Los nombres son iguales: " + persona1.getNombre().equals(persona3.getNombre()));
+        System.out.println("Los objetos son el mismo objeto: " + (persona1 == persona2));
+        System.out.println("Los objetos son diferentes objetos: " + (persona1 != persona3));
 
-        System.out.println(p1 + " - " + p2 + " - " + p3);        
-        System.out.println("Los nombres son iguales: " + p1.getNombre().equals(p3.getNombre()));
-        System.out.println("Los objetos son el mismo objeto: " + (p1 == p2));
-        System.out.println("Los objetos son diferentes objetos: " + (p1 != p3));
-
-        p2.setNombre("Bob");
-        System.out.println("Nombre de p1: " + p1.getNombre());
+        persona2.setNombre("Bob");
+        System.out.println("Nombre de Persona1: " + persona1.getNombre());
     }
 
     static void imprimirLinea() {
@@ -100,21 +98,23 @@ class Intro {
     }
  
     
-    static class Persona {
-        private String nombre;
 
-        public Persona(String nombre) {
-            this.nombre = nombre;
-        }
-
-        public String getNombre() {
-            return nombre;
-        }
-
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
-    }
     
+}
+
+class Persona {
+    private String nombre;
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }
 

@@ -25,10 +25,12 @@ copiaPrecio|0x7C000008|568
 
 ## Datos estructurados
 
+Lo mejor es verlo y discutirlo [en vivo](/src/Tema001.java), sobre uno o varios ejemplos.
+
 - Varios datos por **elemento**: *arrays* (recordar que *String* es un array de *char*), *clases*, estructuras, conjuntos.
 - Aquí las variables guardan una dirección (o referencia), no un valor.
 
-## Strings
+### Strings
 
 ```java
 String cadenaTexto = "Una cadena";
@@ -47,9 +49,7 @@ otraCadena|0x7C009999|0x7C000000
 terceraCadena|0x7C066666|0x7C008888
 </div>
 
-## Matrices
+### Matrices
 
-int[] matriz = new int[3];
+### Clases & Objetos
 
-
-## Clases & Objetos
