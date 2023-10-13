@@ -14,11 +14,10 @@ class Ejemplo {
         marathon.addParticipant(JohnDoe);
         marathon.addParticipant(JaneDoe);
 
-        Node<String> currentExpected = marathon.getParticipantNames().getFirst();
-        while (currentExpected != null) {
-            System.out.println(currentExpected.getData());
-            currentExpected = currentExpected.getNext();
+        Node<String> participant = marathon.getParticipantNames().getFirst();
+        while (participant != null) {
+            System.out.println(participant.getData());
+            participant = participant.getNext();
         }
-
     }
 }
