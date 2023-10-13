@@ -1,6 +1,7 @@
 package listas;
 
 public class List<T> implements IDataStructure<T> {
+    
     Node<T> first;
 
     public List<T> insert(T data, int index) {
