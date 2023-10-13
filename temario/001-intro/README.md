@@ -78,8 +78,8 @@ Se desarrollarán ejercicios prácticos y ejemplos de código para reforzar el a
 
 |2View:|
 |-|
-[Primitivas, matrices, clases & objetos](PrimitivasMatricesClasesObjetos.md)
-Estructuras de datos
-Operaciones básicas sobre estructuras de datos
-Complejidad temporal y espacial de las operaciones
+[Primitivas, matrices, clases & objetos](primitivasMatricesClasesObjetos.md)
+[Estructuras de datos](estructurasDeDatos.md)
+[Operaciones básicas sobre estructuras de datos](operacionesBasicas.md)
+[Complejidad temporal y espacial de las operaciones](complejidadTemporal.md)
 Relación entre estructuras de datos y eficiencia del software
