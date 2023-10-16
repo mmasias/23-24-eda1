@@ -1,4 +1,4 @@
-package listas;
+package listas.genericaInterfaz;
 
 public class Marathon {
     private List<Participant> participants;
@@ -32,4 +32,4 @@ public class Marathon {
         }
         return null;
     }
-}   
+}
