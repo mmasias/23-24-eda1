@@ -5,14 +5,22 @@ class Ejemplo {
 
         List l = new List();
 
-        l.insertar("1");
-        l.insertar("2");
-        l.insertar("5");
-        l.insertar("3");
+        System.out.println(l.isEmpty());
 
-        String[] larray = l.ListAll();
+        l.insert("Juanito");
+        l.insert("Pepito");
+        l.insert("Anita");
+        l.insert("Luisito");
 
-        System.out.println(larray[0]);
+        System.out.println("Tamaño: " + l.size());
+        l.delete();
+        System.out.println("Tamaño: " + l.size());
+
+        l.delete();
+        System.out.println("Tamaño: " + l.size());
+
+        String[] larray = l.listAll();
+        System.out.println("Primer elemento:" + larray[0]);
 
     }
 }

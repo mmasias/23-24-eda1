@@ -1,29 +1,21 @@
-@startuml
 
+    class Node {
+        - String value
+        - Node next
+        + Node (String value)
+        + String getValue()
+        + void setValue (String newValue)
+        + Node getNext()
+        + void setNext(Node next)
+    }
 
     class List {
-        - Nodo first
-        + int Size()
-        + boolean IsEmpty()
-        + void InsertIni(String dato)
-        + void InsertEnd(String dato)
-        + void DeleteIni()
+        - Node first
+        + int size()
+        + boolean isEmpty()
+        + void insert(String value)
+        + void delete()
         + String[] ListAll()
     }
 
-    class Nodo {
-        - String dato
-        - Nodo siguiente
-        + Nodo(String i)
-        + String getDato()
-        + void setDato(String dato)
-        + Nodo getSiguiente()
-        + void setSiguiente(Nodo siguiente)
-    }
-
-    List -r-> "1" Nodo : contains
-    Nodo --> "0..1" Nodo : siguiente
-
-
-
-@enduml
+    List -r-> "1" Node : contains
