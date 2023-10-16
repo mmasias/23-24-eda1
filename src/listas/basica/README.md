@@ -8,7 +8,7 @@
 
 </div>
 
-## Nodo: clase Node
+## Nodo: [clase Node](/src/listas/basica/Node.java)
 
 Un nodo sabe quién es y el nodo que le sigue.
 
@@ -20,9 +20,9 @@ Un nodo sabe quién es y el nodo que le sigue.
 |Devolver el siguiente|`public Node getNext() {}`
 |Definir el siguiente|`public void setNext(Node next) {}`
 
-## Lista: clase List
+## Lista: [clase List](/src/listas/basica/List.java)
 
-Una lista gestiona los nodos (CRUD). Adicionalmente, puede 
+Una lista implementa métodos para gestionar los nodos (CRUD).
 
 ||||
 |-|-|-|
@@ -32,3 +32,9 @@ Una lista gestiona los nodos (CRUD). Adicionalmente, puede
 |Insertar elemento|`public void insert(String value) {}`
 |Eliminar elemento|`public void delete() {}`
 |Listar los elementos|`public String[] listAll() {}`
+
+## Implementación: [clase Ejemplo](/src/listas/basica/Ejemplo.java)
+
+```
+
+```

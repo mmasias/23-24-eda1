@@ -3,24 +3,37 @@ package listas.basica;
 class Ejemplo {
     public static void main(String[] args) {
 
-        List l = new List();
+        List nephews = new List();
 
-        System.out.println(l.isEmpty());
+        viewLine(nephews);
+        System.out.println("Esta vacia? " + nephews.isEmpty());
 
-        l.insert("Juanito");
-        l.insert("Pepito");
-        l.insert("Anita");
-        l.insert("Luisito");
+        nephews.insert("Juanito");
+        nephews.insert("Pepito");
+        nephews.insert("Anita");
 
-        System.out.println("Tamaño: " + l.size());
-        l.delete();
-        System.out.println("Tamaño: " + l.size());
+        System.out.println("Esta vacia? " + nephews.isEmpty());
 
-        l.delete();
-        System.out.println("Tamaño: " + l.size());
+        viewLine(nephews);
 
-        String[] larray = l.listAll();
-        System.out.println("Primer elemento:" + larray[0]);
+        nephews.insert("Luisito");
 
+        System.out.println("Tamaño: " + nephews.size());
+
+        nephews.delete();
+        System.out.println("Tamaño: " + nephews.size());
+
+        viewLine(nephews);
+    }
+
+    static void viewLine(List filaDeSobrinos) {
+        
+        String[] larray = filaDeSobrinos.listAll();
+        System.out.println("LA FILA" + "-".repeat(18));
+        for (String sobrino : larray){
+            System.out.println(sobrino);
+        }
+        System.out.println("-".repeat(25));
     }
 }
+ 
