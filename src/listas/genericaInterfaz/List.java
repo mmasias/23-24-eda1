@@ -1,4 +1,4 @@
-package listas;
+package listas.genericaInterfaz;
 
 public class List<T> implements IDataStructure<T> {
     
