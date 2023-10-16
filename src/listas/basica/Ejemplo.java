@@ -5,10 +5,10 @@ class Ejemplo {
 
         List l = new List();
 
-        l.InsertIni("1");
-        l.InsertEnd("2");
-        l.InsertEnd("5");
-        l.InsertIni("3");
+        l.insertar("1");
+        l.insertar("2");
+        l.insertar("5");
+        l.insertar("3");
 
         String[] larray = l.ListAll();
 
