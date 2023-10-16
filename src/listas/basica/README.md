@@ -1,5 +1,13 @@
 # Lista básica
 
+<div align=center>
+
+||
+|-|
+![](/imagenes/modelosUML/listaBasica.svg)
+
+</div>
+
 ## Nodo
 
 ||||
