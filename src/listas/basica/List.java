@@ -4,43 +4,34 @@ public class List {
 
     private Nodo first = null;
 
-    public int Size() {
-        if (this.first == null)
+    public int size() {
+        if (this.first == null) {
             return 0;
-
-        int count = 1;
-        Nodo iterator = first;
-        while (iterator.getSiguiente() != null) {
-            count++;
-            iterator = iterator.getSiguiente();
-        }
-        return count;
-    }
-
-    public boolean IsEmpty() {
-        return this.Size() > 0 ? false : true;
-    }
-
-    public void InsertIni(String dato) {
-        Nodo n = new Nodo(dato);
-        if (this.first == null)
-            this.first = n;
-        else {
-            n.setSiguiente(this.first);
-            this.first = n;
+        } else {
+            int count = 1;
+            Nodo iterator = first;
+            while (iterator.getSiguiente() != null) {
+                count++;
+                iterator = iterator.getSiguiente();
+            }
+            return count;
         }
     }
 
-    public void InsertEnd(String dato) {
-        Nodo n = new Nodo(dato);
+    public boolean isEmpty() {
+        return this.size() > 0 ? false : true;
+    }
+
+    public void insertar(String dato) {
+        Nodo nodoQueEntra = new Nodo(dato);
         if (this.first == null)
-            this.first = n;
+            this.first = nodoQueEntra;
         else {
             Nodo iterator = this.first;
             while (iterator.getSiguiente() != null) {
                 iterator = iterator.getSiguiente();
             }
-            iterator.setSiguiente(n);
+            iterator.setSiguiente(nodoQueEntra);
         }
     }
 
@@ -51,7 +42,7 @@ public class List {
     }
 
     public String[] ListAll() {
-        String[] list = new String[this.Size()];
+        String[] list = new String[this.size()];
         Nodo iterator = this.first;
         if (iterator == null)
             return list;
