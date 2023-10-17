@@ -1,4 +1,4 @@
-package listas;
+package listas.genericaInterfaz;
 
 class Ejemplo {
 

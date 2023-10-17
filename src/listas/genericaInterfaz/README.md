@@ -1,6 +1,6 @@
 # CRUD de maratón
 
-## Lista genérica
+## Lista genérica con interfaz
 
 ![](/imagenes/modelosUML/modelo001.svg)
 
