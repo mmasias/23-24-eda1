@@ -2,17 +2,17 @@ package listas.basica;
 
 public class List {
 
-    private Nodo first = null;
+    private Node first = null;
 
     public int size() {
         if (this.first == null) {
             return 0;
         } else {
             int count = 1;
-            Nodo iterator = first;
-            while (iterator.getSiguiente() != null) {
+            Node iterator = first;
+            while (iterator.getNext() != null) {
                 count++;
-                iterator = iterator.getSiguiente();
+                iterator = iterator.getNext();
             }
             return count;
         }
@@ -22,37 +22,42 @@ public class List {
         return this.size() > 0 ? false : true;
     }
 
-    public void insertar(String dato) {
-        Nodo nodoQueEntra = new Nodo(dato);
+    public void insert(String value) {
+        Node nodoQueEntra = new Node(value);
         if (this.first == null)
             this.first = nodoQueEntra;
         else {
-            Nodo iterator = this.first;
-            while (iterator.getSiguiente() != null) {
-                iterator = iterator.getSiguiente();
+            Node iterator = this.first;
+            while (iterator.getNext() != null) {
+                iterator = iterator.getNext();
             }
-            iterator.setSiguiente(nodoQueEntra);
+            iterator.setNext(nodoQueEntra);
         }
     }
 
-    public void DeleteIni() {
+    public void delete() {
         if (this.first != null) {
-            this.first = this.first.getSiguiente();
+            Node iterator = this.first;
+            Node previous = null;
+            while (iterator.getNext() != null) {
+                previous = iterator;
+                iterator = iterator.getNext();
+            }
+            previous.setNext(null);
         }
     }
 
-    public String[] ListAll() {
+    public String[] listAll() {
         String[] list = new String[this.size()];
-        Nodo iterator = this.first;
+        Node iterator = this.first;
         if (iterator == null)
             return list;
         int count = 0;
         while (iterator != null) {
-            list[count] = iterator.getDato();
+            list[count] = iterator.getValue();
             count++;
-            iterator = iterator.getSiguiente();
+            iterator = iterator.getNext();
         }
         return list;
     }
-
 }

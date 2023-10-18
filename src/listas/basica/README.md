@@ -8,24 +8,33 @@
 
 </div>
 
-## Nodo
+## Nodo: [clase Node](/src/listas/basica/Node.java)
+
+Un nodo sabe quién es y el nodo que le sigue.
 
 ||||
 |-|-|-|
-|Constructor|`public Nodo(String i) {}`
-|Obtener dato|`public String getDato() {}`
-|Definir dato|`public void setDato(String dato) {}`
-|Saltar al siguiente|`public Nodo getSiguiente() {}`
-|Definir el siguiente|`public void setSiguiente(Nodo siguiente) {}`
+|Constructor|`public Node(String value) {}`
+|Obtener dato|`public String getvalue() {}`
+|Definir dato|`public void setValue(String newValue) {}`
+|Devolver el siguiente|`public Node getNext() {}`
+|Definir el siguiente|`public void setNext(Node next) {}`
 
-## Lista
+## Lista: [clase List](/src/listas/basica/List.java)
+
+Una lista implementa métodos para gestionar los nodos (CRUD).
 
 ||||
 |-|-|-|
-|Constructor|
-|Número de elementos|`public int Size() {}`
-|Ver si está vacía|`public boolean IsEmpty() {}`
-|Insertar elemento al inicio|`public void InsertIni(String dato) {}`
-|Insertar elemento al final|`public void InsertEnd(String dato) {}`
-|Eliminar elemento del inicio|`public void DeleteIni() {}`
-|Listar todos los elemmentos|`public String[] ListAll() {}`
+|Constructor|∄ como tal.
+|Número de nodos|`public int size() {}`
+|Ver si está vacía|`public boolean isEmpty() {}`
+|Insertar elemento|`public void insert(String value) {}`
+|Eliminar elemento|`public void delete() {}`
+|Listar los elementos|`public String[] listAll() {}`
+
+## Implementación: [clase Ejemplo](/src/listas/basica/Ejemplo.java)
+
+```
+
+```
