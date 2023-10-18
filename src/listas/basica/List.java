@@ -2,66 +2,62 @@ package listas.basica;
 
 public class List {
 
-    private Nodo first = null;
+    private Node first = null;
 
-    public int Size() {
-        if (this.first == null)
+    public int size() {
+        if (this.first == null) {
             return 0;
-
-        int count = 1;
-        Nodo iterator = first;
-        while (iterator.getSiguiente() != null) {
-            count++;
-            iterator = iterator.getSiguiente();
-        }
-        return count;
-    }
-
-    public boolean IsEmpty() {
-        return this.Size() > 0 ? false : true;
-    }
-
-    public void InsertIni(String dato) {
-        Nodo n = new Nodo(dato);
-        if (this.first == null)
-            this.first = n;
-        else {
-            n.setSiguiente(this.first);
-            this.first = n;
-        }
-    }
-
-    public void InsertEnd(String dato) {
-        Nodo n = new Nodo(dato);
-        if (this.first == null)
-            this.first = n;
-        else {
-            Nodo iterator = this.first;
-            while (iterator.getSiguiente() != null) {
-                iterator = iterator.getSiguiente();
+        } else {
+            int count = 1;
+            Node iterator = first;
+            while (iterator.getNext() != null) {
+                count++;
+                iterator = iterator.getNext();
             }
-            iterator.setSiguiente(n);
+            return count;
         }
     }
 
-    public void DeleteIni() {
+    public boolean isEmpty() {
+        return this.size() > 0 ? false : true;
+    }
+
+    public void insert(String value) {
+        Node nodoQueEntra = new Node(value);
+        if (this.first == null)
+            this.first = nodoQueEntra;
+        else {
+            Node iterator = this.first;
+            while (iterator.getNext() != null) {
+                iterator = iterator.getNext();
+            }
+            iterator.setNext(nodoQueEntra);
+        }
+    }
+
+    public void delete() {
         if (this.first != null) {
-            this.first = this.first.getSiguiente();
+            Node iterator = this.first;
+            Node previous = null;
+            while (iterator.getNext() != null) {
+                previous = iterator;
+                iterator = iterator.getNext();
+            }
+            previous.setNext(null);
         }
     }
 
-    public String[] ListAll() {
-        String[] list = new String[this.Size()];
-        Nodo iterator = this.first;
+    public String[] listAll() {
+        String[] list = new String[this.size()];
+        Node iterator = this.first;
         if (iterator == null)
             return list;
         int count = 0;
         while (iterator != null) {
-            list[count] = iterator.getDato();
+            list[count] = iterator.getValue();
             count++;
-            iterator = iterator.getSiguiente();
+            iterator = iterator.getNext();
         }
         return list;
     }
-
 }
