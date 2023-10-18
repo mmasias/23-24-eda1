@@ -1,5 +1,3 @@
-
-
 public class List {
 
     private Node first = null;
