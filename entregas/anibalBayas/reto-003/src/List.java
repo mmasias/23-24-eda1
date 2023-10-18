@@ -34,6 +34,25 @@ public class List {
         System.out.println(" > Llegó  " + value);
     }
 
+
+    public void delete() {
+        if (this.first != null) {
+            Node iterator = this.first;
+            Node previous = null;
+            while (iterator.getNext() != null) {
+                previous = iterator;
+                iterator = iterator.getNext();
+            }
+            if (previous != null) {
+                previous.setNext(null);
+                System.out.println("Se fue " + iterator.getValue());
+            } else {
+                this.first = null;
+                System.out.println("Se fue " + iterator.getValue());
+            }
+        }
+    }
+
     public void printMessages() {
         Node iterator = this.first;
         while (iterator != null) {
@@ -49,18 +68,6 @@ public class List {
         }
     }
 
-    public void delete() {
-        if (this.first != null) {
-            Node iterator = this.first;
-            Node previous = null;
-            while (iterator.getNext() != null) {
-                previous = iterator;
-                iterator = iterator.getNext();
-            }
-            previous.setNext(null);
-            System.out.println("Se fue " + iterator.getValue());
-        }
-    }
 
     public String[] listAll() {
         String[] list = new String[this.size()];
