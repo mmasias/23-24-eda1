@@ -44,8 +44,14 @@ public class List {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
-            previous.setNext(null);
-            System.out.println(" > Se fue " + iterator.getValue());
+            if (previous != null) {
+                previous.setNext(null);
+                System.out.println("Se fue " + iterator.getValue());
+            } else {
+                this.first = null;
+                System.out.println("Se fue " + iterator.getValue());
+            }
+
         }
     }
 
