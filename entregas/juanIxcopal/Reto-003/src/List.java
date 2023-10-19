@@ -3,33 +3,33 @@ public class List {
     private Node first = null;
 
     public int size() {
-        if (this.first == null) {
-            return 0;
-        } else {
-            int count = 1;
-            Node iterator = first;
-            while (iterator.getNext() != null) {
-                count++;
-                iterator = iterator.getNext();
-            }
-            return count;
+        int count = 0;
+        Node iterator = this.first;
+
+        while (iterator != null){
+            count++;
+            iterator = iterator.getNext();
         }
+
+        return count;
     }
 
     public boolean isEmpty() {
-        return this.size() > 0 ? false : true;
+        return this.size() == 0;
     }
 
     public void insert(String value) {
         Node nodoQueEntra = new Node(value);
-        if (this.first == null)
+        if (this.first == null) {
             this.first = nodoQueEntra;
-        else {
+            System.out.println(" > Llegó " + value);
+        } else {
             Node iterator = this.first;
             while (iterator.getNext() != null) {
                 iterator = iterator.getNext();
             }
             iterator.setNext(nodoQueEntra);
+            System.out.println(" > Llegó " + value);
         }
     }
 
@@ -41,15 +41,19 @@ public class List {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
-            previous.setNext(null);
+            if (previous != null) {
+                previous.setNext(null);
+                System.out.println("Se fué " + iterator.getValue());
+            } else {
+                this.first = null;
+                System.out.println("Se fué " + iterator.getValue());
+            }
         }
     }
 
     public String[] listAll() {
         String[] list = new String[this.size()];
         Node iterator = this.first;
-        if (iterator == null)
-            return list;
         int count = 0;
         while (iterator != null) {
             list[count] = iterator.getValue();

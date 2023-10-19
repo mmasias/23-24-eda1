@@ -1,6 +1,5 @@
 class Ejemplo {
     public static void main(String[] args) {
-
         List nephews = new List();
 
         viewLine(nephews);
