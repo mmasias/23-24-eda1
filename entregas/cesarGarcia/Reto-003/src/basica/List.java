@@ -1,8 +1,7 @@
 package basica;
 
-public class List {
+class List {
     private Node first = null;
-    private String lastDeleted = null;
 
     public int size() {
         if (this.first == null) {
@@ -36,7 +35,7 @@ public class List {
         System.out.println("Entró " + value);
     }
 
-    public void delete() {
+    public String delete() {
         if (this.first != null) {
             Node iterator = this.first;
             Node previous = null;
@@ -46,14 +45,12 @@ public class List {
             }
             if (previous != null) {
                 previous.setNext(null);
-                lastDeleted = iterator.getValue();
-                System.out.println("Salió " + lastDeleted);
             } else {
-                lastDeleted = this.first.getValue();
                 this.first = null;
-                System.out.println("Salió " + lastDeleted);
             }
+            return iterator.getValue();
         }
+        return null;
     }
 
     public String[] listAll() {
@@ -68,9 +65,5 @@ public class List {
             iterator = iterator.getNext();
         }
         return list;
-    }
-
-    public String getLastDeleted() {
-        return lastDeleted;
     }
 }

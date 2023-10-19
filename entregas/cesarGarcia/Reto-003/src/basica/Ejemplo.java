@@ -20,7 +20,13 @@ class Ejemplo {
 
         System.out.println("Tamaño: " + nephews.size());
 
-        nephews.delete();
+
+        String lastDeleted = nephews.delete();
+
+        if (lastDeleted != null) {
+            System.out.println("Salió " + lastDeleted);
+        }
+
         System.out.println("Tamaño: " + nephews.size());
 
         viewLine(nephews);
