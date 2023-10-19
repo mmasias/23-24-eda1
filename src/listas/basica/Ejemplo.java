@@ -3,16 +3,37 @@ package listas.basica;
 class Ejemplo {
     public static void main(String[] args) {
 
-        List l = new List();
+        List nephews = new List();
 
-        l.InsertIni("1");
-        l.InsertEnd("2");
-        l.InsertEnd("5");
-        l.InsertIni("3");
+        viewLine(nephews);
+        System.out.println("Esta vacia? " + nephews.isEmpty());
 
-        String[] larray = l.ListAll();
+        nephews.insert("Juanito");
+        nephews.insert("Pepito");
+        nephews.insert("Anita");
 
-        System.out.println(larray[0]);
+        System.out.println("Esta vacia? " + nephews.isEmpty());
 
+        viewLine(nephews);
+
+        nephews.insert("Luisito");
+
+        System.out.println("Tamaño: " + nephews.size());
+
+        nephews.delete();
+        System.out.println("Tamaño: " + nephews.size());
+
+        viewLine(nephews);
+    }
+
+    static void viewLine(List filaDeSobrinos) {
+        
+        String[] larray = filaDeSobrinos.listAll();
+        System.out.println("LA FILA" + "-".repeat(18));
+        for (String sobrino : larray){
+            System.out.println(sobrino);
+        }
+        System.out.println("-".repeat(25));
     }
 }
+ 
