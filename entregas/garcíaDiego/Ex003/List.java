@@ -3,20 +3,14 @@ package entregas.garcíaDiego.Ex003;
 public class List {
 
     private Node first = null;
+    private int size = 0;
+
+
 
     public int size() {
-        if (this.first == null) {
-            return 0;
-        } else {
-            int count = 1;
-            Node iterator = first;
-            while (iterator.getNext() != null) {
-                count++;
-                iterator = iterator.getNext();
-            }
-            return count;
-        }
+       return this.size;
     }
+
 
     public boolean isEmpty() {
         return this.size() > 0 ? false : true;
@@ -33,6 +27,7 @@ public class List {
             }
             iterator.setNext(newNode);
         }
+        this.size++;
         System.out.println(" > Llegó " + value);
     }
 
@@ -51,21 +46,7 @@ public class List {
                 this.first = null;
                 System.out.println("Se fue " + iterator.getValue());
             }
-        }
-    }
-
-    public void printArrivalMessages() {
-        Node iterator = this.first;
-        while (iterator != null) {
-            System.out.println(" > Llegó " + iterator.getValue());
-            iterator = iterator.getNext();
-        }
-    }
-
-    public void printList() {
-        String[] list = this.listAll();
-        for (String sobrino : list) {
-            System.out.println(sobrino);
+            this.size--;
         }
     }
 

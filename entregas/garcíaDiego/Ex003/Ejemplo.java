@@ -28,9 +28,11 @@ class Ejemplo {
 
     static void viewLine(List filaDeSobrinos) {
 
+        String[] larray = filaDeSobrinos.listAll();
         System.out.println("LA FILA" + "-".repeat(18));
-        filaDeSobrinos.printArrivalMessages();
-        filaDeSobrinos.printList();
+        for (String sobrino : larray){
+            System.out.println(sobrino);
+        }
         System.out.println("-".repeat(25));
     }
 }
