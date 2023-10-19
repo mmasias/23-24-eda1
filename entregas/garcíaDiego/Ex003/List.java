@@ -31,7 +31,8 @@ public class List {
         System.out.println(" > Llegó " + value);
     }
 
-    public void delete() {
+    public String delete() {
+        String deletedString = null;
         if (this.first != null) {
             Node iterator = this.first;
             Node previous = null;
@@ -39,6 +40,7 @@ public class List {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
+            deletedString = iterator.getValue();
             if (previous != null) {
                 previous.setNext(null);
                 System.out.println("Se fue " + iterator.getValue());
@@ -48,6 +50,7 @@ public class List {
             }
             this.size--;
         }
+        return deletedString;
     }
 
     public String[] listAll() {
