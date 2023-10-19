@@ -1,11 +1,11 @@
 # EDA-I > Temario > #underConstruction
 
-[Elementos teóricos](teoria.md)
+[Elementos teóricos](001-intro/README.md)
 
 |Temario|
 |-|
-1: [Estructuras de datos & conceptos fundamentales](001-intro/README.md)
-2: Listas enlazadas
+1: [Estructuras de datos & conceptos fundamentales](001-intro/primitivasMatricesClasesObjetos.md)
+2: [Listas enlazadas](002-listas/README.md)
 3: Pilas
 4: Colas (Queue)
 5: Árboles
