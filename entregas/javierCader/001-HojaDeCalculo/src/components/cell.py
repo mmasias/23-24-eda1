@@ -1,5 +1,5 @@
-from src.constants.colors import ACTIVE_BG_COLOR, ACTIVE_FG_COLOR, RESET_COLOR
-from src.constants.constants import CELL_WIDTH
+from constants.colors import ACTIVE_BG_COLOR, ACTIVE_FG_COLOR, RESET_COLOR
+from constants.constants import CELL_WIDTH
 
 class Cell:
     def __init__(self, content=" " * CELL_WIDTH):
