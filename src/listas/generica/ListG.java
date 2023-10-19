@@ -1,5 +1,4 @@
 package listas.generica;
-import java.lang.reflect.Array;
 
 import listas.generica.NodoG;
 
@@ -59,22 +58,6 @@ public class ListG<T> {
 
     public NodoG<T> GetFirst() {
         return this.first;
-    }
-
-    public T[] ListAll(Class<T> clazz) {
-        T[] list = (T[]) Array.newInstance(clazz, this.Size());
-        NodoG<T> iterator = this.first;
-    
-        if (iterator == null)
-            return list;
-    
-        int count = 0;
-        while (iterator != null) {
-            list[count] = iterator.getDato();
-            count++;
-            iterator = iterator.getSiguiente();
-        }
-        return list;
     }
 
     public T[] ListAll() {
