@@ -8,9 +8,9 @@ class Ejemplo {
         viewLine(nephews);
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
-        nephews.insert("Juanito");
-        nephews.insert("Pepito");
-        nephews.insert("Anita");
+        System.out.println("Llega > " + nephews.insert("Juanito"));
+        System.out.println("Llega > " + nephews.insert("Pepito"));
+        System.out.println("Llega > " + nephews.insert("Anita"));
 
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
@@ -20,7 +20,7 @@ class Ejemplo {
 
         System.out.println("Tamaño: " + nephews.size());
 
-        nephews.delete();
+        System.out.println("Se fue "+nephews.delete());
         System.out.println("Tamaño: " + nephews.size());
 
         viewLine(nephews);

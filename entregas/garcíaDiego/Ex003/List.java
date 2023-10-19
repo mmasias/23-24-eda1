@@ -16,7 +16,7 @@ public class List {
         return this.size() > 0 ? false : true;
     }
 
-    public void insert(String value) {
+    public String insert(String value) {
         Node newNode = new Node(value);
         if (this.first == null)
             this.first = newNode;
@@ -28,7 +28,7 @@ public class List {
             iterator.setNext(newNode);
         }
         this.size++;
-        System.out.println(" > Llegó " + value);
+        return value;
     }
 
     public String delete() {
@@ -43,10 +43,8 @@ public class List {
             deletedString = iterator.getValue();
             if (previous != null) {
                 previous.setNext(null);
-                System.out.println("Se fue " + iterator.getValue());
             } else {
                 this.first = null;
-                System.out.println("Se fue " + iterator.getValue());
             }
             this.size--;
         }
