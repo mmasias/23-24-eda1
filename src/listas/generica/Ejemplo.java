@@ -3,19 +3,16 @@ package listas.generica;
 public class Ejemplo {
     public static void main(String[] args) {
         
-        ListG<Integer> l = new ListG<Integer>();
-        l.InsertIni(1);
-        l.InsertEnd(2);
-        l.InsertEnd(5);
-        l.InsertIni(3);
+        ListG<String> l = new ListG<String>();
 
-        Integer[] iarray = l.ListAll(Integer.class);
+        l.InsertIni("Juanito");
+        l.InsertEnd("Pepito");
+        l.InsertEnd("Anita");
+        l.InsertIni("Luisito");
 
-        System.out.println(iarray[0]);
 
-        Integer[] iarray2 = l.ListAll();
-
-        System.out.println(iarray2[0]);
+        Object[] larray = l.ListAll();
+        System.out.println(larray[0]);
 
     }
 }
