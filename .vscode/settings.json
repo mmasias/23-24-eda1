@@ -1,6 +1,9 @@
 {
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.autopep8"
-  },
-  "python.formatting.provider": "none"
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ],
+    "java.project.sourcePaths": [
+        "src",
+        "entregas/javierCader/reto003"
+    ]
 }
