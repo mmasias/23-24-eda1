@@ -1,30 +1,22 @@
-package listas.basica;
+package entregas.garcíaDiego.Ex003;
 
 public class List {
 
     private Node first = null;
+    private int size = 0;
 
     public int size() {
-        if (this.first == null) {
-            return 0;
-        }
-        int count = 1;
-        Node iterator = first;
-        while (iterator.getNext() != null) {
-            count++;
-            iterator = iterator.getNext();
-        }
-        return count;
+        return this.size;
     }
 
     public boolean isEmpty() {
         return this.size() > 0 ? false : true;
     }
 
-    public void insertEnd(String value) {
+    public void insert(String value) {
         Node newNode = new Node(value);
         if (this.first == null)
-        this.first = newNode;
+            this.first = newNode;
         else {
             Node iterator = this.first;
             while (iterator.getNext() != null) {
@@ -32,19 +24,12 @@ public class List {
             }
             iterator.setNext(newNode);
         }
-    }
-    
-    public void insertFront(String value) {
-        Node n = new Node(value);
-        if (this.first == null)
-            this.first = n;
-        else {
-            n.setNext(this.first);
-            this.first = n;
-        }
+        this.size++;
+        System.out.println("Llega > " + value);
     }
 
     public void delete() {
+        String deletedString = null;
         if (this.first != null) {
             Node iterator = this.first;
             Node previous = null;
@@ -52,8 +37,15 @@ public class List {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
-            previous.setNext(null);
+            deletedString = iterator.getValue();
+            if (previous != null) {
+                previous.setNext(null);
+            } else {
+                this.first = null;
+            }
+            this.size--;
         }
+        System.out.println("Se fue " + deletedString);
     }
 
     public String[] listAll() {
