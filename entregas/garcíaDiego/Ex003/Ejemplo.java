@@ -8,9 +8,9 @@ class Ejemplo {
         viewLine(nephews);
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
-        System.out.println("Llega > " + nephews.insert("Juanito"));
-        System.out.println("Llega > " + nephews.insert("Pepito"));
-        System.out.println("Llega > " + nephews.insert("Anita"));
+        nephews.insert("Juanito");
+        nephews.insert("Pepito");
+        nephews.insert("Anita");
 
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
@@ -20,7 +20,7 @@ class Ejemplo {
 
         System.out.println("Tamaño: " + nephews.size());
 
-        System.out.println("Se fue "+nephews.delete());
+        nephews.delete();
         System.out.println("Tamaño: " + nephews.size());
 
         viewLine(nephews);
@@ -30,7 +30,7 @@ class Ejemplo {
 
         String[] larray = filaDeSobrinos.listAll();
         System.out.println("LA FILA" + "-".repeat(18));
-        for (String sobrino : larray){
+        for (String sobrino : larray) {
             System.out.println(sobrino);
         }
         System.out.println("-".repeat(25));

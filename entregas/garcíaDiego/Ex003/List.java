@@ -5,18 +5,15 @@ public class List {
     private Node first = null;
     private int size = 0;
 
-
-
     public int size() {
-       return this.size;
+        return this.size;
     }
-
 
     public boolean isEmpty() {
         return this.size() > 0 ? false : true;
     }
 
-    public String insert(String value) {
+    public void insert(String value) {
         Node newNode = new Node(value);
         if (this.first == null)
             this.first = newNode;
@@ -28,10 +25,10 @@ public class List {
             iterator.setNext(newNode);
         }
         this.size++;
-        return value;
+        System.out.println("Llega > " + value);
     }
 
-    public String delete() {
+    public void delete() {
         String deletedString = null;
         if (this.first != null) {
             Node iterator = this.first;
@@ -48,7 +45,7 @@ public class List {
             }
             this.size--;
         }
-        return deletedString;
+        System.out.println("Se fue " + deletedString);
     }
 
     public String[] listAll() {
