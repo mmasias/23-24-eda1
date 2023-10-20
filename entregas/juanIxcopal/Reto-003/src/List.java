@@ -2,16 +2,10 @@ public class List {
 
     private Node first = null;
 
+    private int size = 0;
+
     public int size() {
-        int count = 0;
-        Node iterator = this.first;
-
-        while (iterator != null){
-            count++;
-            iterator = iterator.getNext();
-        }
-
-        return count;
+        return this.size;
     }
 
     public boolean isEmpty() {
@@ -20,34 +14,34 @@ public class List {
 
     public void insert(String value) {
         Node nodoQueEntra = new Node(value);
+        System.out.println(" > Llegó " + value);
         if (this.first == null) {
             this.first = nodoQueEntra;
-            System.out.println(" > Llegó " + value);
         } else {
             Node iterator = this.first;
             while (iterator.getNext() != null) {
                 iterator = iterator.getNext();
             }
             iterator.setNext(nodoQueEntra);
-            System.out.println(" > Llegó " + value);
         }
+        this.size ++;
     }
 
     public void delete() {
         if (this.first != null) {
             Node iterator = this.first;
             Node previous = null;
+            System.out.println("Se fué " + iterator.getValue());
             while (iterator.getNext() != null) {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
             if (previous != null) {
                 previous.setNext(null);
-                System.out.println("Se fué " + iterator.getValue());
             } else {
                 this.first = null;
-                System.out.println("Se fué " + iterator.getValue());
             }
+            this.size--;
         }
     }
 
