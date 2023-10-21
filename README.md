@@ -24,3 +24,14 @@ Repo de materiales y proyectos de la asignatura **Estructura de Datos y Algoritm
 
 - [Libro de la asignatura](https://campus.uneatlantico.es/pluginfile.php/81026/mod_folder/content/0/Estructuras%20de%20datos%20y%20algoritmos%20I.pdf?forcedownload=1)
 - [Diferencia entre ciencias de la computación e ingenieria de software](https://interestingengineering.com/culture/computer-science-vs-software-engineering-how-are-they-different)
+
+### En mi máquina funciona...
+
+```bash
+┏[manuel]
+┖[~/misRepos]
+   java --version
+java 20.0.2 2023-07-18
+Java(TM) SE Runtime Environment (build 20.0.2+9-78)
+Java HotSpot(TM) 64-Bit Server VM (build 20.0.2+9-78, mixed mode, sharing)
+```
