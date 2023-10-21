@@ -27,6 +27,7 @@ Repo de materiales y proyectos de la asignatura **Estructura de Datos y Algoritm
 
 ### En mi máquina funciona...
 
+#### Mac OS
 ```bash
 ┏[manuel]
 ┖[~/misRepos]
@@ -34,4 +35,14 @@ Repo de materiales y proyectos de la asignatura **Estructura de Datos y Algoritm
 java 20.0.2 2023-07-18
 Java(TM) SE Runtime Environment (build 20.0.2+9-78)
 Java HotSpot(TM) 64-Bit Server VM (build 20.0.2+9-78, mixed mode, sharing)
+```
+
+#### KUbuntu
+```bash
+┏[manuel]
+┖[~/misRepos]
+   java --version
+openjdk 17.0.8.1 2023-08-24
+OpenJDK Runtime Environment (build 17.0.8.1+1-Ubuntu-0ubuntu123.04)
+OpenJDK 64-Bit Server VM (build 17.0.8.1+1-Ubuntu-0ubuntu123.04, mixed mode, sharing)
 ```
