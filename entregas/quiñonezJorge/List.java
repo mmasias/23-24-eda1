@@ -29,12 +29,36 @@ public class List {
   }
 
   public void insertStart(String value) {
-    Node firstNode = new Node(value);
+    Node newFirst = new Node(value);
+    System.out.println(" > El primero en la lista es " + newFirst.getValue());
     if (this.first == null) {
-      this.first = firstNode;
+      this.first = newFirst;
     } else {
-      firstNode.setNext(this.first);
-      this.first = firstNode;
+      newFirst.setNext(this.first);
+      this.first = newFirst;
+    }
+    this.size++;
+  }
+
+  public void insertByIndex(String value, int index) {
+    if (index == 0) {
+      this.insertStart(value);
+    } else if (index == this.size()) {
+      this.insertEnd(value);
+    } else {
+      Node newIndexedNode = new Node(value);
+      Node iterator = this.first;
+      int count = 0;
+      while (count < index - 1) {
+        System.out.println("counter: " + count + " index: " + (index - 1));
+        iterator = iterator.getNext();
+        System.out.println(iterator.getValue());
+        count++;
+      }
+      Node nextNode = iterator.getNext();
+      iterator.setNext(newIndexedNode);
+      newIndexedNode.setNext(nextNode);
+      this.size++;
     }
   }
 
