@@ -8,19 +8,19 @@ class Ejemplo {
         viewLine(nephews);
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
-        nephews.insert("Juanito");
-        nephews.insert("Pepito");
-        nephews.insert("Anita");
+        nephews.insertEnd("Juanito");
+        nephews.insertEnd("Pepito");
+        nephews.insertStart("Anita");
 
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
         viewLine(nephews);
 
-        nephews.insert("Luisito");
+        nephews.insertStart("Luisito");
 
         System.out.println("Tamaño: " + nephews.size());
 
-        nephews.delete();
+        nephews.deleteStart();
         System.out.println("Tamaño: " + nephews.size());
 
         viewLine(nephews);
