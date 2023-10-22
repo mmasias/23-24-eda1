@@ -1,4 +1,4 @@
-package entregas.garciaLydia.VCalcObj;
+package entregas.garciaLydia.reto002.HojaDeCalculoObj;
 
 public class Edicion implements Acciones {
     private HojaDeCalculo hoja;

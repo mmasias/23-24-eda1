@@ -1,4 +1,5 @@
-package entregas.garciaLydia.VCalcObj;
+package entregas.garciaLydia.reto002.HojaDeCalculoObj;
+
 import java.util.Scanner;
 public enum Comando {
     ARRIBA('W') {

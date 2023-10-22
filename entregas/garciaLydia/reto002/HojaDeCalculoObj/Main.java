@@ -1,4 +1,7 @@
-package entregas.garciaLydia.VCalcObj;
+package entregas.garciaLydia.reto002.HojaDeCalculoObj;
+
+import entregas.garciaLydia.reto002.HojaDeCalculoObj.Comando;
+import entregas.garciaLydia.reto002.HojaDeCalculoObj.HojaDeCalculo;
 
 import java.util.Scanner;
 

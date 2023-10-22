@@ -1,8 +1,8 @@
-package entregas.garciaLydia;
+package entregas.garciaLydia.reto001;
 
 import java.util.Scanner;
 
-public class VisiCalc {
+public class HojaDeCalculo {
 
     static final int FILAS = 15;
     static final int COLUMNAS = 10;
