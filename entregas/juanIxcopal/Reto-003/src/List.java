@@ -12,22 +12,33 @@ public class List {
         return this.size() == 0;
     }
 
-    public void insert(String value) {
-        Node nodoQueEntra = new Node(value);
+    public void insertEnd(String value) {
+        Node newNode = new Node(value);
         System.out.println(" > Llegó " + value);
         if (this.first == null) {
-            this.first = nodoQueEntra;
+            this.first = newNode ;
         } else {
             Node iterator = this.first;
             while (iterator.getNext() != null) {
                 iterator = iterator.getNext();
             }
-            iterator.setNext(nodoQueEntra);
+            iterator.setNext(newNode);
         }
         this.size ++;
     }
 
-    public void delete() {
+    public void insertFront(String value){
+        Node n = new Node(value);
+        if(this.first == null){
+            this.first = n;
+        }
+        else{
+            n.setNext(this.first);
+            this.first = n;
+        }
+    }
+
+    public void deleteEnd() {
         if (this.first != null) {
             Node iterator = this.first;
             Node previous = null;
@@ -36,11 +47,7 @@ public class List {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
-            if (previous != null) {
-                previous.setNext(null);
-            } else {
-                this.first = null;
-            }
+            previous.setNext(null);
             this.size--;
         }
     }

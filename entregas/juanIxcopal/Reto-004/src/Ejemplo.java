@@ -9,6 +9,8 @@ class Ejemplo {
         nephews.insertEnd("Pepito");
         nephews.insertEnd("Anita");
 
+        nephews.insertAtIndex("Rene", 2);
+
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
         viewLine(nephews);
@@ -19,6 +21,8 @@ class Ejemplo {
 
         nephews.deleteEnd();
         System.out.println("Tamaño: " + nephews.size());
+
+        nephews.deleteAtIndex(2);
 
         viewLine(nephews);
     }
