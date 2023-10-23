@@ -1,4 +1,4 @@
-package listas.basica;
+package entregas.quiñonezJorge;
 
 class Ejemplo {
     public static void main(String[] args) {
@@ -8,15 +8,15 @@ class Ejemplo {
         viewLine(nephews);
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
-        nephews.insertEnd("Juanito");
-        nephews.insertEnd("Pepito");
-        nephews.insertEnd("Anita");
+        nephews.insert("Juanito");
+        nephews.insert("Pepito");
+        nephews.insert("Anita");
 
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
         viewLine(nephews);
 
-        nephews.insertEnd("Luisito");
+        nephews.insert("Luisito");
 
         System.out.println("Tamaño: " + nephews.size());
 
@@ -27,13 +27,12 @@ class Ejemplo {
     }
 
     static void viewLine(List filaDeSobrinos) {
-        
+
         String[] larray = filaDeSobrinos.listAll();
         System.out.println("LA FILA" + "-".repeat(18));
-        for (String sobrino : larray){
+        for (String sobrino : larray) {
             System.out.println(sobrino);
         }
         System.out.println("-".repeat(25));
     }
 }
- 
