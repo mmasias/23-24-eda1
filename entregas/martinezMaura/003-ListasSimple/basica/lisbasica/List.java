@@ -3,55 +3,55 @@ package lisbasica;
 public class List {
 
     private Node first = null;
+    private int size = 0; 
 
     public int size() {
-        if (this.first == null) {
-            return 0;
-        } else {
-            int count = 1;
-            Node iterator = first;
-            while (iterator.getNext() != null) {
-                count++;
-                iterator = iterator.getNext();
-            }
-            return count;
-        }
+       return size;
     }
 
     public boolean isEmpty() {
-        return this.size() > 0 ? false : true;
+       return size == 0;
     }
 
     public void insert(String value) {
+        
         Node nodoQueEntra = new Node(value);
-        if (this.first == null)
+        if (this.first == null){
             this.first = nodoQueEntra;
-        else {
+            System.out.println("Entró" + value);
+        } else {
             Node iterator = this.first;
             while (iterator.getNext() != null) {
                 iterator = iterator.getNext();
             }
             iterator.setNext(nodoQueEntra);
+            System.out.println("Entró " + value);
         }
+        size++;
     }
 
     public void delete() {
         if (this.first != null) {
-            Node iterator = this.first;
-            Node previous = null;
-            while (iterator.getNext() != null) {
-                previous = iterator;
-                iterator = iterator.getNext();
+            if (size == 1) {
+                String deletedVaulue = first.getValue();
+                first = null;
+                System.out.println("Salió " + deletedVaulue);
+            } else {
+                Node iterator = this.first;
+                while (iterator.getNext().getNext() != null) {
+                    iterator = iterator.getNext();
+                }
+                String deletedValue = iterator.getNext() .getValue();
+                iterator.setNext(null);
+                System.out.println("Salió " +deletedValue);
             }
-            previous.setNext(null);
+            size--; 
         }
     }
 
     public String[] listAll() {
-        String[] list = new String[this.size()];
+        String[] list = new String[size];
         Node iterator = this.first;
-        if (iterator == null)
-            return list;
         int count = 0;
         while (iterator != null) {
             list[count] = iterator.getValue();
@@ -61,14 +61,5 @@ public class List {
         return list;
     }
 
-    @Override
-    public String toString() {
-        String result = "";
-        Node iterator = this.first;
-        while (iterator != null) {
-            result += iterator.toString() + "\n";
-            iterator = iterator.getNext();
-        }
-        return result;
-    }
+   
 }
