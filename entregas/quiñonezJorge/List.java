@@ -50,7 +50,6 @@ public class List {
       Node iterator = this.first;
       int count = 0;
       while (count < index - 1) {
-        System.out.println("counter: " + count + " index: " + (index - 1));
         iterator = iterator.getNext();
         System.out.println(iterator.getValue());
         count++;
@@ -73,7 +72,6 @@ public class List {
       if (previous != null) {
         System.out.println(" > Se fue " + iterator.getValue());
         previous.setNext(null);
-
       } else {
         this.first = null;
       }
@@ -88,6 +86,30 @@ public class List {
       this.first = null;
       this.first = nextNode;
       this.size--;
+    }
+  }
+
+  public void deleteByIndex(int index) {
+    if (this.first != null) {
+      if (index == 0) {
+        deleteStart();
+      } else if (index == this.size() - 1) {
+        deleteLast();
+      } else {
+        Node iterator = this.first;
+        Node previous = null;
+        int count = 0;
+        while (count < index) {
+          previous = iterator;
+          iterator = iterator.getNext();
+          count++;
+        }
+        System.out.println(" > Se fue " + iterator.getValue());
+        Node nextNode = iterator.getNext();
+        previous.setNext(null);
+        previous.setNext(nextNode);
+        this.size--;
+      }
     }
   }
 

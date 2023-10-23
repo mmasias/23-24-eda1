@@ -16,7 +16,7 @@ class Ejemplo {
 
         viewLine(nephews);
 
-        nephews.insertStart("Luisito");
+        nephews.insertByIndex("Luisito", 2);
 
         System.out.println("Tamaño: " + nephews.size());
 
