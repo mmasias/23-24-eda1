@@ -54,7 +54,9 @@ Lo mejor es verlo y discutirlo en vivo, sobre uno o varios ejemplos.
 
 <div align=center>
 
-|[Java](/src/Tema001.java)|[Python](/src/Tema001.py)|[Javascript](/src/Tema001.js)|[PHP](/src/Tema001.php)
+|Java|Python|JavaScript|PHP
 |-|-|-|-|
+|[Varias situaciones](/src/Tema001/Tema001.java)|[Ídem](/src/Tema001/Tema001.py)|[Ídem](/src/Tema001/Tema001.js)|[Ídem](/src/Tema001/Tema001.php)
+[Array 2D, 🤔](/src/Tema001/Tema001Arrays2D.java)
 
 </div>
