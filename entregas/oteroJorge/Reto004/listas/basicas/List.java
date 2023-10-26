@@ -39,6 +39,7 @@ public class List {
             n.setNext(this.first);
         }
         this.first = n;
+        System.out.println("> Llegó " + value);
     }
     public void insertExactlyPosition(int position, String value){
         Node n = new Node(value);
@@ -54,6 +55,7 @@ public class List {
             n.setNext(iterator.getNext());
             iterator.setNext(n);
         }
+        System.out.println("> Llegó " + value);
     }
 
     public void deleteEnd() {
@@ -82,6 +84,25 @@ public class List {
         }
         Node iterator = this.first;
         this.first = iterator.getNext();
+        System.out.println("> Se fue " + iterator.getValue());
+    }
+    public void deleteExactlyPosition(int position){
+        if (this.first == null) {
+            return;
+        }
+        Node iterator = this.first;
+        Node previous = null;
+        int count = 1;
+        while (iterator.getNext() != null && count < position) {
+            previous = iterator;
+            iterator = iterator.getNext();
+            count++;
+        }
+        if (previous == null) {
+            this.first = iterator.getNext();
+        } else {
+            previous.setNext(iterator.getNext());
+        }
         System.out.println("> Se fue " + iterator.getValue());
     }
 
