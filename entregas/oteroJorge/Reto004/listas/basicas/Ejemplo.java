@@ -20,10 +20,13 @@ class Ejemplo {
         nephews.insertFront("Jaimito");
         nephews.insertExactlyPosition(2, "Pedrito");
 
+        viewLine(nephews);
+
         System.out.println("Tamaño: " + nephews.size());
 
         nephews.deleteEnd();
         nephews.deleteFront();
+        nephews.deleteExactlyPosition(2);
 
         System.out.println("Tamaño: " + nephews.size());
 
