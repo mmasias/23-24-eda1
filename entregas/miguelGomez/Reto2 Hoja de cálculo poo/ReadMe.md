@@ -1,1 +1,1 @@
-Subo mi hoja de cálculo pasafa a poo
+Subo mi hoja de cálculo pasada a poo
