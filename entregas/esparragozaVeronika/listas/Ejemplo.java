@@ -1,7 +1,8 @@
-package esparragozaVeronika.listas;
+package listas;
 
 class Ejemplo {
     public static void main(String[] args) {
+
 
         List nephews = new List();
         viewLine(nephews);
@@ -18,10 +19,30 @@ class Ejemplo {
 
         System.out.println("Tamaño: " + nephews.size());
 
-        nephews.delete();
+        nephews.deleteBack();
         System.out.println("Tamaño: " + nephews.size());
 
         viewLine(nephews);
+
+        nephews.insertFront("Veronika");
+
+        viewLine(nephews);
+
+        nephews.deleteFront();
+        viewLine(nephews);
+
+        nephews.insertAtIndex(9, "Pancho");
+        viewLine(nephews);
+
+        nephews.insertAtIndex(4, "Patricia");
+        viewLine(nephews);
+
+        nephews.insertAtIndex(-4, "Violeta");
+        viewLine(nephews);
+
+        nephews.insertAtIndex(0, "Harry");
+        viewLine(nephews);
+
     }
 
     static void viewLine(List filaDeSobrinos) {

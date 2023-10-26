@@ -1,5 +1,4 @@
-package esparragozaVeronika.listas;
-
+package listas;
 public class Node {
 
     private String value;

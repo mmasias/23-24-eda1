@@ -1,4 +1,4 @@
-package esparragozaVeronika.listas;
+package listas;
 
 public class List {
 
@@ -34,9 +34,10 @@ public class List {
         Node newNode = new Node(value);
         newNode.setNext(first);
         first = newNode;
+        System.out.println("> Llegó al inicio " + newNode.getValue());
     }
 
-    public void delete() {
+    public void deleteBack() {
         if (first != null) {
             if (first.getNext() == null) {
                 first = null;
@@ -53,6 +54,12 @@ public class List {
         }
     }
 
+    public void deleteFront() {
+        System.out.println("Se fue " + first.getValue());
+        if (first != null) {
+            first = first.getNext();
+        }
+    }
     public String[] listAll() {
         int listSize = size();
         String[] list = new String[listSize];
@@ -62,5 +69,30 @@ public class List {
             iterator = iterator.getNext();
         }
         return list;
+    }
+
+    public void insertAtIndex(int index, String value) {
+        if (index < 0){
+            System.out.println("No válido, es menor de 0.");
+        } else if(index == 0){
+            insertFront(value);
+        } else {
+            int count = 1;
+            Node newNode = new Node(value);
+            Node iterator = first;
+
+            while (iterator != null && count < index - 1) {
+                iterator = iterator.getNext();
+                count++;
+            }
+
+            if(iterator == null){
+                System.out.println("No válido, la lista no tiene posición "+index);
+            } else {
+                newNode.setNext(iterator.getNext());
+                iterator.setNext(newNode);
+                System.out.println("> Llegó " + value + " en la posición " + index);
+            }
+        }
     }
 }
