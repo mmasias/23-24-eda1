@@ -75,15 +75,15 @@ public class List {
     }
 
     public String insert(String value) {
-        Node nodoQueEntra = new Node(value);
+        Node incomingNode = new Node(value);
         if (this.first == null) {
-            this.first = nodoQueEntra;
+            this.first = incomingNode;
         } else {
             Node iterator = this.first;
             while (iterator.getNext() != null) {
                 iterator = iterator.getNext();
             }
-            iterator.setNext(nodoQueEntra);
+            iterator.setNext(incomingNode);
         }
         this.size++; 
         return value;

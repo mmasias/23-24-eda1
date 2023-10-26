@@ -40,9 +40,9 @@ class Example {
         viewLine(nephews);
     }
 
-    static void viewLine(List filaDeSobrinos) {
+    static void viewLine(List nephewsList) {
 
-        String[] larray = filaDeSobrinos.listAll();
+        String[] larray = nephewsList.listAll();
         System.out.println("LA FILA" + "-".repeat(18));
         for (String sobrino : larray){
             System.out.println(sobrino);
