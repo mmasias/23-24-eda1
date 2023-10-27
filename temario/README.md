@@ -11,3 +11,9 @@
 - Árboles
 - Grafos
 - Ficheros
+
+## Temario++
+
+- [Programación genérica](/temario/999-otrosTemas/programacionGenerica.md)
+- Manejo de errores
+- Git et al...
