@@ -79,3 +79,17 @@ Lista|[Código](/src/listas/basica/vPython/List_formal.py)|[Código](/src/listas
 Ejemplo|[Código](/src/listas/basica/vPython/Ejemplo_formal.py)|[Código](/src/listas/basica/vPython/Ejemplo_mugre.py)
 
 </div>
+
+### Reflexiones alrededor de la implementación en Javascript
+
+Lo mismo, respetando el modelo anteriormente planteado
+
+<div align=center>
+
+|Elemento|vFormal|vMugre|
+|-|-|-|
+Nodo|[Código](/src/listas/basica/vJavascript/Node_formal.js)|[Código](/src/listas/basica/vJavascript/Node_mugre.js)
+Lista|[Código](/src/listas/basica/vJavascript/List_formal.js)|[Código](/src/listas/basica/vJavascript/List_mugre.js)
+Ejemplo|[Código](/src/listas/basica/vJavascript/Ejemplo_formal.js)|[Código](/src/listas/basica/vJavascript/Ejemplo_mugre.js)
+
+</div>
