@@ -1,4 +1,3 @@
-
 class Ejemplo {
     public static void main(String[] args) {
 
@@ -26,7 +25,7 @@ class Ejemplo {
     }
 
     static void viewLine(List filaDeSobrinos) {
-        
+
         String[] larray = filaDeSobrinos.listAll();
         System.out.println("LA FILA" + "-".repeat(18));
         for (String sobrino : larray){
@@ -35,4 +34,3 @@ class Ejemplo {
         System.out.println("-".repeat(25));
     }
 }
- 
