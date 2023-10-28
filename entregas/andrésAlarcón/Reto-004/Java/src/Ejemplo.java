@@ -1,4 +1,4 @@
-class Ejemplo {
+public class Ejemplo {
     public static void main(String[] args) {
 
         List nephews = new List();
@@ -14,8 +14,18 @@ class Ejemplo {
 
         viewLine(nephews);
 
-        nephews.insert("Luisito");
+        nephews.insertAtBeginning("Luisito");
+        System.out.println("Tamaño: " + nephews.size());
 
+        nephews.insertAt(2, "Martita");
+        System.out.println("Tamaño: " + nephews.size());
+
+        viewLine(nephews);
+
+        nephews.deleteFirst();
+        System.out.println("Tamaño: " + nephews.size());
+
+        nephews.deleteLast();
         System.out.println("Tamaño: " + nephews.size());
 
         nephews.delete();
