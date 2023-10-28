@@ -1,5 +1,3 @@
-package listas.basica;
-
 class Ejemplo {
     public static void main(String[] args) {
 
@@ -36,4 +34,3 @@ class Ejemplo {
         System.out.println("-".repeat(25));
     }
 }
-

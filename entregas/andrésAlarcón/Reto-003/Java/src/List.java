@@ -1,27 +1,18 @@
 public class List {
 
     private Node first = null;
+    private int size = 0;
 
-    public int size(){
-        int count = 0;
-        if (this.first == null) {
-            return 0;
-        }
-        Node iterator = this.first;
-        while(iterator.getisLast()){
-            iterator = iterator.getNext();
-            count++;
-        }
-        return count;
+    public int size() {
+        return this.size;
     }
 
     public boolean isEmpty() {
-        return this.size() > 0 ? false : true;
+        return this.size == 0;
     }
 
     public void insert(String value) {
         Node nodoQueEntra = new Node(value);
-        System.out.println("*entró " + nodoQueEntra.getValue() + " *");
         if (this.first == null)
             this.first = nodoQueEntra;
         else {
@@ -31,23 +22,26 @@ public class List {
             }
             iterator.setNext(nodoQueEntra);
         }
+        System.out.println(" > Llegó " + value);
+        this.size++;
     }
 
     public void delete() {
         if (this.first != null) {
             Node iterator = this.first;
-            System.out.println("*salió " + iterator.getValue() + " *");
             Node previous = null;
             while (iterator.getNext() != null) {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
+            System.out.println("Se fue " + iterator.getValue());
             previous.setNext(null);
+            this.size--;
         }
     }
 
     public String[] listAll() {
-        String[] list = new String[this.size()];
+        String[] list = new String[this.size];
         Node iterator = this.first;
         if (iterator == null)
             return list;
