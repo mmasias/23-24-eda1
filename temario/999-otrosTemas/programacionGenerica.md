@@ -23,6 +23,9 @@ La programación genérica en Java se implementa mediante el uso de "type parame
 
 ### Definición de clases e interfaces genéricas
 
+- **Sintaxis básica**: Para definir una clase genérica, se usa un identificador de tipo genérico entre paréntesis angulares (<>). Por ejemplo, ```class Box<T> { }``` define una clase Box que tiene un tipo genérico T.
+- **Uso de tipos genéricos**: Dentro de la clase, el tipo genérico T puede utilizarse como cualquier otro tipo de dato. Por ejemplo, se puede tener un atributo de tipo T, o métodos que retornen o reciban parámetros de tipo T.
+
 ```java
 public class Box<T> {
     private T t;
@@ -37,7 +40,8 @@ public class Box<T> {
 
 ### Utilización de Clases Genéricas:
 
-Crear un objeto de una clase genérica especificando el tipo real:
+- **Especificación de tipo en la instancia**: Al crear un objeto de una clase genérica, se debe especificar el tipo de dato genérico. Por ejemplo: ```Box<Integer> integerBox = new Box<>();```.
+- **Inferencia de tipos**: A partir de Java 7, se introduce el operador diamante (<>), que permite al compilador inferir el tipo genérico necesario, simplificando la sintaxis.
 
 ```java
 Box<Integer> integerBox = new Box<Integer>();
@@ -45,9 +49,11 @@ Box<String> stringBox = new Box<>();
 
 ```
 
-### Métodos Genéricos:
+### Métodos Genéricos
 
-Similar a las clases genéricas, pero aplicado a métodos:
+Similar a las clases genéricas, pero aplicado a métodos. 
+
+- **Métodos independientes de la clase**: Un método genérico puede ser definido dentro de una clase genérica o en una clase no genérica. La sintaxis involucra añadir un identificador de tipo genérico antes del tipo de retorno del método. Por ejemplo: ```public <T> void print(T obj) { }```.
 
 ```java
 public static <U> void displayBoxContent(Box<U> box) {
@@ -70,7 +76,9 @@ public void printList(List<?> list) {
 
 ### Limitaciones y Bounded Types
 
-Se pueden aplicar restricciones a los tipos que se pueden utilizar como parámetros de tipo. Por ejemplo, limitar un tipo a ser una subclase de otro:
+- **Restricciones de tipo**: Se pueden establecer restricciones para los tipos genéricos utilizando la palabra clave **extends** (para clases) o **implements** (para interfaces). Esto garantiza que el tipo genérico cumpla con ciertas características.
+
+Por ejemplo, se puede limitar un tipo a ser una subclase de otro:
 
 ```java
 public class NumericBox<T extends Number> {
