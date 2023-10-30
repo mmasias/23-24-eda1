@@ -15,5 +15,5 @@
 ## Temario++
 
 - [Programación genérica](/temario/999-otrosTemas/programacionGenerica.md)
-- Manejo de errores
+- [Pruebas & manejo de errores](/temario/999-otrosTemas/pruebas.md)
 - Git et al...
