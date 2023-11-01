@@ -2,7 +2,7 @@ package lista.basica;
 
 public class List {
     private Node first = null;
-    private int size = 0; // Contador de elementos en la lista
+    private int size = 0;
 
     public int size() {
         return this.size;
@@ -13,7 +13,7 @@ public class List {
     }
 
     public void insert(String value) {
-        System.out.println(" > Llegó " + value); // Mensaje descriptivo de entrada
+        System.out.println(" > Llegó " + value);
         Node nodoQueEntra = new Node(value);
         if (this.first == null)
             this.first = nodoQueEntra;
@@ -24,7 +24,7 @@ public class List {
             }
             iterator.setNext(nodoQueEntra);
         }
-        this.size++; // Incrementamos el contador de elementos
+        this.size++;
     }
 
     public void delete() {
@@ -36,14 +36,14 @@ public class List {
                 iterator = iterator.getNext();
             }
             if (previous != null) {
-                System.out.println("Se fue " + iterator.getValue()); // Mensaje descriptivo de salida
+                System.out.println("Se fue " + iterator.getValue());
                 previous.setNext(null);
             } else {
                 // Caso especial: solo hay un elemento en la lista
                 System.out.println("Se fue " + this.first.getValue());
                 this.first = null;
             }
-            this.size--; // Decrementamos el contador de elementos
+            this.size--;
         }
     }
 
