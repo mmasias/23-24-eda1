@@ -39,7 +39,6 @@ public class List {
                 System.out.println("Se fue " + iterator.getValue());
                 previous.setNext(null);
             } else {
-                // Caso especial: solo hay un elemento en la lista
                 System.out.println("Se fue " + this.first.getValue());
                 this.first = null;
             }
