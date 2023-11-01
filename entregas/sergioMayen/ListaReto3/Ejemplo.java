@@ -1,4 +1,4 @@
-package listas.basica;
+package entregas.sergioMayen.ListaReto3;
 
 class Ejemplo {
     public static void main(String[] args) {
@@ -8,15 +8,15 @@ class Ejemplo {
         viewLine(nephews);
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
-        nephews.insertEnd("Juanito");
-        nephews.insertEnd("Pepito");
-        nephews.insertEnd("Anita");
+        nephews.insert("Juanito");
+        nephews.insert("Pepito");
+        nephews.insert("Anita");
 
         System.out.println("Esta vacia? " + nephews.isEmpty());
 
         viewLine(nephews);
 
-        nephews.insertEnd("Luisito");
+        nephews.insert("Luisito");
 
         System.out.println("Tamaño: " + nephews.size());
 
