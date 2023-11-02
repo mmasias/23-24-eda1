@@ -1,47 +1,30 @@
-package listas.basica;
+package lista.basica;
 
 public class List {
-
     private Node first = null;
+    private int size = 0;
 
     public int size() {
-        if (this.first == null) {
-            return 0;
-        }
-        int count = 1;
-        Node iterator = first;
-        while (iterator.getNext() != null) {
-            count++;
-            iterator = iterator.getNext();
-        }
-        return count;
+        return this.size;
     }
 
     public boolean isEmpty() {
-        return this.size() > 0 ? false : true;
+        return this.size == 0;
     }
 
-    public void insertEnd(String value) {
-        Node newNode = new Node(value);
+    public void insert(String value) {
+        System.out.println(" > Llegó " + value);
+        Node nodoQueEntra = new Node(value);
         if (this.first == null)
-        this.first = newNode;
+            this.first = nodoQueEntra;
         else {
             Node iterator = this.first;
             while (iterator.getNext() != null) {
                 iterator = iterator.getNext();
             }
-            iterator.setNext(newNode);
+            iterator.setNext(nodoQueEntra);
         }
-    }
-    
-    public void insertFront(String value) {
-        Node n = new Node(value);
-        if (this.first == null)
-            this.first = n;
-        else {
-            n.setNext(this.first);
-            this.first = n;
-        }
+        this.size++;
     }
 
     public void delete() {
@@ -52,12 +35,19 @@ public class List {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
-            previous.setNext(null);
+            if (previous != null) {
+                System.out.println("Se fue " + iterator.getValue());
+                previous.setNext(null);
+            } else {
+                System.out.println("Se fue " + this.first.getValue());
+                this.first = null;
+            }
+            this.size--;
         }
     }
 
     public String[] listAll() {
-        String[] list = new String[this.size()];
+        String[] list = new String[this.size];
         Node iterator = this.first;
         if (iterator == null)
             return list;
