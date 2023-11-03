@@ -1,5 +1,3 @@
-package entregas.quiñonezJorge;
-
 public class List {
 
   private Node first = null;

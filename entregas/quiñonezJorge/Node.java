@@ -1,5 +1,3 @@
-package entregas.quiñonezJorge;
-
 public class Node {
 
     private String value;
