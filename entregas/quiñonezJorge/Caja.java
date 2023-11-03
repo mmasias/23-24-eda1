@@ -9,15 +9,26 @@ public class Caja {
  }
 
  public void chargeItem() {
-  this.actualClient.getPack().reduceSize();
+  actualClient.reduceItemsSize();
+  if (actualClient.getItemsLenght() == 0) {
+   setFree();
+  }
  }
 
  public void setFree() {
-  this.actualClient = null;
-  this.isEmpty = true;
+  actualClient = null;
+  isEmpty = true;
  }
 
  public boolean isEmpty() {
-  return this.isEmpty;
+  return isEmpty;
+ }
+
+ public void printRemainingItems() {
+  if (actualClient != null) {
+   System.out.println("[" + actualClient.getItemsLenght() + "]");
+  } else {
+   System.out.println("[0]");
+  }
  }
 }

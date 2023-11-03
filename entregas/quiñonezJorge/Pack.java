@@ -11,6 +11,6 @@ public class Pack {
  }
 
  public void reduceSize() {
-  this.size--;
+  size--;
  }
 }

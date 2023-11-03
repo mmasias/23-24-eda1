@@ -8,31 +8,31 @@ public class Cola {
  }
 
  public boolean isEmpty() {
-  return this.size() > 0 ? false : true;
+  return size() > 0 ? false : true;
  }
 
  public Cliente getFirst() {
-  return this.first;
+  return first;
  }
 
  public void newClient(Cliente client) {
-  if (this.first == null) {
-   this.first = client;
-   System.out.print("Llego 1 persona a la cola - ");
+  if (first == null) {
+   first = client;
   } else {
-   Cliente iterator = this.first;
+   Cliente iterator = first;
    while (iterator.getNext() != null) {
     iterator = iterator.getNext();
    }
    iterator.setNext(client);
   }
-  this.size++;
+  System.out.print("Llego 1 persona - ");
+  size++;
  }
 
  public void removeClient() {
-  if (this.first != null) {
-   this.first = this.first.getNext();
-   this.size--;
+  if (first != null) {
+   first = first.getNext();
+   size--;
   }
  }
 }
