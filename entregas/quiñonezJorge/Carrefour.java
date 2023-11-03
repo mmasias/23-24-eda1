@@ -37,6 +37,7 @@ public class Carrefour {
    System.out.print("Caja " + (i + 1) + ": ");
    cajas[i].printRemainingItems();
   }
+  System.out.println("===============================================");
  }
 
  private void processItems() {
