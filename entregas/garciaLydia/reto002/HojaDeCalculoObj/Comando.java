@@ -47,7 +47,7 @@ public enum Comando {
         }
     };
 
-    private char codigo;
+    private final char codigo;
 
     Comando(char codigo) {
         this.codigo = codigo;

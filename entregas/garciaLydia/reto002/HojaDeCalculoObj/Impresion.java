@@ -4,7 +4,7 @@ import entregas.garciaLydia.reto002.HojaDeCalculoObj.Acciones;
 import entregas.garciaLydia.reto002.HojaDeCalculoObj.HojaDeCalculo;
 
 public class Impresion implements Acciones {
-    private HojaDeCalculo hoja;
+    private final HojaDeCalculo hoja;
 
     public Impresion(HojaDeCalculo hoja) {
         this.hoja = hoja;

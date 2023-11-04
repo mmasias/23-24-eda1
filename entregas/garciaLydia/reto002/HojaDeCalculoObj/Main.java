@@ -11,7 +11,7 @@ public class Main {
         HojaDeCalculo hoja = new HojaDeCalculo(15, 10);
 
         while (true) {
-            hoja.imprimir();
+            HojaDeCalculo.imprimir();
             System.out.println("Estás en la fila " + (hoja.getFilaActual() + 1) + ", columna " + (char) ('A' + hoja.getColumnaActual()));
             System.out.print("Seleccione un comando: [W]Arriba; [A]Izquierda; [S]Abajo; [D]Derecha; [Q]Finalizar programa; [E]Editar: ");
 

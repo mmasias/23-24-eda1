@@ -1,7 +1,7 @@
 package entregas.garciaLydia.reto002.HojaDeCalculoObj;
 
 public class Edicion implements Acciones {
-    private HojaDeCalculo hoja;
+    private final HojaDeCalculo hoja;
 
     public Edicion(HojaDeCalculo hoja) {
         this.hoja = hoja;

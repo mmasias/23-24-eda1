@@ -28,7 +28,7 @@ public class HojaDeCalculo {
     }
 
     public void setFilaActual(int filaActual) {
-        this.filaActual = filaActual;
+        HojaDeCalculo.filaActual = filaActual;
     }
 
     public int getColumnaActual() {
@@ -36,7 +36,7 @@ public class HojaDeCalculo {
     }
 
     public void setColumnaActual(int columnaActual) {
-        this.columnaActual = columnaActual;
+        HojaDeCalculo.columnaActual = columnaActual;
     }
 
     public boolean isModoEdicion() {
