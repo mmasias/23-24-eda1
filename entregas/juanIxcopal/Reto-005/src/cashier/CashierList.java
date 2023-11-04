@@ -1,5 +1,6 @@
 package cashier;
-
+import java.util.List;
+import java.util.ArrayList;
 public class CashierList {
 
     private CashierNode first = null;
@@ -32,11 +33,52 @@ public class CashierList {
 
         while (iterator != null){
             list[count] = iterator.getCashierName();
-            System.out.println(iterator.getCashierName() + "[" + iterator.getAvailable() +  "]" );
+            System.out.print(iterator.getCashierName() + "[" + iterator.isAvailable() +  "]   ||  " );
             count ++;
             iterator = iterator.getNext();
         }
 
+        System.out.println();
+
         return list;
+    }
+
+
+    //Nuevos metodos
+
+    public List<String> listAvailableCashiers(){
+        List<String> availableCashiers = new ArrayList<>();
+
+        CashierNode iterator = this.first;
+
+        while (iterator != null){
+            if(iterator.isAvailable()){
+                availableCashiers.add(iterator.getCashierName());
+            }
+            iterator = iterator.getNext();
+        }
+        return availableCashiers;
+    }
+
+    public void markCashierAsBusy(String cashierName) {
+        CashierNode iterator = this.first;
+        while (iterator != null) {
+            if (iterator.getCashierName().equals(cashierName)) {
+                iterator.setAvailable(false);
+                break;
+            }
+            iterator = iterator.getNext();
+        }
+    }
+
+    public void markCashierAsAvailable(String cashierName) {
+        CashierNode iterator = this.first;
+        while (iterator != null) {
+            if (iterator.getCashierName().equals(cashierName)) {
+                iterator.setAvailable(true);
+                break;
+            }
+            iterator = iterator.getNext();
+        }
     }
 }

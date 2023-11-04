@@ -1,42 +1,53 @@
 package client;
-
+import java.util.List;
 public class ClientManager {
-    //ClientList clients = new ClientList();
 
-    private ClientList clientList;
+    private ClientList clients;
+    private int clientId = 1;
+
 
     public ClientManager() {
-        this.clientList = new ClientList();
+        this.clients = new ClientList();
     }
 
     public void handleClientArrival() {
-        // Lógica para manejar la llegada de un nuevo cliente
-        double random = Math.random();
-        if (random <= 0.60) { // Probabilidad del 60%
-            int packs = (int) (Math.random() * 11) + 5; // Entre 5 y 15 packs
-            clientList.addClient(packs);
+        double arrivalClient = Math.random() * 100;
+        if (arrivalClient <= 60) {
+            int randomItems = (int) Math.floor(Math.random()*(15-5+1)+5);
+            clients.addClient(randomItems, clientId);
+            clientId ++;
         }
     }
 
     public ClientNode getNextClient() {
-        // Devuelve el próximo cliente de la cola
-        return clientList.getNextClient();
-    }
-
-
-
-
-
-    public void createCustomer(){
-        int randomItems = (int) Math.floor(Math.random()*(15-5+1)+5);
-        clientList.addClient(randomItems);
+        return clients.getNextClient();
     }
 
     public int clientsAmount(){
-        return clientList.size();
+        return clients.size();
+    }
+
+    public List<Integer> listClientsInQueue(){
+        return clients.listClients();
     }
 
     public int[] clientItems(){
-        return clientList.countItems();
+        return clients.countItems();
     }
+
+    //Nuevos métodos
+
+    public int getClientItems(int clientId) {
+        List<Integer> clientItems = clients.listClients();
+        if (clientId >= 0 && clientId < clientItems.size()) {
+            System.out.println("QUE ES ESTO " + clientItems.get(clientId));
+            return clientItems.get(clientId);
+        }
+        return 0;
+    }
+
+    public void clientAttended(int index){
+        clients.servedClient(index);
+    }
+
 }
