@@ -1,59 +1,53 @@
 package cashier;
 
-import java.util.List;
-
 import client.ClientManager;
 
 public class CashierManager {
-    CashierList cashiers = new CashierList();
 
-    public void createCashier(String name){
-        cashiers.createCashier(name);
+    private CashierList cashiers;
+    private boolean[] cashierStatus;
+
+    public CashierManager(){
+        this.cashiers = new CashierList();
+        this.cashierStatus = new boolean[cashiers.size()];
+    }
+
+    public void createCashier(String cashierName){
+        cashiers.addCashier(cashierName);
     }
 
     public String[] listCashiers(){
-        return cashiers.listCashiers();
+        return cashiers.getListCashiers();
     }
 
-    public List<String> listAvailableCashiers(){
-        return cashiers.listAvailableCashiers();
+    public int size(){
+        return cashiers.size();
     }
 
+    public void dispatchCustomer(int[] listClientItems, ClientManager client){
+        String availableCashier = cashiers.findAvailableCashier();
 
-    // Metodos nuevos
-    public void atenderCliente(List<Integer> listClients){
-
-        System.out.println("RECIBE LISTA DE CLIENTES PARA ATENDER");
-        System.out.println(listClients);
-    }
-
-    public void proccessClient(int numberClient, int items, ClientManager clientManager){
-        List<String> availableCashiers = listAvailableCashiers();
-
-        if(!availableCashiers.isEmpty()){
-            String cashierName = availableCashiers.get(0); // Tomar la primera caja disponible
-            cashiers.markCashierAsBusy(cashierName); // Marcar la caja como ocupada
-            System.out.println("Cliente " + numberClient + " asignado a " + cashierName);
-            System.out.println("Procesando items...");
-
-            while (items > 0) {
-                System.out.println("Item " + (items - 1) + " procesado.");
-                items--;
+        /*if (availableCashier != null) {
+            for (int item : listClientItems) {
+                cashiers.setAvailableForCashier(availableCashier, false, item);
+                client.deleteClient();
             }
-
-            cashiers.markCashierAsAvailable(cashierName); // Liberar la caja una vez que se haya atendido al cliente
-            clientManager.clientAttended(numberClient); // Eliminar al cliente de la cola
-
+        }*/
+        if (availableCashier != null) {
+            for (int item : listClientItems) {
+                boolean assigned = cashiers.setAvailableForCashier(availableCashier, false, item);
+                if (assigned) {
+                    client.deleteClient();
+                }
+            }
         }
-
-        System.out.println("||--------------------------||");
-        System.out.println(numberClient);
-        System.out.println(items);
-        System.out.println(clientManager);
-        System.out.println("||--------------------------||");
     }
 
+    public String findAvailableCashier() {
+        return cashiers.findAvailableCashier();
+    }
 
-
-
+    public boolean hasAvailableCashier() {
+        return cashiers.findAvailableCashier() != null;
+    }
 }

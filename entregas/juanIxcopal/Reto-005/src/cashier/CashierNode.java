@@ -3,23 +3,18 @@ package cashier;
 public class CashierNode {
     private boolean available;
     private String CashierName;
+    private int shipingItems = 0;
     private CashierNode next;
 
-    public CashierNode(String CashierName){
+    public CashierNode(String CashierName, boolean available, int shipingItems){
         setCashierName(CashierName);
-        setAvailable(true);
+        setAvailable(available);
+        setShipingItems(shipingItems);
     }
 
-    public boolean isAvailable(){
+    //GETERS
+    public boolean getAvailable(){
         return this.available;
-    }
-
-    public void setAvailable(boolean isAvailable){
-        this.available = isAvailable;
-    }
-
-    public void setCashierName(String Name){
-        this.CashierName = Name;
     }
 
     public String getCashierName(){
@@ -30,8 +25,25 @@ public class CashierNode {
         return next;
     }
 
+    public int getShipingItems(){
+        return this.shipingItems;
+    }
+
+    // SETERS
+    public void setAvailable(boolean isAvailable){
+        this.available = isAvailable;
+    }
+
+    public void setCashierName(String Name){
+        this.CashierName = Name;
+    }
+
     public void setNext(CashierNode next) {
         this.next = next;
+    }
+
+    public void setShipingItems(int shipingItems){
+        this.shipingItems = shipingItems;
     }
 
 }
