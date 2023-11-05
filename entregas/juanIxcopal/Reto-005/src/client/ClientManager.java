@@ -1,5 +1,4 @@
 package client;
-import java.util.List;
 
 public class ClientManager {
     private ClientList clients;

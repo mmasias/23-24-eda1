@@ -25,29 +25,27 @@ public class CashierManager {
     }
 
     public void dispatchCustomer(int[] listClientItems, ClientManager client){
-        String availableCashier = cashiers.findAvailableCashier();
+        String availableCashierName = cashiers.findAvailableCashier();
 
-        /*if (availableCashier != null) {
+        if (availableCashierName != null) {
             for (int item : listClientItems) {
-                cashiers.setAvailableForCashier(availableCashier, false, item);
-                client.deleteClient();
-            }
-        }*/
-        if (availableCashier != null) {
-            for (int item : listClientItems) {
-                boolean assigned = cashiers.setAvailableForCashier(availableCashier, false, item);
-                if (assigned) {
+                boolean assigned = cashiers.setForCashierData(availableCashierName, false, item);
+
+                if (assigned != true)  {
                     client.deleteClient();
+                } else {
+                    break;
                 }
+
             }
         }
     }
 
     public String findAvailableCashier() {
-        return cashiers.findAvailableCashier();
+        return this.cashiers.findAvailableCashier();
     }
 
     public boolean hasAvailableCashier() {
-        return cashiers.findAvailableCashier() != null;
+        return this.cashiers.findAvailableCashier() != null;
     }
 }

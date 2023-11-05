@@ -36,7 +36,7 @@ public class CashierList {
             if(iterator.getShipingItems() == 0){
                 iterator.setAvailable(true);
             }
-            System.out.print(iterator.getCashierName() + "[" + iterator.getShipingItems() +  "]   ||  " );
+            System.out.print(iterator.getCashierName() + "[" + iterator.getShipingItems() +  "] | " );
             count ++;
             iterator = iterator.getNext();
         }
@@ -46,18 +46,18 @@ public class CashierList {
         return list;
     }
 
-    public boolean setAvailableForCashier(String cashierName, boolean available, int shipingItems){
+    public boolean setForCashierData(String cashierName, boolean available, int shipingItems){
         CashierNode iterator = this.first;
 
         while (iterator != null){
-            if(iterator.getCashierName().equals(cashierName)){
+            if(iterator.getCashierName().equals(cashierName) != false){
                 iterator.setAvailable(available);
                 iterator.setShipingItems(shipingItems);
-                return available;
+                return iterator.getAvailable();
             }
             iterator = iterator.getNext();
         }
-        return available;
+        return iterator.getAvailable();
     }
 
     public String findAvailableCashier() {
