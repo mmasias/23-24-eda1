@@ -3,8 +3,8 @@ import client.ClientManager;
 
 import java.util.Scanner;
 
-public class GlobalManager {
-    public static void main(String[] args) {
+public class CarreFour {
+    public void start() {
         int minute = 1;
         ClientManager queue = new ClientManager();
         CashierManager cashier = new CashierManager();
