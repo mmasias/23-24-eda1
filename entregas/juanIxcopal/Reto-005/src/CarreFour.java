@@ -7,6 +7,9 @@ public class CarreFour {
 
     public void start(){
         int minute = 1;
+
+        int minutesWithoutQueue = 0;
+
         ClientManager queue = new ClientManager();
         CashierManager cashier = new CashierManager();
         cashier.createCashier("Caja1");
@@ -16,8 +19,9 @@ public class CarreFour {
 
         Scanner scanner = new Scanner(System.in);
         boolean openCF = true;
-
-        while (openCF) {
+        
+        while (openCF ) {
+            //AQUIEEE
             System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
             System.out.print("Minuto " + minute + " - ");
 
@@ -38,8 +42,14 @@ public class CarreFour {
 
             System.out.println("En cola: " + queue.size());
 
+            if (queue.size() <= 0){
+                minutesWithoutQueue++;
+            }
+
             cashier.listCashiers();
             System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+
+            System.out.println("Minutos con cola en cero: " + minutesWithoutQueue);
 
             System.out.println("1. Siguiente minuto.");
             System.out.println("2. Finalizar programa.");
@@ -57,7 +67,13 @@ public class CarreFour {
                 default:
                     System.out.println("Opcion no valida");
             }
+
+            //AQUIEEEEE
+
             minute++;
+
+
+
         }
     }
 
