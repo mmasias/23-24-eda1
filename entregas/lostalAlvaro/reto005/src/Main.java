@@ -1,3 +1,5 @@
+package reto005.src;
+
 import java.util.Random;
 
 public class Main {
