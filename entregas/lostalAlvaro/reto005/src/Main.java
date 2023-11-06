@@ -17,10 +17,10 @@ public class Main {
 
             probabilidadLlegada = Math.random();
             if (probabilidadLlegada <= 0.4) {
-                System.out.print(" : Llega 1 persona");
+                System.out.print(" - Llega 1 persona");
                 unaCola++;
             } else {
-                System.out.print(" : No llega nadie");
+                System.out.print(" - No llega nadie");
             }
             System.out.println(" : En cola: " + unaCola);
 
