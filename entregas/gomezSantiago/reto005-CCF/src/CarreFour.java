@@ -4,8 +4,26 @@ import client.ClientManager;
 import java.util.Scanner;
 
 public class CarreFour {
+    private int minute = 1;
+    private int minutesWithoutQueue = 0;
+    private int totalClientsServed = 0;
+    private int openingTime = 9 * 60;
+    private int closingTime = 21 * 60;
+    private int maxClientsInQueue = 15;
+    private boolean caja5Created = false;
+
+
+    public boolean withinTheSchedule(){
+        int minutesOpen = closingTime - openingTime;
+
+        if (this.minute <= minutesOpen){
+            return true;
+        }
+        return false;
+    }
+
+
     public void start() {
-        int minute = 1;
         ClientManager queue = new ClientManager();
         CashierManager cashier = new CashierManager();
         cashier.createCashier("Caja1");
@@ -14,9 +32,8 @@ public class CarreFour {
         cashier.createCashier("Caja4");
 
         Scanner scanner = new Scanner(System.in);
-        boolean openCF = true;
 
-        while (openCF) {
+        while (this.withinTheSchedule()) {
             System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
             System.out.print("Minuto " + minute + " - ");
 
@@ -31,32 +48,46 @@ public class CarreFour {
 
             if(cashier.freeCashier() && queue.isEmpty()){
                 cashier.serveClient(queue.firstItem());
-
-                queue.deleteClientInQueue();
+                queue.deleteFirstClientInQueue();
+                this.totalClientsServed++;
             }
 
             System.out.println("En cola: " + queue.size());
 
+            if (queue.size() == 0){
+                this.minutesWithoutQueue++;
+            }
+
+            if (queue.size() > this.maxClientsInQueue && !caja5Created){
+                cashier.createCashier("caja5");
+                this.caja5Created = true;
+            }
+
             cashier.listCashiers();
+
+            if (queue.size() <= this.maxClientsInQueue && caja5Created && cashier.itemsFromLastCashier(4) == 0){
+                cashier.deleteEndCashier();
+                this.caja5Created = false;
+            }
+
+
             System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+            System.out.print("Enter para siguiente minuto, 'q' para salir:");
 
-            System.out.println("1. Siguiente minuto.");
-            System.out.println("2. Finalizar programa.");
-            System.out.print("Seleccione una opcion: ");
 
-            int option = scanner.nextInt();
-
-            switch (option) {
-                case 1:
-                    openCF = true;
-                    break;
-                case 2:
-                    openCF = false;
-                    break;
-                default:
-                    System.out.println("Opcion no valida");
+            String input = scanner.nextLine();
+            if ("q".equals(input.toLowerCase())){
+                break;
             }
             minute++;
         }
+        System.out.println("+----------------------------------------+");
+        System.out.println("| RESUMEN");
+        System.out.println("| Minutos con cola en cero: " + this.minutesWithoutQueue);
+        System.out.println("| Personas en cola al cierre: " + queue.size());
+        System.out.println("| Personas atendidas en el día: " + this.totalClientsServed);
+        System.out.println("| Articulos vendidos en el día: " + cashier.totalItemsSold());
+        System.out.println("+----------------------------------------+");
+
     }
 }

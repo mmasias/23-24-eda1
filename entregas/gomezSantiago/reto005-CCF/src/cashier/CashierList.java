@@ -3,6 +3,7 @@ package cashier;
 
 public class CashierList {
     private int size = 0;
+    private int totalItemsSold = 0;
     private CashierNode first = null;
 
     public int size(){
@@ -33,6 +34,7 @@ public class CashierList {
             list[count] = iterator.getCashierName();
             if (iterator.getShippingItems() > 0){
                 iterator.setShippingItems(iterator.getShippingItems() - 1);
+                this.totalItemsSold++;
             }
             if (iterator.getShippingItems() == 0) {
                 iterator.setAvailable(true);
@@ -45,7 +47,9 @@ public class CashierList {
         return list;
     }
 
-
+    public int getTotalItemsSold(){
+        return this.totalItemsSold;
+    }
 
     public boolean getFreeCashier(){
         CashierNode iterator = this.first;
@@ -70,6 +74,41 @@ public class CashierList {
             }
             iterator = iterator.getNext();
         }
+    }
+
+    public void deleteCashier(){
+        if (this.first != null){
+            CashierNode iterator = this.first;
+            CashierNode previous = null;
+
+            while (iterator.getNext() != null){
+                if (iterator.getShippingItems() == 0){
+                    if (previous != null){
+                        previous.setNext(null);
+                    } else {
+                        this.first = null;
+                    }
+                    this.size--;
+                    break;
+                }
+                previous = iterator;
+                iterator = iterator.getNext();
+            }
+
+        }
+    }
+
+    public int getItemsCashier5 (int position){
+        CashierNode iterator = this.first;
+
+        for (int i = 0; i < position && iterator != null; i++){
+            iterator = iterator.getNext();
+        }
+
+        if (iterator != null) {
+            return iterator.getShippingItems();
+        }
+        return 0;
     }
 
 

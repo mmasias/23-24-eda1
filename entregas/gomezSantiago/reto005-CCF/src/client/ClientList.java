@@ -38,9 +38,7 @@ public class ClientList {
         }
     }
 
-
-    //Crear metodos de eliminar primero
-    public void deleteCLientInCole(){
+    public void deleteClientInQueue(){
         if(this.first != null){
             this.first = this.first.getNext();
             this.size--;

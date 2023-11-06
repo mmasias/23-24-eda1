@@ -20,8 +20,8 @@ public class ClientManager {
       return queue.getIsEmpty();
     }
 
-    public void deleteClientInQueue(){
-        queue.deleteCLientInCole();
+    public void deleteFirstClientInQueue(){
+        queue.deleteClientInQueue();
     }
 
     public int size(){
