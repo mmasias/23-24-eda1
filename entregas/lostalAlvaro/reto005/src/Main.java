@@ -17,7 +17,7 @@ public class Main {
                 } else {
                     for (int i = 0; i < colas.size(); i++) {
                         if (colas.get(i).getData() == 0) {
-                            colas.get(i).setData((int) ( Math.random() * 11 ) + 5);
+                            colas.get(i).setData((int) (Math.random() * 11) + 5);
                             break;
                         }
                     }
@@ -41,10 +41,9 @@ public class Main {
             }
 
 
-            System.out.println("MINUTO " + minuto + " - " + ( probLlegada <= 4 ? "Llega 1 persona" : "No llega nadie" ) + " - En cola: " + cola);
-            System.out.print("Cajas:");
+            System.out.println("MINUTO " + minuto + " - " + (probLlegada <= 6 ? "Llega 1 persona" : "No llega nadie") + " - En cola: " + cola);
             for (int i = 0; i < colas.size(); i++) {
-                System.out.print("[" + colas.get(i).getData() + "] ");
+                System.out.print(" Caja" + (i + 1) + ":[" + colas.get(i).getData() + "] |");
             }
             System.out.println("\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
         }
