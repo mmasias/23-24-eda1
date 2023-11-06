@@ -14,4 +14,8 @@ class Checkout {
             itemsBeingScanned--;
         }
     }
+
+    public int getItemsBeingScanned() {
+        return itemsBeingScanned;
+    }
 }
