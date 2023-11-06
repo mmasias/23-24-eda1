@@ -1,7 +1,7 @@
 package ccf;
 public class Tiempo {
-    int hora;
-    int minuto;
+    private int hora;
+    private int minuto;
     public Tiempo(int hora, int minuto) {
         this.hora = hora;
         this.minuto = minuto;
@@ -22,5 +22,12 @@ public class Tiempo {
             hora = 0;
         }
         minuto += 1;
+    }
+    public boolean estaAbierto(int horaInicioJornada, int horaFinalJornada){
+        if (this.getHora() >= horaInicioJornada && this.getHora() < horaFinalJornada){
+            return true;
+        } else{
+            return false;
+        }
     }
 }

@@ -14,6 +14,6 @@ public class Cola {
     }
 
     public Persona eliminarCliente() { return personasEnCola.delete(); }
-    public boolean isEmpty() { return personasEnCola.isEmpty(); }
+    public boolean estaVacia() { return personasEnCola.estaVacia(); }
     public int size() { return personasEnCola.size(); }
 }

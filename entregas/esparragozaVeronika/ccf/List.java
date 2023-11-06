@@ -15,7 +15,7 @@ public class List<T> {
         return count;
     }
 
-    public boolean isEmpty() {
+    public boolean estaVacia() {
         return this.size() > 0 ? false : true;
     }
 

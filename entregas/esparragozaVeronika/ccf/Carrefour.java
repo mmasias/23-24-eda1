@@ -6,14 +6,13 @@ public class Carrefour {
     private static final int cantidadCajas = 4;
     private static final int horaInicioJornada = 9;
     private static final int horaFinalJornada = 21;
-    private Tiempo reloj;
-    private Cola colaDeEspera;
-    private ArrayList<Caja> cajas;
-
     private int minutosSinCola = 0;
     private int personasEnColaAlFinalizar = 0;
     private int personasAtendidas = 0;
     private int itemsVendidos = 0;
+    private Tiempo reloj;
+    private Cola colaDeEspera;
+    private ArrayList<Caja> cajas;
 
     public Carrefour() {
         reloj = new Tiempo(horaInicioJornada, 0);
@@ -25,34 +24,32 @@ public class Carrefour {
     }
 
     public void ejecutarSimulacion() {
-        while (reloj.getHora() >= horaInicioJornada && reloj.getHora() < horaFinalJornada) {
-            System.out.println("--------".repeat(10));
-            System.out.print(reloj.getHora() + ":" + String.format("%02d", reloj.getMinuto()) + " - ");
-            for (Caja caja : cajas) {
-                System.out.print("Caja " + caja.getIdCaja() + " [" + caja.getItemsEnCaja() + "] | ");
-            }
-            System.out.println("Fila: " + colaDeEspera.size() + " personas");
-            System.out.println("--------".repeat(10));
+        while (reloj.estaAbierto(horaInicioJornada, horaFinalJornada)) {
+            imprimirEstadoCajas();
             colaDeEspera.nuevoCliente();
-            asignarClientesACajas();
+            asignarClientesACajas(colaDeEspera, cajas);
             reloj.subeTiempo();
         }
-
-        for (Caja caja : cajas) {
-            personasAtendidas += caja.getPersonasAtendidas();
-            itemsVendidos += caja.getItemsVendidosCaja();
-        }
-        personasEnColaAlFinalizar = colaDeEspera.size();
         reporteFinal();
         }
 
-    private void asignarClientesACajas() {
+    private void imprimirEstadoCajas() {
+        System.out.println("--------".repeat(10));
+        System.out.print(reloj.getHora() + ":" + String.format("%02d", reloj.getMinuto()) + " - ");
+        for (Caja caja : cajas) {
+            System.out.print("Caja " + caja.getIdCaja() + " [" + caja.getItemsEnCaja() + "] | ");
+        }
+        System.out.println("Fila: " + colaDeEspera.size() + " personas");
+        System.out.println("--------".repeat(10));
+    }
+
+    public void asignarClientesACajas(Cola colaDeEspera, ArrayList<Caja> cajas) {
         for (Caja caja : cajas) {
             if (!caja.estaLibre()) {
                 caja.avanzarItems();
             }
             if (caja.estaLibre()) {
-                if (!colaDeEspera.isEmpty()) {
+                if (!colaDeEspera.estaVacia()) {
                     Persona cliente = colaDeEspera.eliminarCliente();
                     caja.atenderCliente(cliente);
                 }
@@ -73,11 +70,17 @@ public class Carrefour {
             System.out.println("Se ha cerrado la Caja " + cajaId + " debido a la baja demanda.");
         }
 
-        if (colaDeEspera.isEmpty()) {
+        if (colaDeEspera.estaVacia()) {
             minutosSinCola++;
         }
     }
+
     public void reporteFinal(){
+        for (Caja caja : cajas) {
+            personasAtendidas += caja.getPersonasAtendidas();
+            itemsVendidos += caja.getItemsVendidosCaja();
+        }
+        personasEnColaAlFinalizar = colaDeEspera.size();
         System.out.println("El centro comercial ha cerrado.");
         for (Caja caja : cajas) {
             System.out.println("Caja " + caja.getIdCaja() + " tenía " + caja.getItemsEnCaja() + " items al cerrar.");
@@ -86,6 +89,5 @@ public class Carrefour {
         System.out.println("Personas en cola al finalizar el día: " + personasEnColaAlFinalizar);
         System.out.println("Personas atendidas durante el día: " + personasAtendidas);
         System.out.println("Items vendidos en el día: " + itemsVendidos);
-
     }
 }
