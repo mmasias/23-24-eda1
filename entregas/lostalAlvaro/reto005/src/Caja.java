@@ -1,3 +1,5 @@
+package reto005.src;
+
 public class Caja {
     private int tiempoAtencion;
 
