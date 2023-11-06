@@ -2,33 +2,29 @@ package client;
 
 public class ClientManager {
 
-    private ClientList clients;
+    private ClientList queue;
 
     public ClientManager(){
-        this.clients = new ClientList();
+        this.queue = new ClientList();
     }
 
-    public void clientArrival(){
-        double arrivalClient = Math.random() * 100;
-        if (arrivalClient <= 99){
-            int randomItems = (int) Math.floor(Math.random()*(15-5+1)+5);
-            clients.addClient(randomItems);
-            System.out.print("Llega 1 persona - ");
+    public void addClientInQueue(int item){
+        queue.addClient(item);
+    }
 
-        } else {
-            System.out.print("No llega nadie - ");
-        }
+    public int firstItem(){
+        return queue.getFirstItem();
+    }
+
+    public boolean isEmpty(){
+        return queue.getIsEmpty();
+    }
+
+    public void deleteClientInQueue(){
+        queue.deleteCLientInCole();
     }
 
     public int size(){
-        return clients.size();
-    }
-
-    public int[] clientItems(){
-        return clients.getListClientItems();
-    }
-
-    public void deleteClient(){
-        clients.deleteFront();
+        return queue.size();
     }
 }
