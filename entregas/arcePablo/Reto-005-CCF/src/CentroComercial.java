@@ -15,9 +15,12 @@ public class CentroComercial {
             eventsInOneMinute();
             date = addOneMinute(date);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(200); // a modificar
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+            if (date.getHours() == 21 && date.getMinutes() == 0){
+                break;
             }
         }
     }
@@ -50,7 +53,7 @@ public class CentroComercial {
     public void showLog(){
         System.out.print("Hora: " + this.date);
         System.out.print(" - ");
-        System.out.print("LLegada de cliente: ");
+        carrefour.showClientInLastMinute();
         System.out.print(" - ");
         carrefour.showClientLine();
         carrefour.showCashRegisters();

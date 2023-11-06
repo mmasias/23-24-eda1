@@ -2,6 +2,7 @@ import Utils.*;
 public class Supermercado {
     private List<CashRegister> cashRegisterList;
     private List<Client> clientLineList;
+    private boolean clientInLastMinute = false;
 
     public Supermercado() {
         clientLineList = new List<Client>();
@@ -26,6 +27,7 @@ public class Supermercado {
         double randomNumber = Math.random();
         boolean getsNewClient = randomNumber <= 0.4 ? true : false;
         if (getsNewClient){
+            clientInLastMinute = true;
             Client newClient = new Client();
             distributeClient(newClient);
         }
@@ -69,6 +71,11 @@ public class Supermercado {
                 System.out.println("Caja " + i + ": " + "VACIA");
             }
         }
+    }
+
+    public void showClientInLastMinute() {
+        System.out.print("LLegada de cliente: " + clientInLastMinute);
+        clientInLastMinute = false;
     }
 
     public void showClientLine() {
