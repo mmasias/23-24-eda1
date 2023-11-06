@@ -11,13 +11,13 @@ public class Main {
         for (int minuto = 1; minuto <= 720; minuto++) {
             int probLlegada = (int) ( Math.random() * 10 ) + 1;
 
-            if (probLlegada <= 4) {
+            if (probLlegada <= 6) {
                 if (cajasFull(colas)) {
                     cola++;
                 } else {
                     for (int i = 0; i < colas.size(); i++) {
                         if (colas.get(i).getData() == 0) {
-                            colas.get(i).setData((int) ( Math.random() * 10 ) + 5);
+                            colas.get(i).setData((int) ( Math.random() * 11 ) + 5);
                             break;
                         }
                     }
@@ -33,12 +33,13 @@ public class Main {
             if (cola > 0) {
                 for (int i = 0; i < colas.size(); i++) {
                     if (colas.get(i).getData() == 0) {
-                        colas.get(i).setData(1);
+                        colas.get(i).setData((int) ( Math.random() * 11 ) + 5);
                         cola--;
                         break;
                     }
                 }
             }
+
 
             System.out.println("MINUTO " + minuto + " - " + ( probLlegada <= 4 ? "Llega 1 persona" : "No llega nadie" ) + " - En cola: " + cola);
             System.out.print("Cajas:");
