@@ -35,7 +35,7 @@ public class GlobalManager {
                 queue.deleteClientInQueue();
             }
 
-            System.out.println("En cola: [ " + queue.size() + " ]");
+            System.out.println("En cola: " + queue.size());
 
             cashier.listCashiers();
             System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
