@@ -10,6 +10,8 @@ public class CarreFour {
 
         int minutesWithoutQueue = 0;
 
+        int totalClientServed = 0;
+
         ClientManager queue = new ClientManager();
         CashierManager cashier = new CashierManager();
         cashier.createCashier("Caja1");
@@ -19,7 +21,7 @@ public class CarreFour {
 
         Scanner scanner = new Scanner(System.in);
         boolean openCF = true;
-        
+
         while (openCF ) {
             //AQUIEEE
             System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
@@ -36,8 +38,8 @@ public class CarreFour {
 
             if(cashier.freeCashier() && queue.isEmpty()){
                 cashier.serveClient(queue.firstItem());
-
                 queue.deleteClientInQueue();
+                totalClientServed++;
             }
 
             System.out.println("En cola: " + queue.size());
@@ -50,6 +52,7 @@ public class CarreFour {
             System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 
             System.out.println("Minutos con cola en cero: " + minutesWithoutQueue);
+            System.out.println("Personas atendidas en el dia: " + totalClientServed);
 
             System.out.println("1. Siguiente minuto.");
             System.out.println("2. Finalizar programa.");
