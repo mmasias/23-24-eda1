@@ -21,7 +21,7 @@ public class Main {
         libre5 = true;
         activa = false;
         int minutosSinCola = 0;
-        boolean llegaAlguienNuevo = false;
+        boolean llegaAlguien = false;
         int pItem1 = 0;
         int pItem2 = 0;
         int pItem3 = 0;
@@ -30,8 +30,8 @@ public class Main {
 
         for (int tiempo = 1; tiempo < minutosDia; tiempo++) {
             if (Math.random() * 100 < 40) {
-                llegaAlguienNuevo = true;
-                if (llegaAlguienNuevo == true) {
+                llegaAlguien = true;
+                if (llegaAlguien == true) {
                     cola.insert(1);
                     if (libre1) {
                         caja1.insert(pItem1++);
@@ -96,7 +96,7 @@ public class Main {
             }
             System.out.println("--------------------------------------------------------------");
             System.out.print("MIN " + tiempo);
-            if (llegaAlguienNuevo) {
+            if (llegaAlguien) {
                 System.out.println(" - LLega 1 persona - En cola: " + cola.size());
 
             } else {
