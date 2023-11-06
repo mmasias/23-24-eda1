@@ -26,4 +26,16 @@ public class CashierManager {
         cashiers.setServeClient(item);
     }
 
+    public int totalItemsSold(){
+        return cashiers.getTotalItemsSold();
+    }
+
+    public void deleteEndCashier(){
+        cashiers.deleteCashier();
+    }
+
+    public int itemsFromLastCashier(int position){
+        return cashiers.getItemsCashier5(position);
+    }
+
 }
