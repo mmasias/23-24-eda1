@@ -1,5 +1,7 @@
 package cashier;
 
+import java.util.SplittableRandom;
+
 public class CashierList {
     private int size = 0;
     private CashierNode first = null;
@@ -11,16 +13,16 @@ public class CashierList {
     public void addCashier(String cashierName){
         CashierNode newCashier = new CashierNode(cashierName, true, 0);
 
-        if (this.first == null) {
-            this.first = newCashier ;
+        if (this.first == null){
+            this.first = newCashier;
         } else {
             CashierNode iterator = this.first;
-            while (iterator.getNext() != null) {
+            while (iterator.getNext() != null){
                 iterator = iterator.getNext();
             }
             iterator.setNext(newCashier);
         }
-        this.size ++;
+        this.size++;
     }
 
     public String[] getListCashiers(){
@@ -30,29 +32,56 @@ public class CashierList {
 
         while (iterator != null){
             list[count] = iterator.getCashierName();
-            if(iterator.getShipingItems() > 0){
-                iterator.setShipingItems(iterator.getShipingItems() - 1);
+            if (iterator.getShippingItems() > 0){
+                iterator.setShippingItems(iterator.getShippingItems() - 1);
             }
-            if(iterator.getShipingItems() == 0){
+            if (iterator.getShippingItems() == 0) {
                 iterator.setAvailable(true);
             }
-            System.out.print(iterator.getCashierName() + "[" + iterator.getShipingItems() +  "] | " );
-            count ++;
+            System.out.print(iterator.getCashierName() + "[" + iterator.getShippingItems() + "] [" + iterator.getAvailable() + "] | ");
+            count++;
             iterator = iterator.getNext();
         }
-
         System.out.println();
-
         return list;
     }
 
-    public boolean setForCashierData(String cashierName, boolean available, int shipingItems){
+    public void setAssignItemCashier(String cashierName, int shippingItems) {
+        CashierNode iterator = this.first;
+
+        while (iterator != null) {
+            if (iterator.getCashierName().equals(cashierName) && iterator.getAvailable() != false) {
+                iterator.setAvailable(false);
+                iterator.setShippingItems(shippingItems);
+                System.out.println("CAJA : " + iterator.getCashierName() + " Libre, aqui asignar item a esa caja");
+            }
+            iterator = iterator.getNext();
+        }
+
+        return;
+
+    }
+
+    public String findAvailableCashier(){
         CashierNode iterator = this.first;
 
         while (iterator != null){
-            if(iterator.getCashierName().equals(cashierName) != false){
+            if (iterator.getAvailable()){
+                return iterator.getCashierName();
+            }
+            iterator = iterator.getNext();
+        }
+
+        return null;
+    }
+
+    /*public boolean setForCashierData(String cashierName, boolean available, int shippingItems){
+        CashierNode iterator = this.first;
+
+        while (iterator != null){
+            if(iterator.getCashierName().equals(cashierName)){
                 iterator.setAvailable(available);
-                iterator.setShipingItems(shipingItems);
+                iterator.setShippingItems(shippingItems);
                 return iterator.getAvailable();
             }
             iterator = iterator.getNext();
@@ -60,18 +89,16 @@ public class CashierList {
         return iterator.getAvailable();
     }
 
-    public String findAvailableCashier() {
+    public String findAvailableCashier(){
         CashierNode iterator = this.first;
 
-        while (iterator != null) {
-            if (iterator.getAvailable()) {
+        while (iterator != null){
+            if (iterator.getAvailable()){
                 return iterator.getCashierName();
             }
             iterator = iterator.getNext();
         }
 
-        return null; // Si no hay cajas disponibles
-    }
-
-
+        return null;
+    }*/
 }

@@ -2,48 +2,43 @@ package cashier;
 
 public class CashierNode {
     private boolean available;
-    private String CashierName;
-    private int shipingItems = 0;
+    private String cashierName;
+    private int shippingItems = 0;
+
     private CashierNode next;
 
-    public CashierNode(String CashierName, boolean available, int shipingItems){
-        setCashierName(CashierName);
+    public CashierNode(String cashierName, boolean available, int shippingItems) {
+        setCashierName(cashierName);
         setAvailable(available);
-        setShipingItems(shipingItems);
+        setShippingItems(shippingItems);
     }
 
-    //GETERS
-    public boolean getAvailable(){
+    public boolean getAvailable() {
         return this.available;
     }
 
-    public String getCashierName(){
-        return this.CashierName;
+    public String getCashierName() {
+        return this.cashierName;
+    }
+    public int getShippingItems() {
+        return this.shippingItems;
     }
 
-    public CashierNode getNext() {
-        return next;
+    public CashierNode getNext(){
+        return this.next;
     }
 
-    public int getShipingItems(){
-        return this.shipingItems;
+    public void setAvailable(boolean available){
+        this.available = available;
+    }
+    public void setCashierName(String cashierName){
+        this.cashierName = cashierName;
+    }
+    public void setShippingItems(int shippingItems){
+        this.shippingItems = shippingItems;
     }
 
-    // SETERS
-    public void setAvailable(boolean isAvailable){
-        this.available = isAvailable;
-    }
-
-    public void setCashierName(String Name){
-        this.CashierName = Name;
-    }
-
-    public void setNext(CashierNode next) {
+    public void setNext(CashierNode next){
         this.next = next;
     }
-
-    public void setShipingItems(int shipingItems){
-        this.shipingItems = shipingItems;
-    }
-
 }

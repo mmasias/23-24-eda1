@@ -8,19 +8,15 @@ public class ClientNode {
         this.setItems(items);
     }
 
-    //GETERS
-    public int getItems() {
+    public int getItems(){
         return items;
     }
 
-    public ClientNode getNext() {
+    public ClientNode getNext(){
         return next;
     }
-
-    //SETERS
-
-    public void setItems(int newItem) {
-        this.items = newItem;
+    public void setItems(int newItems){
+        this.items = newItems;
     }
 
     public void setNext(ClientNode next) {
