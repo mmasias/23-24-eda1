@@ -1,6 +1,5 @@
 package cashier;
 
-import java.util.SplittableRandom;
 
 public class CashierList {
     private int size = 0;
@@ -38,7 +37,7 @@ public class CashierList {
             if (iterator.getShippingItems() == 0) {
                 iterator.setAvailable(true);
             }
-            System.out.print(iterator.getCashierName() + "[" + iterator.getShippingItems() + "] [" + iterator.getAvailable() + "] | ");
+            System.out.print(iterator.getCashierName() + "[" + iterator.getShippingItems() + "] | ");
             count++;
             iterator = iterator.getNext();
         }
@@ -46,59 +45,32 @@ public class CashierList {
         return list;
     }
 
-    public void setAssignItemCashier(String cashierName, int shippingItems) {
+
+
+    public boolean getFreeCashier(){
         CashierNode iterator = this.first;
 
-        while (iterator != null) {
-            if (iterator.getCashierName().equals(cashierName) && iterator.getAvailable() != false) {
+        while (iterator != null){
+            if(iterator.getAvailable() != false){
+                return true;
+            }
+            iterator = iterator.getNext();
+        }
+        return false;
+    }
+
+    public void setServeClient(int item){
+        CashierNode iterator = this.first;
+
+        while (iterator != null){
+            if(iterator.getAvailable() == true){
+                iterator.setShippingItems(item);
                 iterator.setAvailable(false);
-                iterator.setShippingItems(shippingItems);
-                System.out.println("CAJA : " + iterator.getCashierName() + " Libre, aqui asignar item a esa caja");
+                break;
             }
             iterator = iterator.getNext();
         }
-
-        return;
-
     }
 
-    public String findAvailableCashier(){
-        CashierNode iterator = this.first;
 
-        while (iterator != null){
-            if (iterator.getAvailable()){
-                return iterator.getCashierName();
-            }
-            iterator = iterator.getNext();
-        }
-
-        return null;
-    }
-
-    /*public boolean setForCashierData(String cashierName, boolean available, int shippingItems){
-        CashierNode iterator = this.first;
-
-        while (iterator != null){
-            if(iterator.getCashierName().equals(cashierName)){
-                iterator.setAvailable(available);
-                iterator.setShippingItems(shippingItems);
-                return iterator.getAvailable();
-            }
-            iterator = iterator.getNext();
-        }
-        return iterator.getAvailable();
-    }
-
-    public String findAvailableCashier(){
-        CashierNode iterator = this.first;
-
-        while (iterator != null){
-            if (iterator.getAvailable()){
-                return iterator.getCashierName();
-            }
-            iterator = iterator.getNext();
-        }
-
-        return null;
-    }*/
 }
