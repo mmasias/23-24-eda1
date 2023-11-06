@@ -5,8 +5,8 @@ public class Node {
     private String value;
     private Node next;
 
-    public Node(String value) {
-        this.setValue(value);
+    public Node(int value) {
+        this.setValue(String.valueOf(value));
     }
 
     public String getValue() {
