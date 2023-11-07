@@ -1,70 +1,38 @@
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Random;
 
 public class CCCF {
-    public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
+    // Crear una instancia de la clase Schedule con horario de trabajo de 8:00 a.m. a 8:00 p.m.
+    Schedule schedule = new Schedule(8, 20);
 
-        int elapsedTime = 12 * 60, minutesWithoutCustomers = 0, attendedCustomers = 0, itemsSold = 0;
-        int extraCheckoutOpenTime = 15;
+    // Crear una instancia de la clase Time para controlar el tiempo de la simulación.
+    Time time = new Time(8, 0);
 
-        Queue queue = new Queue();
+    // Crear una instancia de la clase Queue para representar la cola de clientes del supermercado.
+    Queue queue = new Queue();
 
-        List<Checkout> checkouts = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            checkouts.add(new Checkout());
+    // Bucle principal de la simulación
+    while (time.getHour() < 20) {
+      // Verificar si es hora del descanso de 1:00 p.m. a 3:00 p.m.
+      if (time.getHour() == 13) {
+        System.out.println("Descanso de 1:00 p.m. a 3:00 p.m.");
+        time.pauseSimulation(2, 0); // Pausar la simulación por 2 horas
+      } else {
+        // Generar nuevos clientes y agregarlos a la cola de clientes
+        Random random = new Random();
+        int numClients = random.nextInt(5) + 1; // Generar entre 1 y 5 clientes
+        for (int i = 0; i < numClients; i++) {
+          Client client = new Client(time.getHour(), time.getMinute());
+          queue.addClient(client);
         }
 
-        for (int minute = 1; minute <= elapsedTime; minute++) {
-            System.out.print("Minute: " + minute + " -");
+        // Procesar a los clientes en la cola y actualizar el estado del supermercado
+        schedule.update(queue);
 
-            // Customer arrival
-            double newCustomerProbability = Math.random();
-            if (newCustomerProbability < 0.4) {
-                System.out.print(" A customer arrives -");
-                Customer newCustomer = new Customer(null, minute, null, null);
-                queue.addCustomer(newCustomer);
-            } else {
-                System.out.print(" No one arrives -");
-                minutesWithoutCustomers++;
-            }
-
-            // Checkout customers
-            for (Checkout checkout : checkouts) {
-                if (checkout.isOpen() && checkout.isAvailable() && !queue.isEmpty()) {
-                    Customer customer = queue.removeCustomer();
-                    checkout.startProcessing((int) (Math.random() * ((10 - 5) + 1)) + 5);
-                    attendedCustomers++;
-                    itemsSold++;
-                }
-                checkout.processCustomer();
-            }
-
-            // Extra checkout
-            if (extraCheckoutOpenTime > 0 && !queue.isEmpty()) {
-                extraCheckoutOpenTime--;
-                Customer customer = queue.removeCustomer();
-                attendedCustomers++;
-                itemsSold++;
-            }
-
-            // Checkout Display
-            System.out.println(" In Queue: " + queue.size());
-            for (int i = 0; i < checkouts.size(); i++) {
-                System.out.print(" Checkout " + (i + 1) + " [" + (checkouts.get(i).isAvailable() ? "Available" : "Busy") + "] |");
-            }
-            System.out.println(" Extra Checkout [" + (extraCheckoutOpenTime > 0 ? "Open" : "Closed") + "]");
-            System.out.println(
-                    "..................................................................................................");
-        }
-
-        // Summary Display
-        System.out.println("════════════════════════════════════════════════════");
-        System.out.println("                 Summary of the day                 ");
-        System.out.println("════════════════════════════════════════════════════");
-        System.out.println(" Minutes with empty queue: " + minutesWithoutCustomers);
-        System.out.println(" Customers in queue at closing: " + queue.size());
-        System.out.println(" Served Customers: " + attendedCustomers);
-        System.out.println(" Items sold during the day: " + itemsSold);
-        System.out.println("════════════════════════════════════════════════════");
+        // Avanzar el tiempo de la simulación
+        time.advanceTime(0, 10); // Avanzar 10 minutos
+      }
     }
+  }
 }

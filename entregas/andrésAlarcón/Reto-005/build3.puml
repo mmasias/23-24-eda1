@@ -1,0 +1,28 @@
+object ": CentroComercial" as cccf
+
+object "cliente1: Cliente" as cliente1
+object "cliente2: Cliente" as cliente2
+object "cliente3: Cliente" as cliente3
+object "clienteN: Cliente" as clienteN
+
+cccf -- cliente1:> recibe
+cccf -- cliente2:> recibe
+cccf -- cliente3:> recibe
+cccf -- clienteN:> recibe
+
+object "cola: Cola" as cola
+
+cliente1 -- cola:> espera en
+cliente2 -- cola:> espera en
+cliente3 -- cola:> espera en
+clienteN -- cola:> espera en
+
+object "caja1: Caja" as caja1
+object "caja2: Caja" as caja2
+object "caja3: Caja" as caja3
+object "caja4: Caja" as caja4
+
+cola -- caja1:> entrega un cliente
+cola -- caja2:> entrega un cliente
+cola -- caja3:> entrega un cliente
+cola -- caja4:> entrega un cliente

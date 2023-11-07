@@ -1,0 +1,43 @@
+@startuml CCCF
+hide circle
+hide stereotype
+hide members
+class Main {}
+class Node {}
+class Supermarket {
+  
+}
+
+class Schedule {
+  
+}
+
+
+class Employee {
+
+}
+
+class Product {
+
+}
+
+class Time {
+  
+}
+
+
+class Customer {
+
+}
+
+class Queue<T> {
+
+}
+
+Supermarket -> Schedule
+Supermarket -> Employee
+Supermarket -> Product
+Supermarket -> Customer
+Supermarket -> Queue
+Schedule -> Time
+@enduml

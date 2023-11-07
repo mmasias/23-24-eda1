@@ -1,0 +1,17 @@
+hide circle
+hide stereotype
+hide empty members
+
+CentroComercial -- Caja:> dispone de
+CentroComercial -- Cliente:> recibe
+CentroComercial -- Cajero:> dispone de
+
+'Cajero -u-|> Persona
+'Cliente -u-|> Persona
+
+Cajero -- Caja:> atiende en
+
+Cliente -- Cola:> espera en
+
+Cola -- Caja:> entrega un cliente a
+Cliente -- Caja:> es atendido en

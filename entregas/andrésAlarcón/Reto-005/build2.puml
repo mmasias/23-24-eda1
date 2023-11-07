@@ -1,0 +1,18 @@
+state centroComercial {
+    abierto --> abierto : [Dentro de horario]
+}
+
+[*] --> abierto
+abierto --> [*]
+
+state cola {
+    cerrada --> recibiendo: [centroComercial.abierto]
+    recibiendo --> recibiendo: [centroComercial.abierto]
+    recibiendo --> cerrada: [centroComercial.cerrado]
+}
+
+state caja {
+    ociosa --> atendiendo:[cola.clientes>=1]
+    atendiendo --> atendiendo:[cliente.items>=0]
+    atendiendo --> ociosa:[cliente.items==0]
+}

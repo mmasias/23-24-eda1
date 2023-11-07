@@ -1,29 +1,23 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
-class Queue {
-    private List<Customer> customers;
+public class Queue {
 
-    public Queue() {
-        this.customers = new ArrayList<>();
-    }
+  private LinkedList<Client> queue;
 
-    public void addCustomer(Customer customer) {
-        customers.add(customer);
-    }
+  public Queue() {
+    queue = new LinkedList<>();
+  }
 
-    public boolean isEmpty() {
-        return customers.isEmpty();
-    }
+  public void addClient(Client client) {
+    queue.add(client);
+  }
 
-    public Customer removeCustomer() {
-        if (!isEmpty()) {
-            return customers.remove(0);
-        }
-        return null;
-    }
+  public Client removeClient() {
+    return queue.remove();
+  }
 
-    public int size() {
-        return customers.size();
-    }
+  public boolean isEmpty() {
+    return queue.isEmpty();
+  }
+
 }
