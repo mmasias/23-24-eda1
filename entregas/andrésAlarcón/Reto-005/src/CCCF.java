@@ -31,12 +31,12 @@ public class CCCF {
   }
 
   private void printCustomerStatus() {
-    System.out.println("In line: " + line.size());
+    System.out.println("Customers in line: " + line.size());
     for (int i = 0; i < availableCheckouts; i++) {
       System.out.print("Checkout " + (i + 1) + ": ");
       checkouts[i].printRemainingItems();
     }
-    System.out.println("-----------------------------------------------");
+    System.out.println("                                  ");
   }
 
   private void processItems() {
@@ -48,13 +48,14 @@ public class CCCF {
   }
 
   public void openShop() {
+    System.out.println("Start  of the day");
     while (schedule.isOpen()) {
       schedule.clock();
       int newCustomerProb = (int) (Math.random() * 100);
       if (newCustomerProb <= 40) {
         addCustomer();
       } else {
-        System.out.print("No one has arrived.");
+        System.out.println("No one has arrived");
       }
       attendCustomer();
       printCustomerStatus();

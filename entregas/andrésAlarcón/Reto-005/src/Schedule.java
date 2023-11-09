@@ -4,7 +4,7 @@ public class Schedule implements ScheduleInterface {
   private boolean stillOpen = true;
 
   private void close() {
-    System.out.println("------------ CCCF closed ------------");
+    System.out.println("End of the day");
     stillOpen = false;
   }
 

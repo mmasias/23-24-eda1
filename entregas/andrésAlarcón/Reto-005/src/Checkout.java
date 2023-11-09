@@ -24,6 +24,6 @@ public class Checkout implements CheckoutInterface {
   }
 
   public void printRemainingItems() {
-    System.out.println("[" + (actualCustomer != null ? actualCustomer.getItemsLength() : 0) + "]");
+    System.out.println("Items remaining [" + (actualCustomer != null ? actualCustomer.getItemsLength() : 0) + "]");
   }
 }
