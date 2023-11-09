@@ -1,21 +1,15 @@
-import java.util.ArrayList;
+public class Items implements ItemsInterface {
+  private int size;
 
-public class Items {
-  private ArrayList<Item> items;
-
-  public Items() {
-    items = new ArrayList<Item>();
+  public Items(int size) {
+    this.size = size;
   }
 
-  public void addItem(Item item) {
-    items.add(item);
+  public int getSize() {
+    return size;
   }
 
-  public void removeItem(Item item) {
-    items.remove(item);
-  }
-
-  public int countItems() {
-    return items.size();
+  public void reduceSize() {
+    size--;
   }
 }

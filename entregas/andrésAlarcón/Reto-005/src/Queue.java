@@ -1,23 +1,37 @@
-import java.util.LinkedList;
+public class Queue implements QueueInterface {
+    private CustomerInterface first = null;
+    private int size = 0;
 
-public class Queue {
+    public int size() {
+        return size;
+    }
 
-  private LinkedList<Client> queue;
+    public boolean isEmpty() {
+        return size == 0;
+    }
 
-  public Queue() {
-    queue = new LinkedList<>();
-  }
+    public CustomerInterface getFirst() {
+        return first;
+    }
 
-  public void addClient(Client client) {
-    queue.add(client);
-  }
+    public void newCustomer(CustomerInterface customer) {
+        if (first == null) {
+            first = customer;
+        } else {
+            CustomerInterface iterator = first;
+            while (iterator.getNext() != null) {
+                iterator = iterator.getNext();
+            }
+            iterator.setNext(customer);
+        }
+        System.out.println("A person has arrived at the queue.");
+        size++;
+    }
 
-  public Client removeClient() {
-    return queue.remove();
-  }
-
-  public boolean isEmpty() {
-    return queue.isEmpty();
-  }
-
+    public void removeCustomer() {
+        if (first != null) {
+            first = first.getNext();
+            size--;
+        }
+    }
 }

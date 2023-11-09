@@ -1,38 +1,65 @@
-
-import java.util.Random;
-
 public class CCCF {
-  public static void main(String[] args) {
-    // Crear una instancia de la clase Schedule con horario de trabajo de 8:00 a.m. a 8:00 p.m.
-    Schedule schedule = new Schedule(8, 20);
+  private ScheduleInterface schedule;
+  private int availableCheckouts = 4;
+  private CheckoutInterface[] checkouts = new CheckoutInterface[availableCheckouts];
+  private QueueInterface line;
 
-    // Crear una instancia de la clase Time para controlar el tiempo de la simulación.
-    Time time = new Time(8, 0);
+  public CCCF(ScheduleInterface schedule, QueueInterface line) {
+    this.schedule = schedule;
+    this.line = line;
+    this.createCheckouts();
+  }
 
-    // Crear una instancia de la clase Queue para representar la cola de clientes del supermercado.
-    Queue queue = new Queue();
+  private void createCheckouts() {
+    for (int i = 0; i < availableCheckouts; i++) {
+      checkouts[i] = new Checkout();
+    }
+  }
 
-    // Bucle principal de la simulación
-    while (time.getHour() < 20) {
-      // Verificar si es hora del descanso de 1:00 p.m. a 3:00 p.m.
-      if (time.getHour() == 13) {
-        System.out.println("Descanso de 1:00 p.m. a 3:00 p.m.");
-        time.pauseSimulation(2, 0); // Pausar la simulación por 2 horas
-      } else {
-        // Generar nuevos clientes y agregarlos a la cola de clientes
-        Random random = new Random();
-        int numClients = random.nextInt(5) + 1; // Generar entre 1 y 5 clientes
-        for (int i = 0; i < numClients; i++) {
-          Client client = new Client(time.getHour(), time.getMinute());
-          queue.addClient(client);
-        }
+  private void addCustomer() {
+    CustomerInterface newCustomer = new Customer();
+    line.newCustomer(newCustomer);
+  }
 
-        // Procesar a los clientes en la cola y actualizar el estado del supermercado
-        schedule.update(queue);
-
-        // Avanzar el tiempo de la simulación
-        time.advanceTime(0, 10); // Avanzar 10 minutos
+  private void attendCustomer() {
+    for (int i = 0; i < availableCheckouts; i++) {
+      if (checkouts[i].isEmpty() && !line.isEmpty()) {
+        checkouts[i].receiveCustomer(line.getFirst());
+        line.removeCustomer();
       }
+    }
+  }
+
+  private void printCustomerStatus() {
+    System.out.println("In line: " + line.size());
+    for (int i = 0; i < availableCheckouts; i++) {
+      System.out.print("Checkout " + (i + 1) + ": ");
+      checkouts[i].printRemainingItems();
+    }
+    System.out.println("-----------------------------------------------");
+  }
+
+  private void processItems() {
+    for (int i = 0; i < availableCheckouts; i++) {
+      if (!checkouts[i].isEmpty()) {
+        checkouts[i].chargeItem();
+      }
+    }
+  }
+
+  public void openShop() {
+    while (schedule.isOpen()) {
+      schedule.clock();
+      int newCustomerProb = (int) (Math.random() * 100);
+      if (newCustomerProb <= 40) {
+        addCustomer();
+      } else {
+        System.out.print("No one has arrived.");
+      }
+      attendCustomer();
+      printCustomerStatus();
+      processItems();
+      schedule.checkTime();
     }
   }
 }

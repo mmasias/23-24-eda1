@@ -1,38 +1,28 @@
-public class Schedule {
-  private Time openingTime;
-  private Time closingTime;
-  private boolean isOpen;
+public class Schedule implements ScheduleInterface {
+  private int hours = 0;
+  private int minutes = 0;
+  private boolean stillOpen = true;
 
-  public Schedule(Time openingTime, Time closingTime) {
-    this.openingTime = openingTime;
-    this.closingTime = closingTime;
-    this.isOpen = false;
-  }
-
-  public Time getOpeningTime() {
-    return openingTime;
-  }
-
-  public Time getClosingTime() {
-    return closingTime;
+  private void close() {
+    System.out.println("------------ CCCF closed ------------");
+    stillOpen = false;
   }
 
   public boolean isOpen() {
-    return isOpen;
+    return stillOpen;
   }
 
-  public void setOpen(boolean isOpen) {
-    this.isOpen = isOpen;
-  }
-
-  public boolean isWithinSchedule(Time time) {
-    if (time.getHour() < openingTime.getHour() || time.getHour() > closingTime.getHour()) {
-      return false;
-    } else if (time.getHour() == openingTime.getHour() && time.getMinute() < openingTime.getMinute()) {
-      return false;
-    } else if (time.getHour() == closingTime.getHour() && time.getMinute() > closingTime.getMinute()) {
-      return false;
+  public void clock() {
+    minutes++;
+    if (minutes == 60) {
+      hours++;
+      minutes = 0;
     }
-    return true;
+  }
+
+  public void checkTime() {
+    if (hours == 12) {
+      close();
+    }
   }
 }
