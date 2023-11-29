@@ -1,5 +1,4 @@
 public class NodoFamilia<T> {
-
     private T dato;
     private NodoFamilia<T> hijoIzquierdo;
     private NodoFamilia<T> hijoDerecho;
