@@ -15,4 +15,4 @@ Evaluaciones principales de la asignatura: examen parcial (25% de la nota total)
 
 |||
 |-|-|
-[Enunciado](https://github.com/mmasias/23-24-EDA1-ExamenFinal/)|[Entrega]()
+Enunciado|Entrega
