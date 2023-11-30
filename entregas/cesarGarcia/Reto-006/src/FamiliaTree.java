@@ -1,16 +1,34 @@
-public class FamiliaTree<T> {
+import javax.swing.tree.TreeNode;
+import java.util.ArrayList;
+import java.util.List;
+
+public class FamiliaTree<T> implements IDataStructure<T> {
 
     private NodoFamilia<T> raiz;
 
     public FamiliaTree() {
     }
 
-    public NodoFamilia<T> getRaiz() {
-        return raiz;
+    @Override
+    public int size() {
+        return contarNodos(raiz);
     }
 
-    public void setRaiz(NodoFamilia<T> raiz) {
-        this.raiz = raiz;
+    @Override
+    public TreeNode getFirst() {
+        return (TreeNode) raiz;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return raiz == null;
+    }
+
+    @Override
+    public Object[] listData() {
+        List<T> lista = new ArrayList<>();
+        listarNodos(raiz, lista);
+        return lista.toArray();
     }
 
     public void agregarMiembro(T dato, T padre, boolean esHijoIzquierdo) {
@@ -31,19 +49,6 @@ public class FamiliaTree<T> {
         }
     }
 
-    private NodoFamilia<T> buscarNodo(NodoFamilia<T> raiz, T dato) {
-        if (raiz == null || raiz.getDato().equals(dato)) {
-            return raiz;
-        }
-
-        NodoFamilia<T> izquierdo = buscarNodo(raiz.getHijoIzquierdo(), dato);
-        if (izquierdo != null) {
-            return izquierdo;
-        }
-
-        return buscarNodo(raiz.getHijoDerecho(), dato);
-    }
-
     public void imprimirArbol() {
         System.out.println("Representación de la familia:");
         imprimirArbol(raiz, 0);
@@ -59,5 +64,37 @@ public class FamiliaTree<T> {
             imprimirArbol(nodo.getHijoIzquierdo(), nivel + 1);
             imprimirArbol(nodo.getHijoDerecho(), nivel + 1);
         }
+    }
+
+    private int contarNodos(NodoFamilia<T> nodo) {
+        if (nodo == null) {
+            return 0;
+        }
+
+        int izquierdo = contarNodos(nodo.getHijoIzquierdo());
+        int derecho = contarNodos(nodo.getHijoDerecho());
+
+        return izquierdo + derecho + 1;
+    }
+
+    private void listarNodos(NodoFamilia<T> nodo, List<T> lista) {
+        if (nodo != null) {
+            listarNodos(nodo.getHijoIzquierdo(), lista);
+            lista.add(nodo.getDato());
+            listarNodos(nodo.getHijoDerecho(), lista);
+        }
+    }
+
+    private NodoFamilia<T> buscarNodo(NodoFamilia<T> raiz, T dato) {
+        if (raiz == null || raiz.getDato().equals(dato)) {
+            return raiz;
+        }
+
+        NodoFamilia<T> izquierdo = buscarNodo(raiz.getHijoIzquierdo(), dato);
+        if (izquierdo != null) {
+            return izquierdo;
+        }
+
+        return buscarNodo(raiz.getHijoDerecho(), dato);
     }
 }
