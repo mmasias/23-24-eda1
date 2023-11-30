@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Reto001 {
     public static void main(String[] args) {
         final int rows = 15;
         final int columns = 10;
