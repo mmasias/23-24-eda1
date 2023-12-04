@@ -1,87 +1,38 @@
-public class BinaryTree<T> {
+public class BinaryTree<T extends Comparable<T>> {
 
-    private NodoTree<T> raiz;
+    private Node<T> root;
 
     public BinaryTree() {
+        root = null;
     }
 
-    public NodoTree<T> getRaiz() {
-        return raiz;
+    public void insertar(T data) {
+        root = recursiveInsert(root, data);
     }
 
-    public void setRaiz(NodoTree<T> raiz) {
-
-        this.raiz = raiz;
-    }
-
-    public void Insert(T dato) {
-        NodoTree<T> nodoNuevo = new NodoTree<T>(dato);
-
-        if (this.raiz == null)
-            this.raiz = nodoNuevo;
-
-        else {
-            NodoTree<T> nodoAux = raiz;
-            NodoTree<T> padre;
-            while (true) {
-                padre = nodoAux;
-                if (new Integer((int) dato) < new Integer((int) nodoAux.getDato())) {
-                    nodoAux = nodoAux.getIzquierdo();
-                    if (nodoAux == null) {
-                        padre.setIzquierdo(nodoNuevo);
-                        return;
-                    }
-                } else {
-                    nodoAux = nodoAux.getDerecho();
-                    if (nodoAux == null) {
-                        padre.setDerecho(nodoNuevo);
-                        return;
-                    }
-                }
-
-            }
+    private Node<T> recursiveInsert(Node<T> actual, T data) {
+        if (actual == null) {
+            return new Node<>(data);
         }
-    }
 
-    public void InOrden() {
-        System.out.println("In Orden");
-        this.InOrden(this.raiz);
-    }
-
-    // Izquierda raiz derecha
-    public void PreOrden() {
-        System.out.println("Pre Orden");
-        this.PreOrden(this.raiz);
-    }
-
-    // Izquierda derecha raiz
-    public void PostOrden() {
-        System.out.println("Post Orden");
-        this.PostOrden(this.raiz);
-    }
-
-    private void InOrden(NodoTree<T> raiz) {
-
-        if (raiz != null) {
-            InOrden(raiz.getIzquierdo());
-            System.out.println(raiz.getDato());
-            InOrden(raiz.getDerecho());
+        if (data.compareTo(actual.getData()) < 0) {
+            actual.setLeft(recursiveInsert(actual.getLeft(), data));
+        } else if (data.compareTo(actual.getData()) > 0) {
+            actual.setRight(recursiveInsert(actual.getRight(), data));
         }
+
+        return actual;
     }
 
-    private void PreOrden(NodoTree<T> raiz) {
-        if (raiz != null) {
-            System.out.println(raiz.getDato());
-            PreOrden(raiz.getIzquierdo());
-            PreOrden(raiz.getDerecho());
-        }
+    public void inOrder() {
+        recursiveInOrder(root);
     }
 
-    private void PostOrden(NodoTree<T> raiz) {
-        if (raiz != null) {
-            PostOrden(raiz.getIzquierdo());
-            PostOrden(raiz.getDerecho());
-            System.out.println(raiz.getDato());
+    private void recursiveInOrder(Node<T> actual) {
+        if (actual != null) {
+            recursiveInOrder(actual.getLeft());
+            System.out.println(actual.getData());
+            recursiveInOrder(actual.getRight());
         }
     }
 }

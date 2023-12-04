@@ -1,0 +1,36 @@
+public class Node<T> {
+
+    private T dato;
+    private Node<T> left;
+    private Node<T> right;
+
+    public Node(T dato) {
+        this.dato = dato;
+        this.left = null;
+        this.right = null;
+    }
+
+    public T getData() {
+        return dato;
+    }
+
+    public void setData(T data) {
+        this.dato = data;
+    }
+
+    public Node<T> getLeft() {
+        return left;
+    }
+
+    public void setLeft(Node<T> left) {
+        this.left = left;
+    }
+
+    public Node<T> getRight() {
+        return right;
+    }
+
+    public void setRight(Node<T> right) {
+        this.right = right;
+    }
+}

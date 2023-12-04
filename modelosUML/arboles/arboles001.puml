@@ -1,0 +1,11 @@
+hide class circle
+hide empty members
+
+class a
+
+a -d-> b
+b -d-> c
+a -d-> d
+d -d-> e
+d -d-> f
+d -d-> g
