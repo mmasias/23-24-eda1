@@ -1,8 +1,7 @@
 package postOrderSample;
 
 public class TreeSample {
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		BinaryTree tree = new BinaryTree();
 		tree.root = new Node(1);
 		tree.root.left = new Node(2);
