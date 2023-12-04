@@ -36,6 +36,30 @@ public class BinaryTree {
         }
     }
 
+    void preorder() {
+        preorderRec(root);
+    }
+
+    void preorderRec(Node root) {
+        if (root != null) {
+            System.out.print(root.key + " ");
+            preorderRec(root.left);
+            preorderRec(root.right);
+        }
+    }
+
+    void postorder() {
+        postorderRec(root);
+    }
+
+    void postorderRec(Node root) {
+        if (root != null) {
+            postorderRec(root.left);
+            postorderRec(root.right);
+            System.out.print(root.key + " ");
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
 
@@ -49,5 +73,12 @@ public class BinaryTree {
 
         System.out.println("Inorder traversal:");
         tree.inorder();
+
+        System.out.println("\nPreorder traversal:");
+        tree.preorder();
+
+        System.out.println("\nPostorder traversal:");
+        tree.postorder();
     }
 }
+
