@@ -4,8 +4,12 @@ hide empty members
 class a
 
 a -d-> b
-b -d-> c
-a -d-> d
-d -d-> e
-d -d-> f
-d -d-> g
+a -d-> c
+b -d-> d
+b -d-> e
+e -d-> h 
+e -d-> i
+c -d-> f 
+c -d-> g 
+g -d-> j
+g -d-> k
