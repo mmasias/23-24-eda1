@@ -1,4 +1,4 @@
-# Árboles Binarios: Inserciones y Responsabilidad de la Clase
+# Árboles > inserciones
 
 La inserción en un árbol es una operación clave que permite construir el árbol agregando nuevos vértices de manera ordenada y estructurada.
 
@@ -39,7 +39,7 @@ Consideremos la inserción de los vértices [5, 3, 7, 2, 4, 6, 8] en un árbol b
 
 <div align=center>
 
-||||
+|Operación||Resultado|
 |-|-|:-:|
 Insertar 5|Se convierte en la raíz del árbol.|![](/imagenes/modelosUML/ejemploInsercion001.svg)
 Insertar 3|Menor que 5, va al subárbol izquierdo de 5.|![](/imagenes/modelosUML/ejemploInsercion002.svg)
