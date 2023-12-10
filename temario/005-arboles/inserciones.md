@@ -1,36 +1,8 @@
 # Árboles Binarios: Inserciones y Responsabilidad de la Clase
 
-## Árboles - Inserciones
+La inserción en un árbol es una operación clave que permite construir el árbol agregando nuevos vértices de manera ordenada y estructurada.
 
-La inserción en un árbol binario es una operación clave que permite construir el árbol agregando nuevos vértices de manera ordenada y estructurada.
-
-### Inserción en Árboles Binarios
-
-El proceso de inserción en un árbol binario comienza comparando el valor del vértice a insertar con el valor de la raíz del árbol. Esta operación se realiza de manera recursiva hasta encontrar una posición vacía adecuada para el nuevo vértice.
-
-#### Reglas de Inserción
-
-1. **Si el Árbol Está Vacío:** El nuevo vértice se convierte en la raíz del árbol.
-2. **Si el Árbol No Está Vacío:** El valor del nuevo vértice se compara con el vértice actual, decidiendo si moverse al subárbol izquierdo o derecho.
-3. **Repetir el Proceso:** Se continúa hasta encontrar un lugar vacío para la inserción del nuevo vértice.
-
-### Ejemplo
-
-Consideremos la inserción de los vértices [5, 3, 7, 2, 4, 6, 8] en un árbol binario inicialmente vacío, siguiendo las reglas de inserción detalladas anteriormente.
-
-||||
-|-|-|:-:|
-Insertar 5|Se convierte en la raíz del árbol.|![](/imagenes/modelosUML/ejemploInsercion001.svg)
-Insertar 3|Menor que 5, va al subárbol izquierdo de 5.|![](/imagenes/modelosUML/ejemploInsercion002.svg)
-Insertar 7|Mayor que 5, va al subárbol derecho de 5.|![](/imagenes/modelosUML/ejemploInsercion003.svg)
-Insertar 2|Menor que 5, se mueve a la izquierda. Menor que 3, se inserta a la izquierda de 3.|![](/imagenes/modelosUML/ejemploInsercion004.svg)
-Insertar 4||![](/imagenes/modelosUML/ejemploInsercion005.svg)
-Insertar 6||![](/imagenes/modelosUML/ejemploInsercion006.svg)
-Insertar 8||![](/imagenes/modelosUML/ejemploInsercion007.svg)
-
-
-
-## Acerca de la responsabilidad en la inserción
+## Acerca de las responsabilidades en la inserción
 
 Es fundamental entender la distribución de responsabilidades entre la clase que gestiona el árbol y los nodos individuales, especialmente en el proceso de inserción.
 
@@ -50,3 +22,27 @@ Es fundamental entender la distribución de responsabilidades entre la clase que
 2. **No participan en la lógica de inserción:** Los nodos no deciden dónde se insertan nuevos vértices, siendo simplemente contenedores de datos.
 
 Esta clara división de responsabilidades asegura un diseño modular y fácil de mantener, esencial para el manejo eficiente de árboles binarios.
+
+## Inserción en Árboles Binarios
+
+El proceso de inserción en un árbol binario comienza comparando el valor del vértice a insertar con el valor de la raíz del árbol. Esta operación se realiza de manera recursiva hasta encontrar una posición vacía adecuada para el nuevo vértice.
+
+### Reglas de Inserción
+
+1. **Si el Árbol Está Vacío:** El nuevo vértice se convierte en la raíz del árbol.
+2. **Si el Árbol No Está Vacío:** El valor del nuevo vértice se compara con el vértice actual, decidiendo si moverse al subárbol izquierdo o derecho.
+3. **Repetir el Proceso:** Se continúa hasta encontrar un lugar vacío para la inserción del nuevo vértice.
+
+## Ejemplo
+
+Consideremos la inserción de los vértices [5, 3, 7, 2, 4, 6, 8] en un árbol binario inicialmente vacío, siguiendo las reglas de inserción detalladas anteriormente.
+
+||||
+|-|-|:-:|
+Insertar 5|Se convierte en la raíz del árbol.|![](/imagenes/modelosUML/ejemploInsercion001.svg)
+Insertar 3|Menor que 5, va al subárbol izquierdo de 5.|![](/imagenes/modelosUML/ejemploInsercion002.svg)
+Insertar 7|Mayor que 5, va al subárbol derecho de 5.|![](/imagenes/modelosUML/ejemploInsercion003.svg)
+Insertar 2|Menor que 5, se mueve a la izquierda. Menor que 3, se inserta a la izquierda de 3.|![](/imagenes/modelosUML/ejemploInsercion004.svg)
+Insertar 4||![](/imagenes/modelosUML/ejemploInsercion005.svg)
+Insertar 6||![](/imagenes/modelosUML/ejemploInsercion006.svg)
+Insertar 8||![](/imagenes/modelosUML/ejemploInsercion007.svg)
