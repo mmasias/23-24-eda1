@@ -1,6 +1,6 @@
-package inOrderSample;
+package recorridos.preOrderSample;
 
-public class treeSample {
+class TreeSample {
 
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
@@ -10,8 +10,7 @@ public class treeSample {
         tree.root.left.left = new Node(4);
         tree.root.left.right = new Node(5);
 
-        System.out.println("Inorder: ");
-        tree.printInorder(tree.root);
+        System.out.println("Preorder: ");
+        tree.printPreorder(tree.root);
     }
-
 }
