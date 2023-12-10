@@ -37,6 +37,8 @@ El proceso de inserción en un árbol binario comienza comparando el valor del v
 
 Consideremos la inserción de los vértices [5, 3, 7, 2, 4, 6, 8] en un árbol binario inicialmente vacío, siguiendo las reglas de inserción detalladas anteriormente.
 
+<div align=center>
+
 ||||
 |-|-|:-:|
 Insertar 5|Se convierte en la raíz del árbol.|![](/imagenes/modelosUML/ejemploInsercion001.svg)
@@ -46,3 +48,15 @@ Insertar 2|Menor que 5, se mueve a la izquierda. Menor que 3, se inserta a la iz
 Insertar 4||![](/imagenes/modelosUML/ejemploInsercion005.svg)
 Insertar 6||![](/imagenes/modelosUML/ejemploInsercion006.svg)
 Insertar 8||![](/imagenes/modelosUML/ejemploInsercion007.svg)
+
+</div>
+
+### Código
+
+<div align=center>
+
+|Nodo|Árbol binario|Ejemplo|
+|-|-|-|
+|[Node.java](/src/arboles/insertSample/Node.java)|[BinaryTree.java](/src/arboles/insertSample/BinaryTree.java)|[TreeSample.java](/src/arboles/insertSample/TreeSample.java)|
+
+</div>
