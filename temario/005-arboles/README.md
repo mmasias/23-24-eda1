@@ -81,9 +81,9 @@ Raiz|Hijos de **a**|Padre de d|Grado|Nivel
 
 |||
 |-|-|
-Inserción|Agregar nodos respetando las propiedades del árbol.
-Búsqueda|Encontrar un nodo específico.
 [Recorrido](recorridos.md)|Visitar todos los nodos en un orden específico (preorden, inorden, postorden).
+[Inserción](inserciones.md)|Agregar nodos respetando las propiedades del árbol.
+Búsqueda|Encontrar un nodo específico.
 Eliminación|Remover nodos manteniendo la estructura del árbol.
 
 ### Tipos de Árboles
