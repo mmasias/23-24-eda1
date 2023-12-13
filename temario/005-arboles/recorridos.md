@@ -43,5 +43,5 @@ V / hI / hD|hI / V / hD|hI / hD / V
 **Preorden**|**Inorden**|**Postorden**
 V / hI / hD|hI / V / hD|hI / hD / V
 1 2 4 5 3|4 2 5 1 3|4 5 2 3 1
-[CODIGO!](/src/arboles/preOrderSample/)|[CODIGO!](/src/arboles/inOrderSample/)|[CODIGO!](/src/arboles/postOrderSample/)
+[CODIGO!](/src/arboles/recorridos/preOrderSample/)|[CODIGO!](/src/arboles/recorridos/inOrderSample/)|[CODIGO!](/src/arboles/recorridos/postOrderSample/)
 </div>
