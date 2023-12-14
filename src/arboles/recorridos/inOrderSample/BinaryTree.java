@@ -1,4 +1,4 @@
-package inOrderSample;
+package recorridos.inOrderSample;
 
 class BinaryTree {
 

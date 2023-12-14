@@ -1,4 +1,4 @@
-package postOrderSample;
+package recorridos.postOrderSample;
 
 public class TreeSample {
 	public static void main(String[] args) {

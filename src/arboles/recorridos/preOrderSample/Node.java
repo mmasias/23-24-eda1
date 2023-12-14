@@ -1,4 +1,4 @@
-package inOrderSample;
+package recorridos.preOrderSample;
 
 class Node {
 	int key;
