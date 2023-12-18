@@ -1,5 +1,8 @@
 package src;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Caja {
     private Queue<Persona> clientes;
 
