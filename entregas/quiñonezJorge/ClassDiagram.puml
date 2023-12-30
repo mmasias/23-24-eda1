@@ -1,0 +1,24 @@
+@startuml class diagram
+
+class Client{}
+class Survey{}
+class Day{}
+class Brunch{}
+class Food{}
+class Nutrient{}
+class Tree{}
+class Node{}
+class List{}
+
+Client -- Survey : has
+Survey -- "1..*" Day : has
+Survey .. Tree : uses
+Day .. Tree : uses
+Day -- "1..*" Brunch : has
+Brunch .. List : uses
+Brunch -- "1..*" Food : has
+Food .. List : uses
+Food -- "1..*" Nutrient : has
+Tree -- Node : has
+List -- Node : has
+@enduml
