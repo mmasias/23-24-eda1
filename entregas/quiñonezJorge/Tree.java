@@ -1,5 +1,3 @@
-package entregas.quiñonezJorge;
-
 public class Tree {
 
  private Node<T> root = null;

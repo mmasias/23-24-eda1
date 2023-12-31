@@ -1,5 +1,3 @@
-package entregas.quiñonezJorge;
-
 public class List<T> {
 
  private Node<T> first = null;
@@ -43,7 +41,7 @@ public class List<T> {
   }
  }
 
- public T[] listAll() {
+ public T[] getList() {
   T[] list = (T[]) new Object[this.getSize()];
   Node<T> iterator = this.first;
   if (iterator != null) {

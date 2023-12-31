@@ -1,5 +1,5 @@
 @startuml class diagram
-
+class World{}
 class Client{}
 class Survey{}
 class Day{}
@@ -10,6 +10,7 @@ class Tree{}
 class Node{}
 class List{}
 
+World -- "1..*" Client : has
 Client -- Survey : has
 Survey -- "1..*" Day : has
 Survey .. Tree : uses

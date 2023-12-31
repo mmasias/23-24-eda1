@@ -1,5 +1,3 @@
-package entregas.quiñonezJorge;
-
 public class Node<T> {
 
  private T data;
@@ -49,9 +47,5 @@ public class Node<T> {
 
  public void setRight(Node<T> right) {
   this.right = right;
- }
-
- public String printData() {
-  return getData().printData();
  }
 }
