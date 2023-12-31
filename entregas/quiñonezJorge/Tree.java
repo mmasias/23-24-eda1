@@ -1,4 +1,4 @@
-public class Tree {
+public class Tree<T> {
 
  private Node<T> root = null;
 
@@ -6,13 +6,13 @@ public class Tree {
   return root;
  }
 
- public void printInOrder(Node<T> node){
+ public void printInOrder(Node<T> node) {
   if (node == null) {
    return;
   }
   printInOrder(node.getLeft());
-  System.out.println(node.printData());
-  printInOrder(node.getRight())
+  // System.out.println(node.printData());
+  printInOrder(node.getRight());
  }
 
  public void insert(Node<T> newNode, int index) {
@@ -27,7 +27,7 @@ public class Tree {
   if (index < node.getIndex()) {
    node.setLeft(recursiveInsert(node.getLeft(), newNode, index));
   } else if (index > node.getIndex()) {
-   node.setRight(recursiveInsert(node.getRight(), newNode, index))
+   node.setRight(recursiveInsert(node.getRight(), newNode, index));
   }
   return node;
  }
