@@ -19,11 +19,8 @@ public class Client {
   this.survey = new Survey();
  }
 
- public void displaySurvey(boolean active) {
-  if (active) {
-   this.survey.open();
-  } else {
-   this.survey.close();
-  }
+ public void displaySurvey() {
+  this.survey.open();
+  this.survey.close();
  }
 }
