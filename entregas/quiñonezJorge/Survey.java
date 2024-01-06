@@ -3,6 +3,11 @@ import java.util.Scanner;
 public class Survey {
 
   private boolean open = false;
+  private Tree<Day> week = null;
+
+  public Survey() {
+    this.week = new Tree<Day>();
+  }
 
   public void open() {
     this.open = true;
@@ -48,21 +53,27 @@ public class Survey {
   }
 
   private void manageMenu(int input) {
+    Day day = null;
     switch (input) {
       case 1:
-        System.out.println("Editing monday");
+        System.out.println("Editing Monday");
+        day = new Day("Monday");
         break;
       case 2:
         System.out.println("Editing Tuesday");
+        day = new Day("Tuesday");
         break;
       case 3:
         System.out.println("Editing Wednesday");
+        day = new Day("Wednesday");
         break;
       case 4:
         System.out.println("Editing Thursday");
+        day = new Day("Thursday");
         break;
       case 5:
         System.out.println("Editing Friday");
+        day = new Day("Friday");
         break;
       case 0:
         break;
@@ -70,6 +81,20 @@ public class Survey {
         this.invalidOption();
         break;
     }
+    if (day != null) {
+      this.createDay(day, input);
+    }
+  }
+
+  private void createDay(Day day, int index) {
+    Node<Day> node = new Node<Day>(day, index);
+    if (!this.week.has(node)) {
+      this.week.insert(node);
+    } else {
+      System.out.println("Day already created");
+    }
+    this.week.printInOrder(this.week.getRoot());
+    new Scanner(System.in).nextLine();
   }
 
   private void invalidOption() {

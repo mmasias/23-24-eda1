@@ -55,6 +55,9 @@ public class World {
       case 2:
         this.manageSurveyCreation();
         break;
+      case 3:
+        this.openSurvey();
+        break;
       case 0:
         break;
       default:
@@ -79,6 +82,23 @@ public class World {
       this.client.createSurvey();
       this.client.displaySurvey();
       this.mainMenu = true;
+    }
+  }
+
+  private void openSurvey() {
+    if (!this.existingClient()) {
+      System.out.println();
+      System.out.println("Can't open a survey without registering and creating it first");
+      new Scanner(System.in).nextLine();
+    } else {
+      if (this.client.getSurvey() == null) {
+        System.out.println("Can't open a survey without creating one first");
+        new Scanner(System.in).nextLine();
+      } else {
+        this.mainMenu = false;
+        this.client.displaySurvey();
+        this.mainMenu = true;
+      }
     }
   }
 
