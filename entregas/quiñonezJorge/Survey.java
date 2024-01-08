@@ -12,13 +12,19 @@ public class Survey {
   public void open() {
     this.open = true;
     int input;
-    this.printInstructions();
-    this.printMenu();
     do {
-      System.out.print("Select an option: ");
+      this.print();
+      System.out.print("Select a day: ");
       input = new Scanner(System.in).nextInt();
-      this.manageMenu(input);
+      this.manageInput(input);
     } while (input != 0);
+  }
+
+  private void print() {
+    if (this.open) {
+      this.printInstructions();
+      this.printMenu();
+    }
   }
 
   private void printInstructions() {
@@ -53,10 +59,11 @@ public class Survey {
   }
 
   public void showResults() {
+    System.out.println("    Survey ");
     this.week.printInOrder(this.week.getRoot());
   }
 
-  private void manageMenu(int input) {
+  private void manageInput(int input) {
     Day day = null;
     switch (input) {
       case 1:
@@ -89,11 +96,17 @@ public class Survey {
     Node<Day> node = new Node<Day>(day, index);
     if (!this.week.has(node)) {
       this.week.insert(node);
+      this.openDay(index);
     } else {
-      System.out.println("Day already created");
+      this.openDay(index);
     }
-    new Scanner(System.in).nextLine();
-    // this.week.printInOrder(this.week.getRoot());
+  }
+
+  private void openDay(int index) {
+    Day day = this.week.get(index);
+    this.open = false;
+    day.open();
+    this.open = true;
   }
 
   private void invalidOption() {

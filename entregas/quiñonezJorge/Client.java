@@ -19,12 +19,14 @@ public class Client {
   this.survey = new Survey();
  }
 
- public void displaySurvey() {
+ public void openSurvey() {
   this.survey.open();
   this.survey.close();
  }
 
  public void showResults() {
+  System.out.println();
+  System.out.println("Client: " + this.name);
   this.survey.showResults();
  }
 }

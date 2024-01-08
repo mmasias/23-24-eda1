@@ -15,6 +15,24 @@ public class Tree<T extends DataProvider> {
   printInOrder(node.getRight());
  }
 
+ public T get(int index) {
+  return recursiveGet(this.root, index);
+ }
+
+ private T recursiveGet(Node<T> root, int index) {
+  if (root == null) {
+   return null;
+  }
+  if (root.getIndex() == index) {
+   return root.getData();
+  }
+  if (index < root.getIndex()) {
+   return recursiveGet(root.getLeft(), index);
+  } else {
+   return recursiveGet(root.getRight(), index);
+  }
+ }
+
  public boolean has(Node<T> node) {
   return recursiveHas(this.root, node);
  }
@@ -29,10 +47,10 @@ public class Tree<T extends DataProvider> {
    return true;
   }
 
-  boolean leftResult = recursiveHas(root.getLeft(), node);
-  boolean rightResult = recursiveHas(root.getRight(), node);
+  boolean leftNode = recursiveHas(root.getLeft(), node);
+  boolean rightNode = recursiveHas(root.getRight(), node);
 
-  return leftResult || rightResult;
+  return leftNode || rightNode;
  }
 
  public void insert(Node<T> newNode) {
