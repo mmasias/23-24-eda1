@@ -70,7 +70,7 @@ public class Brunch implements DataProvider {
     do {
       System.out.print("Enter food name: ");
       input = new Scanner(System.in).nextLine();
-      if (!input.equals("0")) {
+      if (!input.equals("0") || !input.equals("")) {
         this.food.add(new Node<Food>(new Food(input)));
       }
     } while (!input.equals("0"));
@@ -79,12 +79,6 @@ public class Brunch implements DataProvider {
   private void showFood() {
     this.printList();
     new Scanner(System.in).nextLine();
-  }
-
-  @Override
-  public void printData() {
-    System.out.println("            " + this.name);
-    this.printList();
   }
 
   private void printList() {
@@ -96,5 +90,11 @@ public class Brunch implements DataProvider {
   private void invalidOption() {
     System.out.println("Invalid option");
     new Scanner(System.in).nextLine();
+  }
+
+  @Override
+  public void printData() {
+    System.out.println("            " + this.name);
+    this.printList();
   }
 }

@@ -61,12 +61,6 @@ public class Day implements DataProvider {
     System.out.print("Choose an option: ");
   }
 
-  @Override
-  public void printData() {
-    System.out.println("        " + this.name);
-    this.brunches.printInOrder(this.brunches.getRoot());
-  }
-
   private void manageInput(int input) {
     Brunch brunch = null;
     switch (input) {
@@ -129,5 +123,11 @@ public class Day implements DataProvider {
   private void invalidOption() {
     System.out.println("Invalid option");
     new Scanner(System.in).nextLine();
+  }
+
+  @Override
+  public void printData() {
+    System.out.println("        " + this.name);
+    this.brunches.printInOrder(this.brunches.getRoot());
   }
 }

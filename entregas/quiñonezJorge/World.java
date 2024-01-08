@@ -80,6 +80,11 @@ public class World {
   private void registerAsClient() {
     System.out.print("Input your name: ");
     String name = new Scanner(System.in).nextLine();
+    if (name.equals("")) {
+      System.out.println("Name can't be empty");
+      new Scanner(System.in).nextLine();
+      return;
+    }
     this.client = new Client(name);
   }
 

@@ -9,10 +9,6 @@ public class Survey {
     this.week = new Tree<Day>();
   }
 
-  public boolean isOpen() {
-    return this.open;
-  }
-
   public void open() {
     this.open = true;
     int input;
