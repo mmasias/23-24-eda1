@@ -1,4 +1,4 @@
-public class Day {
+public class Day implements DataProvider {
 
  private String name;
  private Tree<Brunch> brunches = null;
@@ -14,5 +14,12 @@ public class Day {
 
  public void setName(String name) {
   this.name = name;
+ }
+
+ @Override
+ public void printData() {
+  System.out.println(this.name);
+  System.out.print("  ");
+  this.brunches.printInOrder(this.brunches.getRoot());
  }
 }

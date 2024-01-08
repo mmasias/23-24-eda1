@@ -1,4 +1,4 @@
-public class Food {
+public class Food implements DataProvider {
 
  private String name;
  private List<Nutrient> nutrients;
@@ -18,5 +18,10 @@ public class Food {
 
  public void addNutrient(Nutrient nutrient) {
   this.nutrients.add(new Node<Nutrient>(nutrient));
+ }
+
+ @Override
+ public void printData() {
+  System.out.println(this.name);
  }
 }

@@ -1,6 +1,4 @@
-import java.util.Objects;
-
-public class Node<T> {
+public class Node<T extends DataProvider> {
 
  private T data;
  private int index;

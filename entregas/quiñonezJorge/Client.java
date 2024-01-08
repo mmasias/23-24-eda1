@@ -23,4 +23,8 @@ public class Client {
   this.survey.open();
   this.survey.close();
  }
+
+ public void showResults() {
+  this.survey.showResults();
+ }
 }

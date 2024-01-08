@@ -1,4 +1,4 @@
-public class Tree<T> {
+public class Tree<T extends DataProvider> {
 
  private Node<T> root = null;
 
@@ -11,7 +11,7 @@ public class Tree<T> {
    return;
   }
   printInOrder(node.getLeft());
-  System.out.println(node.getIndex());
+  node.getData().printData();
   printInOrder(node.getRight());
  }
 

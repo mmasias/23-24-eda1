@@ -1,4 +1,4 @@
-public class List<T> {
+public class List<T extends DataProvider> {
 
  private Node<T> first = null;
  private int size = 0;

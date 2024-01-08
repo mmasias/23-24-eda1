@@ -41,6 +41,7 @@ public class World {
     System.out.println("1. Register as new client");
     System.out.println("2. Create new survey");
     System.out.println("3. Show survey");
+    System.out.println("4. Show results");
     System.out.println("0. Exit");
     System.out.println("--------------------");
     System.out.println();
@@ -57,6 +58,9 @@ public class World {
         break;
       case 3:
         this.openSurvey();
+        break;
+      case 4:
+        this.showResults();
         break;
       case 0:
         break;
@@ -105,6 +109,15 @@ public class World {
   private void invalidOption() {
     System.out.println("Invalid option");
     new Scanner(System.in).nextLine();
+  }
+
+  private void showResults() {
+    if (this.existingClient() && this.client.getSurvey() != null) {
+
+    } else {
+      System.out.println("Can't show results without creating a survey first");
+      new Scanner(System.in).nextLine();
+    }
   }
 
   private boolean existingClient() {
