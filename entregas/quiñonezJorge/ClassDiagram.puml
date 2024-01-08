@@ -1,4 +1,7 @@
 @startuml class diagram
+interface DataProvider{
+ + printData()
+}
 class World{}
 class Client{}
 class Survey{}
@@ -6,9 +9,10 @@ class Day{}
 class Brunch{}
 class Food{}
 class Nutrient{}
-class Tree{}
-class Node{}
-class List{}
+class Tree<T>{}
+class Node<T>{}
+class List<T>{}
+
 
 World -- "1..*" Client : has
 Client -- Survey : has
@@ -16,10 +20,13 @@ Survey -- "1..*" Day : has
 Survey .. Tree : uses
 Day .. Tree : uses
 Day -- "1..*" Brunch : has
+Day -left- DataProvider
 Brunch .. List : uses
 Brunch -- "1..*" Food : has
+Brunch -left- DataProvider
 Food .. List : uses
 Food -- "1..*" Nutrient : has
+Food -left- DataProvider
 Tree -- Node : has
 List -- Node : has
 @enduml

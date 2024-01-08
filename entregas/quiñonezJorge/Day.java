@@ -35,27 +35,36 @@ public class Day implements DataProvider {
 
   private void printMenu() {
     if (this.open) {
-      System.out.println();
+      this.clearTerminal();
       System.out.println(this.name);
-      System.out.println("--------------------");
-      System.out.println("Menu:");
-      System.out.println("1. Fill breakfast");
-      System.out.println("2. Fill mid morning");
-      System.out.println("3. Fill lunch");
-      System.out.println("4. Fill snack");
-      System.out.println("5. Fill dinner");
-      System.out.println("6. Fill late dinner");
-      System.out.println("7. Show brunches");
-      System.out.println("0. Return");
-      System.out.println("--------------------");
-      System.out.print("Choose an option: ");
+      this.printOptions();
     }
+  }
+
+  private void clearTerminal() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
+
+  private void printOptions() {
+    System.out.println("--------------------");
+    System.out.println("Menu:");
+    System.out.println("1. Fill breakfast");
+    System.out.println("2. Fill mid morning");
+    System.out.println("3. Fill lunch");
+    System.out.println("4. Fill snack");
+    System.out.println("5. Fill dinner");
+    System.out.println("6. Fill late dinner");
+    System.out.println("7. Show brunches");
+    System.out.println("0. Return");
+    System.out.println("--------------------");
+    System.out.print("Choose an option: ");
   }
 
   @Override
   public void printData() {
     System.out.println("        " + this.name);
-    this.showBrunches();
+    this.brunches.printInOrder(this.brunches.getRoot());
   }
 
   private void manageInput(int input) {
@@ -80,6 +89,7 @@ public class Day implements DataProvider {
         brunch = new Brunch("Late dinner");
         break;
       case 7:
+        this.clearTerminal();
         this.showBrunches();
         break;
       case 0:
@@ -120,5 +130,4 @@ public class Day implements DataProvider {
     System.out.println("Invalid option");
     new Scanner(System.in).nextLine();
   }
-
 }

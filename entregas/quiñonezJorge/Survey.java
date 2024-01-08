@@ -29,9 +29,15 @@ public class Survey {
 
   private void print() {
     if (this.open) {
+      this.clearTerminal();
       this.printInstructions();
       this.printMenu();
     }
+  }
+
+  private void clearTerminal() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
   }
 
   private void printInstructions() {
@@ -78,6 +84,7 @@ public class Survey {
         day = new Day("Friday");
         break;
       case 6:
+        this.clearTerminal();
         this.showDays();
         break;
       case 0:

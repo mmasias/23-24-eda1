@@ -41,16 +41,13 @@ public class List<T extends DataProvider> {
   }
  }
 
- public T[] getList() {
-  T[] list = (T[]) new Object[this.getSize()];
-  Node<T> iterator = this.first;
-  if (iterator != null) {
-   for (int i = 0; i < this.getSize(); i++) {
-    list[i] = iterator.getData();
+ public void printAll() {
+  if (this.first != null) {
+   Node<T> iterator = this.first;
+   while (iterator != null) {
+    iterator.getData().printData();
     iterator = iterator.getNext();
    }
   }
-  return list;
  }
-
 }

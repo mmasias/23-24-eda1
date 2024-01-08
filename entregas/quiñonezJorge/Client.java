@@ -24,7 +24,6 @@ public class Client {
  }
 
  public void showSurvey() {
-  System.out.println();
   System.out.println("Client: " + this.name);
   this.survey.showDays();
  }

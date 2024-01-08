@@ -22,6 +22,6 @@ public class Food implements DataProvider {
 
  @Override
  public void printData() {
-  System.out.println(this.name);
+  System.out.println("                " + this.getName());
  }
 }

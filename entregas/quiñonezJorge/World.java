@@ -22,9 +22,15 @@ public class World {
 
   private void printMenu() {
     if (this.mainMenu) {
+      this.clearTerminal();
       this.printWelcome();
       this.printOptions();
     }
+  }
+
+  private void clearTerminal() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
   }
 
   private void printWelcome() {
@@ -60,6 +66,7 @@ public class World {
         this.openSurvey();
         break;
       case 4:
+        this.clearTerminal();
         this.showResults();
         break;
       case 0:
@@ -110,7 +117,6 @@ public class World {
     if (this.existingClient() && this.client.getSurvey() != null) {
       this.mainMenu = false;
       this.client.showSurvey();
-      new Scanner(System.in).nextLine();
       this.mainMenu = true;
     } else {
       System.out.println("Can't show results without creating a survey first");
@@ -130,5 +136,4 @@ public class World {
       return false;
     }
   }
-
 }
