@@ -21,12 +21,11 @@ public class Client {
 
  public void openSurvey() {
   this.survey.open();
-  this.survey.close();
  }
 
- public void showResults() {
+ public void showSurvey() {
   System.out.println();
   System.out.println("Client: " + this.name);
-  this.survey.showResults();
+  this.survey.showDays();
  }
 }

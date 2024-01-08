@@ -9,15 +9,22 @@ public class Survey {
     this.week = new Tree<Day>();
   }
 
+  public boolean isOpen() {
+    return this.open;
+  }
+
   public void open() {
     this.open = true;
     int input;
     do {
       this.print();
-      System.out.print("Select a day: ");
       input = new Scanner(System.in).nextInt();
       this.manageInput(input);
     } while (input != 0);
+  }
+
+  public void close() {
+    this.open = false;
   }
 
   private void print() {
@@ -46,21 +53,10 @@ public class Survey {
     System.out.println("3. Wednesday");
     System.out.println("4. Thursday");
     System.out.println("5. Friday");
+    System.out.println("6. Show days");
     System.out.println("0. Return");
     System.out.println("--------------------");
-  }
-
-  public void close() {
-    this.open = false;
-  }
-
-  public boolean isOpen() {
-    return this.open;
-  }
-
-  public void showResults() {
-    System.out.println("    Survey ");
-    this.week.printInOrder(this.week.getRoot());
+    System.out.print("Select an option: ");
   }
 
   private void manageInput(int input) {
@@ -81,7 +77,11 @@ public class Survey {
       case 5:
         day = new Day("Friday");
         break;
+      case 6:
+        this.showDays();
+        break;
       case 0:
+        this.close();
         break;
       default:
         this.invalidOption();
@@ -107,6 +107,12 @@ public class Survey {
     this.open = false;
     day.open();
     this.open = true;
+  }
+
+  public void showDays() {
+    System.out.println("    Survey ");
+    this.week.printInOrder(this.week.getRoot());
+    new Scanner(System.in).nextLine();
   }
 
   private void invalidOption() {

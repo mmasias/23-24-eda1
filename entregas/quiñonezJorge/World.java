@@ -109,7 +109,7 @@ public class World {
   private void showResults() {
     if (this.existingClient() && this.client.getSurvey() != null) {
       this.mainMenu = false;
-      this.client.showResults();
+      this.client.showSurvey();
       new Scanner(System.in).nextLine();
       this.mainMenu = true;
     } else {

@@ -22,9 +22,8 @@ public class Day implements DataProvider {
   public void open() {
     this.open = true;
     int input;
-    this.printMenu();
     do {
-      System.out.print("Select an option: ");
+      this.printMenu();
       input = new Scanner(System.in).nextInt();
       this.manageInput(input);
     } while (input != 0);
@@ -49,7 +48,14 @@ public class Day implements DataProvider {
       System.out.println("7. Show brunches");
       System.out.println("0. Return");
       System.out.println("--------------------");
+      System.out.print("Choose an option: ");
     }
+  }
+
+  @Override
+  public void printData() {
+    System.out.println("        " + this.name);
+    this.showBrunches();
   }
 
   private void manageInput(int input) {
@@ -74,7 +80,7 @@ public class Day implements DataProvider {
         brunch = new Brunch("Late dinner");
         break;
       case 7:
-        this.brunches.printInOrder(this.brunches.getRoot());
+        this.showBrunches();
         break;
       case 0:
         this.close();
@@ -105,14 +111,14 @@ public class Day implements DataProvider {
     this.open = true;
   }
 
-  @Override
-  public void printData() {
-    System.out.println("        " + this.name);
+  public void showBrunches() {
     this.brunches.printInOrder(this.brunches.getRoot());
+    new Scanner(System.in).nextLine();
   }
 
   private void invalidOption() {
     System.out.println("Invalid option");
     new Scanner(System.in).nextLine();
   }
+
 }

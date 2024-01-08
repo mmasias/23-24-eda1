@@ -2,7 +2,7 @@ public class Brunch implements DataProvider {
 
  private String name;
  private List<Food> food = null;
- private boolean isOpen = false;
+ private boolean open = false;
 
  public Brunch(String name) {
   this.name = name;
@@ -10,13 +10,14 @@ public class Brunch implements DataProvider {
  }
 
  public void open() {
-  this.isOpen = true;
+  this.open = true;
   int input;
  }
 
  @Override
  public void printData() {
   System.out.println("            " + this.name);
+  this.printList();
  }
 
  private void printList() {
