@@ -49,12 +49,12 @@ public class Day implements DataProvider {
   private void printOptions() {
     System.out.println("--------------------");
     System.out.println("Menu:");
-    System.out.println("1. Fill breakfast");
-    System.out.println("2. Fill mid morning");
-    System.out.println("3. Fill lunch");
-    System.out.println("4. Fill snack");
-    System.out.println("5. Fill dinner");
-    System.out.println("6. Fill late dinner");
+    System.out.println("1. Breakfast");
+    System.out.println("2. Mid morning");
+    System.out.println("3. Lunch");
+    System.out.println("4. Snack");
+    System.out.println("5. Dinner");
+    System.out.println("6. Late dinner");
     System.out.println("7. Show brunches");
     System.out.println("0. Return");
     System.out.println("--------------------");

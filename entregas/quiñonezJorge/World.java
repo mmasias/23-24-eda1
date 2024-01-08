@@ -66,7 +66,6 @@ public class World {
         this.openSurvey();
         break;
       case 4:
-        this.clearTerminal();
         this.showResults();
         break;
       case 0:
@@ -121,9 +120,11 @@ public class World {
   private void showResults() {
     if (this.existingClient() && this.client.getSurvey() != null) {
       this.mainMenu = false;
+      this.clearTerminal();
       this.client.showSurvey();
       this.mainMenu = true;
     } else {
+      System.out.println();
       System.out.println("Can't show results without creating a survey first");
       new Scanner(System.in).nextLine();
     }
