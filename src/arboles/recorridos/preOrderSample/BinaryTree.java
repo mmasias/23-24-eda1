@@ -1,4 +1,4 @@
-package preOrderSample;
+package recorridos.preOrderSample;
 
 class BinaryTree {
 
