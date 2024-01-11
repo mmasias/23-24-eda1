@@ -62,7 +62,7 @@ public class Food {
             if (food.equals("-1")) {
                 break;
             } else if (food.equals("-2")) {
-                Food.listFoods(ingesta.children);
+                listFoods(ingesta.children);
             } else {
                 TreeNode alimento = new TreeNode(food);
                 ingesta.children.insert(alimento, -1);
@@ -70,7 +70,7 @@ public class Food {
         }
     }
 
-    public static void modifyDay(TreeNode dia, Scanner scanner) {
+    public static void setIngesta(TreeNode dia, Scanner scanner) {
         while (true) {
             System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menu anterior)");
             int selectedMeal = scanner.nextInt();
@@ -80,11 +80,11 @@ public class Food {
 
             scanner.nextLine();
             
-            String mealName = Food.getMealName(selectedMeal);
-            TreeNode ingesta = Food.getMealNodeOrCreateNew(dia.children, mealName);
+            String mealName = getMealName(selectedMeal);
+            TreeNode ingesta = getMealNodeOrCreateNew(dia.children, mealName);
 
             if (ingesta != null) {
-                Food.addFoods(ingesta, scanner);
+                addFoods(ingesta, scanner);
             }
         }
     }

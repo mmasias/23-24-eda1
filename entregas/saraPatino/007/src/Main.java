@@ -25,7 +25,7 @@ public class Main {
 
             TreeNode dia = Day.getDayNodeOrCreateNew(dias, selectedDay);
             if (dia != null) {
-                Food.modifyDay(dia, scanner);
+                Food.setIngesta(dia, scanner);
             }
         }
 

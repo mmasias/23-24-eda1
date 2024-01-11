@@ -23,7 +23,7 @@ public class Main {
 
             TreeNode dia = getDayNodeOrCreateNew(dias, selectedDay);
             if (dia != null) {
-                modifyDay(dia, scanner);
+                setIngesta(dia, scanner);
             }
         }
 
@@ -50,7 +50,7 @@ public class Main {
         }
     }
 
-    public static void modifyDay(TreeNode dia, Scanner scanner) {
+    public static void setIngesta(TreeNode dia, Scanner scanner) {
         while (true) {
             System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menu anterior)");
             int selectedMeal = scanner.nextInt();

@@ -1,4 +1,4 @@
-package src;
+package NotPOO;
 
 public interface IDataStructure<T> {
 
