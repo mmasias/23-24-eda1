@@ -3,34 +3,49 @@ package NotPOO;
 import java.util.Scanner;
 
 public class Main {
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        TreeNode paciente = new TreeNode("Paciente: Jose Manuel R.");
+       
+        TreeNode paciente = new TreeNode(name());
 
         List<TreeNode> dias = new List<>();
         paciente.children = dias;
 
         while (true) {
             System.out.println(paciente.key);
-            System.out.println("Seleccione día de 1 a 5 (-1 para mostrar información / -2 para salir): ");
-            int selectedDay = scanner.nextInt();
-            if (selectedDay == -2) {
-                break;
-            } else if (selectedDay == -1) {
-                printTree(paciente, 0);
-                continue;
-            }
+            int selectedDay = selectDay(paciente);
 
             TreeNode dia = getDayNodeOrCreateNew(dias, selectedDay);
             if (dia != null) {
                 setIngesta(dia, scanner);
             }
         }
-
-        scanner.close();
     }
 
-    // Resto de las funciones permanecen igual...
+    public static String name(){
+        System.out.println("Ingresa tu nombre");
+        String name = scanner.nextLine();
+        return name;
+    }
+
+    public static int selectDay(TreeNode paciente) {
+        while (true) {
+            System.out.println("Seleccione día de 1 a 5 (-1 para mostrar información / -2 para salir): ");
+            int selectedDay = scanner.nextInt();
+            
+            if (selectedDay == -2) {
+                return -1; 
+            } else if (selectedDay == -1) {
+                printTree(paciente, 0);
+            } else if (selectedDay > 5 || selectedDay < 1) {
+                System.out.println("Número no disponible");
+            } else {
+                return selectedDay;
+            }
+        }
+    }
+
+
     
     public static void printTree(TreeNode node, int depth) {
         if (node == null) {
