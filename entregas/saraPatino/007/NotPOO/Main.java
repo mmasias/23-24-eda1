@@ -34,9 +34,10 @@ public class Main {
             int selectedDay = scanner.nextInt();
             
             if (selectedDay == -2) {
-                return -1; 
+                System.out.println("Saliendo del programa...");
+                System.exit(0);
             } else if (selectedDay == -1) {
-                printTree(paciente, 0);
+                Tree.printTree(paciente, 0);
             } else if (selectedDay > 5 || selectedDay < 1) {
                 System.out.println("Número no disponible");
             } else {
@@ -45,25 +46,6 @@ public class Main {
         }
     }
 
-
-    
-    public static void printTree(TreeNode node, int depth) {
-        if (node == null) {
-            return;
-        }
-
-        for (int i = 0; i < depth; i++) {
-            System.out.print("    "); // Espacios para la indentación
-        }
-
-        System.out.println(node.key);
-
-        List<TreeNode> children = node.children;
-        Object[] array = children.listData();
-        for (Object child : array) {
-            printTree((TreeNode) child, depth + 1);
-        }
-    }
 
     public static void setIngesta(TreeNode dia, Scanner scanner) {
         while (true) {

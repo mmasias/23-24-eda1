@@ -3,7 +3,56 @@ package src;
 import java.util.Scanner;
 
 public class Food {
+    static Scanner scanner = new Scanner(System.in);
+    
     public Food() {}
+
+    public static void setIngesta(TreeNode dia) {
+        while (true) {
+            System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menu anterior)");
+            int selectedMeal = scanner.nextInt();
+            if (selectedMeal == -1) {
+                break;
+            }
+
+            scanner.nextLine();
+
+            String mealName = getMealName(selectedMeal);
+            TreeNode ingesta = getMealNodeOrCreateNew(dia.children, mealName);
+
+            if (ingesta != null) {
+                addFoods(ingesta);
+            }
+        }
+    }
+
+    public static void addFoods(TreeNode ingesta) {
+        while (true) {
+            System.out.println("Ingrese un alimento (-1 para terminar / -2 para listar alimentos ingresados): ");
+            String food = scanner.nextLine();
+
+            if (food.equals("-1")) {
+                break;
+            } else if (food.equals("-2")) {
+                listFoods(ingesta.children);
+            } else {
+                TreeNode alimento = new TreeNode(food);
+                ingesta.children.insert(alimento, -1);
+            }
+        }
+    }
+
+    public static void listFoods(List<TreeNode> alimentos) {
+        Object[] array = alimentos.listData();
+        if (array.length == 0) {
+            System.out.println("No se han ingresado alimentos.");
+        } else {
+            System.out.println("Alimentos ingresados:");
+            for (Object food : array) {
+                System.out.println(((TreeNode) food).key);
+            }
+        }
+    }
 
     public static String getMealName(int selectedMeal) {
         String mealName = "";
@@ -40,52 +89,5 @@ public class Food {
         TreeNode newMeal = new TreeNode(mealName);
         comidas.insert(newMeal, -1);
         return newMeal;
-    }
-
-    public static void listFoods(List<TreeNode> alimentos) {
-        Object[] array = alimentos.listData();
-        if (array.length == 0) {
-            System.out.println("No se han ingresado alimentos.");
-        } else {
-            System.out.println("Alimentos ingresados:");
-            for (Object food : array) {
-                System.out.println(((TreeNode) food).key);
-            }
-        }
-    }
-
-    public static void addFoods(TreeNode ingesta, Scanner scanner) {
-        while (true) {
-            System.out.println("Ingrese un alimento o bebida (-1 para terminar / -2 para listar alimentos ingresados): ");
-            String food = scanner.nextLine();
-
-            if (food.equals("-1")) {
-                break;
-            } else if (food.equals("-2")) {
-                listFoods(ingesta.children);
-            } else {
-                TreeNode alimento = new TreeNode(food);
-                ingesta.children.insert(alimento, -1);
-            }
-        }
-    }
-
-    public static void setIngesta(TreeNode dia, Scanner scanner) {
-        while (true) {
-            System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menu anterior)");
-            int selectedMeal = scanner.nextInt();
-            if (selectedMeal == -1) {
-                break;
-            }
-
-            scanner.nextLine();
-            
-            String mealName = getMealName(selectedMeal);
-            TreeNode ingesta = getMealNodeOrCreateNew(dia.children, mealName);
-
-            if (ingesta != null) {
-                addFoods(ingesta, scanner);
-            }
-        }
     }
 }
