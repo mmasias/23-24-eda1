@@ -1,10 +1,10 @@
-package listas.genericaInterfaz;
+package utils;
 
-class Node<T> {
+class ListNode<T> {
     private T data;
-    private Node<T> next;
+    private ListNode<T> next;
 
-    public Node(T data) {
+    public ListNode(T data) {
         setData(data);
     }
 
@@ -16,11 +16,11 @@ class Node<T> {
         this.data = data;
     }
 
-    public Node<T> getNext() {
+    public ListNode<T> getNext() {
         return next;
     }
 
-    public void setNext(Node<T> next) {
+    public void setNext(ListNode<T> next) {
         this.next = next;
     }
 

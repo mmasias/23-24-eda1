@@ -1,4 +1,4 @@
-package listas.genericaInterfaz;
+package utils;
 
 public interface IDataStructure<T> {
 

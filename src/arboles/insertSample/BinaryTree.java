@@ -22,7 +22,6 @@ class BinaryTree {
     }
 
     Node recursiveInsert(Node node, int key) {
-
         if (node == null) {
             node = new Node(key);
             return node;

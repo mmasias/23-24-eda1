@@ -1,47 +1,49 @@
-package listas.genericaInterfaz;
+package utils;
 
-public class List<T> implements IDataStructure<T> {
+import java.util.Iterator;
+
+public class List<T> implements IDataStructure<T>, Iterable<T> {
     
-    Node<T> first;
+    ListNode<T> first;
 
     public List<T> insert(T data, int index) {
         if (first == null && (index == 0 || index == -1)) {
-            first = new Node<T>(data);
+            first = new ListNode<T>(data);
         } else if (index == 0) {
-            insertFirst(new Node<T>(data));
+            insertFirst(new ListNode<T>(data));
         } else if (index == -1) {
-            insertLast(new Node<T>(data));
+            insertLast(new ListNode<T>(data));
         } else if (index > 0) {
-            insertAt(new Node<T>(data), index);
+            insertAt(new ListNode<T>(data), index);
         } else {
             throw new IndexOutOfBoundsException();
         }
         return this;
     }
 
-    private void insertFirst(Node<T> node) {
-        node.setNext(first);
-        first = node;
+    private void insertFirst(ListNode<T> listNode) {
+        listNode.setNext(first);
+        first = listNode;
     }
 
-    private void insertLast(Node<T> node) {
-        Node<T> last = first;
+    private void insertLast(ListNode<T> listNode) {
+        ListNode<T> last = first;
         while (last.getNext() != null) {
             last = last.getNext();
         }
-        last.setNext(node);
+        last.setNext(listNode);
     }
 
-    private void insertAt(Node<T> node, int index) {
+    private void insertAt(ListNode<T> listNode, int index) {
         int i = 0;
-        Node<T> current = first;
+        ListNode<T> current = first;
         while (i < index - 1 && current != null) {
             ++i;
             current = current.getNext();
         }
         if (current != null) {
-            node.setNext(current.getNext());
-            current.setNext(node);
+            listNode.setNext(current.getNext());
+            current.setNext(listNode);
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -69,7 +71,7 @@ public class List<T> implements IDataStructure<T> {
 
     private void removeLast() {
         if (getFirst().getNext() != null) {
-            Node<T> oneBeforeLast = getFirst();
+            ListNode<T> oneBeforeLast = getFirst();
             while (oneBeforeLast.getNext() != null && oneBeforeLast.getNext().getNext() != null) {
                 oneBeforeLast = oneBeforeLast.getNext();
             }
@@ -80,7 +82,7 @@ public class List<T> implements IDataStructure<T> {
     }
 
     private void removeAt(int index) {
-        Node<T> current = first;
+        ListNode<T> current = first;
         for (int i = 0; i < index - 1; ++i) {
             current = current.getNext();
             if (current == null) {
@@ -93,7 +95,7 @@ public class List<T> implements IDataStructure<T> {
         current.setNext(current.getNext().getNext());
     }
 
-    public Node<T> getFirst() {
+    public ListNode<T> getFirst() {
         return first;
     }
 
@@ -111,11 +113,36 @@ public class List<T> implements IDataStructure<T> {
 
     public Object[] listData() {
         Object[] array = new Object[size()];
-        Node<T> node = first;
+        ListNode<T> listNode = first;
         for (int i = 0; i < array.length; ++i) {
-            array[i] = node.getData();
-            node = node.getNext();
+            array[i] = listNode.getData();
+            listNode = listNode.getNext();
         }
         return array;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListIterator();
+    }
+
+    private class ListIterator implements Iterator<T> {
+
+        private ListNode<T> current = first;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new IllegalStateException("No more elements in the list.");
+            }
+            T data = current.getData();
+            current = current.getNext();
+            return data;
+        }
     }
 }
