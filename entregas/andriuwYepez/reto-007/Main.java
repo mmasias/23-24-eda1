@@ -34,17 +34,26 @@ public class Main {
             informe.append("+--------------+\n");
 
             for (int i = 1; i <= 3; i++) {
-                Ingestas ingesta = new Ingestas(i);
+                Ingestas ingesta = new Ingestas(i, fechaEncuesta);
 
                 System.out.println("Ingrese datos para el día " + dia + ", ingesta " + i);
 
                 System.out.print("Nombre del alimento: ");
                 String nombreAlimento = scanner.nextLine();
 
-                System.out.print("Cantidad: ");
-                double cantidad = scanner.nextDouble();
-                scanner.nextLine(); // Consumir el salto de línea pendiente
+                double cantidad = 0;
 
+                while (true) {
+                    System.out.print("Cantidad: ");
+                    if (scanner.hasNextDouble()) {
+                        cantidad = scanner.nextDouble();
+                        scanner.nextLine();
+                        break;
+                    } else {
+                        System.out.println("Error: ¡Ingresa un valor numérico válido!");
+                        scanner.nextLine();
+                    }
+                }
                 System.out.print("Método de preparación: ");
                 String metodoPreparacion = scanner.nextLine();
 

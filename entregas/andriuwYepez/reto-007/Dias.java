@@ -5,15 +5,16 @@ public class Dias {
     private int numeroDia;
     private String fecha; // Nuevo campo para almacenar la fecha
     private List<Ingestas> ingestas;
+    private ArbolIngestas arbolIngestas;
 
     public Dias(int numeroDia, String fecha) {
         this.numeroDia = numeroDia;
         this.fecha = fecha;
-        this.ingestas = new ArrayList<>();
+        this.arbolIngestas = new ArbolIngestas();
     }
 
     public void agregarIngesta(Ingestas ingesta) {
-        ingestas.add(ingesta);
+        arbolIngestas.insertar(ingesta);
     }
 
     public int getNumeroDia() {
@@ -26,5 +27,9 @@ public class Dias {
 
     public List<Ingestas> getIngestas() {
         return ingestas;
+    }
+
+    public ArbolIngestas getArbolIngestas() {
+        return arbolIngestas;
     }
 }
