@@ -1,24 +1,21 @@
 import utils.List;
 
 public class Intake {
-    private List<Food> foodList;
-
-    public Intake() {
-        foodList = new List<Food>();
+    private String name;
+    private String time;
+    private int totalCalories;
+    public Intake(String name, String time) {
+        this.name = name;
     }
-    public void addFood(Food food) {
-        foodList.insert(food, -1);
+    @Override
+    public String toString() {
+        return name;
     }
-    public void removeFood(int index) {
-        foodList.remove(index);
+    public String getTime(){
+        return time;
     }
-    public Object[] getFoodList() {
-        return foodList.listData();
-    }
-
-    public void displayFoodList() {
-        for(Object food : foodList.listData()){
-            System.out.println(food.toString());
-        }
+    public int getTotalCalories(){return totalCalories;}
+    public void setTotalCalories(int totalCalories) {
+        this.totalCalories = totalCalories;
     }
 }

@@ -66,7 +66,11 @@ public class Tree<T> implements IDataStructure<T>{
     private void printTreePreOrder(TreeNode<T> node, int depth) {
         if (node != null) {
             for (int i = 0; i < depth; i++) {
-                System.out.print("  ");
+                if (i == depth - 1) {
+                    System.out.print(" ".repeat(4) + "└─--");
+                } else {
+                    System.out.print(" ".repeat(4));
+                }
             }
             System.out.println(node.getData());
 

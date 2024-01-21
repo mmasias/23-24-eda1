@@ -12,6 +12,11 @@
 
     class Alimento
 
-    Encuesta -* Paciente
+    class AlimentoData
+
+    Paciente -* Encuesta
+    Dia -* Ingesta
+    Ingesta -* Alimento
+    AlimentoData ..> Alimento
 
 @enduml
