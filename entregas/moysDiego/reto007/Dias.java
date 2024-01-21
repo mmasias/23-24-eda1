@@ -13,10 +13,23 @@ public class Dias {
     }
 
     public void agregarAlimento(Alimentos alimento, String tipoIngesta) {
-
-        ingestas.computeIfAbsent(tipoIngesta, k -> new Ingestas()).agregarAlimento(alimento);
+        if (esTipoIngestaValido(tipoIngesta)) {
+            ingestas.get(tipoIngesta).agregarAlimento(alimento);
+        } else {
+            System.out.println("Error: Tipo de ingesta no válido.");
+        }
     }
-
+    
+    private boolean esTipoIngestaValido(String tipoIngesta) {
+        String[] tiposValidos = getTiposIngestaValidos();
+        for (String tipoValido : tiposValidos) {
+            if (tipoValido.equalsIgnoreCase(tipoIngesta)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void mostrarIngestas() {
         for (Map.Entry<String, Ingestas> entry : ingestas.entrySet()) {
             System.out.println("        " + "Ingesta " + entry.getKey() + ":");
