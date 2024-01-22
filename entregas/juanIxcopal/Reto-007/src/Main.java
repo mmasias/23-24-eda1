@@ -12,22 +12,33 @@ public class Main {
 
         weekOne.listDays();*/
 
-        /*ListFoodRegimen foodRegimen = new ListFoodRegimen();
-
-        foodRegimen.insertFoodRegimen("Desayuno");
-        foodRegimen.insertFoodRegimen("Media Mañana");
-        foodRegimen.insertFoodRegimen("Almuerzo");
-        foodRegimen.insertFoodRegimen("Merienda");
-        foodRegimen.insertFoodRegimen("Cena");
-
-        foodRegimen.listFoodRegiment();*/
-
-        ListUsers users = new ListUsers();
+        /*ListUsers users = new ListUsers();
 
         users.insertUser("Juan");
         users.insertUser("René");
 
-        users.listAllUsers();
+        users.listAllUsers();*/
+
+
+        // Crear un régimen de comida
+        ListFoodRegimen foodRegimen = new ListFoodRegimen();
+
+        // Añadir comidas al régimen
+        foodRegimen.addMeal("Desayuno");
+        foodRegimen.addMeal("Media Mañana");
+        foodRegimen.addMeal("Almuerzo");
+        foodRegimen.addMeal("Merienda");
+        foodRegimen.addMeal("Cena");
+
+        // Añadir alimentos a diferentes comidas
+        foodRegimen.addFoodToMeal("Desayuno", "Huevos");
+        foodRegimen.addFoodToMeal("Desayuno", "Pan integral");
+        foodRegimen.addFoodToMeal("Almuerzo", "Ensalada");
+        foodRegimen.addFoodToMeal("Cena", "Pescado");
+        foodRegimen.addFoodToMeal("Media Mañana", "Batido de fresa");
+
+        // Listar el régimen de comida
+        foodRegimen.listFoodRegimen();
 
     }
 }

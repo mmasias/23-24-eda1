@@ -1,14 +1,13 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class User {
+public class UserNode {
     private String name;
     private LocalDate dischargeDate;
-    private User next;
+    private UserNode next;
 
-
-    public User(String value){
-        this.setValue(value);
+    public UserNode(String value){
+        this.setValueUser(value);
         this.setDischargeDate(LocalDate.now());
     }
 
@@ -21,11 +20,11 @@ public class User {
         return dischargeDate.format(formatter);
     }
 
-    public User getNext(){
+    public UserNode getNextUser(){
         return next;
     }
 
-    public void setValue(String newValue) {
+    public void setValueUser(String newValue) {
         this.name = newValue;
     }
 
@@ -33,7 +32,7 @@ public class User {
         this.dischargeDate = newDischargeDate;
     }
 
-    public void setNext(User next){
+    public void setNextUser(UserNode next){
         this.next = next;
     }
 }

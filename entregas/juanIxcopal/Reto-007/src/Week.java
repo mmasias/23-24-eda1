@@ -13,10 +13,10 @@ public class Week {
             this.first = newNode ;
         } else {
             DaysNode iterator = this.first;
-            while (iterator.getNext() != null) {
-                iterator = iterator.getNext();
+            while (iterator.getNextDay() != null) {
+                iterator = iterator.getNextDay();
             }
-            iterator.setNext(newNode);
+            iterator.setNextDay(newNode);
         }
         this.size ++;
     }
@@ -29,7 +29,7 @@ public class Week {
             list[count] = iterator.getDay();
             System.out.println(iterator.getDay());
             count++;
-            iterator = iterator.getNext();
+            iterator = iterator.getNextDay();
         }
         return list;
     }

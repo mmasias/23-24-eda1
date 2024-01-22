@@ -1,5 +1,5 @@
 public class ListUsers {
-    private User first = null;
+    private UserNode first = null;
 
     private int size = 0;
 
@@ -8,28 +8,28 @@ public class ListUsers {
     }
 
     public void insertUser(String value){
-        User newNode = new User(value);
+        UserNode newNode = new UserNode(value);
         if (this.first == null) {
             this.first = newNode ;
         } else {
-            User iterator = this.first;
-            while (iterator.getNext() != null) {
-                iterator = iterator.getNext();
+            UserNode iterator = this.first;
+            while (iterator.getNextUser() != null) {
+                iterator = iterator.getNextUser();
             }
-            iterator.setNext(newNode);
+            iterator.setNextUser(newNode);
         }
         this.size ++;
     }
 
     public String[] listAllUsers() {
         String[] list = new String[this.size()];
-        User iterator = this.first;
+        UserNode iterator = this.first;
         int count = 0;
         while (iterator != null) {
             list[count] = iterator.getName();
             System.out.println(iterator.getName());
             count++;
-            iterator = iterator.getNext();
+            iterator = iterator.getNextUser();
         }
         return list;
     }

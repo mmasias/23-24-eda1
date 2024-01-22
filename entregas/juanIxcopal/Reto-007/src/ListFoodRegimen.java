@@ -1,36 +1,44 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListFoodRegimen {
-    private FoodRegimenNode first = null;
+    private FoodRegimenNode firstMeal = null;
 
-    private int size = 0;
-
-    public int size(){
-        return this.size;
-    }
-
-    public void insertFoodRegimen(String value){
-        FoodRegimenNode newNode = new FoodRegimenNode(value);
-        if (this.first == null) {
-            this.first = newNode ;
+    public void addMeal(String mealName) {
+        FoodRegimenNode newMeal = new FoodRegimenNode(mealName);
+        if (firstMeal == null) {
+            firstMeal = newMeal;
         } else {
-            FoodRegimenNode iterator = this.first;
-            while (iterator.getNext() != null) {
-                iterator = iterator.getNext();
+            FoodRegimenNode iterator = firstMeal;
+            while (iterator.getNextRegimenNode() != null) {
+                iterator = iterator.getNextRegimenNode();
             }
-            iterator.setNext(newNode);
+            iterator.setNextRegimenNode(newMeal);
         }
-        this.size ++;
     }
 
-    public String[] listFoodRegiment() {
-        String[] list = new String[this.size()];
-        FoodRegimenNode iterator = this.first;
-        int count = 0;
+    public void addFoodToMeal(String mealName, String food) {
+        FoodRegimenNode iterator = firstMeal;
         while (iterator != null) {
-            list[count] = iterator.getFoodRegimen();
-            System.out.println(iterator.getFoodRegimen());
-            count++;
-            iterator = iterator.getNext();
+            if (iterator.getFoodRegimen().equalsIgnoreCase(mealName)) {
+                iterator.addFood(food);
+                return;
+            }
+            iterator = iterator.getNextRegimenNode();
         }
-        return list;
+        System.out.println("Meal not found: " + mealName);
+    }
+
+    public void listFoodRegimen() {
+        FoodRegimenNode iterator = firstMeal;
+        while (iterator != null) {
+            System.out.print(iterator.getFoodRegimen() + " : ");
+            String[] foods = iterator.listFoods();
+            for (String food : foods) {
+                System.out.print(food + ", ");
+            }
+            System.out.println();
+            iterator = iterator.getNextRegimenNode();
+        }
     }
 }

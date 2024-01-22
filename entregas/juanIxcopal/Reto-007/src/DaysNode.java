@@ -3,22 +3,22 @@ public class DaysNode {
     private DaysNode next;
 
     public DaysNode(String value) {
-        this.setValue(value);
+        this.setValueDay(value);
     }
 
     public String getDay() {
         return day;
     }
 
-    public void setValue(String newValue) {
-        this.day = newValue;
-    }
-
-    public DaysNode getNext() {
+    public DaysNode getNextDay() {
         return next;
     }
 
-    public void setNext(DaysNode next) {
+    public void setValueDay(String newValue) {
+        this.day = newValue;
+    }
+
+    public void setNextDay(DaysNode next) {
         this.next = next;
     }
 }
