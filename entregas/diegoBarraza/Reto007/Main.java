@@ -6,37 +6,38 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingresa tu nombre porfavor: ");
-        String clientName = scanner.nextLine();
+        System.out.print("Ingrese su nombre: ");
+        String nombreCliente = scanner.nextLine();
 
-        System.out.println("Bienvenido " + clientName);
+        System.out.println("Bienvenido " + nombreCliente);
 
-        int option;
-        Cliente cliente = new Cliente(clientName);
+        int opcion;
+        Cliente cliente = new Cliente(nombreCliente);
 
         do {
-            printMenu();
-            System.out.print("Escoge una opcion: ");
-            option = scanner.nextInt();
+            imprimirMenu();
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea
 
-            switch (option) {
+            switch (opcion) {
                 case 1:
                     // Registrar nuevo cliente
-                    System.out.print("ingresa el nombre del cliente: ");
-                    String newClientName = scanner.nextLine();
-                    cliente = new Cliente(newClientName);
-                    System.out.println("Cliente " + newClientName + " registrado.");
+                    System.out.print("Ingrese el nombre del nuevo cliente: ");
+                    String nuevoNombreCliente = scanner.nextLine();
+                    cliente = new Cliente(nuevoNombreCliente);
+                    System.out.println("Cliente " + nuevoNombreCliente + " registrado exitosamente.");
                     break;
                 case 2:
                     // Crear nueva encuesta
+                    cliente = new Cliente(nombreCliente);  // Reiniciar la instancia del Cliente
                     ingresarAlimentos(scanner, cliente);
-                    System.out.println("Encuesta creada para " + clientName + ".");
+                    System.out.println("Encuesta creada exitosamente para el cliente " + nombreCliente + ".");
                     break;
                 case 3:
                     // Abrir encuesta existente
                     ingresarAlimentos(scanner, cliente);
-                    System.out.println("Encuesta de" + clientName + " se ejecuto con éxito.");
+                    System.out.println("Encuesta para el cliente " + nombreCliente + " abierta exitosamente.");
                     break;
                 case 4:
                     // Mostrar resultados
@@ -44,105 +45,107 @@ public class Main {
                     break;
                 case 0:
                     // Salir del programa
-                    System.out.println("Saliendo del sistema");
+                    System.out.println("Saliendo del programa...");
                     break;
                 default:
-                    System.out.println("Ingresa un numero correcto porfavor.");
+                    System.out.println("Opción no válida. Inténtelo de nuevo.");
                     break;
             }
 
-        } while (option != 0);
+        } while (opcion != 0);
 
         scanner.close();
     }
 
-    private static void printMenu() {
+    private static void imprimirMenu() {
         System.out.println("Menú:");
         System.out.println("1. Registrar nuevo cliente");
-        System.out.println("2. Nueva encuesta");
-        System.out.println("3. Abrir encuesta existente");
+        System.out.println("2. Crear nueva encuesta");
+        System.out.println("3. Editar encuesta existente");
         System.out.println("4. Mostrar resultados");
         System.out.println("0. Salir");
-    
     }
 
     private static void ingresarAlimentos(Scanner scanner, Cliente cliente) {
-        System.out.println("Ingresa las ingestas (escribe -1 para terminar):");
+        System.out.println("Ingrese alimentos (escriba '-1' para finalizar):");
 
-        int day;
-        String mealType;
+        int dia;
+        String tipoIngesta;
 
         do {
-            System.out.print("Elige el dia (1-5, -1 para finalizar / -2 para listar las ingestas): ");
-            day = scanner.nextInt();
+            System.out.print("Seleccione día (1-5, -1 para finalizar / -2 para listar alimentos): ");
+            dia = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea
 
-            if (day == -1) {
+            if (dia == -1) {
                 break;
             }
 
-            if (day == -2) {
-                System.out.println("Ingestas registradas:");
+            if (dia == -2) {
+                System.out.println("Alimentos ingresados:");
                 cliente.mostrarDieta();
                 continue;  
             }
 
-            if (day < 1 || day > 5) {
-                System.out.println("Dia invalido.Ingresa una fecha correcta.");
+            if (dia < 1 || dia > 5) {
+                System.out.println("Día no válido. Inténtelo de nuevo.");
                 continue;
             }
 
-            System.out.println("Seleccione la ingesta que quiere editar:");
-            System.out.println("1. Desayuno");
-            System.out.println("2. Media Mañana");
-            System.out.println("3. Almuerzo");
-            System.out.println("4. Merienda");
-            System.out.println("5. Cena");
-            System.out.println("-1. Salir");
-
-            int mealOption;
+            int opcionIngesta;
             do {
-                System.out.print("Opcion: ");
-                mealOption = scanner.nextInt();
+                imprimirOpcionesIngesta();  // Muestra las opciones de ingestas
+                System.out.print("Seleccione la ingesta que quiere editar: ");
+                opcionIngesta = scanner.nextInt();
                 scanner.nextLine(); // Consumir el salto de línea
 
-                if (mealOption == -1) {
+                if (opcionIngesta == -1) {
                     break;
                 }
 
-                if (mealOption < 1 || mealOption > 5) {
-                    System.out.println("Ingresa una opcion correcta porfavor.");
+                if (opcionIngesta < 1 || opcionIngesta > 5) {
+                    System.out.println("Opción no válida. Inténtelo de nuevo.");
                     continue;
                 }
 
-                mealType = getMealType(mealOption);
-                System.out.println("Ingresa las ingestas " + mealType + " en el dia " + day + " (-1 para finalizar / -2 para listar las ingestas):");
+                tipoIngesta = obtenerTipoIngesta(opcionIngesta);
+                System.out.println("Ingrese alimentos para " + tipoIngesta + " del día " + dia + " (-1 para terminar):");
 
-                // Enter foods until the user decides to stop
+                // Ingresar alimentos hasta que el usuario decida parar
                 while (true) {
-                    System.out.print("Ingresa una ingesta: ");
-                    String foodName = scanner.nextLine().trim();
+                    System.out.print("Ingrese un alimento: ");
+                    String nombreAlimento = scanner.nextLine().trim();
 
-                    if (foodName.equalsIgnoreCase("-1")) {
+                    if (nombreAlimento.equalsIgnoreCase("-1")) {
                         break;
                     }
 
-                    Alimentos food = new Alimentos(foodName);
-                    cliente.agregarAlimento(food, day, mealType);
+                    Alimentos alimento = new Alimentos(nombreAlimento);
+                    cliente.agregarAlimento(alimento, dia, tipoIngesta);
                 }
             } while (true);
 
         } while (true);
     }
 
-    private static String getMealType(int option) {
-        switch (option) {
+    private static void imprimirOpcionesIngesta() {
+        System.out.println("Seleccione la ingesta que quiere editar:");
+        System.out.println("1. Desayuno");
+        System.out.println("2. Media Mañana");
+        System.out.println("3. Almuerzo");
+        System.out.println("4. Merienda");
+        System.out.println("5. Cena");
+        System.out.println("-1. Salir");
+    }
+
+    private static String obtenerTipoIngesta(int opcion) {
+        switch (opcion) {
             case 1:
                 return "Desayuno";
             case 2:
                 return "Media Mañana";
             case 3:
-                return "Almuerzo2";
+                return "Almuerzo";
             case 4:
                 return "Merienda";
             case 5:

@@ -21,17 +21,16 @@ public class Dias {
             System.out.println("Error: Tipo de ingesta no válido.");
         }
     }
-    
-    private boolean esTipoIngestaValido(String tipoIngesta) {
-        String[] tiposValidos = getTiposIngestaValidos();
-        for (String tipoValido : tiposValidos) {
-            if (tipoValido.equalsIgnoreCase(tipoIngesta)) {
-                return true;
-            }
-        }
-        return false;
+
+    public void mostrarIngestasEnOrden() {
+        // Mostrar las ingestas en el orden deseado
+        mostrarIngesta("Desayuno");
+        mostrarIngesta("Media Mañana");
+        mostrarIngesta("Almuerzo");
+        mostrarIngesta("Merienda");
+        mostrarIngesta("Cena");
     }
-    
+
     public void mostrarIngestas() {
         for (Map.Entry<String, Ingestas> entry : ingestas.entrySet()) {
             System.out.println("        " + "Ingesta " + entry.getKey() + ":");
@@ -41,5 +40,20 @@ public class Dias {
 
     private static String[] getTiposIngestaValidos() {
         return new String[]{"Desayuno", "Media Mañana", "Almuerzo", "Merienda", "Cena"};
+    }
+
+    private void mostrarIngesta(String tipoIngesta) {
+        System.out.println("        " + "Ingesta " + tipoIngesta + ":");
+        ingestas.get(tipoIngesta).mostrarAlimentos();
+    }
+
+    private boolean esTipoIngestaValido(String tipoIngesta) {
+        String[] tiposValidos = getTiposIngestaValidos();
+        for (String tipoValido : tiposValidos) {
+            if (tipoValido.equalsIgnoreCase(tipoIngesta)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

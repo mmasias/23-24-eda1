@@ -27,7 +27,7 @@ public class Encuesta {
     public void mostrarDias() {
         for (Map.Entry<Integer, Dias> entry : dias.entrySet()) {
             System.out.println("    Día " + entry.getKey() + ":");
-            entry.getValue().mostrarIngestas();
+            entry.getValue().mostrarIngestasEnOrden();
         }
     }
 }
