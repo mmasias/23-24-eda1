@@ -5,6 +5,13 @@ import java.util.Iterator;
 public class List<T> implements IDataStructure<T>, Iterable<T> {
     
     ListNode<T> first;
+    public T peek(){
+        if (first != null) {
+            return first.getData();
+        } else {
+            return null;
+        }
+    }
 
     public List<T> insert(T data, int index) {
         if (first == null && (index == 0 || index == -1)) {

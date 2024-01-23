@@ -1,4 +1,6 @@
-public class Food {
+import utils.TreeObject;
+
+public class Food implements TreeObject {
     private String name;
     private int calories;
     public Food(String name, int calories) {
@@ -8,6 +10,10 @@ public class Food {
     @Override
     public String toString() {
         return name;
+    }
+    @Override
+    public Object getDetails() {
+        return this.name + " " + this.calories + " kcal";
     }
     public int getCalories() {
         return calories;
@@ -24,4 +30,5 @@ public class Food {
         }
         this.calories = calories;
     }
+
 }

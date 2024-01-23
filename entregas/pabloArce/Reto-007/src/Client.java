@@ -26,16 +26,4 @@ public class Client {
         }
         this.lastName = lastName;
     }
-    public void addSurvey(Survey survey) {
-        if (survey == null) {
-            throw new IllegalArgumentException("survey cannot be null");
-        }
-        surveyList.insert(survey, -1);
-    }
-
-    public void displaySurveys() {
-        /*TO DO*/
-    }
-
-
 }

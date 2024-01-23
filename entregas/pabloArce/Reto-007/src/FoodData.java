@@ -1,5 +1,7 @@
 import utils.List;
 
+import static utils.Shortcut.print;
+
 public class FoodData {
     private List<Food> foodList;
 
@@ -49,6 +51,18 @@ public class FoodData {
             System.out.println(index + 1 +". " + foodItem);
             index++;
         }
+        print("");
+    }
+
+    public Food getFoodByIndex(int index) {
+        int cont = 1;
+        for (Food food : foodList) {
+            if (cont == index) {
+                return food;
+            }
+            cont++;
+        }
+        return null;
     }
 
     public List<Food> exportFoodData() {

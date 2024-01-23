@@ -1,8 +1,9 @@
 package utils;
+    /*
+public class TreeBasic<T> implements IDataStructure<T>{
 
-public class Tree<T extends TreeObject> implements IDataStructure<T>{
     private TreeNode<T> root;
-    public Tree(T rootData) {
+    public TreeBasic(T rootData) {
         root = new TreeNode<T>();
         root.setData(rootData);
     }
@@ -24,14 +25,23 @@ public class Tree<T extends TreeObject> implements IDataStructure<T>{
         }
     }
 
-    private TreeNode<T> findNodeByData(TreeNode<T> currentNode, String d1) {
-        if (currentNode.getData().toString().equals(d1)) {
+    public void addChildByParentData(T data, T parentData) {
+        TreeNode<T> parentNode = findNodeByData(root, parentData);
+        if (parentNode != null) {
+            parentNode.addChild(data);
+        } else {
+            System.out.println("Error: No se encontró el nodo padre con los datos especificados.");
+        }
+    }
+
+    private TreeNode<T> findNodeByData(TreeNode<T> currentNode, T searchData) {
+        if (currentNode.getData().equals(searchData)) {
             return currentNode;
         }
 
         if (currentNode.getChildren() != null) {
             for (TreeNode<T> child : currentNode.getChildren()) {
-                TreeNode<T> foundNode = findNodeByData(child, d1);
+                TreeNode<T> foundNode = findNodeByData(child, searchData);
                 if (foundNode != null) {
                     return foundNode;
                 }
@@ -40,47 +50,6 @@ public class Tree<T extends TreeObject> implements IDataStructure<T>{
 
         return null;
     }
-
-    public void addChildByParentData(T data, String d1) {
-        TreeNode<T> parentNode = findNodeByData(root, d1);
-        if (parentNode != null) {
-            parentNode.addChild(data);
-        } else {
-            System.out.println("Error: No se encontró el nodo padre con los datos especificados.");
-        }
-    }
-
-    public void addFoodByParentsData(T data, String d1, String d2) {
-        TreeNode<T> parentNode = findNodeByData(root, d1);
-
-        if (parentNode != null) {
-            TreeNode<T> intakeNode = findNodeByData(parentNode, d2);
-
-            if (intakeNode != null) {
-                intakeNode.addChild(data);
-            } else {
-                System.out.println("Error: No se encontró el nodo Intake con los datos especificados.");
-            }
-        } else {
-            System.out.println("Error: No se encontró el nodo Day con los datos especificados.");
-        }
-    }
-
-    public TreeNode<T> getTreeNodeByData(String d1) {
-        TreeNode<T> parentNode = findNodeByData(root, d1);
-        return parentNode;
-    }
-    public TreeNode<T> getTreeNodeByTwoData(String d1, String d2) {
-        TreeNode<T> parentNode = findNodeByData(root, d1);
-
-        if (parentNode != null) {
-            return findNodeByData(parentNode, d2);
-        } else {
-            System.out.println("Error: No se encontró el nodo Day con los datos especificados.");
-            return null;
-        }
-    }
-
 
     public void addChildToTreeNode(T data, TreeNode<T> parent){
         parent.addChild(data);
@@ -104,7 +73,7 @@ public class Tree<T extends TreeObject> implements IDataStructure<T>{
                     System.out.print(" ".repeat(4));
                 }
             }
-            System.out.println(node.getData().getDetails());
+            System.out.println(node.getData());
 
             if (node.getChildren() != null) {
                 for (TreeNode<T> child : node.getChildren()) {
@@ -129,7 +98,7 @@ public class Tree<T extends TreeObject> implements IDataStructure<T>{
             for (int i = 0; i < depth; i++) {
                 System.out.print("  ");
             }
-            System.out.println(node.getData().getDetails());
+            System.out.println(node.getData());
         }
     }
 
@@ -147,4 +116,6 @@ public class Tree<T extends TreeObject> implements IDataStructure<T>{
     public Object[] listData() {
         return new Object[0];
     }
-}
+}    */
+
+

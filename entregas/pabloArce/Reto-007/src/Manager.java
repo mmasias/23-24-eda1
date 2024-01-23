@@ -1,19 +1,23 @@
 
+import utils.List;
 import utils.Tree;
+import utils.TreeNode;
+import utils.TreeObject;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static utils.Shortcut.print;
 public class Manager {
-    static private Tree<Object> tree;
+    static private Tree<TreeObject> tree;
     public static void main (String[] args){
         Client client = init();
-        tree = new Tree<Object>("Dieta de "+ client.getName() + " " + client.getLastName());
+        tree = new Tree<TreeObject>(new Survey("Dieta de "+ client.getName() + " " + client.getLastName()));
         FoodData foodData = new FoodData();
         welcome();
         initTree();
         while (true){
-            int option = mainMenuDisplay(client.getName(), client.getLastName());
+            int option = mainMenuDisplay();
             switch (option){
                 case 1:
                     tree.printTree(true);
@@ -45,45 +49,62 @@ public class Manager {
         lastName = input.nextLine();
         return new Client(name, lastName);
     }
-    static void welcome(){
-        print("# ".repeat(20));
-        print("# Bienvenido!!!!!");
-        print("# Puedes seleccionar las opciones con los numeros");
-        print("# ".repeat(20)+"\n");
+    static void welcome() {
+        System.out.println("# # # # # # # # # # # # # # # # # #");
+        System.out.println("#            Bienvenido           #");
+        System.out.println("# Puedes seleccionar opciones con #");
+        System.out.println("#            los números          #");
+        System.out.println("# # # # # # # # # # # # # # # # # #");
     }
-    static int mainMenuDisplay(String name, String surname) {
+    static int mainMenuDisplay() {
         Scanner input = new Scanner(System.in);
-        print("\n"+"# ".repeat(14));
-        print("# Elige una opción: ");
-        print("# 1. Ver dieta");
-        print("# 2. Añadir comida");
-        print("# 3. Añadir alimento");
-        print("# 4. Añadir alimento (manual)");
-        print("# 5. Salir");
-        print("# ".repeat(14)+"\n");
+        System.out.println("\n" + "# ".repeat(17));
+        System.out.println("# Elige una opción:             #");
+        System.out.println("# 1. Ver dieta                  #");
+        System.out.println("# 2. Añadir comida              #");
+        System.out.println("# 3. Añadir alimento            #");
+        System.out.println("# 4. Añadir alimento (manual)   #");
+        System.out.println("# 5. Salir                      #");
+        System.out.println("# ".repeat(17) + "\n");
 
-        int option = input.nextInt();
-        input.nextLine();
-
-        return option;
+        try {
+            int option = input.nextInt();
+            input.nextLine();
+            return option;
+        } catch (InputMismatchException e) {
+            input.nextLine();
+            print("Error: Debes ingresar un número entero.");
+            return mainMenuDisplay();
+        }
     }
 
     static void initTree(){
         for (int i = 0; i < 5; i++) {
-            tree.addChildByParentIndex("Dia " + (i + 1), 0);
+            tree.addChildByParentIndex(new Day(String.valueOf(i+1)), 0);
         }
     }
     static void addIntake(){
+        if (tree.getRoot().getChildren().peek().childrenSize() >= 5) {
+            print("No puedes añadir más comidas");
+            return;
+        }
         Scanner input = new Scanner(System.in);
         System.out.print("Nombre de la comida: ");
         String name = input.nextLine();
         System.out.print("Hora abitual: ");
         String time = input.nextLine();
-        Intake newIntake = new Intake(name, time);
-        tree.addChildByParentIndex(newIntake, 1);
+        for(int i = 1; i <= 5; i++){
+            Intake newIntake = new Intake(name, time);
+            tree.addChildByParentData(newIntake, String.valueOf(i));
+        }
     }
     static void addFood(FoodData foodData){
+        Scanner input = new Scanner(System.in);
         foodData.listFood();
+        System.out.print("Introduce el indice: ");
+        int index = input.nextInt();
+        Food foodToAdd = foodData.getFoodByIndex(index);
+        askDayAndIntake(foodToAdd);
     }
 
     static void addFoodManually(){
@@ -93,6 +114,42 @@ public class Manager {
         System.out.print("Calorias (aprox): ");
         int calories = input.nextInt();
         Food newFood = new Food(name, calories);
-        tree.addChildByParentIndex(newFood, 2);
+        askDayAndIntake(newFood);
+    }
+
+    static void askDayAndIntake(Food foodData){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Introduce el dia: ");
+        String day = input.nextLine();
+        System.out.print("Introduce la comida: ");
+        String intake = input.nextLine();
+        tree.addFoodByParentsData(foodData, day, intake);
+        updateCalories(day, intake);
+    }
+
+    static void updateCalories(String day, String intake) {
+        TreeNode node = tree.getTreeNodeByTwoData(day, intake);
+        if (node == null) {
+            return;
+        }
+        Intake intake1 = (Intake) node.getData();
+        int cont = 0;
+        for (TreeNode childNode : (List<TreeNode>) node.getChildren()) {
+            Food food = (Food) childNode.getData();
+            cont += food.getCalories();
+        }
+        intake1.setTotalCalories(cont);
+
+        node = tree.getTreeNodeByData(day);
+        if (node == null) {
+            return;
+        }
+        Day day1 = (Day) node.getData();
+        cont = 0;
+        for (TreeNode childNode : (List<TreeNode>) node.getChildren()) {
+            Intake intake2 = (Intake) childNode.getData();
+            cont += intake2.getTotalCalories() ;
+        }
+        day1.setTotalCalories(cont);
     }
 }

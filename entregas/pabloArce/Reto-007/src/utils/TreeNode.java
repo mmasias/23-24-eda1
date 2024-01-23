@@ -1,6 +1,6 @@
 package utils;
 
-public class TreeNode<T> {
+public class TreeNode<T extends TreeObject> {
     private ListNode<T> parent;
     private List<TreeNode<T>> children;
 
@@ -29,5 +29,8 @@ public class TreeNode<T> {
     }
     public List<TreeNode<T>> getChildren(){
         return this.children;
+    }
+    public int childrenSize(){
+        return this.children.size();
     }
 }
