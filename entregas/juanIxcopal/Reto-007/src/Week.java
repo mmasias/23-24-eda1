@@ -1,5 +1,5 @@
 public class Week {
-    private DaysNode first = null;
+    private DayNode first = null;
 
     private int size = 0;
 
@@ -8,11 +8,11 @@ public class Week {
     }
 
     public void insertDay(String value) {
-        DaysNode newNode = new DaysNode(value);
+        DayNode newNode = new DayNode(value);
         if (this.first == null) {
             this.first = newNode ;
         } else {
-            DaysNode iterator = this.first;
+            DayNode iterator = this.first;
             while (iterator.getNextDay() != null) {
                 iterator = iterator.getNextDay();
             }
@@ -21,9 +21,57 @@ public class Week {
         this.size ++;
     }
 
+    public void addMealToDay(String day, String mealName){
+        DayNode iterator = first;
+        while (iterator != null) {
+            if (iterator.getDay().equalsIgnoreCase(day)) {
+                iterator.addMeal(mealName);
+                return;
+            }
+            iterator = iterator.getNextDay();
+        }
+        System.out.println("Day not found: " + day);
+    }
+
+    public void listWeek() {
+        DayNode iterator = first;
+        while (iterator != null) {
+            System.out.println(iterator.getDay());
+            iterator.getFoodRegimen().listFoodRegimen();
+            iterator = iterator.getNextDay();
+        }
+    }
+
+
+    public DayNode getDayNode(String day) {
+        DayNode iterator = first;
+        while (iterator != null) {
+            if (iterator.getDay().equalsIgnoreCase(day)) {
+                return iterator;
+            }
+            iterator = iterator.getNextDay();
+        }
+        System.out.println("Día no encontrado: " + day);
+        return null;
+    }
+
+
+
+    public ListFoodRegimen getFoodRegimenForDay(String day) {
+        DayNode iterator = first;
+        while (iterator != null) {
+            if (iterator.getDay().equalsIgnoreCase(day)) {
+                return iterator.getFoodRegimen();
+            }
+            iterator = iterator.getNextDay();
+        }
+        System.out.println("Day not found: " + day);
+        return null;
+    }
+
     public String[] listDays() {
         String[] list = new String[this.size()];
-        DaysNode iterator = this.first;
+        DayNode iterator = this.first;
         int count = 0;
         while (iterator != null) {
             list[count] = iterator.getDay();

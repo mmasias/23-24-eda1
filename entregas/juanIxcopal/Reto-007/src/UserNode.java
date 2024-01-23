@@ -5,10 +5,12 @@ public class UserNode {
     private String name;
     private LocalDate dischargeDate;
     private UserNode next;
+    private Week week;
 
     public UserNode(String value){
         this.setValueUser(value);
         this.setDischargeDate(LocalDate.now());
+        this.week = new Week();
     }
 
     public String getName(){
@@ -22,6 +24,10 @@ public class UserNode {
 
     public UserNode getNextUser(){
         return next;
+    }
+
+    public Week getWeek() {
+        return week;
     }
 
     public void setValueUser(String newValue) {

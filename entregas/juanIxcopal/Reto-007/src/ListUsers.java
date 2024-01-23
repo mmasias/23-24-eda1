@@ -33,4 +33,15 @@ public class ListUsers {
         }
         return list;
     }
+
+    public UserNode getUserNode(String userName) {
+        UserNode iterator = this.first;
+        while (iterator != null) {
+            if (iterator.getName().equalsIgnoreCase(userName)) {
+                return iterator;
+            }
+            iterator = iterator.getNextUser();
+        }
+        return null; // Retorna null si el usuario no se encuentra
+    }
 }

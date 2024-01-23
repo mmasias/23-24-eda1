@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class ListFoodRegimen {
     private FoodRegimenNode firstMeal = null;
 
@@ -29,16 +26,17 @@ public class ListFoodRegimen {
         System.out.println("Meal not found: " + mealName);
     }
 
-    public void listFoodRegimen() {
+    public String[] listFoodRegimen() {
         FoodRegimenNode iterator = firstMeal;
         while (iterator != null) {
-            System.out.print(iterator.getFoodRegimen() + " : ");
+            System.out.println("\t" + iterator.getFoodRegimen());
+            //System.out.println(iterator.getFoodRegimen() + ":");
             String[] foods = iterator.listFoods();
             for (String food : foods) {
-                System.out.print(food + ", ");
+                System.out.println("\t" + "\t" + food);
             }
-            System.out.println();
             iterator = iterator.getNextRegimenNode();
         }
+        return new String[0];
     }
 }
