@@ -1,15 +1,15 @@
-
 import java.util.Scanner;
 
 public class SpreadSheet {
     public static void main(String[] args) {
+
 
         Scanner entrada = new Scanner(System.in);
         char inputUsuario;
         boolean terminar = false;
 
 
-        String[][] unaMatriz = {
+        String[][]  = {
                 {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
                 {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
                 {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
