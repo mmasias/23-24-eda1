@@ -41,6 +41,20 @@ public class List<T extends DataProvider> {
   }
  }
 
+ public T get(int index) {
+  if (this.first != null) {
+   Node<T> iterator = this.first;
+   int count = 0;
+   while (count < index - 1) {
+    iterator = iterator.getNext();
+    count++;
+   }
+   return iterator.getData();
+  } else {
+   return null;
+  }
+ }
+
  public void printAll() {
   if (this.first != null) {
    Node<T> iterator = this.first;
