@@ -32,6 +32,9 @@ public class Manager {
                     addFoodManually();
                     break;
                 case 5:
+                    deleteFood();
+                    break;
+                case 6:
                     print("Hasta luego " + client.getName() + " " + client.getLastName());
                     return;
                 default:
@@ -64,7 +67,8 @@ public class Manager {
         System.out.println("# 2. Añadir comida              #");
         System.out.println("# 3. Añadir alimento            #");
         System.out.println("# 4. Añadir alimento (manual)   #");
-        System.out.println("# 5. Salir                      #");
+        System.out.println("# 5. Borrar alimento            #");
+        System.out.println("# 6. Salir                      #");
         System.out.println("# ".repeat(17) + "\n");
 
         try {
@@ -124,6 +128,18 @@ public class Manager {
         System.out.print("Introduce la comida: ");
         String intake = input.nextLine();
         tree.addFoodByParentsData(foodData, day, intake);
+        updateCalories(day, intake);
+    }
+
+    static void deleteFood(){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Introduce el dia: ");
+        String day = input.nextLine();
+        System.out.print("Introduce la comida: ");
+        String intake = input.nextLine();
+        System.out.print("Introduce el alimento: ");
+        String food = input.nextLine();
+        tree.deleteFoodByData(day, intake, food);
         updateCalories(day, intake);
     }
 

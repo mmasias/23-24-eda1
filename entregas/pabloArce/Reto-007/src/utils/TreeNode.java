@@ -18,6 +18,22 @@ public class TreeNode<T extends TreeObject> {
     public void setChildren(List<TreeNode<T>> children) {
         this.children = children;
     }
+    public void deleteChildren(){
+        this.children = new List<TreeNode<T>>();
+    }
+    public void deleteChildByIndex(int index){
+        this.children.remove(index);
+    }
+    public void deleteChild(T data){
+        int cont = 0;
+        for (TreeNode node : this.children) {
+            if (node.getData().equals(data)) {
+                this.children.remove(cont);
+                break;
+            }
+            cont++;
+        }
+    }
     public void addChild(T data){
         ListNode<T> newParent = new ListNode<T>(data);
         TreeNode<T> newChild = new TreeNode<T>(newParent);

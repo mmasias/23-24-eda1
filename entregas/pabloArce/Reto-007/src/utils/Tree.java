@@ -66,6 +66,27 @@ public class Tree<T extends TreeObject> implements IDataStructure<T>{
         }
     }
 
+    public void deleteFoodByData(String d1, String d2, String food) {
+        TreeNode<T> parentNode = findNodeByData(root, d1);
+
+        if (parentNode != null) {
+            TreeNode<T> intakeNode = findNodeByData(parentNode, d2);
+
+            if (intakeNode != null) {
+                TreeNode<T> foodNode = findNodeByData(intakeNode, food);
+                if (foodNode != null) {
+                    intakeNode.deleteChild(foodNode.getData());
+                } else {
+                    System.out.println("Error: No se encontró el nodo Food con los datos especificados.");
+                }
+            } else {
+                System.out.println("Error: No se encontró el nodo Intake con los datos especificados.");
+            }
+        } else {
+            System.out.println("Error: No se encontró el nodo Day con los datos especificados.");
+        }
+    }
+
     public TreeNode<T> getTreeNodeByData(String d1) {
         TreeNode<T> parentNode = findNodeByData(root, d1);
         return parentNode;
@@ -80,7 +101,6 @@ public class Tree<T extends TreeObject> implements IDataStructure<T>{
             return null;
         }
     }
-
 
     public void addChildToTreeNode(T data, TreeNode<T> parent){
         parent.addChild(data);
