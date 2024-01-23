@@ -10,6 +10,7 @@ public class TreeManage<T extends Data> {
             return;
         }
         outputSequentially(node.getLeft());
+        System.out.println("+------------------------+");
         node.getData().printData();
         outputSequentially(node.getRight());
     }
@@ -35,21 +36,38 @@ public class TreeManage<T extends Data> {
     }
 
     public boolean iterateOwn (Node<T> source, Node<T> node) {
-        if (source != null) {
-            return true;
+        if (source == null) {
+            return false;
         }
 
-        if (source.getCount() != node.getCount()) {
-            return false;
+        if (source.getCount() == node.getCount()) {
+            return true;
         }
 
         boolean nodeLeft = iterateOwn(source.getLeft(), node);
         boolean nodeRight = iterateOwn(source.getRight(), node);
 
-        return nodeRight || nodeLeft;
+        return nodeLeft || nodeRight;
     }
 
     public boolean own(Node<T> node) {
         return iterateOwn(this.source, node);
+    }
+
+    public void add(Node<T> newNode) {
+        this.source = iteratorAdd(this.source, newNode);
+    }
+
+    public Node<T> iteratorAdd (Node<T> currentNode, Node<T> incomingNode) {
+        if (currentNode == null) {
+            currentNode = incomingNode;
+            return currentNode;
+        }
+        if (incomingNode.getCount() < currentNode.getCount()) {
+            currentNode.setLeft(iteratorAdd(currentNode.getLeft(), incomingNode));
+        } else if (incomingNode.getCount() > currentNode.getCount()) {
+            currentNode.setRight(iteratorAdd(currentNode.getRight(), incomingNode));
+        }
+        return currentNode;
     }
 }

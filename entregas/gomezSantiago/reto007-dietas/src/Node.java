@@ -5,6 +5,13 @@ public class Node<T extends Data> {
     private Node<T> left;
     private Node<T> right;
 
+    public Node(T data) {
+        this.data = data;
+        this.next = null;
+        this.left = null;
+        this.right = null;
+    }
+
     public Node(T data, int count) {
         this.data = data;
         this.count = count;
