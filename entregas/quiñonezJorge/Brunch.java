@@ -3,16 +3,20 @@ import java.util.Scanner;
 public class Brunch implements DataProvider {
 
   private String name;
-  private List<Food> food = null;
-  private boolean open = false;
+  private List<Food> food;
+  private boolean isOpen = false;
 
   public Brunch(String name) {
     this.name = name;
     this.food = new List<Food>();
   }
 
-  public void open() {
-    this.open = true;
+  public String getName() {
+    return name;
+  }
+
+  public void start() {
+    this.open();
     int input;
     do {
       this.printMenu();
@@ -21,12 +25,16 @@ public class Brunch implements DataProvider {
     } while (input != 0);
   }
 
-  private void close() {
-    this.open = false;
+  public void open() {
+    this.isOpen = true;
+  }
+
+  public void close() {
+    this.isOpen = false;
   }
 
   private void printMenu() {
-    if (this.open) {
+    if (this.isOpen) {
       this.clearTerminal();
       System.out.println(this.name);
       this.printOptions();
@@ -42,9 +50,11 @@ public class Brunch implements DataProvider {
     System.out.println("--------------------");
     System.out.println("Menu:");
     System.out.println("1. Add food");
-    System.out.println("2. Show food");
+    System.out.println("2. Open food");
+    System.out.println("3. Show food");
     System.out.println("0. Return");
     System.out.println("--------------------");
+    System.out.println();
     System.out.print("Select an option: ");
   }
 
@@ -54,7 +64,12 @@ public class Brunch implements DataProvider {
         this.addFood();
         break;
       case 2:
+        this.openFood();
+        break;
+      case 3:
+        this.clearTerminal();
         this.showFood();
+        new Scanner(System.in).nextLine();
         break;
       case 0:
         this.close();
@@ -78,9 +93,23 @@ public class Brunch implements DataProvider {
     } while (!input.equals("0"));
   }
 
+  private void openFood() {
+    if (!this.food.isEmpty()) {
+      this.printList();
+      System.out.print("Select the food with a number starting from 1: ");
+      int input = new Scanner(System.in).nextInt();
+      if (input > 0 && input <= this.food.getSize()) {
+        Food selected = this.food.get(input);
+        this.close();
+        selected.start();
+        this.open();
+      }
+    }
+  }
+
   private void showFood() {
+    System.out.println("            " + this.getName());
     this.printList();
-    new Scanner(System.in).nextLine();
   }
 
   private void printList() {
@@ -96,7 +125,6 @@ public class Brunch implements DataProvider {
 
   @Override
   public void printData() {
-    System.out.println("            " + this.name);
-    this.printList();
+    this.showFood();
   }
 }

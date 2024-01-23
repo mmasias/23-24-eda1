@@ -2,15 +2,23 @@ import java.util.Scanner;
 
 public class World {
 
-  private boolean mainMenu = true;
-  private Client client = null;
+  private boolean isOpen = true;
+  private Client client;
 
   public static void main(String[] args) {
     World world = new World();
-    world.Start();
+    world.start();
   }
 
-  private void Start() {
+  public void open() {
+    this.isOpen = true;
+  }
+
+  public void close() {
+    this.isOpen = false;
+  }
+
+  private void start() {
     int input;
 
     do {
@@ -21,7 +29,7 @@ public class World {
   }
 
   private void printMenu() {
-    if (this.mainMenu) {
+    if (this.isOpen) {
       this.clearTerminal();
       this.printWelcome();
       this.printOptions();
@@ -93,10 +101,24 @@ public class World {
       System.out.println("Can't create a survey without registering first");
       new Scanner(System.in).nextLine();
     } else {
-      this.mainMenu = false;
-      this.client.createSurvey();
-      this.client.openSurvey();
-      this.mainMenu = true;
+      if (this.client.getSurvey() != null) {
+        System.out.println();
+        System.out.println("Are you sure you want to create a new survey? (y/n)");
+        String input = new Scanner(System.in).nextLine();
+        if (input.equals("y")) {
+          this.close();
+          this.client.createSurvey();
+          this.client.openSurvey();
+          this.open();
+        } else {
+          return;
+        }
+      } else {
+        this.close();
+        this.client.createSurvey();
+        this.client.openSurvey();
+        this.open();
+      }
     }
   }
 
@@ -110,19 +132,20 @@ public class World {
         System.out.println("Can't open a survey without creating one first");
         new Scanner(System.in).nextLine();
       } else {
-        this.mainMenu = false;
+        this.close();
         this.client.openSurvey();
-        this.mainMenu = true;
+        this.open();
       }
     }
   }
 
   private void showResults() {
     if (this.existingClient() && this.client.getSurvey() != null) {
-      this.mainMenu = false;
+      this.close();
       this.clearTerminal();
+      System.out.println("Client: " + this.client.getName());
       this.client.showSurvey();
-      this.mainMenu = true;
+      this.open();
     } else {
       System.out.println();
       System.out.println("Can't show results without creating a survey first");

@@ -12,5 +12,6 @@ public class Nutrient implements DataProvider {
 
  @Override
  public void printData() {
+  System.out.println("                        " + this.getName());
  }
 }

@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Day implements DataProvider {
 
   private String name;
-  private Tree<Brunch> brunches = null;
-  private boolean open = false;
+  private Tree<Brunch> brunches;
+  private boolean isOpen = false;
 
   public Day(String name) {
     this.name = name;
@@ -15,12 +15,8 @@ public class Day implements DataProvider {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void open() {
-    this.open = true;
+  public void start() {
+    this.open();
     int input;
     do {
       this.printMenu();
@@ -29,12 +25,16 @@ public class Day implements DataProvider {
     } while (input != 0);
   }
 
+  public void open() {
+    this.isOpen = true;
+  }
+
   public void close() {
-    this.open = false;
+    this.isOpen = false;
   }
 
   private void printMenu() {
-    if (this.open) {
+    if (this.isOpen) {
       this.clearTerminal();
       System.out.println(this.name);
       this.printOptions();
@@ -58,6 +58,7 @@ public class Day implements DataProvider {
     System.out.println("7. Show brunches");
     System.out.println("0. Return");
     System.out.println("--------------------");
+    System.out.println();
     System.out.print("Choose an option: ");
   }
 
@@ -85,6 +86,7 @@ public class Day implements DataProvider {
       case 7:
         this.clearTerminal();
         this.showBrunches();
+        new Scanner(System.in).nextLine();
         break;
       case 0:
         this.close();
@@ -110,14 +112,14 @@ public class Day implements DataProvider {
 
   private void openBrunch(int index) {
     Brunch brunch = this.brunches.get(index);
-    this.open = false;
-    brunch.open();
-    this.open = true;
+    this.close();
+    brunch.start();
+    this.open();
   }
 
-  public void showBrunches() {
+  private void showBrunches() {
+    System.out.println("        " + this.name);
     this.brunches.printInOrder(this.brunches.getRoot());
-    new Scanner(System.in).nextLine();
   }
 
   private void invalidOption() {
@@ -127,7 +129,6 @@ public class Day implements DataProvider {
 
   @Override
   public void printData() {
-    System.out.println("        " + this.name);
-    this.brunches.printInOrder(this.brunches.getRoot());
+    this.showBrunches();
   }
 }

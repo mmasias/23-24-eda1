@@ -20,11 +20,11 @@ public class Client {
  }
 
  public void openSurvey() {
-  this.survey.open();
+  this.survey.start();
  }
 
  public void showSurvey() {
-  System.out.println("Client: " + this.name);
+  System.out.println("    Survey ");
   this.survey.showDays();
  }
 }

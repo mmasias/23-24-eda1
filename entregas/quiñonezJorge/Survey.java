@@ -2,29 +2,33 @@ import java.util.Scanner;
 
 public class Survey {
 
-  private boolean open = false;
-  private Tree<Day> week = null;
+  private boolean isOpen = false;
+  private Tree<Day> week;
 
   public Survey() {
     this.week = new Tree<Day>();
   }
 
-  public void open() {
-    this.open = true;
+  public void start() {
+    this.open();
     int input;
     do {
-      this.print();
+      this.printInterface();
       input = new Scanner(System.in).nextInt();
       this.manageInput(input);
     } while (input != 0);
   }
 
-  public void close() {
-    this.open = false;
+  public void open() {
+    this.isOpen = true;
   }
 
-  private void print() {
-    if (this.open) {
+  public void close() {
+    this.isOpen = false;
+  }
+
+  private void printInterface() {
+    if (this.isOpen) {
       this.clearTerminal();
       this.printInstructions();
       this.printMenu();
@@ -58,6 +62,7 @@ public class Survey {
     System.out.println("6. Show days");
     System.out.println("0. Return");
     System.out.println("--------------------");
+    System.out.println();
     System.out.print("Select an option: ");
   }
 
@@ -107,13 +112,12 @@ public class Survey {
 
   private void openDay(int index) {
     Day day = this.week.get(index);
-    this.open = false;
-    day.open();
-    this.open = true;
+    this.close();
+    day.start();
+    this.open();
   }
 
   public void showDays() {
-    System.out.println("    Survey ");
     this.week.printInOrder(this.week.getRoot());
     new Scanner(System.in).nextLine();
   }
