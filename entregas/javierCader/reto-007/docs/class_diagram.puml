@@ -1,0 +1,57 @@
+@startuml Class_Diagram
+
+' Definición de las clases
+class Paciente {
+    - nombre: String
+    - fechaAlta: Date
+    - encuestas: List<Encuesta>
+}
+
+class Encuesta {
+    - fechaToma: Date
+    - dias: List<Dia>
+}
+
+class Dia {
+    - numero: Int
+    - ingestas: List<Ingesta>
+}
+
+class Ingesta {
+    - tipo: String
+    - alimentos: List<Alimento>
+}
+
+class Alimento {
+    - nombre: String
+}
+
+class Arbol {
+    - root: Nodo
+    + add_node(parent: Nodo, node: Nodo): void
+    + remove_node(parent: Nodo, node: Nodo): void
+    + is_empty(): bool
+    + find(data: Any): Nodo
+    + count_nodes(): int
+    + dfs(node: Nodo, visited: Set<Nodo>): void
+    + bfs(): void
+    + display_tree(): void
+}
+
+class Nodo {
+    - data: Any
+    - children: List<Nodo>
+    + add_child(node: Nodo): void
+    + remove_child(node: Nodo): void
+}
+
+' Relaciones entre las clases
+Paciente "1" -- "0..*" Encuesta
+Encuesta "1" -- "1..5" Dia
+Dia "1" -- "0..*" Ingesta
+Ingesta "1" -- "0..*" Alimento
+
+' Relaciones con la estructura de árbol
+Arbol o-- Nodo
+
+@enduml
