@@ -1,6 +1,6 @@
 public class Main {
-    public static void main(String[] args) {
-        SistemaEncuestas sistemaEncuestas = new SistemaEncuestas();
-        sistemaEncuestas.ejecutar();
-    }
+  public static void main(String[] args) {
+      SurveySystem surveySystem = new SurveySystem();
+      surveySystem.execute();
+  }
 }
