@@ -127,29 +127,29 @@ public class Manager {
         updateCalories(day, intake);
     }
 
-    static void updateCalories(String day, String intake) {
-        TreeNode node = tree.getTreeNodeByTwoData(day, intake);
+    static void updateCalories(String dayD, String intakeD) {
+        TreeNode node = tree.getTreeNodeByTwoData(dayD, intakeD);
         if (node == null) {
             return;
         }
-        Intake intake1 = (Intake) node.getData();
-        int cont = 0;
+        Intake intake = (Intake) node.getData();
+        int caloriesSum = 0;
         for (TreeNode childNode : (List<TreeNode>) node.getChildren()) {
             Food food = (Food) childNode.getData();
-            cont += food.getCalories();
+            caloriesSum += food.getCalories();
         }
-        intake1.setTotalCalories(cont);
+        intake.setTotalCalories(caloriesSum);
 
-        node = tree.getTreeNodeByData(day);
+        node = tree.getTreeNodeByData(dayD);
         if (node == null) {
             return;
         }
-        Day day1 = (Day) node.getData();
-        cont = 0;
+        Day day = (Day) node.getData();
+        caloriesSum = 0;
         for (TreeNode childNode : (List<TreeNode>) node.getChildren()) {
-            Intake intake2 = (Intake) childNode.getData();
-            cont += intake2.getTotalCalories() ;
+            intake = (Intake) childNode.getData();
+            caloriesSum += intake.getTotalCalories() ;
         }
-        day1.setTotalCalories(cont);
+        day.setTotalCalories(caloriesSum);
     }
 }
