@@ -1,15 +1,17 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Gestion {
 
     private Scanner escaner;
-    private Arbol<DatosArbol> arbol;
+    private List<DatosLista> datos;
     private DateTimeFormatter formato;
 
     public Gestion() {
-        this.arbol = new Arbol<DatosArbol>(null);
+        this.datos = new ArrayList<>();
         this.escaner = new Scanner(System.in);
         this.formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
@@ -26,15 +28,13 @@ public class Gestion {
                 ok = true;
                 fecha = LocalDate.parse(escaner.nextLine(), formato);
             } catch (Exception e) {
-                System.out.println("Fecha incorrecta, escriba una valida");
+                System.out.println("Fecha incorrecta, escriba una válida");
                 ok = false;
             }
         } while (!ok);
 
         Paciente p = new Paciente(fecha, nombre);
-
-        NodoArbol<DatosArbol> Nodopaciente = new NodoArbol<>(p);
-        arbol.setRaiz(Nodopaciente);
+        datos.add(p);
     }
 
     public void insertarEncuesta() {
@@ -46,20 +46,20 @@ public class Gestion {
                 ok = true;
                 fecha = LocalDate.parse(escaner.nextLine(), formato);
             } catch (Exception e) {
-                System.out.println("Fecha incorrecta, escriba una valida");
+                System.out.println("Fecha incorrecta, escriba una válida");
                 ok = false;
             }
         } while (!ok);
 
         Encuesta e = new Encuesta(fecha);
-        arbol.getRaiz().insertarHijos(new NodoArbol<>(e));
+        datos.add(e);
     }
 
     public void insertarDias() {
-        NodoArbol<DatosArbol> nodoEncuesta = arbol.getRaiz().getHijos().getObjeto(0);
+        Encuesta encuesta = (Encuesta) datos.get(datos.size() - 1);
         for (int i = 1; i <= 5; i++) {
             Dia d = new Dia(i);
-            nodoEncuesta.insertarHijos(new NodoArbol<DatosArbol>(d));
+            encuesta.insertarDia(d);
         }
     }
 
@@ -71,72 +71,67 @@ public class Gestion {
 
         do {
             do {
-                System.out.println("Seleccione dia (1-5) (0) para salir: ");
+                System.out.println("Seleccione día (1-5) (0) para salir: ");
                 try {
                     dia = escaner.nextInt();
                 } catch (NumberFormatException e) {
                     dia = -1;
-                    System.out.println("Ese numero de dia no existe");
+                    System.out.println("Ese número de día no existe");
                     ok = false;
                 }
 
-            } while (dia < 0 || dia > arbol.getRaiz().getHijos().getObjeto(0).getHijos().size());
+            } while (dia < 0 || dia > 5);
             if (dia == 0) {
                 break;
             }
-            NodoArbol<DatosArbol> nodoDia = arbol.getRaiz().getHijos().getObjeto(0).getHijos().getObjeto(dia - 1);
+            
+            Encuesta encuesta = (Encuesta) datos.get(datos.size() - 1);
+            Dia diaSeleccionado = encuesta.obtenerDiaPorNumero(dia);
+
             int opcion = 0;
             do {
                 ok = true;
                 System.out.println(
-                        "Seleccione ingesta: 1-(Desayuno) / 2-Media Mañana / 3-Almuerzo /4-Merienda / 5-Cena/ -1 - (Menu Anterior)");
+                        "Seleccione ingesta: 1-(Desayuno) / 2-Media Mañana / 3-Almuerzo / 4-Merienda / 5-Cena / -1 - (Menu Anterior)");
                 try {
                     opcion = escaner.nextInt();
-
                 } catch (NumberFormatException e) {
-                    System.out.println("Inserte un numero no una letra");
+                    System.out.println("Inserte un número, no una letra");
                     ok = false;
                 }
                 switch (opcion) {
                     case 1:
                         ing = new Ingesta(Horario.DESAYUNO);
-
                         break;
                     case 2:
                         ing = new Ingesta(Horario.MEDIAMAÑANA);
-
                         break;
-
                     case 3:
                         ing = new Ingesta(Horario.ALMUERZO);
-
                         break;
                     case 4:
                         ing = new Ingesta(Horario.MERIENDA);
-
                         break;
                     case 5:
                         ing = new Ingesta(Horario.CENA);
-
                         break;
                     case -1:
                         break;
-
                     default:
-                        System.out.println("Opcion incorrecta, elige otra");
+                        System.out.println("Opción incorrecta, elige otra");
                         ok = false;
                         break;
                 }
             } while (!ok);
 
             do {
-                System.out.println("Inserte un alimento del " + ing.getHorario().getDescription() + " del dia " + dia
+                System.out.println("Inserte un alimento del " + ing.getHorario().getDescription() + " del día " + dia
                         + " (-1 para terminar / -2 para listar alimentos ingresados / -3 para vaciar)");
                 escaner = new Scanner(System.in);
                 opcion2 = escaner.nextLine();
                 if (opcion2.equals("-2")) {
                     System.out.println("Los alimentos ya ingresados son: " + ing.getInformacion());
-                }else if (opcion2.equals("-3")){
+                } else if (opcion2.equals("-3")) {
                     ing.vaciar();
                 } else if (!opcion2.equals("-1")) {
                     System.out.println("Introduzca la cantidad de gramos: ");
@@ -146,7 +141,7 @@ public class Gestion {
             } while (!opcion2.equals("-1"));
 
             if (ing != null) {
-                nodoDia.insertarHijos(new NodoArbol<DatosArbol>(ing));
+                diaSeleccionado.insertarIngesta(ing);
             }
 
         } while (true);
@@ -157,10 +152,17 @@ public class Gestion {
         insertarEncuesta();
         insertarDias();
         insertarIngestas();
-
     }
 
     public void mostrar() {
-        arbol.preOrden(arbol.getRaiz());
+        for (DatosLista dato : datos) {
+            System.out.println(dato.getInformacion());
+        }
+    }
+
+    public static void main(String[] args) {
+        Gestion gestion = new Gestion();
+        gestion.capturarDatos();
+        gestion.mostrar();
     }
 }

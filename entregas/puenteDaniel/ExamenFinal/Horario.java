@@ -1,3 +1,5 @@
+package entregas.puenteDaniel.ExamenFinal;
+
 public enum Horario {
 
     DESAYUNO (1, "Desayuno"),

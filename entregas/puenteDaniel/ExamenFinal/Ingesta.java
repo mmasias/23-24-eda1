@@ -1,10 +1,13 @@
-public class Ingesta implements Comparable<Ingesta>, DatosArbol{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ingesta implements DatosLista {
     private Horario horario;
-    private GenericList<Alimento> alimentos;
+    private List<Alimento> alimentos;
 
     public Ingesta(Horario horario) {
         this.horario = horario;
-        this.alimentos = new GenericList<Alimento>();
+        this.alimentos = new ArrayList<>();
     }
 
     public Horario getHorario() {
@@ -15,33 +18,45 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol{
         this.horario = horario;
     }
 
-    public GenericList<Alimento> getAlimentos() {
+    public List<Alimento> getAlimentos() {
         return alimentos;
     }
 
-    public void insertarAlimento(Alimento alimento){
-        this.alimentos.insertarEnOrden(alimento);
+    public void agregarAlimento(Alimento alimento) {
+        this.alimentos.add(alimento);
+    }
+
+    public void eliminarAlimento(Alimento alimento) {
+        this.alimentos.remove(alimento);
     }
 
     @Override
-    public int compareTo(Ingesta o){
-        if(this.horario.getCodigo()<o.horario.getCodigo()){
-            return 1;
-        }else if (this.horario.getCodigo()>o.horario.getCodigo()){
-            return -1;
-        }else{
-            return 0;
+    public String getInformacion() {
+        StringBuilder texto = new StringBuilder(horario.getDescription());
+        for (Alimento alimento : alimentos) {
+            texto.append(" ").append(alimento.toString());
         }
+        return texto.toString();
     }
 
-    public String getInformacion(){
-        String texto =horario.getDescription();
-        for (int i = 0; i < alimentos.size(); i++) {
-            texto+=alimentos.getObjeto(i).toString();
-        }
-        return texto;
+    public void vaciar() {
+        this.alimentos.clear();
     }
-    public void vaciar (){
-        this.alimentos.vaciar();
+
+    public static void main(String[] args) {
+        Ingesta ingesta = new Ingesta(Horario.DESAYUNO);
+        Alimento alimento1 = new Alimento("Cereal", 200);
+        Alimento alimento2 = new Alimento("Leche", 150);
+
+        ingesta.agregarAlimento(alimento1);
+        ingesta.agregarAlimento(alimento2);
+
+        System.out.println("Información de la ingesta:");
+        System.out.println(ingesta.getInformacion());
+
+        ingesta.eliminarAlimento(alimento1);
+
+        System.out.println("Información de la ingesta después de eliminar un alimento:");
+        System.out.println(ingesta.getInformacion());
     }
 }

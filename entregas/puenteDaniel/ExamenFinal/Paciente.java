@@ -1,3 +1,5 @@
+package entregas.puenteDaniel.ExamenFinal;
+
 import java.time.LocalDate;
 
 public class Paciente{
@@ -16,16 +18,6 @@ public class Paciente{
     public String getNombre() {
         return nombre;
     }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Paciente(String nombre, LocalDate fechaDeAlta) {
-        this.nombre = nombre;
-        this.fechaDeAlta = fechaDeAlta;
-    }
-
-    @Override
     public String getInformacion() {
         return "fecha de alta: "+fechaDeAlta+ "Nombre "+nombre;
     }

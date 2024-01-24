@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Alimento {
+public class ListaAlimentos {
     private List<Alimento> alimentos;
 
     public Alimento() {
