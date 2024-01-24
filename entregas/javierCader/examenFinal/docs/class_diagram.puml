@@ -1,6 +1,40 @@
 @startuml Examen_Final
 
-' Define classes
+' Define packages
+package "Models" {
+    together {
+        class Patient {
+            - discharge_date: String
+            - surveys: List<Survey>
+            + add_survey(survey: Survey): void
+        }
+
+        class Survey {
+            - days: List[Day]
+            + add_day(day: Day): void
+        }
+
+        class Day {
+            - intakes: List[Intake]
+            + add_intake(intake: Intake): void
+        }
+
+        class Intake {
+            - foods: List[Food]
+            + add_food(food: Food): void
+        }
+
+        class Food {
+        }
+    }
+
+    Patient --> Survey : contains >
+    Survey --> Day : contains >
+    Day --> Intake : contains >
+    Intake --> Food : contains >
+}
+
+' Define other classes
 class Clinic {
     - patient_tree: Tree
     - patient_factory: PatientFactory
@@ -22,7 +56,7 @@ class Tree {
 
 class Node {
     - data: Any
-    - children: List<Node>
+    - children: List<Node]
     + add_child(child: Node): void
     + remove_child(child: Node): void
 }
@@ -46,54 +80,14 @@ class View {
     + display_prompt(prompt: String): void
 }
 
-class Patient {
-    - discharge_date: String
-    - surveys: List<Survey>
-    + add_survey(survey: Survey): void
-}
-
-class Survey {
-    - days: List[Day]
-    + add_day(day: Day): void
-}
-
-class Day {
-    - intakes: List<Intake]
-    + add_intake(intake: Intake): void
-}
-
-class Intake {
-    - foods: List<Food]
-    + add_food(food: Food): void
-}
-
-class Food {
-}
-
 ' Define relationships
 Clinic --> Clinic_Controller : uses >
 Clinic --> PatientFactory : uses >
 Clinic --> Tree : contains >
 Clinic_Controller --> View : uses >
 Clinic_Controller --> Tree : interacts >
-Clinic_Controller ..> Patient : manipulates >
-Clinic_Controller ..> Survey : manipulates >
-Clinic_Controller ..> Day : manipulates >
-Clinic_Controller ..> Intake : manipulates >
-Clinic_Controller ..> Food : manipulates >
-View ..> Patient : displays >
-View ..> Survey : displays >
-View ..> Day : displays >
-View ..> Intake : displays >
-View ..> Food : displays >
-Patient -up-|> Node : extends >
-Survey -up-|> Node : extends >
-Day -up-|> Node : extends >
-Intake -up-|> Node : extends >
-Food -up-|> Node : extends >
-Patient --> Survey : contains >
-Survey --> Day : contains >
-Day --> Intake : contains >
-Intake --> Food : contains >
+Clinic_Controller ..> Models : manipulates >
+View ..> Models : displays >
+Models -up-> Node : extends >
 
 @enduml
