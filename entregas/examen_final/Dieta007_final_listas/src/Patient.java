@@ -1,15 +1,12 @@
 public class Patient {
-
     String name;
     CustomDate dischargeDate;
-
-    int day = (int) (Math.random()*30+1);
-    int month = (int) (Math.random()*12+1);
-    int year = 2023;
+    List<Day> days;
 
     public Patient(String name) {
         this.name = name;
-        dischargeDate = new CustomDate(day,month,year);
+        dischargeDate = new CustomDate((int) (Math.random()*30+1), (int) (Math.random()*12+1), 2023);
+        days = new List<>();
     }
 
     public String getName() {
@@ -28,12 +25,19 @@ public class Patient {
         this.dischargeDate = dischargeDate;
     }
 
-    void showData(){
-        System.out.println("Nombre paciente: "+name);
-        System.out.print("Fecha alta: ");
-        dischargeDate.showData();
+    public List<Day> getDays() {
+        return days;
+    }
 
+    public void setDays(List<Day> days) {
+        this.days = days;
+    }
+
+    void addDay(Day day) {
+        days.insert(day, -1);
     }
 
 
+    void showData() {
+    }
 }

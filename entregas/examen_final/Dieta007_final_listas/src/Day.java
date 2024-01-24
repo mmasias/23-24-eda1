@@ -1,18 +1,29 @@
 public class Day {
+    String name;
+    List<Intakes> intakes;
 
-    String[] name;
-
-    public Day() {
-        name = new String[]{"Dia 1", "Dia 2", "Dia 3", "Dia 4", "Dia 5"};
-
+    public Day(String name) {
+        this.name = name;
+        intakes = new List<>();
     }
-    
-    public String[] getName() {
+
+    public String getName() {
         return name;
     }
 
-    public void setName(String[] name) {
+    public void setName(String name) {
         this.name = name;
     }
 
+    public List<Intakes> getIntakes() {
+        return intakes;
+    }
+
+    public void setIntakes(List<Intakes> intakes) {
+        this.intakes = intakes;
+    }
+
+    void addIntake(Intakes intake) {
+        intakes.insert(intake, -1); 
+    }
 }

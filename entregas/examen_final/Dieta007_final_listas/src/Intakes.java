@@ -1,21 +1,19 @@
 public class Intakes {
 
-    //String intakeType geter seter y constructor recibiendo intake
-    String[] name;
-
+    String name;
     List<Food> foods;
 
-    public Intakes() {
-        name = new String[]{"Desayuno","Media mañana","Almuerzo","Merienda","Cena"};
-
+    public Intakes(String name) {
+        this.name = name;
         foods = new List<>();
     }
 
-    public String[] getName() {
+
+    public String getName() {
         return name;
     }
 
-    public void setName(String[] name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -27,14 +25,10 @@ public class Intakes {
         this.foods = foods;
     }
 
-    void addFood(Food foodx){
-        foods.insert(foodx,-1);
-
+    void addFood(Food food) {
+        foods.insert(food, -1);
     }
 
-    void newFood(){
-
-    }
 
     void showMenu(){
 
