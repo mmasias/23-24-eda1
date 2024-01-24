@@ -1,7 +1,7 @@
 @startuml
-class alimentos
+class alimento
 class cliente 
-class dias 
+class dia 
 class encuesta 
 class ingesta
 class ingestaTipo
@@ -12,8 +12,22 @@ class node
 class tree 
 
 class cliente{
-    +String cliente
-    +Encuesta encuesta
+    -cliente:String
+    -encuesta: Encuesta
+    +cliente(String)
+    +getnombre()
+}
+class alimento{
+    -nombre:String
+    +alimentos(String)
+    +getnombre()
+    }
+class dia{
+    -diaIndex:int
+    -ingestasTree:Tree<IngestaTipo>
+    +Dias(int)
+    
+
 }
 
 @enduml
