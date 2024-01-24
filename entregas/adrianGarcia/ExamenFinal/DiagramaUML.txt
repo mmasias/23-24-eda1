@@ -38,3 +38,86 @@
 | + getNumeroDia(): int |
 | + toString(): String |
 +--------------+
++------------------+
+|    Encuesta      |
++------------------+
+| - fechaEncuesta: LocalDate |
+| - horaEncuesta: LocalTime |
+| - dias: DatosArbol<Dia> |
++------------------+
+| + setHoraEncuesta(LocalTime): void |
+| + getFechaEncuesta(): LocalDate |
+| + getHoraEncuesta(): LocalTime |
+| + agregarDia(Dia): void |
+| + buscarDia(int): Dia |
+| + toString(): String |
++------------------+
++--------------+
+|   Evento     |
++--------------+
+| - hora: LocalTime |
+| - descripcion: String |
++--------------+
+| + getHora(): LocalTime |
+| + getDescripcion(): String |
+| + setHora(LocalTime): void |
+| + setDescripcion(String): void |
++--------------+
++-------------------+
+|  GenericList<T>   |
++-------------------+
+| - first: GenericNode<T> |
++-------------------+
+| + size(): int |
+| + isEmpty(): boolean |
+| + insertFront(T): void |
+| + insertEnd(T): void |
+| + deleteFront(): void |
+| + getFirst(): GenericNode<T> |
+| + listAll(Class<T>): T[] |
++-------------------+
++-------------------+
+|  GenericNode<T>   |
++-------------------+
+| - value: T |
+| - next: GenericNode<T> |
++-------------------+
+| + getValue(): T |
+| + setValue(T): void |
+| + getNext(): GenericNode<T> |
+| + setNext(GenericNode<T>): void |
++-------------------+
++----------------+
+|    Gestion     |
++----------------+
+| - pacientes: Arbol<Paciente> |
++----------------+
+| + iniciarInterfazUsuario(): void |
+| + buscarOCrearPaciente(Scanner): Paciente |
+| + buscarOCrearEncuesta(Paciente, LocalDate): Encuesta |
+| + buscarOCrearDia(Encuesta, int): Dia |
+| + manejarIngestas(Scanner, Dia): void |
+| ... (otros métodos privados) ...
++----------------+
++----------------+
+|    Horario     |
++----------------+
+| - eventos: Arbol<Evento> |
++----------------+
+| + agregarEvento(Evento): void |
+| + buscarEvento(LocalTime): Evento |
+| + recorrerEventos(Consumer<Evento>): void |
++----------------+
++----------------+
+|    Ingesta     |
++----------------+
+| - tipoComida: String |
+| - horario: LocalTime |
+| - alimentos: DatosArbol<Alimento> |
++----------------+
+| + agregarAlimento(Alimento): void |
+| + getTipoComida(): String |
+| + getHorario(): LocalTime |
+| + listarAlimentos(): String |
+| + toString(): String |
++----------------+
