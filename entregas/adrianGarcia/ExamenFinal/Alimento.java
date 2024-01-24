@@ -1,6 +1,6 @@
 public class Alimento {
     private String nombre;
-    private double cantidad; // Cantidad en gramos
+    private double cantidad;
 
     public Alimento(String nombre, double cantidad) {
         this.nombre = nombre;
@@ -13,5 +13,10 @@ public class Alimento {
 
     public double getCantidad() {
         return cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " - " + cantidad + " gramos";
     }
 }
