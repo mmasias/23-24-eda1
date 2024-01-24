@@ -10,16 +10,9 @@ public class List<T> {
     }
 
     public void add(T data) {
-        Node<T> newNode = new Node<>(data, size + 1);
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node<T> current = head;
-            while (current.getNext() != null) {
-                current = current.getNext();
-            }
-            current.setNext(newNode);
-        }
+        Node<T> newNode = new Node<>(data);
+        newNode.setNext(head);
+        head = newNode;
         size++;
     }
 
