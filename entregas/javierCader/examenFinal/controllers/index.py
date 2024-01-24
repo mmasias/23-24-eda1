@@ -1,10 +1,10 @@
 from models.index import Patient, Day, Intake, Food
 from views.index import View
-from structures.tree import Tree
+from structures.list import CustomList
 
 class Clinic_Controller:
-    def __init__(self, patient_tree: Tree, patient: Patient):
-        self.patient_tree = patient_tree
+    def __init__(self, patients: CustomList, patient: Patient):
+        self.patients = patients
         self.patient = patient
         self.is_running = True 
 
@@ -71,7 +71,6 @@ class Clinic_Controller:
             else:
                 food = Food(food_name)
                 intake.add_food(food)
-                self.patient_tree.add_node(intake, food)  # Add food as a child node to the intake
 
     def ask_for_food(self, intake: Intake):
         return input(f"{View.BOLD}Input a food for {intake.data} (-1 to exit / -2 to list the foods): {View.ENDC}")
