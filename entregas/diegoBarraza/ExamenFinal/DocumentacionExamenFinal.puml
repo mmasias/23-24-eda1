@@ -26,8 +26,97 @@ class dia{
     -diaIndex:int
     -ingestasTree:Tree<IngestaTipo>
     +Dias(int)
-    
+    +agregarAlimento(alimento,int,string):void
+    +toString():String
 
+}
+
+class encuesta{
+    -diasTree:Tree<Dias>
+    +Encuesta()
+    +agregarAlimento(alimento,int,string):void
+    +obtenerInfoDieta():void
+
+}
+class ingesta{
+    -alimento:List<alimentos>
+    +Ingesta()
+    +agregarAlimento(alimento):void
+    +mostrarAlimentos():void
+    +toString():String
+    +toStringIndented():String
+
+}
+class ingestaTipo{
+    -tipo:String 
+    -ingesta:ingestas
+    +IngestaTipo(String,Ingestas)
+    +getTipo():String
+    +getIngesta():Ingestas
+    +toString():String
+}
+class list{
+    -head: Node<T>
+    -size: int
+    +List()
+    +add(data: T): void
+    +isEmpty(): boolean
+    +get(index: int): T
+    +remove(index: int): void
+    +clear(): void
+    +contains(data: T): boolean
+    +getHead(): Node<T>
+    +size(): int
+    +toString(): String
+}
+class main{
+    +main(String[]):void
+}
+class menuInteractivo{
+    -scanner: Scanner
+    -cliente: Cliente
+    -encuesta: Encuesta
+    +MenuInteractivo(cliente: Cliente)
+    +mostrarMenuPrincipal(): void
+    +registrarNuevoCliente(): void
+    +crearNuevaEncuesta(): void
+    +abrirEncuestaExistente(): void
+    +mostrarResultados(): void
+    +imprimirMenu(): void
+    +obtenerOpcionValida(): int
+    +ingresarAlimentos(): void
+    +imprimirOpcionesIngesta(): void
+    +obtenerTipoIngesta(opcion: int): String
+    +obtenerNumeroValido(): int
+}
+class node{
+    -data: T
+    -index: int
+    -next:Node<T>
+    -left:Node<T>
+    -right:Node<T>
+    +Node(data: T, index: int)
+    +getIndex(): int
+    +getData(): T
+    +getLeft(): Node<T>
+    +setLeft(left: Node<T>): void
+    +getRight(): Node<T>
+    +setRight(right: Node<T>): void
+    +getNext(): Node<T>
+    +setNext(next: Node<T>): void
+}
+class tree{
+    -root: Node<T>
+    +Tree()
+    +getRoot(): Node<T>
+    +insert(newNode: Node<T>): void
+    +find(index: int): Node<T>
+    +printInOrder(): void
+    +printInOrder(sb: StringBuilder): void
+    +insertRecursive(current: Node<T>, newNode: Node<T>): void
+    +findRecursive(current: Node<T>, index: int): Node<T>
+    +printInOrderRecursive(node: Node<T>): void
+    +printInOrderRecursive(node: Node<T>, sb: StringBuilder): void
 }
 
 @enduml
