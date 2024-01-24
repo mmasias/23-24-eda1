@@ -146,8 +146,6 @@ enum Horario {
 
 class Gestion {
   - arbol: Arbol<DatosArbol>
-  - sc: Scanner
-  - formato: DateTimeFormatter
   + Gestion()
   + insertarPaciente(): void
   + insertarEncuesta(): void
@@ -167,6 +165,10 @@ Alimento --|> Comparable
 ValoresNutricionales --|> Comparable
 NodoArbol --|> Comparable
 Ingesta --|> Comparable
+Paciente --|> Dia
+Paciente --|> Encuesta
+Dia --|> Ingesta
+Ingesta --|> Alimento
 DatosArbol <|-- Alimento
 DatosArbol <|-- ValoresNutricionales
 DatosArbol <|-- Dia
@@ -179,7 +181,5 @@ Ingesta --> Horario
 GenericList --> GenericNode
 Paciente --> DatosArbol
 Gestion --> Arbol
-Gestion --> Scanner
-Gestion --> DateTimeFormatter
 
 @enduml
