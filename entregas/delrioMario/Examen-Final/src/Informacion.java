@@ -1,4 +1,4 @@
-public class Informacion {
+/*public class Informacion {
 
     public static ValoresNutricionales getDatos(String nombre) {
         GenericList<String> productos = new GenericList<>();
@@ -598,3 +598,4 @@ public class Informacion {
 
     }
 }
+*/

@@ -1,8 +1,9 @@
-import org.w3c.dom.Node;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NodoArbol<T extends DatosArbol> implements Comparable<NodoArbol<T>> {
     private T valor;
-    private GenericList<NodoArbol<T>> hijos;
+    private List<NodoArbol<T>> hijos;
 
     public T getValor() {
         return valor;
@@ -12,27 +13,33 @@ public class NodoArbol<T extends DatosArbol> implements Comparable<NodoArbol<T>>
         this.valor = valor;
     }
 
-    public GenericList<NodoArbol<T>> getHijos() {
+    public List<NodoArbol<T>> getHijos() {
         return hijos;
     }
 
-    public void setHijos(GenericList<NodoArbol<T>> hijos) {
+    public void setHijos(List<NodoArbol<T>> hijos) {
         this.hijos = hijos;
     }
 
     public NodoArbol(T valor) {
         this.valor = valor;
-        this.hijos = new GenericList<>();
+        this.hijos = new ArrayList<>();
     }
 
     public void insertarHijos(NodoArbol<T> hijo) {
-        hijos.insertEnd(hijo);
+        hijos.add(hijo);
     }
-
 
     @Override
     public int compareTo(NodoArbol<T> o) {
-        return 0;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
 
+    public void insertEnd(NodoArbol<T> hijo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insertEnd'");
+    }
+
+    
 }
