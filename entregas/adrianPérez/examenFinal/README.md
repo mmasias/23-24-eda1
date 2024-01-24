@@ -1,36 +1,5 @@
 ## Examen Final EDA
 
-TODO
+Entrega del examen final de Estructura de Datos y Algoritmos
 
-## PlantUML de Listas
-
-@startuml
-
-class Paciente {
-    - String nombre
-    - List<Encuesta> encuestas
-    + String getNombre()
-    + void agregarEncuesta(Encuesta)
-    + Encuesta obtenerEncuestaPorDia(int)
-}
-
-class Encuesta {
-    - int dia
-    - Map<Integer, Ingesta> ingestas
-    + int getDia()
-    + void agregarIngesta(Ingesta)
-    + Ingesta obtenerIngesta(int)
-}
-
-class Ingesta {
-    - int tipoIngesta
-    - List<String> alimentos
-    + int getTipoIngesta()
-    + void agregarAlimento(String)
-    + void listarAlimentos()
-}
-
-Paciente "1" -- "0..*" Encuesta
-Encuesta "1" -- "0..*" Ingesta
-
-@enduml
+Esta entrega contiene un diagrama PlantUML (Diagrama.puml), y el código fuente del Reto 07 usando arboles binarios en vez de listas.

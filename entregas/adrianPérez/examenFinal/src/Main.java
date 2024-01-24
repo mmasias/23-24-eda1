@@ -3,8 +3,10 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Paciente paciente = new Paciente("Jose Manuel R.");
 
+        System.out.println("Bienvenido al sistema de encuestas");
+        System.out.print("Ingrese nombre del paciente: ");
+        Paciente paciente = new Paciente(scanner.nextLine());
         System.out.println("Paciente: " + paciente.getNombre());
 
         while (true) {
