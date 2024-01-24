@@ -1,40 +1,51 @@
 public class Dias {
     private int diaIndex;
-    private Tree<IngestaTipo> ingestasTree;
+    private List<IngestaTipo> ingestasList;
 
     public Dias(int diaIndex) {
         this.diaIndex = diaIndex;
-        this.ingestasTree = new Tree<>();
+        this.ingestasList = new List<>();
         for (String tipoIngesta : getTiposIngestaValidos()) {
-            ingestasTree.insert(new Node<>(new IngestaTipo(tipoIngesta, new Ingestas()), tipoIngesta.hashCode()));
+            ingestasList.add(new IngestaTipo(tipoIngesta, new Ingestas()));
         }
     }
 
     public void agregarAlimento(Alimentos alimento, String tipoIngesta) {
-        Node<IngestaTipo> ingestaTipoNode = ingestasTree.find(tipoIngesta.hashCode());
-        if (ingestaTipoNode != null) {
-            ingestaTipoNode.getData().getIngestas().agregarAlimento(alimento);
+        IngestaTipo ingestaTipo = obtenerIngestaTipo(tipoIngesta);
+        if (ingestaTipo != null) {
+            ingestaTipo.getIngestas().agregarAlimento(alimento);
         } else {
             System.out.println("Error: Tipo de ingesta no válido.");
         }
     }
 
+    private IngestaTipo obtenerIngestaTipo(String tipoIngesta) {
+        for (IngestaTipo ingestaTipo : ingestasList.getArray()) {
+            if (ingestaTipo != null && ingestaTipo.getTipo().equals(tipoIngesta)) {
+                return ingestaTipo;
+            }
+        }
+        return null;
+    }
+
+    public int getDiaIndex() {
+        return diaIndex;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("\n");
         sb.append("Día ").append(diaIndex).append(":\n");
-    
-        for (String tipoIngesta : getTiposIngestaValidos()) {
-            Node<IngestaTipo> ingestaTipoNode = ingestasTree.find(tipoIngesta.hashCode());
-            if (ingestaTipoNode != null) {
-                sb.append(" ").append("Ingesta ").append(tipoIngesta).append(":\n");
-                sb.append(ingestaTipoNode.getData().getIngestas().toStringIndented());
-            }
+
+        for (int i = 0; i < ingestasList.size(); i++) {
+            IngestaTipo ingestaTipo = ingestasList.get(i);
+            sb.append(" ").append(ingestaTipo.toString());
         }
-    
+
         return sb.toString();
     }
+
     private static String[] getTiposIngestaValidos() {
         return new String[]{"Desayuno", "Media Mañana", "Almuerzo", "Merienda", "Cena"};
     }
-
 }
