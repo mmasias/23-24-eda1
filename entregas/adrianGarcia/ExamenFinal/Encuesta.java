@@ -1,19 +1,42 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Encuesta {
-    private LocalDate fechaEncuesta;
+    private Paciente paciente;
+    private List<Dia> dias;
     private LocalTime horaEncuesta;
-    private DatosArbol<Dia> dias;
+    private LocalDate fechaEncuesta;
 
-    public Encuesta(LocalDate fechaEncuesta) {
+    public Encuesta(Paciente paciente, LocalTime horaEncuesta, LocalDate fechaEncuesta) {
+        this.paciente = paciente;
+        this.horaEncuesta = horaEncuesta;
         this.fechaEncuesta = fechaEncuesta;
-        this.dias = new DatosArbol<>(Comparator.comparing(Dia::getNumeroDia));
+        this.dias = new ArrayList<>();
     }
 
-    public void setHoraEncuesta(LocalTime horaEncuesta) {
-        this.horaEncuesta = horaEncuesta;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Encuesta realizada el ").append(fechaEncuesta)
+                .append(" a las ").append(horaEncuesta).append("\n");
+
+        for (Dia dia : dias) {
+            sb.append(dia.toString());
+        }
+        return sb.toString();
+    }
+    public void agregarDia(Dia dia) {
+        dias.add(dia);
+    }
+
+    public List<Dia> getDias() {
+        return dias;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
     }
 
     public LocalDate getFechaEncuesta() {
@@ -22,31 +45,5 @@ public class Encuesta {
 
     public LocalTime getHoraEncuesta() {
         return horaEncuesta;
-    }
-
-    public void agregarDia(Dia dia) {
-        dias.insertar(dia);
-    }
-
-    public Dia buscarDia(int numeroDia) {
-        return dias.buscar(new Dia(numeroDia));
-    }
-
-    public DatosArbol<Dia> getDias() {
-        return dias;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("    Encuesta realizada el ").append(fechaEncuesta).append(" a las ").append(horaEncuesta).append("\n");
-        for (int i = 1; i <= 5; i++) {
-            Dia dia = dias.buscar(new Dia(i));
-            if (dia == null) {
-                dia = new Dia(i);
-            }
-            sb.append(dia.toString());
-        }
-        return sb.toString();
     }
 }
