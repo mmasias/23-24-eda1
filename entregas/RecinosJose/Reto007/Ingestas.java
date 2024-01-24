@@ -31,4 +31,13 @@ public class Ingestas {
         }
         return sb.toString();
     }
+    public String toStringIndented() {
+        StringBuilder sb = new StringBuilder();
+        Node<Alimentos> current = alimentos.getHead();
+        while (current != null) {
+            sb.append("    ").append("- ").append(current.getData().getNombre()).append("\n");
+            current = current.getNext();
+        }
+        return sb.toString();
+    }
 }
