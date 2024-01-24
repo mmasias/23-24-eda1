@@ -3,7 +3,7 @@
         "main"
     ],
     "java.project.sourcePaths": [
-        "entregas/oteroJorge/Carrefour/src",
-        "entregas/oteroJorge/Dietas"
+        "entregas\\oteroJorge\\Carrefour\\src",
+        "entregas\\oteroJorge\\FinalListas\\core"
     ]
 }
