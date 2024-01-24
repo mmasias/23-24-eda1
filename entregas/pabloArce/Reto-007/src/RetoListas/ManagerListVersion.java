@@ -90,18 +90,16 @@ public class ManagerListVersion {
         }
     }
     static void printTree(){
-        tree.toString();
+        print(tree.toString());
         for (Day day:tree.getChildren()) {
-            System.out.print("    └─--");
+            System.out.print(" ".repeat(4)+"└─--" + day.printDay());
             day.toString();
             System.out.println("");
             for (Intake intake:day.getChildren()) {
-                System.out.print("    └─--");
-                intake.toString();
+                System.out.print(" ".repeat(8)+"└─--" + intake.printIntake());
                 System.out.println("");
                 for (Food food:intake.getChildren()) {
-                    System.out.print("    └─--");
-                    food.toString();
+                    System.out.print(" ".repeat(12)+"└─--" + food.printFood());
                     System.out.println("");
                 }
             }
@@ -147,52 +145,78 @@ public class ManagerListVersion {
         System.out.print("Introduce la comida: ");
         String intakeString = input.nextLine();
         for (Day day:tree.getChildren()) {
-            if (day.toString() == dayString){
+            if (day.toString().equals(dayString)){
                 for (Intake intake:day.getChildren()) {
-                    if (intake.toString() == intakeString) {
+                    if (intake.toString().equals(intakeString)) {
                         intake.addChild(foodData);
+                        return;
                     }
                 }
             }
         }
-        //updateCalories(day, intake);
+        updateCalories(dayString, intakeString);
     }
 
     static void deleteFood(){
         Scanner input = new Scanner(System.in);
         System.out.print("Introduce el dia: ");
-        String day = input.nextLine();
+        String dayString = input.nextLine();
         System.out.print("Introduce la comida: ");
-        String intake = input.nextLine();
+        String intakeString = input.nextLine();
         System.out.print("Introduce el alimento: ");
-        String food = input.nextLine();
-        //tree.deleteFoodByData(day, intake, food);
-        //updateCalories(day, intake);
+        String foodString = input.nextLine();
+        for (Day day:tree.getChildren()) {
+            if (day.toString().equals(dayString)){
+                for (Intake intake:day.getChildren()) {
+                    if (intake.toString().equals(intakeString)) {
+                        int cont = 0;
+                        for (Food food:intake.getChildren()) {
+                            if(food.toString().equals(foodString)){
+                                intake.deleteByIndex(cont);
+                                return;
+                            }
+                            cont ++;
+                        }
+                    }
+                }
+            }
+        }
+        updateCalories(dayString, intakeString);
     }
 
-    /*static void updateCalories(String dayD, String intakeD) {
-        TreeNode node = tree.getTreeNodeByTwoData(dayD, intakeD);
-        if (node == null) {
+    static void updateCalories(String dayD, String intakeD) {
+        Day dayToUpdate = null;
+        Intake intakeToUpdate = null;
+
+        for (Day day : tree.getChildren()) {
+            if (day.toString().equals(dayD)) {
+                dayToUpdate = day;
+                for (Intake intake : day.getChildren()) {
+                    if (intake.toString().equals(intakeD)) {
+                        intakeToUpdate = intake;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
+        if (dayToUpdate == null || intakeToUpdate == null) {
+            print("Error: No se encontró el día o la comida especificada.");
             return;
         }
-        Intake intake = (Intake) node.getData();
+
         int caloriesSum = 0;
-        for (TreeNode childNode : (List<TreeNode>) node.getChildren()) {
-            Food food = (Food) childNode.getData();
+        for (Food food : intakeToUpdate.getChildren()) {
             caloriesSum += food.getCalories();
         }
-        intake.setTotalCalories(caloriesSum);
+        intakeToUpdate.setTotalCalories(caloriesSum);
 
-        node = tree.getTreeNodeByData(dayD);
-        if (node == null) {
-            return;
-        }
-        Day day = (Day) node.getData();
         caloriesSum = 0;
-        for (TreeNode childNode : (List<TreeNode>) node.getChildren()) {
-            intake = (Intake) childNode.getData();
-            caloriesSum += intake.getTotalCalories() ;
+        for (Intake intake : dayToUpdate.getChildren()) {
+            caloriesSum += intake.getTotalCalories();
         }
-        day.setTotalCalories(caloriesSum);
-    }*/
+        dayToUpdate.setTotalCalories(caloriesSum);
+    }
+
 }

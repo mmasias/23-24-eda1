@@ -8,6 +8,7 @@ public class Survey implements IDataStructure {
     private List<Day> dayList;
     public Survey(String name){
         this.name = name;
+        this.dayList = new List<Day>();
     }
     public List<Day> getChildren(){
         return dayList;

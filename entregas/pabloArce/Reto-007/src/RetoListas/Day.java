@@ -11,9 +11,14 @@ public class Day implements IDataStructure {
     public Day(String number) {
         this.number = number;
         this.totalCalories = 0;
+        this.intakeList = new List<Intake>();
     }
     @Override public String toString() {
         return number;
+    }
+
+    public String printDay(){
+        return "Day " + number + (this.totalCalories != 0 ?  " - " + this.totalCalories + " kcal" : "");
     }
 
     public int getTotalCalories(){return totalCalories;}

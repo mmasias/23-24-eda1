@@ -11,10 +11,14 @@ public class Intake implements IDataStructure {
     public Intake(String name, String time) {
         this.name = name;
         this.time = time;
+        this.foodList = new List<Food>();
     }
     @Override
     public String toString() {
         return name;
+    }
+    public String printIntake(){
+        return this.time + " " + this.name + " " + (this.totalCalories != 0 ? this.totalCalories + " kcal" : "");
     }
     public String getTime(){
         return time;
@@ -25,6 +29,9 @@ public class Intake implements IDataStructure {
     }
     public List<Food> getChildren(){
         return this.foodList;
+    }
+    public void deleteByIndex(int index){
+        this.foodList.remove(index);
     }
     public void addChild (Food food){
         this.foodList.insert(food, -1);

@@ -12,6 +12,9 @@ public class Food {
     public String toString() {
         return name;
     }
+    public String printFood(){
+        return this.name + " " + this.calories + " kcal";
+    }
     public int getCalories() {
         return calories;
     }
