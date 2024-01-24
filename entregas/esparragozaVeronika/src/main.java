@@ -8,7 +8,6 @@ public class main {
         main programa = new main();
         programa.iniciarSimulacion();
     }
-
     public void iniciarSimulacion(){
         listaComidasPorDias.agregar(new Nodo<>("Desayuno"));
         listaComidasPorDias.agregar(new Nodo<>("Media mañana"));
