@@ -19,15 +19,6 @@ public class Dias {
         }
     }
 
-    private IngestaTipo obtenerIngestaTipo(String tipoIngesta) {
-        for (IngestaTipo ingestaTipo : ingestasList.getArray()) {
-            if (ingestaTipo != null && ingestaTipo.getTipo().equals(tipoIngesta)) {
-                return ingestaTipo;
-            }
-        }
-        return null;
-    }
-
     public int getDiaIndex() {
         return diaIndex;
     }
