@@ -2,9 +2,11 @@ package entregas.sergioMayen.ExamenFinal.DeArrayList_TO_Arboles;
 
 public class EncuestaTree {
     DiaNode raiz;
+    DiaNode ultimoDia;
 
     public EncuestaTree(int numDias) {
         this.raiz = null;
+        this.ultimoDia = null;
         for (int i = 1; i <= numDias; i++) {
             insertarDia(i);
         }
@@ -14,18 +16,11 @@ public class EncuestaTree {
         DiaNode nuevoDia = new DiaNode(numeroDia);
         if (raiz == null) {
             raiz = nuevoDia;
+            ultimoDia = nuevoDia;
         } else {
-            DiaNode ultimoDia = encontrarUltimoDia();
             ultimoDia.siguiente = nuevoDia;
+            ultimoDia = nuevoDia;
         }
-    }
-
-    private DiaNode encontrarUltimoDia() {
-        DiaNode actual = raiz;
-        while (actual.siguiente != null) {
-            actual = actual.siguiente;
-        }
-        return actual;
     }
 
     public void agregarAlimento(int dia, String comida, Alimento alimento) {
