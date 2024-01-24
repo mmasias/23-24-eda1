@@ -5,9 +5,13 @@ import java.time.LocalDate;
 public class Paciente implements DatosLista{
     private LocalDate fechaDeAlta;
     private String nombre;
-    public Paciente(LocalDate fechaDeAlta, String nombre) {
+    private Encuesta encuesta;
+
+    
+    public Paciente(LocalDate fechaDeAlta, String nombre, Encuesta encuesta) {
         this.fechaDeAlta = fechaDeAlta;
         this.nombre = nombre;
+        this.encuesta = encuesta;
     }
     public LocalDate getFechaDeAlta() {
         return fechaDeAlta;
@@ -21,7 +25,13 @@ public class Paciente implements DatosLista{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    public Encuesta getEncuesta() {
+        return encuesta;
+    }
+    public void setEncuesta(Encuesta encuesta) {
+        this.encuesta = encuesta;
+    }
+    
 
     @Override
     public String getInformacion() {
@@ -29,5 +39,6 @@ public class Paciente implements DatosLista{
 
         
     }
+    
     
 }

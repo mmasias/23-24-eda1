@@ -52,7 +52,7 @@ public class Gestion {
             System.out.println("Introduzca la fecha de la encuesta con el siguiente formato (dd/MM/yyyy): ");
             try {
                 ok = true;
-                fechaEncuesta = LocalDate.parse(scanner.nextLine(), formato);
+                fechaEncuesta = LocalDate.parse(escaner.nextLine(), formato);
                 if (fechaEncuesta.isBefore(fechaAlta)) {
                     System.out.println("Error: La fecha de la encuesta no puede ser anterior a la fecha de alta.");
                     ok = false;

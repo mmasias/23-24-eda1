@@ -1,4 +1,6 @@
 package RetoExamenFinal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ingesta implements Comparable<Ingesta>, DatosLista{
     private Horario horario;
@@ -6,7 +8,7 @@ public class Ingesta implements Comparable<Ingesta>, DatosLista{
 
     public Ingesta(Horario horario) {
         this.horario = horario;
-        this.alimentos = new List<Alimento>();
+        this.alimentos = new ArrayList<>();
     }
 
     public Horario getHorario() {
@@ -22,7 +24,7 @@ public class Ingesta implements Comparable<Ingesta>, DatosLista{
     }
 
     public void insertarAlimento(Alimento alimento){
-        this.alimentos.insertarEnOrden(alimento);
+        this.alimentos.insert(alimento, -1);
     }
 
     @Override

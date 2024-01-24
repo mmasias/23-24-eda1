@@ -1,3 +1,6 @@
+package RetoExamenFinal;
+import java.util.List;
+import java.util.ArrayList;
 public class Dia implements DatosLista {
     private int fecha;
     private List<Ingesta> ingestas;
