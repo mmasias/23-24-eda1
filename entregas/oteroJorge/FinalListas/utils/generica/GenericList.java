@@ -87,4 +87,17 @@ public class GenericList<T> {
             }
         }
     }
+
+    public T get(int valor) {
+        GenericNode<T> iterator = this.first;
+        int count = 0;
+        while (iterator != null) {
+            if (count == valor) {
+                return iterator.getValue();
+            }
+            count++;
+            iterator = iterator.getNext();
+        }
+        return null;
+    }
 }

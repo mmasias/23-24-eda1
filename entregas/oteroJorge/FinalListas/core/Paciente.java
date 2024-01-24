@@ -1,5 +1,5 @@
-import generica.GenericList;
-import generica.GenericNode;
+import utils.generica.GenericList;
+import utils.generica.GenericNode;
 
 public class Paciente {
 
@@ -26,11 +26,21 @@ public class Paciente {
         this.dias.insertEnd(dia);
     }
 
-    public void getDias() {
+    public GenericList<Dia> getDias() {
+        return dias;
+    }
+
+    public void imprimirDias() {
         GenericNode<Dia> iterator = this.dias.getFirst();
+        GenericNode<Ingesta> iterator2 = iterator.getValue().getIngestas().getFirst();
         while (iterator != null) {
             System.out.println("   " + iterator.getValue().getDia());
-            iterator.getValue().getIngestas();
+            iterator.getValue().imprimirIngestas();
+            while (iterator2 != null) {
+                iterator2.getValue().imprimirAlimentos();
+                iterator2 = iterator2.getNext();
+            }
+
             iterator = iterator.getNext();
         }
     }

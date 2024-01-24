@@ -1,5 +1,4 @@
-import generica.GenericList;
-import generica.GenericNode;
+import utils.generica.*;
 
 public class Ingesta {
 
@@ -15,7 +14,7 @@ public class Ingesta {
         return ingesta;
     }
 
-    public void getAlimentos() {
+    public void imprimirAlimentos() {
         GenericNode<Alimento> iterator = this.alimentos.getFirst();
     
         while (iterator != null) {
