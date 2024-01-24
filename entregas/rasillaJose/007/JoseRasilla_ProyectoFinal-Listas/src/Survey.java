@@ -8,8 +8,8 @@ public class Survey {
     public Survey(int duration){
         daysNumber = duration;
         daysList = new JavaList<>();
-        for (int i = 0; i <= duration; i++) {
-            Day newDay = new Day("Day " + (i+1));
+        for (int i = 1; i <= duration; i++) {
+            Day newDay = new Day("Day " + (i));
             daysList.addNode(newDay);
         }
     }

@@ -1,12 +1,10 @@
 import structure.JavaList;
-import structure.ListNode;
 
-public class Day extends ListNode{
+public class Day{
     public String name = "";
     public JavaList<Meal> meals;
 
     public Day(String dayName) {
-        super(data);
         this.name = dayName;
         this.meals = new JavaList<>();
         addMeals();

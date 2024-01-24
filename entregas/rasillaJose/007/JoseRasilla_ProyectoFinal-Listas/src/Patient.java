@@ -20,7 +20,7 @@ public class Patient {
     }
 
     private void enterIntakeData() {
-        for (int i = 0; i <= survey.daysNumber; i++) {
+        for (int i = 0; i <= survey.daysNumber-1; i++) {
             System.out.println("Enter intake data for Day " + (i+1) + ":");
             
             Day currentDay = survey.daysList.getNode(i).data;
