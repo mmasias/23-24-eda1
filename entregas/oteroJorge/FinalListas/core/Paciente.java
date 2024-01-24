@@ -1,4 +1,5 @@
 import generica.GenericList;
+import generica.GenericNode;
 
 public class Paciente {
 
@@ -25,8 +26,21 @@ public class Paciente {
         this.dias.insertEnd(dia);
     }
 
-    public GenericList<Dia> getDias() {
-        return dias;
+    public void getDias() {
+        GenericNode<Dia> iterator = this.dias.getFirst();
+        while (iterator != null) {
+            System.out.println("   " + iterator.getValue().getDia());
+            iterator.getValue().getIngestas();
+            iterator = iterator.getNext();
+        }
+    }
+
+    public void insertarDia(){
+        for(int i=1; i<=5; i++){
+            Dia dia = new Dia(i);
+            dia.insertarIngesta();
+            this.addDia(dia);
+        }
     }
 
 }
