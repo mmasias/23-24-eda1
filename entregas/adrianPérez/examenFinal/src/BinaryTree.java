@@ -19,7 +19,6 @@ class BinaryTree<T> {
         } else if (key > current.key) {
             current.right = addRecursive(current.right, key, value);
         } else {
-            // key already exists
             return current;
         }
 
@@ -40,5 +39,4 @@ class BinaryTree<T> {
         return key < current.key ? findRecursive(current.left, key) : findRecursive(current.right, key);
     }
 
-    // Métodos adicionales como delete, traverse, etc., pueden ser añadidos aquí.
 }
