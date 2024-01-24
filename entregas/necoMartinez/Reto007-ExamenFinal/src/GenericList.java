@@ -1,3 +1,5 @@
+package src;
+
 public class GenericList<T extends Comparable<T>> {
 
     private GenericNode<T> first = null;

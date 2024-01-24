@@ -2,7 +2,6 @@ package src;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Gestion {
@@ -16,27 +15,28 @@ public class Gestion {
         this.formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
 
-    public void insertarPaciente() {
-        System.out.println("Introduce el nombre del paciente");
+    public void capturarDatos() {
+        System.out.println("Introduzca los datos del paciente");
+        System.out.print("Nombre: ");
         String nombre = sc.nextLine();
-        LocalDate fechaDeAlta = null;
-        boolean ok;
-        do {
-            ok = true;
-            System.out.println("Introduce la fecha de alta del paciente (dd/mm/aaaa)");
-            try {
-                fechaDeAlta = LocalDate.parse(sc.nextLine(), formato);
-            } catch (Exception e) {
-                System.out.println("Fecha incorrecta");
-                ok = false;
-            }
-        } while (!ok);
 
-        Paciente paciente = new Paciente(nombre, fechaDeAlta);
-        this.pacientes.insertarOrdenado(paciente);
+        System.out.print("Fecha de alta (dd/MM/yyyy): ");
+        String fecha = sc.nextLine();
+        LocalDate fechaDeAlta;
+        try {
+            fechaDeAlta = LocalDate.parse(fecha, formato);
+        } catch (Exception e) {
+            System.out.println("Fecha en formato incorrecto. Por favor, introduzca la fecha en el formato dd/MM/yyyy.");
+            return;
+        }
+
+        Paciente nuevoPaciente = new Paciente(nombre, fechaDeAlta);
+        pacientes.insertarOrdenado(nuevoPaciente);
+        System.out.println("Paciente agregado correctamente.");
     }
 
-    public void mostrarPacientes() {
+    public void mostrar() {
+        System.out.println("Pacientes:");
         for (int i = 0; i < pacientes.size(); i++) {
             System.out.println(pacientes.getObjeto(i).getInformacion());
         }
