@@ -1,8 +1,5 @@
 package entregas.garciaLydia.examenFinal;
-
-import java.util.*;
-
-class Alimento {
+public class Alimento {
     private String nombre;
 
     public Alimento(String nombre) {
