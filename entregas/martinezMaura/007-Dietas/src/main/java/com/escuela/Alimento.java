@@ -1,10 +1,9 @@
 package com.escuela;
 
 class Alimento {
+    String nombre;
 
-  String nombre;
-
-  public Alimento(String nombre) {
-    this.nombre = nombre;
-  }
+    public Alimento(String nombre) {
+        this.nombre = nombre;
+    }
 }
