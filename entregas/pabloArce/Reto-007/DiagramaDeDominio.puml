@@ -1,0 +1,68 @@
+@startuml
+
+    title Diagrama de clases
+
+    class Client {
+       - String name
+       - String Surname
+    }
+
+    class FoodData {
+        - List<Food> foodList
+    }
+
+    class Manager {
+        - Tree<TreeObject> tree
+    }
+
+    package TreeObjects{
+        class Intake {
+            - int totalCalories
+            - String name
+            - String time
+        }
+        class Food {
+            - String name
+            - int calories
+        }
+        class Day {
+            - int index
+            - int totalCalories
+        }
+        class Survey {
+            - String name
+        }
+    }
+    package utils {
+        interface IDataStructure
+        class List
+        class ListNode
+        class Shortcut {
+           + void print()
+        }
+        class Tree {
+            - TreeNode root
+        }
+        class TreeNode
+        interface TreeObject
+    }
+
+    Tree --|> IDataStructure
+    List --|> IDataStructure
+    TreeNode -|> IDataStructure
+
+    TreeObjects --|> TreeObject
+
+    Manager --> Tree
+    Manager --* TreeObjects
+    Manager -> Client
+
+    Tree --* TreeNode
+    List --* ListNode
+
+    FoodData --* Food
+    FoodData -> List
+    Manager --> FoodData
+
+
+@enduml

@@ -2,36 +2,98 @@
 
     title Diagrama de clases
 
-    class Client
+    class Client {
+       - String name
+       - String Surname
+    }
 
-    class FoodData
+    class FoodData {
+        - List<Food> foodList
+    }
 
     class Manager {
         - Tree<TreeObject> tree
     }
 
     package TreeObjects{
-        class Intake
-        class Food
-        class Day
-        class Survey
-
+        class Intake {
+            - int totalCalories
+            - String name
+            - String time
+        }
+        class Food {
+            - String name
+            - int calories
+        }
+        class Day {
+            - int index
+            - int totalCalories
+        }
+        class Survey {
+            - String name
+        }
     }
     package utils {
         interface IDataStructure
         class List
         class ListNode
-        class Shortcut
-        class Tree
-        class TreeNode
+        class Shortcut {
+           - void print()
+        }
+        class Tree<T extends TreeObject> {
+          - root: TreeNode<T>
+
+          + Tree(rootData: T)
+          +getRoot(): TreeNode<T>
+          +addChildByParentIndex(data: T, parentNumber: int): void
+          +addChildByParentData(data: T, d1: String): void
+          +addFoodByParentsData(data: T, d1: String, d2: String): void
+          +deleteFoodByData(d1: String, d2: String, food: String): void
+          +getTreeNodeByData(d1: String): TreeNode<T>
+          +getTreeNodeByTwoData(d1: String, d2: String): TreeNode<T>
+          +addChildToTreeNode(data: T, parent: TreeNode<T>): void
+          +printTree(order: boolean): void
+          +printTreePreOrder(): void
+          +printTreePostOrder(): void
+          +isEmpty(): boolean
+          +size(): int
+          +listData(): Object[]
+        }
+        class TreeNode<T extends TreeObject> {
+          - parent: ListNode<T>
+          - children: List<TreeNode<T>>
+
+          +TreeNode()
+          +TreeNode(parent: ListNode<T>)
+          +setData(data: T): void
+          +setChildren(children: List<TreeNode<T>>): void
+          +deleteChildren(): void
+          +deleteChildByIndex(index: int): void
+          +deleteChild(data: T): void
+          +addChild(data: T): void
+          +getData(): T
+          +getChildren(): List<TreeNode<T>>
+          +childrenSize(): int
+        }
         interface TreeObject
     }
 
-
-
     Tree --|> IDataStructure
     List --|> IDataStructure
+    TreeNode -|> IDataStructure
 
     TreeObjects --|> TreeObject
+
+    Manager --> Tree
+    Manager --* TreeObjects
+    Manager -> Client
+
+    Tree --* TreeNode
+    List --* ListNode
+
+    FoodData --* Food
+    FoodData -> List
+    Manager --> FoodData
+
 
 @enduml
