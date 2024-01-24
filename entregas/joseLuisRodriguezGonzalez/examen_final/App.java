@@ -88,7 +88,7 @@ public class App {
     }
 
     private void enterFood() {
-        System.out.println("Enter foods (type '-1' to finish):");
+        System.out.println("Enter foods -> type '-1' to finish:");
 
         int day;
         String intakeType;
@@ -160,7 +160,7 @@ public class App {
         System.out.println("3. Lunch");
         System.out.println("4. Snack");
         System.out.println("5. Dinner");
-        System.out.println("-1. Salir");
+        System.out.println("-1. Exit");
     }
 
     private String getIntakeType(int option) {
