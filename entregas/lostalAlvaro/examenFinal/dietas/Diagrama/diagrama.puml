@@ -181,5 +181,6 @@ Ingesta --> Horario
 GenericList --> GenericNode
 Paciente --> DatosArbol
 Gestion --> Arbol
+Informacion --> ValoresNutricionales
 
 @enduml
