@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Management {
 
     private Scanner scanner;
-    private Tree<TreeData> tree;
+    private GenericList<TreeData> tree;
     private DateTimeFormatter format;
 
     public Management() {
-        this.tree = new Tree<TreeData>(null);
+        this.tree = new GenericList<TreeData>(null);
         this.scanner = new Scanner(System.in);
         this.format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
@@ -34,7 +34,7 @@ public class Management {
         Patient p = new Patient(date, name);
 
         TreeNode<TreeData> PatientNode = new TreeNode<>(p);
-        tree.setRoot(PatientNode);
+        tree.insertFront(PatientNode);
     }
 
     public void insertSurvey() {
@@ -52,14 +52,14 @@ public class Management {
         } while (!ok);
 
         Survey e = new Survey(date);
-        tree.getRoot().insertChildren(new TreeNode<>(e));
+        tree.insertInOrder(new GenericNode<>(e));
     }
 
     public void insertDays() {
-        TreeNode<TreeData> surveyNode = tree.getRoot().getNodeChildren().getObject(0);
+        TreeNode<TreeData> surveyNode = tree.getFirst;
         for (int i = 1; i <= 5; i++) {
             Day d = new Day(i);
-            surveyNode.insertChildren(new TreeNode<TreeData>(d));
+            surveyNode.insertInOrder(new GenericNode<TreeData>(d));
         }
     }
 
@@ -80,11 +80,11 @@ public class Management {
                     ok = false;
                 }
 
-            } while (day < 0 || day > tree.getRoot().getNodeChildren().getObject(0).getNodeChildren().size());
+            } while (day < 0 || day > tree.size());
             if (day == 0) {
                 break;
             }
-            TreeNode<TreeData> dayNode = tree.getRoot().getNodeChildren().getObject(0).getNodeChildren().getObject(day - 1);
+            TreeNode<TreeData> dayNode = tree.getFirst().getNodeChildren().getObject(0).getNodeChildren().getObject(day - 1);
             int option = 0;
             do {
                 ok = true;
