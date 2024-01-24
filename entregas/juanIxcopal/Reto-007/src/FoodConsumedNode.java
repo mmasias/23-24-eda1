@@ -1,6 +1,6 @@
 public class FoodConsumedNode {
     private String foodConsumed;
-    private FoodConsumedNode next;
+    private FoodConsumedNode nextFoodConsumed;
 
     public FoodConsumedNode(String foodConsumed) {
         this.foodConsumed = foodConsumed;
@@ -11,10 +11,10 @@ public class FoodConsumedNode {
     }
 
     public FoodConsumedNode getNextFoodConsumed() {
-        return next;
+        return nextFoodConsumed;
     }
 
-    public void setNextFoodConsumed(FoodConsumedNode next) {
-        this.next = next;
+    public void setNextFoodConsumed(FoodConsumedNode newNextFoodConsumed) {
+        this.nextFoodConsumed = newNextFoodConsumed;
     }
 }

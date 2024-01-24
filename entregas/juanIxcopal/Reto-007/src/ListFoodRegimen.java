@@ -1,16 +1,16 @@
 public class ListFoodRegimen {
     private FoodRegimenNode firstMeal = null;
 
-    public void addMeal(String mealName) {
+    public void addFood(String mealName) {
         FoodRegimenNode newMeal = new FoodRegimenNode(mealName);
         if (firstMeal == null) {
             firstMeal = newMeal;
         } else {
             FoodRegimenNode iterator = firstMeal;
-            while (iterator.getNextRegimenNode() != null) {
-                iterator = iterator.getNextRegimenNode();
+            while (iterator.getNextRegimen() != null) {
+                iterator = iterator.getNextRegimen();
             }
-            iterator.setNextRegimenNode(newMeal);
+            iterator.setNextRegimen(newMeal);
         }
     }
 
@@ -21,7 +21,7 @@ public class ListFoodRegimen {
                 iterator.addFood(food);
                 return;
             }
-            iterator = iterator.getNextRegimenNode();
+            iterator = iterator.getNextRegimen();
         }
         System.out.println("Régimen de comida no encontrada: " + mealName);
     }
@@ -34,7 +34,7 @@ public class ListFoodRegimen {
             for (String food : foods) {
                 System.out.println("\t" + "\t" + food);
             }
-            iterator = iterator.getNextRegimenNode();
+            iterator = iterator.getNextRegimen();
         }
         return new String[0];
     }

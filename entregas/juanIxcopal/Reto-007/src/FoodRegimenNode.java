@@ -3,8 +3,8 @@ import java.util.List;
 
 public class FoodRegimenNode {
     private String foodRegimen;
-    private FoodConsumedNode firstFood = null;
-    private FoodRegimenNode next;
+    private FoodConsumedNode firstFoodConsumed = null;
+    private FoodRegimenNode nextFoodRegimen;
 
     public FoodRegimenNode(String foodRegimen) {
         this.foodRegimen = foodRegimen;
@@ -14,33 +14,33 @@ public class FoodRegimenNode {
         return foodRegimen;
     }
 
-    public FoodRegimenNode getNextRegimenNode() {
-        return next;
+    public FoodRegimenNode getNextRegimen() {
+        return nextFoodRegimen;
     }
 
-    public void setNextRegimenNode(FoodRegimenNode next) {
-        this.next = next;
+    public void setNextRegimen(FoodRegimenNode nextFoodRegimen) {
+        this.nextFoodRegimen = nextFoodRegimen;
     }
 
     public void addFood(String food) {
-        FoodConsumedNode newFood = new FoodConsumedNode(food);
-        if (firstFood == null) {
-            firstFood = newFood;
+        FoodConsumedNode newFoodConsumed = new FoodConsumedNode(food);
+        if (firstFoodConsumed == null) {
+            firstFoodConsumed = newFoodConsumed;
         } else {
-            FoodConsumedNode foodIterator = firstFood;
-            while (foodIterator.getNextFoodConsumed() != null) {
-                foodIterator = foodIterator.getNextFoodConsumed();
+            FoodConsumedNode foodConsumedIterator = firstFoodConsumed;
+            while (foodConsumedIterator.getNextFoodConsumed() != null) {
+                foodConsumedIterator = foodConsumedIterator.getNextFoodConsumed();
             }
-            foodIterator.setNextFoodConsumed(newFood);
+            foodConsumedIterator.setNextFoodConsumed(newFoodConsumed);
         }
     }
 
     public String[] listFoods() {
         List<String> foodsList = new ArrayList<>();
-        FoodConsumedNode foodIterator = firstFood;
-        while (foodIterator != null) {
-            foodsList.add(foodIterator.getFoodConsumed());
-            foodIterator = foodIterator.getNextFoodConsumed();
+        FoodConsumedNode foodConsumedIterator = firstFoodConsumed;
+        while (foodConsumedIterator != null) {
+            foodsList.add(foodConsumedIterator.getFoodConsumed());
+            foodConsumedIterator = foodConsumedIterator.getNextFoodConsumed();
         }
         return foodsList.toArray(new String[0]);
     }

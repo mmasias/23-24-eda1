@@ -1,11 +1,11 @@
 public class DayNode {
     private String day;
-    private DayNode next;
-    private ListFoodRegimen foodRegimen;
+    private DayNode nextDay;
+    private ListFoodRegimen listFoodRegimen;
 
     public DayNode(String value) {
-        this.setValueDay(value);
-        this.foodRegimen = new ListFoodRegimen();
+        this.setDay(value);
+        this.listFoodRegimen = new ListFoodRegimen();
     }
 
     public String getDay() {
@@ -13,22 +13,22 @@ public class DayNode {
     }
 
     public DayNode getNextDay() {
-        return next;
+        return nextDay;
+    }
+    public ListFoodRegimen getFoodRegimen() {
+        return listFoodRegimen;
     }
 
-    public void setValueDay(String newValue) {
-        this.day = newValue;
+    public void setDay(String newDay) {
+        this.day = newDay;
     }
 
-    public void setNextDay(DayNode next) {
-        this.next = next;
+    public void setNextDay(DayNode nextDay) {
+        this.nextDay = nextDay;
     }
 
     public void addMeal(String mealName){
-        foodRegimen.addMeal(mealName);
+        listFoodRegimen.addFood(mealName);
     }
 
-    public ListFoodRegimen getFoodRegimen() {
-        return foodRegimen;
-    }
 }
