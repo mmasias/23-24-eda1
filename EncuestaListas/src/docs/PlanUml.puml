@@ -1,0 +1,210 @@
+@startuml
+
+class Alimento {
+  - nombre: String
+  - mg: int
+  + Alimento(nombre: String, mg: int)
+  + getNombre(): String
+  + setNombre(nombre: String): void
+  + getMg(): int
+  + setMg(mg: int): void
+  + compareTo(o: Alimento): int
+}
+
+class Dia {
+  - dia: int
+  - fecha: LocalDate
+  + Dia(dia: int)
+  + getFecha(): LocalDate
+  + setFecha(fecha: LocalDate): void
+  + getDia(): int
+  + setDia(dia: int): void
+  + isEmpty(): boolean
+  + getInformacion(): String
+  + size(): int
+  + listAll(): Object[]
+}
+
+class Encuesta {
+  - fecha: LocalDate
+  + Encuesta(fecha: LocalDate)
+  + getFecha(): LocalDate
+  + setFecha(fecha: LocalDate): void
+  + isEmpty(): boolean
+  + getInformacion(): String
+  + size(): int
+  + listAll(): Object[]
+}
+
+class Horario {
+  DESAYUNO: Horario
+  MEDIA_MAÑANA: Horario
+  ALMUERZO: Horario
+  MERIENDA: Horario
+  CENA: Horario
+  - numero: int
+  - nombre: String
+  + Horario(numero: int, nombre: String)
+  + getNombre(): String
+  + getNumero(): int
+}
+
+class InformacionNutricional {
+  + getDatos(nombre: String): ValoresNutricionales
+}
+
+class Ingesta {
+  - horario: Horario
+  - alimentos: GenericList<Alimento>
+  + Ingesta(horario: Horario)
+  + getHorario(): Horario
+  + setHorario(horario: Horario): void
+  + getAlimentos(): GenericList<Alimento>
+  + insertarAlimento(alimento: Alimento): void
+  + compareTo(o: Ingesta): int
+  + isEmpty(): boolean
+  + getInformacion(): String
+  + totalCalorias(): double
+  + totalTipo(nombreTipo: String): int
+  + totalAzucar(): double
+  + totalProteinas(): double
+  + totalGrasas(): double
+  + size(): int
+  + listAll(): Object[]
+}
+
+class Persona {
+  - nombre: String
+  - fechaAlta: LocalDate
+  + Persona(nombre: String, fechaAlta: LocalDate)
+  + getNombre(): String
+  + setNombre(nombre: String): void
+  + getFechaAlta(): LocalDate
+  + setFechaAlta(fechaAlta: LocalDate): void
+  + isEmpty(): boolean
+  + getInformacion(): String
+  + size(): int
+  + listAll(): Object[]
+}
+
+class ValoresNutricionales {
+  - calorias: int
+  - azucar: double
+  - proteinas: double
+  - grasas: double
+  - tipo: String
+  + ValoresNutricionales(calorias: int, azucar: double, proteinas: double, grasas: double, tipo: String)
+  + getCalorias(): int
+  + setCalorias(calorias: int): void
+  + getAzucar(): double
+  + setAzucar(azucar: int): void
+  + getProteinas(): double
+  + setProteinas(proteinas: int): void
+  + getGrasas(): double
+  + setGrasas(grasas: int): void
+  + getTipo(): String
+  + setTipo(tipo: String): void
+  + compareTo(o: ValoresNutricionales): int
+}
+
+class Arbol {
+  - raiz: NodoArbol<T>
+  + Arbol(raiz: NodoArbol<T>)
+  + getRaiz(): NodoArbol<T>
+  + setRaiz(raiz: NodoArbol<T>): void
+  + recorridoPreOrden(nodo: NodoArbol<T>): void
+  + recorridoPostOrden(nodo: NodoArbol<T>): void
+  + totalCaloriasEnc(nodo: NodoArbol<T>): int
+  + totalTipoEnc(nodo: NodoArbol<T>, nombre: String): int
+  + totalAzucarEnc(nodo: NodoArbol<T>): int
+  + totalProteinasEnc(nodo: NodoArbol<T>): int
+  + totalGrasasEnc(nodo: NodoArbol<T>): int
+  + buscar(valor: T, nodo: NodoArbol<T>): NodoArbol<T>
+}
+
+class DataStructure<T> {
+  - first: GenericNode<T>
+  + isEmpty(): boolean
+  + size(): int
+  + listAll(): Object[]
+}
+
+class GenericList<T> {
+  - first: GenericNode<T>
+  + GenericList(first: GenericNode<T>)
+  + size(): int
+  + isEmpty(): boolean
+  + insertFront(value: T): void
+  + insertEnd(value: T): void
+  + deleteFront(): void
+  + buscarElemento(elemento: String): int
+  + getFirst(): GenericNode<T>
+  + getLast(): GenericNode<T>
+  + listAll(): Object[]
+  + insertOrdered(value: T): void
+  + getValorPorPosicion(pos: int): T
+  + indexOf(value: T): int
+  + vaciar(): void
+  + updateValueByPosition(position: int, newValue: T): void
+  + iterator(): Iterator<T>
+}
+
+class ListIterator
+
+class GenericNode<T> {
+  - value: T
+  - next: GenericNode<T>
+  + GenericNode(value: T)
+  + getValue(): T
+  + setValue(newValue: T): void
+  + getNext(): GenericNode<T>
+  + setNext(siguiente: GenericNode<T>): void
+}
+
+class IDataStructure<T> {
+  + isEmpty(): boolean
+  + getInformacion(): String
+  + size(): int
+  + listAll(): Object[]
+}
+
+class NodoArbol<T> {
+  - valor: T
+  - hijos: GenericList<NodoArbol<T>>
+  - fecha: LocalDate
+  + NodoArbol(valor: T)
+  + getFecha(): LocalDate
+  + setFecha(fecha: LocalDate): void
+  + getValor(): T
+  + getHijos(): GenericList<NodoArbol<T>>
+  + agregarHijo(hijo: NodoArbol<T>): void
+  + compareTo(o: NodoArbol<T>): int
+  + setValor(valor: T): void
+}
+
+class Gestion {
+  - datos: Arbol<IDataStructure>
+  - formato: DateTimeFormatter
+  - sc: Scanner
+  + Gestion()
+  + insertarActualizarPaciente(): void
+  + insertarDias(): void
+  + insertarIngesta(): void
+  + capturarDatos(): void
+  + mostrar(): void
+  + estadisticas(): void
+  + existeNodoIngesta(int, Horario): NodoArbol<IDataStructure>
+}
+
+class Main {
+  + main(String[]): void
+}
+
+Alimento --|> ValoresNutricionales
+Horario --o Ingesta
+
+
+
+
+
+@enduml
