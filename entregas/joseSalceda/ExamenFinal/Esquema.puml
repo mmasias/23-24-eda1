@@ -1,8 +1,5 @@
 @startuml Esquema
 
-class Main {
-}
-
 class Paciente {
     - String nombre
     - List<Encuesta> encuestas
