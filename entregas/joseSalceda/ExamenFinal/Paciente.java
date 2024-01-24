@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Paciente {
     private String nombre;
-    private List<Encuesta> encuestas;
+    private BinaryTree<Encuesta> encuestas;
+
 
     public Paciente(String nombre) {
         this.nombre = nombre;
-        this.encuestas = new ArrayList<>();
+        this.encuestas = new BinaryTree<>();
     }
 
     public String getNombre() {
@@ -15,15 +13,10 @@ class Paciente {
     }
 
     public void agregarEncuesta(Encuesta encuesta) {
-        encuestas.add(encuesta);
+        encuestas.add(encuesta.getDia(), encuesta);
     }
 
     public Encuesta obtenerEncuestaPorDia(int dia) {
-        for (Encuesta encuesta : encuestas) {
-            if (encuesta.getDia() == dia) {
-                return encuesta;
-            }
-        }
-        return null;
+        return encuestas.find(dia);
     }
 }

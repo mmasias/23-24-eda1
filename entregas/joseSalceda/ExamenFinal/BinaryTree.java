@@ -19,7 +19,6 @@ class BinaryTree<T> {
         } else if (key > current.key) {
             current.right = addRecursive(current.right, key, value);
         } else {
-            // key already exists
             return current;
         }
 

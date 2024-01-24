@@ -1,13 +1,10 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Encuesta {
     private int dia;
-    private Map<Integer, Ingesta> ingestas;
+    private BinaryTree<Ingesta> ingestas;
 
     public Encuesta(int dia) {
         this.dia = dia;
-        this.ingestas = new HashMap<>();
+        this.ingestas = new BinaryTree<>();
     }
 
     public int getDia() {
@@ -15,10 +12,10 @@ class Encuesta {
     }
 
     public void agregarIngesta(Ingesta ingesta) {
-        ingestas.put(ingesta.getTipoIngesta(), ingesta);
+        ingestas.add(ingesta.getTipoIngesta(), ingesta);
     }
 
     public Ingesta obtenerIngesta(int tipoIngesta) {
-        return ingestas.get(tipoIngesta);
+        return ingestas.find(tipoIngesta);
     }
 }

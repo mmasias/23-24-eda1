@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Ingesta {
-    private int tipoIngesta; // 1: Desayuno, 2: Media mañana, etc.
+    private int tipoIngesta;
     private List<String> alimentos;
 
     public Ingesta(int tipoIngesta) {
