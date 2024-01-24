@@ -1,0 +1,59 @@
+@startuml
+
+class Main {
+    +main(args: String[]): void
+}
+
+class MenuInteractivo {
+
+}
+
+class Cliente {
+
+}
+
+class Encuesta {
+
+}
+
+class Dias {
+
+}
+
+class IngestaTipo {
+
+}
+
+class Ingestas {
+
+}
+
+class Alimentos {
+
+}
+
+class List<T> {
+
+}
+
+class Node<T> {
+
+}
+
+class Tree<T> {
+   
+}
+
+Main --> MenuInteractivo
+MenuInteractivo --> Cliente
+MenuInteractivo --> Encuesta
+Cliente --> Encuesta
+Encuesta --> Dias
+Dias --> IngestaTipo
+IngestaTipo --> Ingestas
+Ingestas --> Alimentos: Contiene
+Ingestas --> List: Contiene
+List --> Node: Contiene
+Tree --> Node
+
+@enduml
