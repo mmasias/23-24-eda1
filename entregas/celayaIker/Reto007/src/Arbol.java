@@ -9,7 +9,7 @@ public class Arbol {
     Arbol arbol = new Arbol("EncuestaNutricional");
 
     String dato;
-    Desayuno desayuno = new Desayuno();
+    Comida Comida = new Comida();
     Nodo Nodo = new Nodo(dato, null);
 
     int dias;
