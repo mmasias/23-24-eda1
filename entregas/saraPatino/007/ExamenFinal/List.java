@@ -1,6 +1,6 @@
 package ExamenFinal;
 
-public class List<T> implements IDataStructure<T> {
+public class List<T> {
 
     private Node<T> first;
 
@@ -116,13 +116,13 @@ public class List<T> implements IDataStructure<T> {
         }
     }
 
-    public T[] listData() {
-        @SuppressWarnings("unchecked")
-        T[] array = (T[]) new Object[size()];
+    public String[] listData() {
+        String[] array = new String[size()];
 
         Node<T> node = first;
-        for (int i = 0; i < array.length; ++i) {
-            array[i] = node.getData();
+        int i = 0;
+        while (node != null) {
+            array[i++] = String.valueOf(node.getData());
             node = node.getNext();
         }
 

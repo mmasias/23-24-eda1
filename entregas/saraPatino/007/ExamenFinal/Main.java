@@ -14,7 +14,7 @@ public class Main {
             pacientes.insert(paciente, -1);
 
             System.out.println(paciente);
-            int selectedDay = selectDay();
+            int selectedDay = selectDay(pacientes);
 
             String dia = getDayNodeOrCreateNew(pacientes, selectedDay);
             if (dia != null) {
@@ -28,7 +28,7 @@ public class Main {
         return scanner.nextLine();
     }
 
-    public static int selectDay() {
+    public static int selectDay(List<String> pacientes) {
         while (true) {
             System.out.println("Seleccione día de 1 a 5 (-1 para mostrar información / -2 para salir): ");
             int selectedDay = scanner.nextInt();
@@ -37,8 +37,10 @@ public class Main {
                 System.out.println("Saliendo del programa...");
                 System.exit(0);
             } else if (selectedDay == -1) {
-                // Agrega aquí la lógica para mostrar información de pacientes
-                System.out.println("Mostrar información de pacientes");
+                String[] pacientesArray = pacientes.listData();
+                for (String paciente : pacientesArray) {
+                    System.out.println(paciente);
+                }
             } else if (selectedDay > 5 || selectedDay < 1) {
                 System.out.println("Número no disponible");
             } else {
@@ -75,11 +77,20 @@ public class Main {
             if (food.equals("-1")) {
                 break;
             } else if (food.equals("-2")) {
-                // Agrega aquí la lógica para listar alimentos ingresados
-                System.out.println("Listar alimentos ingresados");
+                // Listar alimentos ingresados
+                String[] alimentos = ingesta.split(" - ");
+                System.out.println("Alimentos ingresados para la ingesta " + alimentos[1] + ": ");
+                // Obtener y mostrar alimentos ingresados en la ingesta
+                String[] foods = alimentos[2].split(", ");
+                for (String item : foods) {
+                    System.out.println(item);
+                }
             } else {
-                // Agrega aquí la lógica para agregar alimentos a la ingesta
-                System.out.println("Agregar alimento a la ingesta: " + food);
+                // Agregar alimentos a la ingesta
+                String[] alimentos = ingesta.split(" - ");
+                String nuevosAlimentos = alimentos[2] + ", " + food;
+                ingesta = alimentos[0] + " - " + alimentos[1] + " - " + nuevosAlimentos;
+                System.out.println("Alimento agregado a la ingesta: " + food);
             }
         }
     }
@@ -91,14 +102,15 @@ public class Main {
             }
         }
 
-        String newDia = "Dia " + selectedDay;
+        String newDia = "Dia " + selectedDay + " - Desayuno - " + " - Media mañana - " + " - Almuerzo - "
+                + " - Merienda - " + " - Cena - ";
         pacientes.insert(newDia, -1);
         return newDia;
     }
 
     public static String getMealNodeOrCreateNew(String dia, String mealName) {
         // Puedes mejorar esta lógica según tus necesidades
-        return dia + " - " + mealName;
+        return dia + " - " + mealName + " - ";
     }
 
     public static String getMealName(int selectedMeal) {
