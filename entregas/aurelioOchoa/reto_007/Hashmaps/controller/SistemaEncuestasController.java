@@ -1,6 +1,6 @@
-package reto_007.controller;
-import reto_007.view.SistemaEncuestasView;
-import reto_007.model.*;
+package Hashmaps.controller;
+import Hashmaps.view.SistemaEncuestasView;
+import Hashmaps.model.*;
 import java.util.Scanner;
 
 public class SistemaEncuestasController {

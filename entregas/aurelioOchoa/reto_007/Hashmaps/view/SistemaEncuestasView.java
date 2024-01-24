@@ -1,5 +1,5 @@
-package reto_007.view;
-import reto_007.model.*;
+package Hashmaps.view;
+import Hashmaps.model.*;
 import java.util.*;
 
 public class SistemaEncuestasView {

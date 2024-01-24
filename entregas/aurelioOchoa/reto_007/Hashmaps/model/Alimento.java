@@ -1,4 +1,4 @@
-package reto_007.model;
+package Hashmaps.model;
 
 public class Alimento {
     public String nombre;
