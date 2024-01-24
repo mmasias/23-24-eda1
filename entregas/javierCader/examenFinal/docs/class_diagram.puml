@@ -4,9 +4,8 @@
 class Clinic {
     - patient_tree: Tree
     - patient_factory: PatientFactory
-    - patient: Patient
-    + receive_patient()
-    + run_clinic()
+    + receive_patient(): Patient
+    + run_clinic(): void
 }
 
 class PatientFactory {
@@ -14,7 +13,7 @@ class PatientFactory {
 }
 
 class Tree {
-    # root: Node
+    - root: Node
     + add_node(parent: Node, node: Node): void
     + remove_node(parent: Node, node: Node): void
     + is_empty(): bool
@@ -29,6 +28,7 @@ class Node {
 }
 
 class Clinic_Controller {
+    - patient_tree: Tree
     - patient: Patient
     - is_running: boolean
     + run(): void
@@ -53,17 +53,17 @@ class Patient {
 }
 
 class Survey {
-    - days: List<Day>
+    - days: List[Day]
     + add_day(day: Day): void
 }
 
 class Day {
-    - intakes: List<Intake>
+    - intakes: List<Intake]
     + add_intake(intake: Intake): void
 }
 
 class Intake {
-    - foods: List<Food>
+    - foods: List<Food]
     + add_food(food: Food): void
 }
 
@@ -71,20 +71,29 @@ class Food {
 }
 
 ' Define relationships
-Clinic --> Clinic_Controller
-Clinic --> PatientFactory
-Clinic --> Tree
-Clinic_Controller --> View
-Clinic_Controller --> Patient
-Clinic_Controller --> Day
-Clinic_Controller --> Intake
-Clinic_Controller --> Food
-View --> Patient
-View --> Intake
-Patient -up-|> Node
-Survey -up-|> Node
-Day -up-|> Node
-Intake -up-|> Node
-Food -up-|> Node
+Clinic --> Clinic_Controller : uses >
+Clinic --> PatientFactory : uses >
+Clinic --> Tree : contains >
+Clinic_Controller --> View : uses >
+Clinic_Controller --> Tree : interacts >
+Clinic_Controller ..> Patient : manipulates >
+Clinic_Controller ..> Survey : manipulates >
+Clinic_Controller ..> Day : manipulates >
+Clinic_Controller ..> Intake : manipulates >
+Clinic_Controller ..> Food : manipulates >
+View ..> Patient : displays >
+View ..> Survey : displays >
+View ..> Day : displays >
+View ..> Intake : displays >
+View ..> Food : displays >
+Patient -up-|> Node : extends >
+Survey -up-|> Node : extends >
+Day -up-|> Node : extends >
+Intake -up-|> Node : extends >
+Food -up-|> Node : extends >
+Patient --> Survey : contains >
+Survey --> Day : contains >
+Day --> Intake : contains >
+Intake --> Food : contains >
 
 @enduml
