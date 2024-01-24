@@ -11,17 +11,17 @@ public class Dias {
     }
 
     public void agregarAlimento(Alimentos alimento, String tipoIngesta) {
-        IngestaTipo ingestaTipo = obtenerIngestaTipo(tipoIngesta);
-        if (ingestaTipo != null) {
-            ingestaTipo.getIngestas().agregarAlimento(alimento);
-        } else {
-            System.out.println("Error: Tipo de ingesta no válido.");
+        for (int i = 0; i < ingestasList.size(); i++) {
+            IngestaTipo ingestaTipo = ingestasList.get(i);
+            if (ingestaTipo.getTipo().equals(tipoIngesta)) {
+                ingestaTipo.getIngestas().agregarAlimento(alimento);
+                return;
+            } else {
+                System.out.println("Error: Tipo de ingesta no válido.");
+            }
         }
     }
 
-    public int getDiaIndex() {
-        return diaIndex;
-    }
 
     @Override
     public String toString() {
