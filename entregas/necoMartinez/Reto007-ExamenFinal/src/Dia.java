@@ -1,23 +1,35 @@
 package src;
 
-public class Dia implements Comparable<Dia> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Dia {
     private int fecha;
+    private List<Ingesta> ingestas;
 
     public Dia(int fecha) {
         this.fecha = fecha;
+        this.ingestas = new ArrayList<>();
     }
 
     public int getFecha() {
         return fecha;
     }
 
-    @Override
-    public int compareTo(Dia o) {
-        return Integer.compare(this.fecha, o.fecha);
+    public List<Ingesta> getIngestas() {
+        return ingestas;
     }
 
-    @Override
-    public String toString() {
-        return "Dia: " + this.fecha;
+    public void agregarIngesta(Ingesta ingesta) {
+        ingestas.add(ingesta);
+    }
+
+    public Ingesta obtenerIngesta(Horario horario) {
+        for (Ingesta ingesta : ingestas) {
+            if (ingesta.getHorario() == horario) {
+                return ingesta;
+            }
+        }
+        return null;
     }
 }
