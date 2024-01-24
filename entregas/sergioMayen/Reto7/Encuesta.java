@@ -5,19 +5,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Encuesta {
-    List<Dia> dias;
+    List<Ingestas> dias;
 
     public Encuesta(int numDias) {
         this.dias = new ArrayList<>();
         for (int i = 0; i < numDias; i++) {
-            dias.add(new Dia());
+            dias.add(new Ingestas());
         }
     }
 
     public void realizarEncuesta(Scanner scanner) {
         for (int dia = 1; dia <= dias.size(); dia++) {
             for (String comida : new String[]{"Desayuno", "Media mañana", "Almuerzo", "Merienda", "Cena"}) {
-                System.out.println("Ingrese alimentos para el " + comida + " del día " + dia + " (separados por comas): ");
+                System.out.println("Ingrese alimentos para el " + comida + " del día " + dia );
 
                 String[] alimentosInput = scanner.next().split(",");
                 for (String nombreAlimento : alimentosInput) {
@@ -26,12 +26,6 @@ public class Encuesta {
                 }
             }
         }
-    }
-
-    public static boolean preguntarContinuar(Scanner scanner, String comida) {
-        System.out.println("¿Desea agregar más alimentos para " + comida + "? (sí/no): ");
-        String continuar = scanner.next();
-        return continuar.equalsIgnoreCase("sí");
     }
 
     private void agregarAlimento(int dia, String comida, Alimento alimento, Scanner scanner) {

@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Dia { 
+public class Ingestas { 
     private static final int MAX_DIAS = 5;
 
     Map<String, List<Alimento>> comidas;
 
-    public Dia() {
+    public Ingestas() {
         this.comidas = new HashMap<>();
         comidas.put("Desayuno", new ArrayList<>());
         comidas.put("Media mañana", new ArrayList<>());

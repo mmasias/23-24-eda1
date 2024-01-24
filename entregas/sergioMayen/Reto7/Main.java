@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        int numDias = Dia.validarNumeroDias(scanner);
+        int numDias = Ingestas.validarNumeroDias(scanner);
 
         Encuesta encuesta = new Encuesta(numDias);
         encuesta.realizarEncuesta(scanner);
