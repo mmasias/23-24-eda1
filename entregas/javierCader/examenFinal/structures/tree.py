@@ -66,5 +66,3 @@ class Tree:
         if self.root is not None:
             print(self.root)
             
-
-

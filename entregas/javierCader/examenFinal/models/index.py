@@ -33,8 +33,9 @@ class Survey(Node):
         self.days.append(day)
 
 class Patient(Node):
-    def __init__(self, name: str):
+    def __init__(self, name: str, discharge_date: str):
         super().__init__(data=name)
+        self.discharge_date: str = ""
         self.surveys: List[Survey] = []
 
     def add_survey(self, survey: Survey):
