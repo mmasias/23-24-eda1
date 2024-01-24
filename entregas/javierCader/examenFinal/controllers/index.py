@@ -21,7 +21,7 @@ class Clinic_Controller:
 
             if 1 <= day_number <= 5:
                 selected_day = self.patient.surveys[0].days[day_number - 1]
-                View.display_header(f"Intake Selection for {selected_day.data}")
+                View.display_header(f"Intake Selection for {selected_day}")
                 while True:
                     intake_number = self.select_intake(selected_day)
                     if intake_number == -1:
@@ -39,15 +39,15 @@ class Clinic_Controller:
         print(View.BOLD + "Exiting the application." + View.ENDC)
 
     def select_day(self, patient: Patient) -> int:
-        View.display_prompt(f"Patient: {patient.data} / To exit enter -1 / To list all data enter -2")
+        View.display_prompt(f"Patient: {patient.name} / To exit enter -1 / To list all data enter -2")
         for day in patient.surveys[0].days:
-            print(f"{day.data}")
+            print(f"Day {day.number}")
         return self.get_validated_input("Enter day number: ", len(patient.surveys[0].days))
 
     def select_intake(self, day: Day) -> int:
         View.display_prompt("Select intake: / To exit enter -1 / To list all data enter -2")
         for i, intake in enumerate(day.intakes):
-            print(f"{i + 1}. {intake.data}")
+            print(f"{i + 1}. {intake.type}")
         return self.get_validated_input("Enter number: ", len(day.intakes))
 
     def get_validated_input(self, prompt: str, max_value: int) -> int:
@@ -73,4 +73,4 @@ class Clinic_Controller:
                 intake.add_food(food)
 
     def ask_for_food(self, intake: Intake):
-        return input(f"{View.BOLD}Input a food for {intake.data} (-1 to exit / -2 to list the foods): {View.ENDC}")
+        return input(f"{View.BOLD}Input a food for {intake.type} (-1 to exit / -2 to list the foods): {View.ENDC}")
