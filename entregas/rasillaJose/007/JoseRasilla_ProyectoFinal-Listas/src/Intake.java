@@ -1,6 +1,6 @@
-import structure.TreeNode;
+import structure.ListNode;
 
-public class Intake extends TreeNode {
+public class Intake extends ListNode {
 
     public String intakeDescription = "";
 

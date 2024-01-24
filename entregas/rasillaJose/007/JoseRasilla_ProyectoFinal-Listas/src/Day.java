@@ -1,12 +1,12 @@
 import structure.JavaList;
-import structure.TreeNode;
+import structure.ListNode;
 
-public class Day extends TreeNode{
+public class Day extends ListNode{
     public String name = "";
     public JavaList<Meal> meals;
 
     public Day(String dayName) {
-        super(true, "Day");
+        super(data);
         this.name = dayName;
         this.meals = new JavaList<>();
         addMeals();

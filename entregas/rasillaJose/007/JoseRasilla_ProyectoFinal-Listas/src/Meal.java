@@ -1,7 +1,7 @@
 import structure.JavaList;
-import structure.TreeNode;
+import structure.ListNode;
 
-public class Meal extends TreeNode {
+public class Meal extends ListNode {
     public String mealName = "";
     public JavaList<Intake> intakes;
 
