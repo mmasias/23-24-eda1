@@ -7,6 +7,10 @@ public class Client {
         this.survey = new Survey();
     }
 
+    public Survey getSurvey(){
+        return this.survey;
+    }
+    
     public String getName() {
         return name;
     }

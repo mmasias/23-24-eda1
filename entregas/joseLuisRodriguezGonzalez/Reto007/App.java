@@ -2,12 +2,12 @@ import java.util.Scanner;
 
 public class App {
     private Scanner scanner;
-    private Client cliente;
+    private Client client;
     private Survey encuesta;
 
-    public App(Client cliente) {
+    public App(Client client) {
         this.scanner = new Scanner(System.in);
-        this.cliente = cliente;
+        this.client = client;
     }
 
     public void showMainMenu() {
@@ -27,7 +27,7 @@ public class App {
                     openExistingSurvey();
                     break;
                 case 4:
-                    mostrarResultados();
+                    printResults();
                     break;
                 case 0:
                     System.out.println("Exit app...");
@@ -42,24 +42,24 @@ public class App {
     private void registerClient() {
         System.out.print("Write Client Name: ");
         String clientName = scanner.nextLine();
-        cliente = new Client(clientName);
+        client = new Client(clientName);
         System.out.println("Client " + clientName + " registered.");
     }
 
     private void createNewSurvey() {
-        cliente = new Client(cliente.getName());
+        client = new Client(client.getName());
         encuesta = new Survey();
         enterFood();
-        System.out.println("Surver created for " + cliente.getName() + ".");
+        System.out.println("Surver created for " + client.getName() + ".");
     }
 
     private void openExistingSurvey() {
         enterFood();
-        System.out.println("Survey for " + cliente.getName() + " open.");
+        System.out.println("Survey for " + client.getName() + " open.");
     }
 
-    private void mostrarResultados() {
-        System.out.println("Results for " + cliente.getName() + ":");
+    private void printResults() {
+        System.out.println("Results for " + client.getName() + ":");
         encuesta.getDietInfo();
     }
 
@@ -136,7 +136,7 @@ public class App {
                         .println("Enter food for " + intakeType + " from day " + day + " -> -1 to finish:");
 
                 while (true) {
-                    System.out.print("Ingrese un alimento: ");
+                    System.out.print("Enter a food: ");
                     String foodName = scanner.nextLine().trim();
 
                     if (foodName.equalsIgnoreCase("-1")) {
@@ -185,7 +185,7 @@ public class App {
                 number = Integer.parseInt(scanner.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Por favor, ingrese un número válido.");
+                System.out.println("Enter a valid number");
             }
         }
         return number;
