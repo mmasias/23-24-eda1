@@ -2,19 +2,26 @@ package ProyectoFinal;
 
 public class DiaAlimentacion {
     private int numeroDia;
-    private Tree<Ingesta> ingestas;
+    private List<Ingesta> ingestas;
 
     public DiaAlimentacion(int numeroDia) {
         this.numeroDia = numeroDia;
-        this.ingestas = new Tree<>();
+        this.ingestas = new List<>();
     }
 
     public void agregarIngesta(Ingesta ingesta) {
-        ingestas.add(ingesta);
+        this.ingestas.add(ingesta);
     }
 
     public Ingesta buscarIngesta(int tipoIngesta) {
-        return ingestas.find(new Ingesta(tipoIngesta));
+        Node<Ingesta> current = this.ingestas.getHead();
+        while (current != null) {
+            if (current.getData().getTipoIngesta() == tipoIngesta) {
+                return current.getData();
+            }
+            current = current.getNext();
+        }
+        return null;
     }
 
     public int getNumeroDia() {
@@ -25,9 +32,8 @@ public class DiaAlimentacion {
         this.numeroDia = numeroDia;
     }
 
-    public Tree<Ingesta> getIngestas() {
+    public List<Ingesta> getIngestas() {
         return ingestas;
     }
 
-    // Métodos para manejar ingestas
 }

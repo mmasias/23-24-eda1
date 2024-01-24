@@ -116,14 +116,23 @@ public class EncuestaAlimentaria {
         System.out.println("Altura: " + altura + " cm");
         System.out.println("Sexo: " + sexo);
         System.out.println("Frecuencia de ejercicio: " + frecuenciaEjercicio);
-        for (DiaAlimentacion dia : paciente.getDiasAlimentacion().getAllData()) {
+
+        Node<DiaAlimentacion> diaNode = paciente.getDiasAlimentacion().getHead();
+        while (diaNode != null) {
+            DiaAlimentacion dia = diaNode.getData();
             System.out.println("Día: " + dia.getNumeroDia());
-            for (Ingesta ingesta : dia.getIngestas().getAllData()) {
-                System.out.println("  Ingesta: " + tipoIngesta(ingesta.getTipoIngesta()));
+
+            Node<Ingesta> ingestaNode = dia.getIngestas().getHead();
+            while (ingestaNode != null) {
+                Ingesta ingesta = ingestaNode.getData();
+                System.out.println("  Ingesta: " + ingesta.getTipoIngesta());
+
                 for (Alimento alimento : ingesta.getAlimentos()) {
                     System.out.println("    Alimento: " + alimento.getNombre());
                 }
+                ingestaNode = ingestaNode.getNext();
             }
+            diaNode = diaNode.getNext();
         }
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ingesta {
-    private int tipoIngesta; // 1: Desayuno, 2: Media mañana, etc.
+    private int tipoIngesta;
     private List<Alimento> alimentos;
 
     public Ingesta(int tipoIngesta) {
@@ -15,10 +15,10 @@ public class Ingesta {
     public void agregarAlimento(Alimento alimento) {
         for (Alimento existente : alimentos) {
             if (existente.getNombre().equalsIgnoreCase(alimento.getNombre())) {
-                return; // El alimento ya existe, no lo agregamos
+                return;
             }
         }
-        alimentos.add(alimento); // Agregar alimento si no está en la lista
+        alimentos.add(alimento);
     }
 
     public Alimento buscarAlimento(String nombreAlimento) {
@@ -29,17 +29,6 @@ public class Ingesta {
         }
         return null;
     }
-
-    /*
-     * private boolean existeAlimento(String nombreAlimento) {
-     * for (Alimento alimento : alimentos) {
-     * if (alimento.getNombre().equalsIgnoreCase(nombreAlimento)) {
-     * return true;
-     * }
-     * }
-     * return false;
-     * }
-     */
 
     public int getTipoIngesta() {
         return tipoIngesta;
