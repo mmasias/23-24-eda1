@@ -1,5 +1,4 @@
 Estoy trabajando en el plantUML:
-
 @startuml
 class ValoresNutricionales{
 int calorias;
@@ -22,9 +21,9 @@ public void setTipo(String tipo);
 @Override public int compareTo(ValoresNutricionales o);
 }
 
-class NodoArbol <T extends DatosArbol> {
+class NodoArbol {
 private T valor;
-private GenericList<nodoArbol<T>> hijos;
+private GenericList hijos;
 
 public NodoArbol(T valor);
 @Override public int compareTo(NodoArbol<T> o);
@@ -49,7 +48,7 @@ public void setFecha(LocalDate fecha);
 
 class main{}
 
-class Ingesta i{
+class Ingesta{
 Horario horario;
 GenericList<Alimento> alimentos;
 
@@ -72,7 +71,13 @@ class Informacion{
 public static ValoresNutricionales getDatos(String nombre);
 }
 
-enumHorario{DESAYUNO, MEDIAMAÑANA, ALMUERZO, MERIENDA, CENA}
+enum Horario{
+DESAYUNO
+MEDIAMAÑANA
+ALMUERZO
+MERIENDA
+CENA
+}
 
 class Gestion{
 private Arbol<DatosArbol> arbol;
@@ -105,5 +110,66 @@ class GenericList<T>{
 private GenericNode<T> first = null;
 public int size();
 public boolean isEmpty();
+public void vaciar();
+public void insertFront(T value);
+public void insertEnd(T value);
+public void deleteFront();
+public GenericNode<T> getFirst();
+public GenericNode<T> getLast();
+public Object[] listAll();
+public T getObjeto(int posicion);
+public void insertarEnOrden(T value);
+public T getValorPorPosicion(int pos);
+public int indexOf(T value);
+
 }
+
+class Encuesta{
+private LocalDate fecha;
+public Encuesta(LocalDate fecha);
+public LocalDate getFecha();
+public void setFecha(LocalDate fecha);
+@Override public String getInfo();
+}
+
+class Dia{
+private int dia;
+public Dia(int dia);
+public int getDia();
+public void setDia(int dia);
+@Override public String getInfo();
+}
+
+interface DatosArbol{
++public String getInfo();
+}
+
+class Arbol{
+private NodoArbol<T> raiz;
+public Arbol(NodoArbol<T> raiz);
+public NodoArbol<T> getRaiz();
+public void setRaiz(NodoArbol<T> raiz);
+public void preOrden(NodoArbol<T> nodo);
+public void postOrden(NodoArbol<T> nodo);
+@Override public String getInfo();
+public int totalCaloriasEnc(NodoArbol<T> nodo);
+public int totalAzucarEnc(NodoArbol<T> nodo);
+public int totalGrasasEnc(NodoArbol<T> nodo);
+public int totalProteinasEnc(NodoArbol<T> nodo);
+public int totalTipoEnc(NodoArbol<T> nodo, String nombre);
+}
+
+class Alimento{
+private String nombre;
+private int gramos;
+
+public Alimento(String nombre, int gramos);
+public String getNombre();
+public void setNombre(String nombre);
+public int getGramos();
+public void setGramos(int gramos);
+@Override public int compareTo(Alimento o);
+}
+
+
 @enduml
