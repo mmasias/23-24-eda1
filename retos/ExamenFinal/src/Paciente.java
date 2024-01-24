@@ -2,15 +2,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paciente implements DatosArbol{
+public class Paciente implements DatosArbol {
     private LocalDate fechaDeAlta;
     private String nombre;
-    private List<Paciente> pacientes;
+    private List<LocalDate> fechas;
+    private List<Encuesta> encuestas;
 
     public Paciente(String nombre, LocalDate fechaDeAlta) {
         this.fechaDeAlta = fechaDeAlta;
         this.nombre = nombre;
-        this.pacientes = new ArrayList<>();
+        this.fechas = new ArrayList<>();
+        this.encuestas = new ArrayList<>();
     }
 
     public LocalDate getFechaDeAlta() {
@@ -29,16 +31,25 @@ public class Paciente implements DatosArbol{
         this.nombre = nombre;
     }
 
-    public List<Paciente> getPacientes() {
-        return this.pacientes;
+    public List<LocalDate> getFechas() {
+        return this.fechas;
     }
 
-    public void addPaciente(Paciente paciente) {
-        this.pacientes.add(paciente);
+    public void addFecha(LocalDate fecha) {
+        this.fechas.add(fecha);
     }
 
     @Override
     public String getInformacion() {
-        return "Nombre: "+ nombre + "  ||  Fecha de alta: " + fechaDeAlta;
+        return "Nombre: " + nombre + "  ||  Fecha de alta: " + fechaDeAlta;
+    }
+
+    public void addEncuesta(Encuesta encuesta) {
+        this.encuestas.add(encuesta);
+    }
+
+    public Encuesta[] getEncuestas() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEncuestas'");
     }
 }

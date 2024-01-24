@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dia implements DatosArbol, Comparable<Dia>{
+public class Dia implements DatosArbol, Comparable<Dia> {
     private int fecha;
-    private List<Dia> dias;
+    private List<Ingesta> ingestas;
 
     public Dia(int fecha) {
         this.fecha = fecha;
-        this.dias = new ArrayList<>();
+        this.ingestas = new ArrayList<>();
     }
 
     public int getFecha() {
@@ -18,27 +18,21 @@ public class Dia implements DatosArbol, Comparable<Dia>{
         this.fecha = fecha;
     }
 
-    public List<Dia> getDias() {
-        return this.dias;
+    public List<Ingesta> getIngestas() {
+        return this.ingestas;
     }
 
-    public void addDia(Dia dia) {
-        this.dias.add(dia);
+    public void addIngesta(Ingesta ingesta) {
+        this.ingestas.add(ingesta);
     }
 
     @Override
     public String getInformacion() {
-        return "Dia: "+ this.fecha;
+        return "Día: " + this.fecha;
     }
 
     @Override
     public int compareTo(Dia o) {
-        if (this.fecha>o.fecha) {
-            return 1;
-        }else if (this.fecha<o.fecha) {
-            return -1;
-        }else {
-            return 0;
-        }
+        return Integer.compare(this.fecha, o.fecha);
     }
 }

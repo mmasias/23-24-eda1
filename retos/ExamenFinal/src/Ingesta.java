@@ -2,20 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ingesta implements Comparable<Ingesta>, DatosArbol {
-    private Horario horario;
     private List<Alimento> alimentos;
 
     public Ingesta(Horario horario) {
-        this.horario = horario;
         this.alimentos = new ArrayList<>();
-    }
-
-    public void setHorario(String nombre) {
-        this.horario = horario;
-    }
-
-    public Horario getHorario() {
-        return this.horario;
     }
 
     public void addAlimento(Alimento alimento) {
@@ -24,18 +14,13 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
 
     @Override
     public int compareTo(Ingesta o) {
-        if (this.horario.getCode() < o.horario.getCode()) {
-            return 1;
-        } else if (this.horario.getCode() > o.horario.getCode()) {
-            return -1;
-        } else {
-            return 0;
-        }
+        // Implementa la comparación si es necesario
+        return 0;
     }
 
     @Override
     public String getInformacion() {
-        String texto = this.getHorario().getDescription() + ":";
+        String texto = "Ingesta: ";
         for (int i = 0; i < alimentos.size(); i++) {
             Alimento alimento = alimentos.get(i);
             texto += alimento.getNombre() + "(" + alimento.getGramos() + "g), ";
@@ -53,5 +38,10 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
             }
         }
         return texto.substring(0, texto.length() - 2);
+    }
+
+    public List<Paciente> getAlimentos() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAlimentos'");
     }
 }

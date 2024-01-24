@@ -1,30 +1,38 @@
-public class NodoArbol<T extends DatosArbol> implements Comparable <NodoArbol<T>> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class NodoArbol<T extends DatosArbol> implements Comparable<NodoArbol<T>> {
     private T value;
-    private GenericList<NodoArbol<T>> hijos;
+    private List<NodoArbol<T>> hijos;
+
     public NodoArbol(T value) {
         this.value = value;
-        this.hijos = new GenericList<NodoArbol<T>>();
+        this.hijos = new ArrayList<>();
     }
+
     @Override
     public int compareTo(NodoArbol<T> o) {
-        return 0;
+        // Implementación básica de compareTo comparando los valores de los nodos
+        return this.value.getInformacion().compareTo(o.value.getInformacion());
     }
+
     public T getValue() {
         return value;
     }
+
     public void setValue(T value) {
         this.value = value;
     }
-    public GenericList<NodoArbol<T>> getHijos() {
+
+    public List<NodoArbol<T>> getHijos() {
         return hijos;
     }
-    public void setHijos(GenericList<NodoArbol<T>> hijos) {
+
+    public void setHijos(List<NodoArbol<T>> hijos) {
         this.hijos = hijos;
     }
-    public void insertarHijo(NodoArbol<T> hijo){
-        //hijos.insertOrdered(hijo);
-        hijos.insertEnd(hijo);
-    }
-    
 
+    public void insertarHijo(NodoArbol<T> hijo) {
+        hijos.add(hijo);
+    }
 }

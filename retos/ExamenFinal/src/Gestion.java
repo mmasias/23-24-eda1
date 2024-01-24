@@ -1,15 +1,17 @@
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Gestion {
-    private Arbol<DatosArbol> arbol;
+    private List<Paciente> pacientes;
     private Scanner sc;
     private DateTimeFormatter formato;
 
     public Gestion() {
-        this.arbol = new Arbol<>(null);
+        this.pacientes = new ArrayList<>();
         this.sc = new Scanner(System.in);
         this.formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
@@ -19,7 +21,7 @@ public class Gestion {
         LocalDate fechaDeAlta = null;
         System.out.println("Introduce el nombre del paciente");
         nombre = sc.nextLine();
-        boolean ok = true;
+        boolean ok;
         do {
             ok = true;
             System.out.println("Introduce la fecha de alta del paciente (dd/mm/aaaa)");
@@ -33,13 +35,12 @@ public class Gestion {
         } while (!ok);
 
         Paciente paciente = new Paciente(nombre, fechaDeAlta);
-        NodoArbol<DatosArbol> nodoPaciente = new NodoArbol<DatosArbol>(paciente);
-        arbol.setRaiz(nodoPaciente);
+        pacientes.add(paciente);
     }
 
     public void insertarEncuesta() {
         LocalDate fecha = null;
-        boolean ok = true;
+        boolean ok;
         do {
             ok = true;
             System.out.println("Introduce la fecha de la encuesta (dd/mm/aaaa)");
@@ -49,129 +50,123 @@ public class Gestion {
                 System.out.println("Fecha incorrecta");
                 ok = false;
             }
-
         } while (!ok);
+
         Encuesta encuesta = new Encuesta(fecha);
-        NodoArbol<DatosArbol> nodoEncuesta = new NodoArbol<DatosArbol>(encuesta);
-        arbol.getRaiz().insertarHijo(nodoEncuesta);
+        pacientes.get(pacientes.size() - 1).addEncuesta(encuesta);
     }
 
     public void insertarDia() {
-        NodoArbol<DatosArbol> nodoEncuesta = arbol.getRaiz().getHijos().getObjeto(0);
+        int ultimoPacienteIndex = pacientes.size() - 1;
+        List<Dia> dias = pacientes.get(ultimoPacienteIndex).getEncuestas().get(0).getDias();
+
         for (int i = 1; i <= 5; i++) {
             Dia dia = new Dia(i);
-            nodoEncuesta.insertarHijo(new NodoArbol<DatosArbol>(dia));
+            dias.add(dia);
         }
     }
 
     public void insertarIngesta() {
-
-        boolean ok = true;
+        boolean ok;
         int dia = 0;
-        Ingesta ing = null;
         int opcion = 0;
         String opcion2 = "";
         Horario horario = null;
+        
         do {
             do {
                 System.out.println("Seleccione el dia: (1/5) / (0 para salir)");
                 try {
-                    sc = new Scanner(System.in);
                     dia = sc.nextInt();
                 } catch (Exception e) {
                     dia = -1;
                     System.out.println("Dia no existente");
                 }
-            } while (dia < 0 || dia > arbol.getRaiz().getHijos().getObjeto(0).getHijos().size());
+            } while (dia < 0 || dia > 5);
+
             if (dia == 0) {
                 break;
             }
-            NodoArbol<DatosArbol> nodoDia = arbol.getRaiz().getHijos().getObjeto(0).getHijos().getObjeto(dia - 1);
-            if (ok) {
 
-                do {
-                    ok = true;
-                    System.out.println(
-                            "Selecciona la ingesta: 1. (Desayuno) / 2. (Media mañana) / 3. (Almuerzo) / 4. (Merienda) / 5. (Cena) / -1. (Menu anterior)");
-                    try {
-                        opcion = sc.nextInt();
-                    } catch (NumberFormatException e) {
-                        System.out.println("Opcion incorrecta");
+            Dia diaSeleccionado = pacientes.get(pacientes.size() - 1)
+                    .getEncuestas().get(0)
+                    .getDias().get(dia - 1);
+
+            do {
+                ok = true;
+                System.out.println("Selecciona la ingesta: 1. (Desayuno) / 2. (Media mañana) / 3. (Almuerzo) / 4. (Merienda) / 5. (Cena) / -1. (Menu anterior)");
+                try {
+                    opcion = sc.nextInt();
+                } catch (NumberFormatException e) {
+                    System.out.println("Opcion incorrecta");
+                    ok = false;
+                }
+
+                switch (opcion) {
+                    case 1:
+                        horario = Horario.DESAYUNO;
+                        break;
+                    case 2:
+                        horario = Horario.MEDIA_MAÑANA;
+                        break;
+                    case 3:
+                        horario = Horario.ALMUERZO;
+                        break;
+                    case 4:
+                        horario = Horario.MERIENDA;
+                        break;
+                    case 5:
+                        horario = Horario.CENA;
+                        break;
+                    case -1:
+                        break;
+                    default:
                         ok = false;
-                    }
-                    switch (opcion) {
-                        case 1:
-                            horario = Horario.DESAYUNO;
-                            break;
-                        case 2:
-                            horario = Horario.MEDIA_MAÑANA;
-                            break;
-                        case 3:
-                            horario = Horario.ALMUERZO;
-                            break;
-                        case 4:
-                            horario = Horario.MERIENDA;
-                            break;
-                        case 5:
-                            horario = Horario.CENA;
-                            break;
-                        case -1:
-                            break;
-                        default:
-                            ok = false;
-                            System.out.println("Opcion incorrecta");
-                            break;
-                    }
-                } while (!ok);
-                // Compruebo si con anterioridad hemos añadido ese tipo de ingesta. En caso
-                // afirmativo la recuperamos
-                if (opcion != -1) {
+                        System.out.println("Opcion incorrecta");
+                        break;
+                }
+            } while (!ok);
 
-                    NodoArbol<DatosArbol> nodoIngesta = comprobarSiExiste(dia, horario);
-                    if (nodoIngesta != null) {
-                        ing = (Ingesta) nodoIngesta.getValue();
-                    } else {
-                        ing = new Ingesta(horario);
-                    }
-                    do {
-                        System.out.println("Ingrese un alimento del " + ing.getHorario().getDescription() + " del dia "
-                                + dia
-                                + ". (-1 para terminar) / (-2 para listar alimentos ingresados) / (-3 para borrar todos los alimentos)");
-                        sc = new Scanner(System.in);
-                        opcion2 = sc.nextLine(); // alimento o opcion escogida
-                        if (opcion2.equals("-2")) {
-                            System.out.println("Los alimentos son: " + ing.getInformacion());
-                        } else if (opcion2.equals("")) {
-                            System.out.println("Alimento no valido");
+            if (opcion != -1) {
+                Ingesta ing = new Ingesta(horario);
+                ingresarAlimento(ing);
 
-                        } else if (opcion2.equals("-3")) {
-                            ing.vaciar();
-                        } else if (!opcion2.equals("-1")) {
-                            do {
-                                ok = true;
-                                System.out.println("Introduce los gramos del alimento: ");
-                                try {
-                                    sc = new Scanner(System.in);
-                                    int gramos = sc.nextInt();
-                                    ing.insertarAlimento(new Alimento(opcion2, gramos));
-                                } catch (InputMismatchException e) {
-                                    System.out.println("Gramos incorrectos");
-                                    ok = false;
-                                }
-                            } while (!ok);
-                        }
-                    } while (!opcion2.equals("-1"));
-
-                    if (ing != null && nodoIngesta == null) {
-                        nodoDia.insertarHijo(new NodoArbol<DatosArbol>(ing));
-                    }
-                    if (nodoIngesta != null) {
-                        nodoIngesta.setValue(ing);
-                    }
+                if (diaSeleccionado != null) {
+                    diaSeleccionado.addIngesta(ing);
                 }
             }
         } while (true);
+    }
 
+    private void ingresarAlimento(Ingesta ing) {
+        boolean ok;
+        String opcion2;
+
+        do {
+            System.out.println("Ingrese un alimento del " + ing.getHorario().getDescription() + ". (-1 para terminar) / (-2 para listar alimentos ingresados) / (-3 para borrar todos los alimentos)");
+            opcion2 = sc.nextLine();
+
+            if (opcion2.equals("-2")) {
+                System.out.println("Los alimentos son: " + ing.getInformacion());
+            } else if (opcion2.equals("")) {
+                System.out.println("Alimento no valido");
+
+            } else if (opcion2.equals("-3")) {
+                ing.getAlimentos().clear();
+            } else if (!opcion2.equals("-1")) {
+                do {
+                    ok = true;
+                    System.out.println("Introduce los gramos del alimento: ");
+                    try {
+                        int gramos = sc.nextInt();
+                        ing.addAlimento(new Alimento(opcion2, gramos));
+                    } catch (InputMismatchException e) {
+                        System.out.println("Gramos incorrectos");
+                        ok = false;
+                    }
+                } while (!ok);
+            }
+        } while (!opcion2.equals("-1"));
     }
 
     public void capturarDatos() {
@@ -182,37 +177,23 @@ public class Gestion {
     }
 
     public void mostrar() {
-        arbol.preOrden(arbol.getRaiz(), "");
-    }
-
-    public NodoArbol<DatosArbol> comprobarSiExiste(int dia, Horario horario) {
-        NodoArbol<DatosArbol> resultado = null;
-        NodoArbol<DatosArbol> nodoDia = arbol.getRaiz().getHijos().getValorPorPosicion(0).getHijos()
-                .getValorPorPosicion(dia - 1);
-        GenericList<NodoArbol<DatosArbol>> nodoIngesta = nodoDia.getHijos();
-        for (int i = 0; i < nodoIngesta.size(); i++) {
-            Ingesta ing = (Ingesta) nodoIngesta.getValorPorPosicion(i).getValue();
-            if (ing.getHorario() == horario) {
-                resultado = nodoIngesta.getValorPorPosicion(i);
-                break;
+        for (Paciente paciente : pacientes) {
+            System.out.println(paciente.getInformacion());
+            for (Encuesta encuesta : paciente.getEncuestas()) {
+                System.out.println(encuesta.getInformacion());
+                for (Dia dia : encuesta.getDias()) {
+                    System.out.println(dia.getInformacion());
+                    for (Ingesta ingesta : dia.getIngestas()) {
+                        System.out.println(ingesta.getInformacion());
+                    }
+                }
             }
         }
-        return resultado;
     }
 
-    public void estadisticas(){
-        int total = arbol.totalCalorias(arbol.getRaiz());
-        System.out.println("Total calorias en cinco dias: " + total);
-        System.out.println("Promedio diario: " + total/5);
-        if (total/5<1600) {
-            System.out.println("Consumo de calorias por debajo de las recomendadas");
-        } else if (total/5>2000) {
-            System.out.println("Consumo de calorias excesivo. Se recomienda aumentar el ejercicio fisico");
-        }
-        int fruta = arbol.totalTipo(arbol.getRaiz(), "Fruta");
-        System.out.println("Cantidad de fruta: " + fruta);
-        if (fruta<3) {
-            System.out.println("Se recomienda comer mas fruta");
+    public void cerrarScanner() {
+        if (sc != null) {
+            sc.close();
         }
     }
 }
