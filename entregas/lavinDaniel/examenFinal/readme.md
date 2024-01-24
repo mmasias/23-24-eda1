@@ -41,5 +41,6 @@ La clase principal `Encuesta24Horas` gestiona la encuesta completa. Tiene los si
 
 El programa inicia desde la clase `Main`, que instancía un objeto `Encuesta24Horas` y llama al método `realizarEncuesta` para comenzar la interacción con el usuario.
 
-![Diagrama de Clases](https://github.com/LavinAguado/23-24-eda1/blob/main/entregas/lavinDaniel/imagenes/Markdownreto007.png)
+![Diagrama](https://github.com/LavinAguado/23-24-eda1/blob/main/entregas/lavinDaniel/imagenes/Markdownreto007.png)
+
 
