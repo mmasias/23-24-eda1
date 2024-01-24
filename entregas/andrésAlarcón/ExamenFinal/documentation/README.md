@@ -20,3 +20,8 @@ To run the application, compile all the .java files and then run the Main class.
 
 ## Note
 This is a simple application and does not persist data between runs. Once the application is closed, all data will be lost.
+
+
+## UML Diagram
+
+![](firstDiagram.svg)
