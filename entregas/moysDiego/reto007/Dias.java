@@ -20,20 +20,21 @@ public class Dias {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder("Día " + diaIndex + ":\n");
+        StringBuilder sb = new StringBuilder("\n");
+        sb.append("Día ").append(diaIndex).append(":\n");
+    
         for (String tipoIngesta : getTiposIngestaValidos()) {
             Node<IngestaTipo> ingestaTipoNode = ingestasTree.find(tipoIngesta.hashCode());
             if (ingestaTipoNode != null) {
-                sb.append(ingestaTipoNode.getData().toString()).append("\n");
+                sb.append(" ").append("Ingesta ").append(tipoIngesta).append(":\n");
+                sb.append(ingestaTipoNode.getData().getIngestas().toStringIndented());
             }
         }
+    
         return sb.toString();
     }
-
     private static String[] getTiposIngestaValidos() {
         return new String[]{"Desayuno", "Media Mañana", "Almuerzo", "Merienda", "Cena"};
     }
-   
 
-    
 }
