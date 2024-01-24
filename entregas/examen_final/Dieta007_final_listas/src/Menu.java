@@ -65,12 +65,12 @@ public class Menu {
         Patient nuevoPaciente = new Patient(nombrePaciente);
         patients.insert(nuevoPaciente, -1);
 
-        while (true) {
-            System.out.print("Seleccione día (1-5): ");
-            int dia = numeros.nextInt();
-            String nombreDia = "Dia " + dia;
-            Day day = new Day(nombreDia);
+        System.out.print("Seleccione día (1-5): ");
+        int dia = numeros.nextInt();
+        String nombreDia = "Dia " + dia;
+        Day day = new Day(nombreDia);
 
+        while (true) {
             System.out.print("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Salir): ");
             int ingesta = numeros.nextInt();
             if (ingesta == -1) {
@@ -82,9 +82,28 @@ public class Menu {
 
             agregarAlimentosAIngesta(intakes);
             day.addIntake(intakes);
-            nuevoPaciente.addDay(day);
+        }
+
+        nuevoPaciente.addDay(day);
+    }
+
+    private static String obtenerNombreIngesta(int ingesta) {
+        switch (ingesta) {
+            case 1:
+                return "Desayuno";
+            case 2:
+                return "Media mañana";
+            case 3:
+                return "Almuerzo";
+            case 4:
+                return "Merienda";
+            case 5:
+                return "Cena";
+            default:
+                return "Invalido";
         }
     }
+
 
     private static void showAllDiets() {
         Node<Patient> current = patients.getFirst();
@@ -95,7 +114,7 @@ public class Menu {
     }
     private static void findAndShowPatient() {
         System.out.print("Introduce el nombre del Paciente: ");
-        textos.nextLine(); // Limpiar buffer
+        textos.nextLine();
         String nombrePaciente = textos.nextLine();
         Node<Patient> pacienteNode = findPatientNode(nombrePaciente);
         if (pacienteNode != null) {
@@ -117,23 +136,26 @@ public class Menu {
     }
     private static void agregarAlimentosAIngesta(Intakes intakes) {
         String nombreAlimento;
-        do {
+        while (true) {
             System.out.println("Ingrese un alimento (-1 para terminar / -2 para listar alimentos ingresados):");
             nombreAlimento = textos.nextLine();
 
-            if (!nombreAlimento.equals("-1") && !nombreAlimento.equals("-2")) {
-                System.out.print("Ingrese las kcal para " + nombreAlimento + ": ");
-                int kcal = numeros.nextInt();
-                intakes.addFood(new Food(nombreAlimento, kcal));
+            if (nombreAlimento.equals("-1")) {
+                break;
             } else if (nombreAlimento.equals("-2")) {
                 intakes.showMenu();
+            } else {
+                System.out.print("Ingrese las kcal para " + nombreAlimento + ": ");
+                int kcal = numeros.nextInt();
+                textos.nextLine(); // Limpiar el buffer del scanner
+                intakes.addFood(new Food(nombreAlimento, kcal));
             }
-        } while (!nombreAlimento.equals("-1"));
+        }
     }
 
     private static void removePatient() {
         System.out.print("Nombre del paciente a eliminar: ");
-        textos.nextLine(); // Limpiar buffer
+        textos.nextLine();
         String nombrePaciente = textos.nextLine();
         boolean eliminado = removePatientFromList(nombrePaciente);
         if (eliminado) {
