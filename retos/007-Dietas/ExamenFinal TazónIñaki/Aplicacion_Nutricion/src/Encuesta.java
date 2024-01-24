@@ -1,5 +1,5 @@
 import java.util.Date;
-import java.util.ArrayList;
+import java.util.TreeSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +12,7 @@ public class Encuesta {
 	private static int contadorId = 0; 
     private int id;
 	private Paciente paciente;
-	private Map<String, ArrayList<String>> contenido;
+	private Map<String, TreeSet<String>> contenido;
 	private Date fecha;
 	
 	/**
@@ -24,7 +24,7 @@ public class Encuesta {
 		
 		this.id = ++contadorId;
 		this.paciente = paciente;
-		this.contenido = new HashMap<String, ArrayList<String>>();
+		this.contenido = new HashMap<String, TreeSet<String>>();
 		this.fecha = fecha;
 	}
 
@@ -48,7 +48,7 @@ public class Encuesta {
 	 * Devuelve el contenido de la encuesta
 	 * @return
 	 */
-	public Map<String, ArrayList<String>> getContenido() {
+	public Map<String, TreeSet<String>> getContenido() {
 		return contenido;
 	}
 
@@ -56,7 +56,7 @@ public class Encuesta {
 	 * Establece el contenido de la encuesta
 	 * @param contenido
 	 */
-	public void setContenido(Map<String, ArrayList<String>> contenido) {
+	public void setContenido(Map<String, TreeSet<String>> contenido) {
 		this.contenido = contenido;
 	}
 
