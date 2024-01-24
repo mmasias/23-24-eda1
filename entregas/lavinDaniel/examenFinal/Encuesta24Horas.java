@@ -1,21 +1,19 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 class Encuesta24Horas {
     String persona;
-    List<DiaAlimentos> alimentosPorDia;
+    DiaAlimentos[] alimentosPorDia;
 
     public Encuesta24Horas(String persona) {
         this.persona = persona;
-        this.alimentosPorDia = new ArrayList<>();
+        this.alimentosPorDia = new DiaAlimentos[31];
     }
 
     public void agregarAlimento(int dia, Alimento alimento) {
-        while (alimentosPorDia.size() <= dia) {
-            alimentosPorDia.add(new DiaAlimentos());
+        if (alimentosPorDia[dia] == null) {
+            alimentosPorDia[dia] = new DiaAlimentos();
         }
-        alimentosPorDia.get(dia).agregarAlimento(alimento);
+        alimentosPorDia[dia].agregarAlimento(alimento);
     }
 
     public void realizarEncuesta(Scanner scanner) {
@@ -23,13 +21,13 @@ class Encuesta24Horas {
 
         int dia;
         do {
-            System.out.print("Seleccione día (6 para salir): ");
+            System.out.print("Seleccione día (0 para salir): ");
             dia = scanner.nextInt();
 
-            if (dia != 6) {
+            if (dia != 0) {
                 realizarEncuestaDia(dia, scanner);
             }
-        } while (dia != 6);
+        } while (dia != 0);
     }
 
     private void realizarEncuestaDia(int dia, Scanner scanner) {
@@ -46,7 +44,11 @@ class Encuesta24Horas {
     }
 
     private void realizarEncuestaComida(int dia, int ingesta, Scanner scanner) {
-        DiaAlimentos diaAlimentos = alimentosPorDia.size() > dia ? alimentosPorDia.get(dia) : new DiaAlimentos();
+        if (alimentosPorDia[dia] == null) {
+            alimentosPorDia[dia] = new DiaAlimentos();
+        }
+
+        DiaAlimentos diaAlimentos = alimentosPorDia[dia];
 
         int opcion;
         do {
