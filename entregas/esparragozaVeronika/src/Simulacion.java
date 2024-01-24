@@ -6,7 +6,7 @@ public class Simulacion {
     private Lista<String> nombresUsuarios;
     private Lista<String> listaComidasPorDias;
     private int cantidadDias;
-    private Lista<Nodo> listaArbolesCreados;
+    private Lista<Lista> listaArbolesCreados;
 
     public Simulacion(Lista<String> nombresUsuarios, Lista<String> listaComidasPorDias, int cantidadDias) {
         this.nombresUsuarios = nombresUsuarios;
@@ -52,11 +52,8 @@ public class Simulacion {
         return scanner.next();
     }
     public void creacionPacientes(Lista<String> nombresUsuarios){
-        Nodo<String> nuevoUsuario = new Nodo<>(vistaCreacionPacientes());
-        nombresUsuarios.agregar(nuevoUsuario);
-
-        nombresUsuarios.imprimirLista(nombresUsuarios);
-
+        nombresUsuarios.agregar(new Nodo<>(vistaCreacionPacientes()));
+        //nombresUsuarios.imprimirLista(nombresUsuarios);
         imprimirFormularioFinal();
     }
 
@@ -124,19 +121,15 @@ public class Simulacion {
         System.out.println("Ya pasaste por aqui, en imprimirFormularioInscripcion");
     }
 
-    public Lista<Nodo> crearArbolPaciente(String nombreUsuario) {
-        System.out.println("############################# Ya pasamos?");
-        Lista<String> nuevaListaPaciente = new Lista<>();
+    public Lista<Lista> crearArbolPaciente(String nombreUsuario) {
+        Lista<Lista> nuevaListaPaciente = new Lista<>();
 
 
         poblandoListaPaciente(nuevaListaPaciente);
-        System.out.println("############################# xd?");
 
         nuevaListaPaciente.imprimirLista(nuevaListaPaciente);
 
-        System.out.println("############################# xdddd?");
 
-        System.out.println("############################# Como vamos?");
         //listaArbolesCreados.agregar(new Nodo<> (nuevaListaPaciente));
 
 
@@ -161,19 +154,17 @@ public class Simulacion {
         return listaArbolesCreados;
     }
 
-    public void poblandoListaPaciente(Lista nuevaListaPaciente){
-
-        System.out.println("############################# Por aqui muere, en poblandoListaPaciente " + nuevaListaPaciente);
+    public void poblandoListaPaciente(Lista<Lista> nuevaListaPaciente){
 
         for (int i = 1; i <= cantidadDias; i++) {
-            nuevaListaPaciente.agregar(new Nodo ("Dia " + i));
-            nuevaListaPaciente.imprimirLista(nuevaListaPaciente);
-            Lista listaComidasPorDiasPorPaciente = new Lista();
+            Lista<Lista> listaComidasPorDiasPorPaciente = new Lista();
+            nuevaListaPaciente.agregar(listaComidasPorDiasPorPaciente);
 
+            //nuevaListaPaciente.imprimirLista(nuevaListaPaciente);
             for (int j = 0; j < listaComidasPorDias.size(); j++) {
-                listaComidasPorDiasPorPaciente.agregar(new Nodo(listaComidasPorDias.get(j)));
+                listaComidasPorDiasPorPaciente.agregar(new Nodo(listaComidasPorDias.get(j)).getHijos());
             }
-            //listaComidasPorDiasPorPaciente.imprimirLista(listaComidasPorDiasPorPaciente);
+            listaComidasPorDiasPorPaciente.imprimirLista(listaComidasPorDiasPorPaciente);
            //System.out.println("PASAMOSSS");
         }
         añadirAlimentos(formularioInscripcionPorDias(nuevaListaPaciente), nuevaListaPaciente);
@@ -183,15 +174,21 @@ public class Simulacion {
 
     public Nodo formularioInscripcionPorDias(Lista paciente){
         System.out.println("Elige el dia que deseas ingresar la ingesta de comidas");
-        for (int diaActual = 0; diaActual < paciente.get(0).getHijos().size(); diaActual++) {
-            System.out.println((diaActual + 1) + ". " + paciente.get(0).getHijos().get(diaActual).getDato());
+        System.out.println("Aqui vamos" + paciente.size());
+        for (int diaActual = 0; diaActual < paciente.size(); diaActual++) {
+            System.out.println((diaActual + 1) + ". " + paciente.get(diaActual).getDato());
         }
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("-> ");
         int diaElegido = scanner.nextInt();
-        Nodo<String> nodoDeDiaElegido = paciente.get(0).getHijos().get(diaElegido - 1);
+
+        Nodo<String> nodoDeDiaElegido = paciente.get(diaElegido - 1);
         System.out.println("Elegiste el dia: " + nodoDeDiaElegido.getDato());
+
+        System.out.println(paciente.get(0).getHijos().get(Integer.parseInt(0 + "    Size dentro de  formularioInscripcionPorDias")));
+
+
 
         System.out.println("Elige la comida que deseas ingresar a la ingesta");
         for (int comidaActual = 0; comidaActual < nodoDeDiaElegido.getHijos().size(); comidaActual++) {
@@ -211,7 +208,7 @@ public class Simulacion {
         System.out.print("-> ");
         String respuestaComidas = scanner.nextLine();
 
-        paciente.agregar(new Nodo (respuestaComidas));
+        paciente.agregar(new Nodo (respuestaComidas).getHijos());
     }
 
 

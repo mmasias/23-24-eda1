@@ -23,6 +23,18 @@ public class Lista<T> {
     }
 
 
+    public void agregar(Lista<Lista> node){
+        if (primero == null) {
+            primero = (Nodo<T>) node.getPrimero();
+        } else {
+            Nodo<T> current = primero;
+            while (current.getSiguiente() != null) {
+                current = current.getSiguiente();
+            }
+            current.setSiguiente((Nodo<T>) node.getPrimero());
+        }
+    }
+
     public void agregar(Nodo<T> node){
         if (primero == null) {
             primero = node;
@@ -31,7 +43,7 @@ public class Lista<T> {
             while (current.getSiguiente() != null) {
                 current = current.getSiguiente();
             }
-            current.setSiguiente(node);
+            current.setSiguiente( node);
         }
     }
     public void agregarEn(Nodo<T> node, int index){
