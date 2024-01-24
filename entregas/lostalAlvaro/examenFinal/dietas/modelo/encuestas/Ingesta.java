@@ -1,5 +1,8 @@
 package modelo.encuestas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modelo.Horario;
 import modelo.alimentos.Alimento;
 import modelo.alimentos.Informacion;
@@ -8,11 +11,11 @@ import modelo.estructuras.GenericList;
 
 public class Ingesta implements Comparable<Ingesta>, DatosArbol {
     private Horario horario;
-    private GenericList<Alimento> alimentos;
+    private List<Alimento> alimentos;
 
     public Ingesta(Horario horario) {
         this.horario = horario;
-        this.alimentos = new GenericList<Alimento>();
+        this.alimentos = new ArrayList<>();
     }
 
     public Horario getHorario() {
@@ -23,12 +26,12 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
         this.horario = horario;
     }
 
-    public GenericList<Alimento> getAlimentos() {
+    public List<Alimento> getAlimentos() {
         return alimentos;
     }
 
     public void insertarAlimento(Alimento alimento) {
-        this.alimentos.insertEnd(alimento);
+        this.alimentos.add(alimento);
     }
 
     @Override
@@ -49,7 +52,7 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
 
         String texto = this.getHorario().getDescription() + ": ";
         for (int i = 0; i < alimentos.size(); i++) {
-            Alimento al = alimentos.getValorPorPosicion(i);
+            Alimento al = alimentos.get(i);
             texto += ROJO + al.getNombre() + RESET + ": " + al.getGramos() + "gr | ";
             if (Informacion.getDatos(al.getNombre()) != null) {
                 int caloria = Informacion.getDatos(al.getNombre()).getCalorias();
@@ -69,13 +72,13 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
     }
 
     public void vaciar() {
-        this.alimentos.vaciar();
+        this.alimentos.clear();
     }
 
     public double totalCalorias() {
         double total = 0;
         for (int i = 0; i < this.alimentos.size(); i++) {
-            Alimento alimento = alimentos.getValorPorPosicion(i);
+            Alimento alimento = alimentos.get(i);
             if (Informacion.getDatos(alimento.getNombre()) != null) {
                 int caloria = Informacion.getDatos(alimento.getNombre()).getCalorias();
                 total += caloria >= 0 ? caloria * alimento.getGramos() / 100 : 0;
@@ -88,7 +91,7 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
     public int totalTipo(String nombreTipo) {
         int cantidad = 0;
         for (int i = 0; i < this.alimentos.size(); i++) {
-            Alimento alimento = alimentos.getValorPorPosicion(i);
+            Alimento alimento = alimentos.get(i);
             if (Informacion.getDatos(alimento.getNombre()) != null) {
                 String tipo = Informacion.getDatos(alimento.getNombre()).getTipo();
                 if (nombreTipo.equalsIgnoreCase(tipo)) {
@@ -103,7 +106,7 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
     public int totalGrasas() {
         int total = 0;
         for (int i = 0; i < this.alimentos.size(); i++) {
-            Alimento alimento = alimentos.getValorPorPosicion(i);
+            Alimento alimento = alimentos.get(i);
             if (Informacion.getDatos(alimento.getNombre()) != null) {
                 int grasa = Informacion.getDatos(alimento.getNombre()).getGrasas();
                 total += grasa >= 0 ? grasa * alimento.getGramos() / 100 : 0;
@@ -116,7 +119,7 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
     public int totalProteinas() {
         int total = 0;
         for (int i = 0; i < this.alimentos.size(); i++) {
-            Alimento alimento = alimentos.getValorPorPosicion(i);
+            Alimento alimento = alimentos.get(i);
             if (Informacion.getDatos(alimento.getNombre()) != null) {
                 int proteina = Informacion.getDatos(alimento.getNombre()).getProteinas();
                 total += proteina >= 0 ? proteina * alimento.getGramos() / 100 : 0;
@@ -129,7 +132,7 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
     public int totalAzucar() {
         int total = 0;
         for (int i = 0; i < this.alimentos.size(); i++) {
-            Alimento alimento = alimentos.getValorPorPosicion(i);
+            Alimento alimento = alimentos.get(i);
             if (Informacion.getDatos(alimento.getNombre()) != null) {
                 int azucar = Informacion.getDatos(alimento.getNombre()).getAzucar();
                 total += azucar >= 0 ? azucar * alimento.getGramos() / 100 : 0;

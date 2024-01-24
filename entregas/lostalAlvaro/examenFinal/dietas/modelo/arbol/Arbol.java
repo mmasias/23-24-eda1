@@ -7,6 +7,7 @@ import modelo.encuestas.Ingesta;
 
 public class Arbol<T extends DatosArbol> {
     private List<NodoArbol<T>> hijos;
+    private NodoArbol<T> raiz;
 
     public Arbol(NodoArbol<T> raiz) {
         this.hijos = new ArrayList<>();
@@ -25,7 +26,7 @@ public class Arbol<T extends DatosArbol> {
         if (raiz != null) {
             System.out.println(nivel + raiz.getValor().getInformacion());
             for (int i = 0; i < raiz.getHijos().size(); i++) {
-                preOrden(raiz.getHijos().getObjeto(i), nivel + "    ");
+                preOrden(raiz.getHijos().get(i), nivel + "    ");
             }
         }
     }
@@ -33,7 +34,7 @@ public class Arbol<T extends DatosArbol> {
     public void postorden(NodoArbol<T> nodo) {
         if (nodo != null) {
             for (int i = 0; i < nodo.getHijos().size(); i++) {
-                postorden(nodo.getHijos().getObjeto(i));
+                postorden(nodo.getHijos().get(i));
             }
             System.out.println(nodo.getValor().getInformacion());
         }
@@ -47,7 +48,7 @@ public class Arbol<T extends DatosArbol> {
                 total += ingesta.totalCalorias();
             }
             for(int i = 0; i < nodo.getHijos().size(); i++) {
-                total += totalCaloriasEnc(nodo.getHijos().getValorPorPosicion(i));
+                total += totalCaloriasEnc(nodo.getHijos().get(i));
             }
             return total;
         } else {
@@ -63,7 +64,7 @@ public class Arbol<T extends DatosArbol> {
                 total += ingesta.totalTipo(nombre);
             }
             for(int i = 0; i<nodo.getHijos().size(); i++) {
-                total += totalTipoEnc(nodo.getHijos().getValorPorPosicion(i), nombre);
+                total += totalTipoEnc(nodo.getHijos().get(i), nombre);
             }
             return total;
         } else {
@@ -79,7 +80,7 @@ public class Arbol<T extends DatosArbol> {
                 total += ingesta.totalGrasas();
             }
             for(int i = 0; i<nodo.getHijos().size(); i++) {
-                total += totalGrasasEnc(nodo.getHijos().getValorPorPosicion(i));
+                total += totalGrasasEnc(nodo.getHijos().get(i));
             }
             return total;
         } else {
@@ -95,7 +96,7 @@ public class Arbol<T extends DatosArbol> {
                 total += ingesta.totalProteinas();
             }
             for(int i = 0; i<nodo.getHijos().size(); i++) {
-                total += totalProteinasEnc(nodo.getHijos().getValorPorPosicion(i));
+                total += totalProteinasEnc(nodo.getHijos().get(i));
             }
             return total;
         } else {
@@ -111,11 +112,15 @@ public class Arbol<T extends DatosArbol> {
                 total += ingesta.totalAzucar();
             }
             for(int i = 0; i<nodo.getHijos().size(); i++) {
-                total += totalAzucarEnc(nodo.getHijos().getValorPorPosicion(i));
+                total += totalAzucarEnc(nodo.getHijos().get(i));
             }
             return total;
         } else {
             return 0;
         }
+    }
+
+    public NodoArbol<T> getRaiz() {
+        return raiz;
     }
 }
