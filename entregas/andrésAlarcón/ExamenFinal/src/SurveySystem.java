@@ -108,7 +108,7 @@ class SurveySystem {
         for (int i = 1; i <= 5; i++) {
             Day currentDay = patient.getDay(i);
             if (currentDay != null) {
-                System.out.println("    Survey Day " + i);
+                System.out.println("    Day " + i);
                 for (String intakeType : getIntakeTypes()) {
                     Intake currentIntake = currentDay.getIntake(intakeType);
                     if (currentIntake != null) {

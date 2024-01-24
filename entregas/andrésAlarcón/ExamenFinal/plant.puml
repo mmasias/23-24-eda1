@@ -1,0 +1,56 @@
+@startuml
+
+class Main {
+    +static void main(String[] args)
+}
+
+class SurveySystem {
+    -Patient patient
+    -Scanner scanner
+    +SurveySystem()
+    +void execute()
+    -void fillOutSurvey()
+    -void fillIntake(Day day, String intakeType)
+    -void displayStructure()
+    -List<String> getIntakeTypes()
+}
+
+class Patient {
+    -String name
+    -List<Day> days
+    +Patient(String name)
+    +void setName(String name)
+    +String getName()
+    +void addDay(int dayNumber, Day day)
+    +Day getDay(int dayNumber)
+}
+
+class Day {
+    -List<Intake> intakes
+    +Day()
+    +void addIntake(String intakeType, Intake intake)
+    +Intake getIntake(String intakeType)
+}
+
+class Intake {
+    -List<Food> foods
+    -String intakeType
+    +Intake(String intakeType)
+    +String getIntakeType()
+    +void addFood(Food food)
+    +List<Food> getFoods()
+}
+
+class Food {
+    -String name
+    +Food(String name)
+    +String toString()
+}
+
+Main --> SurveySystem
+SurveySystem --> Patient
+Patient --> Day
+Day --> Intake
+Intake --> Food
+
+@enduml
