@@ -119,4 +119,18 @@ class tree{
     +printInOrderRecursive(node: Node<T>, sb: StringBuilder): void
 }
 
+main --> menuInteractivo
+menuInteractivo --> cliente
+menuInteractivo --> encuesta
+cliente --> encuesta
+encuesta --> dia
+dia --> ingestaTipo
+ingestaTipo --> ingesta
+ingesta --> alimento: Contiene
+ingesta --> list: Contiene
+list --> node: Contiene
+node ..> node: Siguiente
+node ..> node: Izquierda
+node ..> node: Derecha
+tree --> node
 @enduml
