@@ -10,26 +10,29 @@ la cual nos sirve para que al final de la consulta se muestre un informe
 con la informacion recopilada, para llevar esto acabo hemos realizado 6 
 clases.
 
-# --------------------------------------------------------------------
-     Estas son las siguientes clases usadad: 
+# --------------------------------------------------------------------------
+# ESTAS FUERON LAS CLASES USADAS EN EL CODIGO: 
 
-# Padiente
-    - Representa al paciente y tiene una lista con las encuestas realizadas
+# Paciente
+Representa al paciente y tiene una lista con las encuestas realizadas
 
 # Encuesta
-    - Representa la encuesta realizada por el paciente, cuenta con un dia especifico y contiene una lista, la cual es de los dias asociados a la encuesta
+Representa la encuesta realizada por el paciente, cuenta con un dia especifico y contiene una lista, la cual es de los dias asociados a la encuesta
 
 # Dias
-    - Representa ell cia en especifico en el cual se guardan las ingestas
+Representa ell cia en especifico en el cual se guardan las ingestas
 
 # Ingestas: 
-    - Representa la ingesta registrada en un dia especifico. 
+Representa la ingesta registrada en un dia especifico. 
 
 # Alimentos: 
-    - Representa el alimento consumido durante una ingesta especifica
+Representa el alimento consumido durante una ingesta especifica
 
 # Main
-    - Realiza la ejecucion del programa.
+Realiza la ejecucion del programa.
 
-# --------------------------------------------------------------------
-    Con el uso del diagrama de clases se explica un poco mas de los atributos, metodos y relaciones que tienen cada clase entre si, espero el codigo sea de su agrado y que sea totalmente funcional para solventar el requerimiento planteado.
+# --------------------------------------------------------------------------
+
+Con el uso del diagrama de clases se explica un poco mas de los atributos, metodos y relaciones 
+que tienen cada clase entre si, espero el codigo sea de su agrado y que sea totalmente funcional 
+para solventar el requerimiento planteado.
