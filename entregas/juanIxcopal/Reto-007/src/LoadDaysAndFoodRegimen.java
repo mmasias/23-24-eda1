@@ -1,4 +1,4 @@
-public class LoadData {
+public class LoadDaysAndFoodRegimen {
     public void loadPresetData(Survey survey){
         // Insertar días de la semana
         survey.insertDay("Lunes");

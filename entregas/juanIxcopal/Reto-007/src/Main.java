@@ -4,14 +4,14 @@ public class Main {
     public static void main(String[] args) {
         ListUsers listUsers = new ListUsers();
         Survey survey = new Survey();
-        LoadData loadData = new LoadData();
-        loadData.loadPresetData(survey);
+        LoadDaysAndFoodRegimen loadDaysWithTheMealRegimen = new LoadDaysAndFoodRegimen();
+        loadDaysWithTheMealRegimen.loadPresetData(survey);
 
         Scanner scanner = new Scanner(System.in);
 
-        boolean continuar = true;
+        boolean continue = true;
 
-        while (continuar) {
+        while (continue) {
             printLine();
             System.out.println("Seleccione una opción:");
             System.out.println("1. Consultar Encuestas");
@@ -47,8 +47,6 @@ public class Main {
                                 UserNode usuario = listUsers.getUserNode(nombreUsuario);
 
                                 if (usuario != null) {
-                                    Survey encuestaUsuario = usuario.getSurvey();
-
                                     boolean continuarEncuesta = true;
                                     while (continuarEncuesta) {
                                         printLine();
@@ -70,9 +68,9 @@ public class Main {
                                             case 2:
                                                 System.out.println("Agregar comida a la encuesta de " + nombreUsuario + ":");
                                                 System.out.println("Ingrese el día:");
-                                                String diaEncuesta = scanner.nextLine();
+                                                String surveyDay = scanner.nextLine();
 
-                                                DayNode dayNodePrueba = survey.getDayNode(diaEncuesta);
+                                                DayNode dayNodePrueba = survey.getSurveyDay(surveyDay);
 
                                                 if(dayNodePrueba != null){
                                                     System.out.println(dayNodePrueba.getDay() + ":");
@@ -128,7 +126,7 @@ public class Main {
                     listUsers.listAllUsers();
                     break;
                 case 4:
-                    continuar = false;
+                    continue = false;
                     System.out.println("Saliendo del programa.");
                     break;
                 default:

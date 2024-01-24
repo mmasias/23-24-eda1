@@ -1,58 +1,54 @@
 public class Survey {
-    private DayNode first = null;
-
+    private DayNode firstDay = null;
     private int size = 0;
-
     public int size() {
         return this.size;
     }
 
-    public void insertDay(String value) {
-        DayNode newNode = new DayNode(value);
-        if (this.first == null) {
-            this.first = newNode ;
+    public void insertDay(String newDay) {
+        DayNode newDayNode = new DayNode(newDay);
+        if (this.firstDay == null) {
+            this.firstDay = newDayNode ;
         } else {
-            DayNode iterator = this.first;
-            while (iterator.getNextDay() != null) {
-                iterator = iterator.getNextDay();
+            DayNode dayNodeIterator = this.firstDay;
+            while (dayNodeIterator.getNextDay() != null) {
+                dayNodeIterator = dayNodeIterator.getNextDay();
             }
-            iterator.setNextDay(newNode);
+            dayNodeIterator.setNextDay(newDayNode);
         }
         this.size ++;
     }
 
     public void addFoodRegimenToDay(String day, String foodRegimenName){
-        DayNode iterator = first;
-        while (iterator != null) {
-            if (iterator.getDay().equalsIgnoreCase(day)) {
-                iterator.addFoodRegimen(foodRegimenName);
+        DayNode dayNodeIterator = firstDay;
+        while (dayNodeIterator != null) {
+            if (dayNodeIterator.getDay().equalsIgnoreCase(day)) {
+                dayNodeIterator.addFoodRegimen(foodRegimenName);
                 return;
             }
-            iterator = iterator.getNextDay();
+            dayNodeIterator = dayNodeIterator.getNextDay();
         }
-        System.out.println("Día no encontrado: " + day);
+        System.out.println("!!----- Día no encontrado: " + day + " -----!!");
     }
 
-    public DayNode getDayNode(String day) {
-        DayNode iterator = first;
-        while (iterator != null) {
-            if (iterator.getDay().equalsIgnoreCase(day)) {
-                return iterator;
+    public DayNode getSurveyDay(String surveyDay) {
+        DayNode dayNodeIterator = firstDay;
+        while (dayNodeIterator != null) {
+            if (dayNodeIterator.getDay().equalsIgnoreCase(surveyDay)) {
+                return dayNodeIterator;
             }
-            iterator = iterator.getNextDay();
+            dayNodeIterator = dayNodeIterator.getNextDay();
         }
-        System.out.println("Día no encontrado: " + day);
+        System.out.println("!!----- Encuesta del día " + surveyDay +" no encontrada -----!!");
         return null;
     }
 
     public void listAllDaysWithFoodRegimenAndFood() {
-        DayNode iterator = this.first;
-        while (iterator != null) {
-            System.out.println(iterator.getDay() + ":");
-
-            iterator.getFoodRegimen().listFoodRegimen();
-
-            iterator = iterator.getNextDay();
+        DayNode dayNodeIterator = this.firstDay;
+        while (dayNodeIterator != null) {
+            System.out.println(dayNodeIterator.getDay() + ":");
+            dayNodeIterator.getFoodRegimen().listFoodRegimen();
+            dayNodeIterator = dayNodeIterator.getNextDay();
         }
     }
 }

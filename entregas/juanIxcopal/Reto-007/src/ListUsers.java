@@ -8,44 +8,45 @@ public class ListUsers {
     }
 
     public void insertUser(String value){
-        UserNode newNode = new UserNode(value);
+        UserNode newUserNode = new UserNode(value);
         if (this.first == null) {
-            this.first = newNode ;
+            this.first = newUserNode ;
         } else {
-            UserNode iterator = this.first;
-            while (iterator.getNextUser() != null) {
-                iterator = iterator.getNextUser();
+            UserNode userNodeIterator = this.first;
+            while (userNodeIterator.getNextUser() != null) {
+                userNodeIterator = userNodeIterator.getNextUser();
             }
-            iterator.setNextUser(newNode);
+            userNodeIterator.setNextUser(newUserNode);
         }
         this.size ++;
     }
 
     public String[] listAllUsers() {
         if (this.size() == 0) {
-            System.out.println("Sin usuarios");
+            System.out.println("!!----- No existen usuarios registrados -----!!");
             return new String[0];
         }
 
-        String[] list = new String[this.size()];
-        UserNode iterator = this.first;
+        String[] listUsers = new String[this.size()];
+        UserNode userNodeIterator = this.first;
         int count = 0;
-        while (iterator != null) {
-            list[count] = iterator.getName();
-            System.out.println(iterator.getName());
+        while (userNodeIterator != null) {
+            listUsers[count] = userNodeIterator.getUserName();
+            System.out.print("Nombre de usuario: " + userNodeIterator.getUserName() + " -- ");
+            System.out.println(" Fecha de alta: " + userNodeIterator.getDischargeDate());
             count++;
-            iterator = iterator.getNextUser();
+            userNodeIterator = userNodeIterator.getNextUser();
         }
-        return list;
+        return listUsers;
     }
 
     public UserNode getUserNode(String userName) {
-        UserNode iterator = this.first;
-        while (iterator != null) {
-            if (iterator.getName().equalsIgnoreCase(userName)) {
-                return iterator;
+        UserNode userNodeIterator = this.first;
+        while (userNodeIterator != null) {
+            if (userNodeIterator.getUserName().equalsIgnoreCase(userName)) {
+                return userNodeIterator;
             }
-            iterator = iterator.getNextUser();
+            userNodeIterator = userNodeIterator.getNextUser();
         }
         return null;
     }

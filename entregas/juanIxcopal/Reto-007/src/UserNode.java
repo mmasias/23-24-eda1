@@ -2,19 +2,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class UserNode {
-    private String name;
+    private String userName;
     private LocalDate dischargeDate;
-    private UserNode next;
+    private UserNode nextUser;
     private Survey survey;
 
-    public UserNode(String value){
-        this.setValueUser(value);
+    public UserNode(String userName){
+        this.setUserName(userName);
         this.setDischargeDate(LocalDate.now());
         this.survey = new Survey();
     }
 
-    public String getName(){
-        return name;
+    public String getUserName(){
+        return userName;
     }
 
     public String getDischargeDate(){
@@ -23,19 +23,19 @@ public class UserNode {
     }
 
     public UserNode getNextUser(){
-        return next;
+        return nextUser;
     }
 
-    public void setValueUser(String newValue) {
-        this.name = newValue;
+    public void setUserName(String newUserName) {
+        this.userName = newUserName;
     }
 
     public void setDischargeDate(LocalDate newDischargeDate){
         this.dischargeDate = newDischargeDate;
     }
 
-    public void setNextUser(UserNode next){
-        this.next = next;
+    public void setNextUser(UserNode newNextUser){
+        this.nextUser = newNextUser;
     }
 
     public Survey getSurvey() {
