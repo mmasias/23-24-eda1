@@ -1,0 +1,15 @@
+@startuml
+class Alimento {
+    - nombre: String
+    - gramos: int
+    
+    + Alimento(nombre: String, gramos: int)
+    + getNombre(): String
+    + setNombre(nombre: String): void
+    + getGramos(): int
+    + setGramos(gramos: int): void
+    + compareTo(o: Alimento): int
+    + toString(): String
+}
+@enduml
+
