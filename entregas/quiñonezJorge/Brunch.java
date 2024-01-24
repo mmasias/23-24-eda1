@@ -114,7 +114,7 @@ public class Brunch implements DataProvider {
 
   private void printList() {
     if (!this.food.isEmpty()) {
-      this.food.printAll();
+      this.food.printAll(this.food.getFirst());
     }
   }
 

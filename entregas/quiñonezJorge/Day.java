@@ -119,7 +119,7 @@ public class Day implements DataProvider {
 
   private void showBrunches() {
     System.out.println("        " + this.name);
-    this.brunches.printAll();
+    this.brunches.printAll(this.brunches.getFirst());
   }
 
   private void invalidOption() {

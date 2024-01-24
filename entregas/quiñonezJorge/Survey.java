@@ -118,7 +118,7 @@ public class Survey {
   }
 
   public void showDays() {
-    this.week.printAll();
+    this.week.printAll(this.week.getFirst());
     new Scanner(System.in).nextLine();
   }
 

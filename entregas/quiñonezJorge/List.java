@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class List<T extends DataProvider> {
 
  private Node<T> first = null;
@@ -11,6 +9,10 @@ public class List<T extends DataProvider> {
 
  public boolean isEmpty() {
   return this.getSize() > 0 ? false : true;
+ }
+
+ public Node<T> getFirst() {
+  return first;
  }
 
  public void add(Node<T> node) {
@@ -46,7 +48,7 @@ public class List<T extends DataProvider> {
  public T get(int index) {
   if (this.first != null) {
    Node<T> iterator = this.first;
-   while (iterator.getIndex() != index) {
+   while (iterator.getIndex() != index && iterator.getNext() != null) {
     iterator = iterator.getNext();
    }
    return iterator.getData();
@@ -68,12 +70,14 @@ public class List<T extends DataProvider> {
   return false;
  }
 
- public void printAll() {
+ public void printAll(Node<T> node) {
   if (this.first != null) {
    Node<T> iterator = this.first;
+   int index = 1;
    while (iterator != null) {
-    iterator.getData().printData();
+    this.get(index).printData();
     iterator = iterator.getNext();
+    index++;
    }
   }
  }

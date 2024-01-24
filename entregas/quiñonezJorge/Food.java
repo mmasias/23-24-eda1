@@ -145,7 +145,7 @@ public class Food implements DataProvider {
   private void printList() {
     if (!this.nutrients.isEmpty()) {
       System.out.println("                    Nutrients: ");
-      this.nutrients.printAll();
+      this.nutrients.printAll(this.nutrients.getFirst());
     }
   }
 
