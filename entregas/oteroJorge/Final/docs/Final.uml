@@ -1,0 +1,140 @@
+@startuml
+class Alimento {
+    - nombre: String
+    - calorias: double
+    - proteinas: double
+    - grasas: double
+    - carbohidratos: double
+    - vitaminas: double
+    - minerales: double
+    - tipo: String
+
+    + Alimento(nombre: String, calorias: double, proteinas: double, grasas: double, carbohidratos: double, vitaminas: double, minerales: double, tipo: String)
+    + Alimento(nombre: String)
+    + getNombre(): String
+    + getCalorias(): double
+    + getProteinas(): double
+    + getGrasas(): double
+    + getCarbohidratos(): double
+    + getVitaminas(): double
+    + getMinerales(): double
+    + getTipo(): String
+    + setTipo(tipo: String): void
+    - numeroAleatorio(valorMax: int, valorMin: int): double
+    - numeroIntAleatorio(valorMax: int, valorMin: int): int
+    - asignarTipo(): void
+}
+class Dia {
+    - dia: String
+    - desayuno: Ingesta
+    - almuerzo: Ingesta
+    - comida: Ingesta
+    - merienda: Ingesta
+    - cena: Ingesta
+
+    + Dia(dia: int)
+    + getDia(): String
+    + getDesayuno(): Ingesta
+    + getAlmuerzo(): Ingesta
+    + getComida(): Ingesta
+    + getMerienda(): Ingesta
+    + getCena(): Ingesta
+    + getCalorias(): double
+    + getProteinas(): double
+    + getGrasas(): double
+    + getCarbohidratos(): double
+    + getVitaminas(): double
+    + getMinerales(): double
+    + extraerTipos(): String
+}
+class Ingesta {
+    - nombre: String
+    - alimentos: GenericList<Alimento>
+
+    + Ingesta(nombre: String)
+    + getNombre(): String
+    + getAlimentos(): void
+    + addAlimento(alimento: Alimento): void
+    + removeAlimento(alimento: Alimento): void
+    + getCalorias(): double
+    + getProteinas(): double
+    + getGrasas(): double
+    + getCarbohidratos(): double
+    + getVitaminas(): double
+    + getMinerales(): double
+    + extraerTipos(): String
+}
+class Paciente {
+    - nombre: String
+    - fechaAlta: String
+    - peso: double
+    - altura: double
+    - dia1: Dia
+    - dia2: Dia
+    - dia3: Dia
+    - dia4: Dia
+    - dia5: Dia
+
+    + Paciente(nombre: String, fechaAlta: String, peso: double, altura: double)
+    + getNombre(): String
+    + getDia1(): Dia
+    + getDia2(): Dia
+    + getDia3(): Dia
+    + getDia4(): Dia
+    + getDia5(): Dia
+    + getCalorias(): double
+    + getProteinas(): double
+    + getGrasas(): double
+    + getCarbohidratos(): double
+    + getVitaminas(): double
+    + getMinerales(): double
+    + extraerTipos(): void
+}
+class Encuesta {
+    - fechaDeToma: String
+
+    + Encuesta(fechaDeToma: String)
+    + getFechaDeToma(): String
+    + mostrarArbol(paciente: Paciente): void
+    + comparacionCalorias(paciente: Paciente, caloriasTeoricas: double): void
+    + comparacionProteinas(paciente: Paciente, proteinasTeoricas: double): void
+    + comparacionGrasas(paciente: Paciente, grasasTeoricas: double): void
+    + comparacionCarbohidratos(paciente: Paciente, carbohidratosTeoricos: double): void
+    + comparacionVitaminas(paciente: Paciente, vitaminasTeoricas: double): void
+    + comparacionMinerales(paciente: Paciente, mineralesTeoricos: double): void
+    + recibirResultados(paciente: Paciente): void
+    + tipoAlimentoMasConsumido(paciente: Paciente): void
+    + rellenarEncuesta(paciente: Paciente): void
+    + soloAltoEnAzucar(paciente: Paciente): void
+}
+class GenericList<T> {
+    - first: GenericNode<T>
+
+    + size(): int
+    + isEmpty(): boolean
+    + insertFront(value: T): void
+    + insertEnd(value: T): void
+    + deleteFront(): void
+    + getFirst(): GenericNode<T>
+    + getLast(): GenericNode<T>
+    + printAll(): void
+    + delete(value: T): void
+}
+class GenericNode<T> {
+    - value: T
+    - next: GenericNode<T>
+
+    + GenericNode(value: T)
+    + getValue(): T
+    + setValue(newValue: T): void
+    + getNext(): GenericNode<T>
+    + setNext(siguiente: GenericNode<T>): void
+    + getIndex(): T
+}
+GenericList --|> GenericNode
+Ingesta --|> GenericList
+Ingesta --|> Alimento
+Dia --|> Ingesta
+Paciente --|> Dia
+Encuesta --|> Paciente
+@enduml
