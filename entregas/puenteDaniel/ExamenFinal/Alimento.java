@@ -1,36 +1,44 @@
+package entregas.puenteDaniel.ExamenFinal;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class ListaAlimentos {
-    private List<Alimento> alimentos;
+public class Alimento {
+    private String nombre;
+    private int gramos;
 
-    public Alimento() {
-        alimentos = new ArrayList<>();
+    public Alimento(String nombre, int gramos) {
+        this.nombre = nombre;
+        this.gramos = gramos;
     }
 
-    public void agregarAlimento(String nombre, int gramos) {
-        Alimento alimento = new Alimento(nombre, gramos);
-        alimentos.add(alimento);
+    public String getNombre() {
+        return nombre;
     }
 
-    public void ordenarAlimentosPorNombre() {
-        Collections.sort(alimentos);
+    public int getGramos() {
+        return gramos;
     }
 
-    public void imprimirAlimentos() {
-        for (Alimento alimento : alimentos) {
-            System.out.println(alimento);
-        }
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + ", Gramos: " + gramos;
     }
 
     public static void main(String[] args) {
-        ListaAlimentos lista = new ListaAlimentos();
-        lista.agregarAlimento("Manzana", 100);
-        lista.agregarAlimento("Banana", 150);
-        lista.agregarAlimento("Naranja", 120);
+        List<Alimento> listaAlimentos = new ArrayList<>();
 
-        lista.ordenarAlimentosPorNombre();
-        lista.imprimirAlimentos();
+        Alimento alimento1 = new Alimento("Manzana", 100);
+        Alimento alimento2 = new Alimento("Banana", 150);
+        Alimento alimento3 = new Alimento("Naranja", 120);
+
+        listaAlimentos.add(alimento1);
+        listaAlimentos.add(alimento2);
+        listaAlimentos.add(alimento3);
+
+        // Imprimir la lista ordenada
+        for (Alimento alimento : listaAlimentos) {
+            System.out.println(alimento);
+        }
     }
 }

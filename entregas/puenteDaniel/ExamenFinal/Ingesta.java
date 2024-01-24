@@ -1,7 +1,9 @@
+package entregas.puenteDaniel.ExamenFinal;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ingesta implements DatosLista {
+public class Ingesta{
     private Horario horario;
     private List<Alimento> alimentos;
 
@@ -30,7 +32,6 @@ public class Ingesta implements DatosLista {
         this.alimentos.remove(alimento);
     }
 
-    @Override
     public String getInformacion() {
         StringBuilder texto = new StringBuilder(horario.getDescription());
         for (Alimento alimento : alimentos) {

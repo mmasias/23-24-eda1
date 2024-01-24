@@ -1,3 +1,5 @@
+package entregas.puenteDaniel.ExamenFinal;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.Scanner;
 public class Gestion {
 
     private Scanner escaner;
-    private List<DatosLista> datos;
+    private List datos;
     private DateTimeFormatter formato;
 
     public Gestion() {
@@ -51,12 +53,12 @@ public class Gestion {
             }
         } while (!ok);
 
-        Encuesta e = new Encuesta(fecha);
+        EncuestaLista e = new Encuesta(fecha);
         datos.add(e);
     }
 
     public void insertarDias() {
-        Encuesta encuesta = (Encuesta) datos.get(datos.size() - 1);
+        EncuestaLista encuesta = (EncuestaLista) datos.get(datos.size() - 1);
         for (int i = 1; i <= 5; i++) {
             Dia d = new Dia(i);
             encuesta.insertarDia(d);
@@ -85,7 +87,7 @@ public class Gestion {
                 break;
             }
             
-            Encuesta encuesta = (Encuesta) datos.get(datos.size() - 1);
+            EncuestaLista encuesta = (EncuestaLista) datos.get(datos.size() - 1);
             Dia diaSeleccionado = encuesta.obtenerDiaPorNumero(dia);
 
             int opcion = 0;

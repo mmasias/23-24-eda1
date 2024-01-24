@@ -1,22 +1,24 @@
+package entregas.puenteDaniel.ExamenFinal;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EncuestaLista {
-    private List<Encuesta> encuestas;
+    private List<EncuestaLista> encuestas;
 
     public EncuestaLista() {
         encuestas = new ArrayList<>();
     }
 
     public void agregarEncuesta(LocalDate fecha) {
-        Encuesta encuesta = new Encuesta(fecha);
+        EncuestaLista encuesta = new Encuesta(fecha);
         encuestas.add(encuesta);
     }
 
     public void eliminarEncuesta(LocalDate fecha) {
-        Encuesta encuestaAEliminar = null;
-        for (Encuesta encuesta : encuestas) {
+        EncuestaLista encuestaAEliminar = null;
+        for (EncuestaLista encuesta : encuestas) {
             if (encuesta.getFecha().equals(fecha)) {
                 encuestaAEliminar = encuesta;
                 break;
@@ -27,8 +29,8 @@ public class EncuestaLista {
         }
     }
 
-    public Encuesta buscarEncuesta(LocalDate fecha) {
-        for (Encuesta encuesta : encuestas) {
+    public EncuestaLista buscarEncuesta(LocalDate fecha) {
+        for (EncuestaLista encuesta : encuestas) {
             if (encuesta.getFecha().equals(fecha)) {
                 return encuesta;
             }
@@ -36,7 +38,7 @@ public class EncuestaLista {
         return null;
     }
 
-    public List<Encuesta> obtenerTodasLasEncuestas() {
+    public List<EncuestaLista> obtenerTodasLasEncuestas() {
         return encuestas;
     }
 
@@ -53,7 +55,7 @@ public class EncuestaLista {
 
         // Buscar una encuesta por fecha
         LocalDate fechaBuscada = LocalDate.of(2022, 2, 20);
-        Encuesta encuestaEncontrada = listaEncuestas.buscarEncuesta(fechaBuscada);
+        EncuestaLista encuestaEncontrada = listaEncuestas.buscarEncuesta(fechaBuscada);
 
         if (encuestaEncontrada != null) {
             System.out.println(encuestaEncontrada.getInformacion());
@@ -62,8 +64,8 @@ public class EncuestaLista {
         }
 
         // Obtener todas las encuestas
-        List<Encuesta> todasLasEncuestas = listaEncuestas.obtenerTodasLasEncuestas();
-        for (Encuesta encuesta : todasLasEncuestas) {
+        List<EncuestaLista> todasLasEncuestas = listaEncuestas.obtenerTodasLasEncuestas();
+        for (EncuestaLista encuesta : todasLasEncuestas) {
             System.out.println(encuesta.getInformacion());
         }
     }
