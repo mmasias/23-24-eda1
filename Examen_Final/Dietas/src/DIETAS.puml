@@ -1,0 +1,74 @@
+@startuml
+class Encuesta{
+    Arbol arbol
+    nodo nodo
+    List <nodo> nodo
+    Desayuno desayuno
+    nodo raiz
+    nodo dia1
+    nodo dia2
+    nodo dia3
+    nodo dia4
+    nodo dia5
+    nodo desa
+    nodo media
+    nodo almu
+    nodod merienda
+    nodo cena
+
+    Encuesta()
+    void anadirNodo(String dato, nodo padre)
+    void anadirNodo(nodo nodo)
+    void creaEncuesta()
+    rellenadias()
+}
+class Desayuno{
+    String alimentos
+    List <String> lista
+    Arbol arbol
+    Encuesta encuesta
+
+    Desayuno(String Alimentos)
+    void anadirAlimento(String alimento)
+    void mostrarAlimentos()
+    String getLista()
+    void creaDesayuno()
+    void creamedia()
+    void creaalmu()
+    void creamerienda()
+    void creacena()
+}
+class Arbol{
+    nodo raiz
+    Encuesta encuesta
+    Arbol arbol
+    String dato
+    Desayuno desayuno
+    nodo nodo
+    int rellenadias
+
+    Arbol()
+    void anaderama(String dato, nodo padre)
+    void ramanodo(List<String> lista, nodo nodo)
+    void creaRaiz(String dato)
+    int setDias(int dias)
+    int getDias()
+}
+class nodo{
+   String dato
+    nodo padre
+    List<String> lista
+
+    nodo(String dato,nodo padre)
+    nodo(String dato)
+    nodo(List<String> dato,nodo padre)
+    void crearaiz(String dato)
+    void crearhijo(String dato, nodo padre)
+}
+
+Arbol --> nodo
+Arbol --> Encuesta
+Encuesta --> Desayuno
+
+
+@enduml
