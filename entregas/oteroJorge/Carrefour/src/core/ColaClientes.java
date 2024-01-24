@@ -1,6 +1,6 @@
 package core;
-import generica.GenericList;
 import generica.GenericNode;
+import utils.generica.GenericList;
 
 public class ColaClientes<T> {
     private GenericList<T> clientes;
