@@ -3,10 +3,10 @@ import java.util.Scanner;
 public class Survey {
 
   private boolean isOpen = false;
-  private Tree<Day> week;
+  private List<Day> week;
 
   public Survey() {
-    this.week = new Tree<Day>();
+    this.week = new List<Day>();
   }
 
   public void start() {
@@ -103,7 +103,7 @@ public class Survey {
   private void createDay(Day day, int index) {
     Node<Day> node = new Node<Day>(day, index);
     if (!this.week.has(node)) {
-      this.week.insert(node);
+      this.week.add(node);
       this.openDay(index);
     } else {
       this.openDay(index);
@@ -118,7 +118,7 @@ public class Survey {
   }
 
   public void showDays() {
-    this.week.printInOrder(this.week.getRoot());
+    this.week.printAll();
     new Scanner(System.in).nextLine();
   }
 

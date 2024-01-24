@@ -10,7 +10,7 @@ class Day{}
 class Brunch{}
 class Food{}
 class Nutrient{}
-class Tree<T>{}
+' class Tree<T>{}
 class Node<T>{}
 class List<T>{}
 
@@ -18,8 +18,8 @@ class List<T>{}
 World -- Client : has
 Client -- Survey : has
 Survey -- "1..*" Day : has
-Survey .. Tree : uses
-Day .. Tree : uses
+Survey .. List : uses
+Day .. List : uses
 Day -- "1..*" Brunch : has
 Day .. DataProvider
 Brunch .. List : uses
@@ -28,6 +28,6 @@ Brunch .left. DataProvider
 Food .. List : uses
 Food -- "1..*" Nutrient : has
 Food .left. DataProvider
-Tree -- Node : has
+' Tree -- Node : has
 List -- Node : has
 @enduml
