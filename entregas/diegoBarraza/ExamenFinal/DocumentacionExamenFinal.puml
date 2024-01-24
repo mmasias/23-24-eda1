@@ -1,0 +1,19 @@
+@startuml
+class alimentos
+class cliente 
+class dias 
+class encuesta 
+class ingesta
+class ingestaTipo
+class list 
+class main 
+class menuInteractivo
+class node 
+class tree 
+
+class cliente{
+    +String cliente
+    +Encuesta encuesta
+}
+
+@enduml
