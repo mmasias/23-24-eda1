@@ -16,7 +16,7 @@ public class main {
         listaComidasPorDias.agregar(new Nodo<>("Merienda"));
         listaComidasPorDias.agregar(new Nodo<>("Cena"));
 
-        simulacion NuevaSimulacion = new simulacion(nombresUsuarios, listaComidasPorDias, cantidadDias);
+        Simulacion NuevaSimulacion = new Simulacion(nombresUsuarios, listaComidasPorDias, cantidadDias);
         NuevaSimulacion.imprimirFormularioInicial();
     }
     public void imprimirListaDePersonas(Lista<Arbol> lista) {

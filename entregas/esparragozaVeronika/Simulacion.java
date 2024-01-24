@@ -8,7 +8,7 @@ public class Simulacion {
     private int cantidadDias;
     private Lista<Arbol> listaArbolesCreados;
 
-    public simulacion(Lista<String> nombresUsuarios, Lista<String> listaComidasPorDias, int cantidadDias) {
+    public Simulacion(Lista<String> nombresUsuarios, Lista<String> listaComidasPorDias, int cantidadDias) {
         this.nombresUsuarios = nombresUsuarios;
         this.listaComidasPorDias = listaComidasPorDias;
         this.cantidadDias = cantidadDias;
@@ -16,7 +16,7 @@ public class Simulacion {
 
     }
 
-    public simulacion() {
+    public Simulacion() {
     }
 
 

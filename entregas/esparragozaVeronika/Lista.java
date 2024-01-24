@@ -10,7 +10,7 @@ public class Lista<T> {
     public Nodo<T> getPrimero() {
         return primero;
     }
-    simulacion simulacion = new simulacion();
+    Simulacion simulacion = new Simulacion();
 
     public int size() {
         int count = 0;
