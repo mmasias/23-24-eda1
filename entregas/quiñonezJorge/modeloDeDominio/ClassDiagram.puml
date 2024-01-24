@@ -51,10 +51,79 @@ class Survey{
  + void showDays()
  - void invalidOption()
 }
-class Day{}
-class Brunch{}
-class Food{}
-class Nutrient{}
+class Day{
+ - String name
+ - List<Brunch> brunches
+ - boolean isOpen
+
+ + Day(String name)
+ + String getName()
+ + void start()
+ + void open()
+ + void close()
+ - void printMenu()
+ - void clearTerminal()
+ - void printOptions()
+ - void manageInput(int input)
+ - void createBrunch(Brunch brunch, int index)
+ - void openBrunch(int index)
+ - void showBrunches()
+ - void invalidOption()
+ + void printData()
+}
+class Brunch{
+ - String name
+ - List<Food> food
+ - boolean isOpen
+
+ + Brunch(String name)
+ + void start()
+ + void open()
+ + void close()
+ - void printMenu()
+ - void clearTerminal()
+ - void printOptions()
+ - void manageInput(int input)
+ - void addFood()
+ - void openFood()
+ - void showFood()
+ - void printList()
+ - void invalidOption()
+ + void printData()
+}
+class Food{
+ - String name
+ - List<Nutrient> nutrients
+ - String preparationMethod
+ - String amount
+ - String brand
+ - String portionSize
+ - boolean isOpen
+ + Food(String name)
+ + String getName()
+ + void start()
+ + void open()
+ + void close()
+ - void printMenu()
+ - void clearTerminal()
+ - void printOptions()
+ - void manageInput(int input)
+ - void addNutrient()
+ - void addPreparationMethod()
+ - void addAmount()
+ - void addBrand()
+ - void addPortionSize()
+ - void showInformation()
+ - void printList()
+ - void invalidOption()
+ + void printData()
+}
+class Nutrient{
+ - String name
+ + Nutrient(String name)
+ + String getName()
+ + void printData()
+}
 class Node<T>{}
 class List<T>{}
 
