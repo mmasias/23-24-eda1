@@ -13,7 +13,7 @@ class Dias {
 
   public static void registrarAlimento(String tipoIngesta, String nombreAlimento) {
     Ingesta ingesta = ingestas.computeIfAbsent(tipoIngesta, Ingesta::new);
-    Ingestar.agregarAlimento(nombreAlimento);
+    ingesta.agregarAlimento(nombreAlimento);
   }
 
   public static void mostrarIngestas() {
