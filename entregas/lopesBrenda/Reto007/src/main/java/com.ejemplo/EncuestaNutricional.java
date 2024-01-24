@@ -1,5 +1,3 @@
-package com.escuela;
-
 import java.util.ArrayList;
 import java.util.List;
 

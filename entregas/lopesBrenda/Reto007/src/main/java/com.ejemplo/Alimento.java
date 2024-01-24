@@ -1,5 +1,3 @@
-package com.escuela;
-
 class Alimento {
 
   String nombre;
