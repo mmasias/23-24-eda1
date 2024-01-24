@@ -1,13 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Patient {
     private String name;
-    private List<Day> days;
+    private List days;
 
     public Patient(String name) {
         this.name = name;
-        this.days = new ArrayList<>();
+        this.days = new List();
     }
 
     public void setName(String name) {
@@ -23,6 +20,6 @@ class Patient {
     }
 
     public Day getDay(int dayNumber) {
-        return days.size() >= dayNumber ? days.get(dayNumber - 1) : null;
+        return (Day) days.get(dayNumber - 1);
     }
 }

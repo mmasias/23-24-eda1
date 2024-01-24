@@ -1,11 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Day {
-    private List<Intake> intakes;
+    private List intakes;
 
     public Day() {
-        this.intakes = new ArrayList<>();
+        this.intakes = new List();
     }
 
     public void addIntake(String intakeType, Intake intake) {
@@ -13,7 +10,8 @@ class Day {
     }
 
     public Intake getIntake(String intakeType) {
-        for (Intake intake : intakes) {
+        for (int i = 0; i < intakes.size(); i++) {
+            Intake intake = (Intake) intakes.get(i);
             // Intake types are case-insensitive
             if (intakeType.equalsIgnoreCase(intake.getIntakeType())) {
                 return intake;

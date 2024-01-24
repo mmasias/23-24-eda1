@@ -1,19 +1,17 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 class SurveySystem {
-    private Patient patient;
+    private Tree patient;
     private Scanner scanner;
 
     public SurveySystem() {
-        this.patient = new Patient("");
+        this.patient = new Tree("");
         this.scanner = new Scanner(System.in);
     }
 
     public void execute() {
         System.out.print("Enter the patient's name: ");
-        patient.setName(scanner.nextLine());
+        patient.root.data = scanner.nextLine();
 
         int option;
         do {
@@ -51,15 +49,18 @@ class SurveySystem {
             return;
         }
 
-        Day day = patient.getDay(dayNumber);
+        TreeNode day = null;
+        if (dayNumber <= patient.root.children.size()) {
+            day = (TreeNode) patient.root.children.get(dayNumber - 1);
+        }
         if (day == null) {
-            day = new Day();
-            patient.addDay(dayNumber, day);
+            day = new TreeNode(null);
+            patient.root.children.add(dayNumber - 1, day);
         }
 
         String anotherIntake;
         do {
-            List<String> intakeTypes = getIntakeTypes();
+            List intakeTypes = getIntakeTypes();
             System.out.println("Select the type of intake:");
             for (int i = 0; i < intakeTypes.size(); i++) {
                 System.out.println((i + 1) + ". " + intakeTypes.get(i));
@@ -73,7 +74,7 @@ class SurveySystem {
                 return;
             }
 
-            String intakeType = intakeTypes.get(intakeTypeOption - 1);
+            String intakeType = (String) intakeTypes.get(intakeTypeOption - 1);
             fillIntake(day, intakeType);
 
             System.out.print("Do you want to fill out another intake type for the same day? (yes/no): ");
@@ -83,9 +84,9 @@ class SurveySystem {
         System.out.println("Survey for day " + dayNumber + " completed.");
     }
 
-    private void fillIntake(Day day, String intakeType) {
-        Intake intake = new Intake(intakeType);
-        day.addIntake(intakeType, intake);
+    private void fillIntake(TreeNode day, String intakeType) {
+        TreeNode intake = new TreeNode(intakeType);
+        day.children.add(intake);
 
         System.out.println("Enter foods for " + intakeType + " (enter '-1' to finish): ");
         String foodName;
@@ -97,25 +98,30 @@ class SurveySystem {
                 break;
             }
 
-            Food food = new Food(foodName);
-            intake.addFood(food);
+            TreeNode food = new TreeNode(foodName);
+            intake.children.add(food);
         }
     }
 
     private void displayStructure() {
         System.out.println("Current structure:");
-        System.out.println("Patient: " + patient.getName());
+        System.out.println("Patient: " + patient.root.data);
         for (int i = 1; i <= 5; i++) {
-            Day currentDay = patient.getDay(i);
-            if (currentDay != null) {
-                System.out.println("    Day " + i);
-                for (String intakeType : getIntakeTypes()) {
-                    Intake currentIntake = currentDay.getIntake(intakeType);
-                    if (currentIntake != null) {
-                        System.out.println("        " + intakeType);
-                        List<Food> foods = currentIntake.getFoods();
-                        for (Food food : foods) {
-                            System.out.println("            " + food);
+            if (i <= patient.root.children.size()) {
+                TreeNode currentDay = (TreeNode) patient.root.children.get(i - 1);
+                if (currentDay != null) {
+                    System.out.println("    Survey Day " + i);
+                    for (Object obj : getIntakeTypes()) {
+                        String intakeType = (String) obj;
+                        if (getIntakeTypes().indexOf(intakeType) < currentDay.children.size()) {
+                            TreeNode currentIntake = (TreeNode) currentDay.children.get(getIntakeTypes().indexOf(intakeType));
+                            if (currentIntake != null) {
+                                System.out.println("        " + intakeType);
+                                for (int j = 0; j < currentIntake.children.size(); j++) {
+                                    TreeNode food = (TreeNode) currentIntake.children.get(j);
+                                    System.out.println("            " + food.data);
+                                }
+                            }
                         }
                     }
                 }
@@ -123,8 +129,8 @@ class SurveySystem {
         }
     }
 
-    private List<String> getIntakeTypes() {
-        List<String> intakeTypes = new ArrayList<>();
+    private List getIntakeTypes() {
+        List intakeTypes = new List();
         intakeTypes.add("Breakfast");
         intakeTypes.add("Mid-morning");
         intakeTypes.add("Lunch");

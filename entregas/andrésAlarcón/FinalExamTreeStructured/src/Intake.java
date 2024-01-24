@@ -1,12 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Intake {
-    private List<Food> foods;
+    private List foods;
     private String intakeType;
 
     public Intake(String intakeType) {
-        this.foods = new ArrayList<>();
+        this.foods = new List();
         this.intakeType = intakeType;
     }
 
@@ -18,7 +15,7 @@ class Intake {
         foods.add(food);
     }
 
-    public List<Food> getFoods() {
+    public List getFoods() {
         return foods;
     }
 }
