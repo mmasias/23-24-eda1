@@ -1,15 +1,19 @@
-from controllers.index import Controller
+from controllers.index import Clinic_Controller
 from models.index import Patient, Survey
-from data_structures.tree import Tree
+from structures.tree import Tree
 
-def main():
-    patient_tree = Tree()
-    patient = Patient("Jose Manuel R.")
-    patient_tree.add_node(None, patient)
-    patient.add_survey(Survey())
-    
-    controller = Controller(patient)
-    controller.run()
+class Clinic:
+    def __init__(self):
+        self.patient_tree = Tree()
+
+    def run_clinic(self):
+        patient = Patient("Jose Manuel R.")
+        self.patient_tree.add_node(None, patient)
+        patient.add_survey(Survey())
+
+        controller = Clinic_Controller(patient)
+        controller.run()
 
 if __name__ == "__main__":
-    main()
+    clinic = Clinic()
+    clinic.run_clinic()

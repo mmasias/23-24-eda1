@@ -1,7 +1,7 @@
 from models.index import Patient, Day, Intake, Food
 from views.index import View
 
-class Controller:
+class Clinic_Controller:
     def __init__(self, patient: Patient):
         self.patient = patient
         self.is_running = True 

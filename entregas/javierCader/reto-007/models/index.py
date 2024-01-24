@@ -1,4 +1,4 @@
-from data_structures.node import Node
+from structures.node import Node
 from typing import List
 
 class Food(Node): 

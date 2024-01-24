@@ -1,6 +1,6 @@
 from typing import Any, Optional, Set, List
 
-from data_structures.node import Node
+from structures.node import Node
 
 class Tree:
     def __init__(self, root: Optional[Node] = None):
