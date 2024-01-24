@@ -8,11 +8,29 @@
     }
 
     class FoodData {
-        - List<Food> foodList
+      - foodList: List<Food>
+
+       +FoodData()
+      -initFood(): void
+      +listFood(): void
+      +getFoodByIndex(index: int): Food
+      +exportFoodData(): List<Food>
     }
 
     class Manager {
-        - Tree<TreeObject> tree
+      - tree: Tree<TreeObject>
+
+      {static} +main(args: String[]): void
+      {static} +init(): Client
+      {static} +welcome(): void
+      {static} +mainMenuDisplay(): int
+      {static} +initTree(): void
+      {static} +addIntake(): void
+      {static} +addFood(foodData: FoodData): void
+      {static} +addFoodManually(): void
+      {static} +askDayAndIntake(foodData: Food): void
+      {static} +deleteFood(): void
+      {static} +updateCalories(dayD: String, intakeD: String): void
     }
 
     package TreeObjects{
@@ -35,8 +53,35 @@
     }
     package utils {
         interface IDataStructure
-        class List
-        class ListNode
+        class List {
+          - first: ListNode<T>
+
+          +peek(): T
+          +insert(data: T, index: int): List<T>
+          -insertFirst(listNode: ListNode<T>): void
+          -insertLast(listNode: ListNode<T>): void
+          -insertAt(listNode: ListNode<T>, index: int): void
+          +remove(index: int): List<T>
+          -removeFirst(): void
+          -removeLast(): void
+          -removeAt(index: int): void
+          +getFirst(): ListNode<T>
+          +isEmpty(): boolean
+          +size(): int
+          +listData(): Object[]
+          +iterator(): Iterator<T>
+        }
+        class ListNode<T> {
+          - data: T
+          - next: ListNode<T>
+
+          +ListNode(data: T)
+          +getData(): T
+          +setData(data: T): void
+          +getNext(): ListNode<T>
+          +setNext(next: ListNode<T>): void
+          +count(): int
+        }
         class Shortcut {
            - void print()
         }
@@ -75,7 +120,9 @@
           +getChildren(): List<TreeNode<T>>
           +childrenSize(): int
         }
-        interface TreeObject
+        interface TreeObject {
+            + getDetails: String
+        }
     }
 
     Tree --|> IDataStructure
