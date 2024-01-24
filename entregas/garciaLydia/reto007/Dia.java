@@ -1,17 +1,17 @@
 package entregas.garciaLydia.reto007;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Dia {
     private int numero;
-    private Map<String, List<Alimento>> ingesta;
+    private List<String> tiposIngesta;
+    private List<List<Alimento>> alimentosPorTipo;
 
     public Dia(int numero) {
         this.numero = numero;
-        this.ingesta = new HashMap<>();
+        this.tiposIngesta = new ArrayList<>();
+        this.alimentosPorTipo = new ArrayList<>();
     }
 
     public int getNumero() {
@@ -19,11 +19,22 @@ public class Dia {
     }
 
     public void agregarAlimento(String tipoIngesta, Alimento alimento) {
-        ingesta.computeIfAbsent(tipoIngesta, k -> new ArrayList<>()).add(alimento);
+        int index = tiposIngesta.indexOf(tipoIngesta);
+        if (index == -1) {
+            tiposIngesta.add(tipoIngesta);
+            List<Alimento> nuevaLista = new ArrayList<>();
+            nuevaLista.add(alimento);
+            alimentosPorTipo.add(nuevaLista);
+        } else {
+            alimentosPorTipo.get(index).add(alimento);
+        }
     }
 
-    public Map<String, List<Alimento>> getIngesta() {
-        return ingesta;
+    public List<String> getTiposIngesta() {
+        return tiposIngesta;
+    }
+
+    public List<List<Alimento>> getAlimentosPorTipo() {
+        return alimentosPorTipo;
     }
 }
-

@@ -1,6 +1,8 @@
 package entregas.garciaLydia.reto007;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 public class GestorEncuesta {
     private Scanner scanner;
@@ -10,14 +12,12 @@ public class GestorEncuesta {
         this.scanner = new Scanner(System.in);
     }
 
-
     public void simular() {
-        scanner = new Scanner(System.in); // Asegúrate de que el scanner esté inicializado aquí
+        scanner = new Scanner(System.in);
 
         System.out.print("Ingrese el nombre del paciente: ");
         String nombrePaciente = scanner.nextLine();
 
-        // Nueva sección para ingresar la fecha de alta
         System.out.print("Ingrese la fecha de alta (dd/MM/yyyy): ");
         String fechaAlta = scanner.nextLine();
 
@@ -27,7 +27,7 @@ public class GestorEncuesta {
         do {
             mostrarMenu();
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir la nueva línea después de leer un entero
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -60,7 +60,7 @@ public class GestorEncuesta {
     private void agregarDia() {
         System.out.print("Ingrese el número del día: ");
         int numeroDia = scanner.nextInt();
-        scanner.nextLine(); // Consumir la nueva línea después de leer un entero
+        scanner.nextLine();
 
         Dia dia = new Dia(numeroDia);
         encuesta.agregarDia(dia);
@@ -71,7 +71,7 @@ public class GestorEncuesta {
     private void registrarAlimento() {
         System.out.print("Ingrese el número del día: ");
         int numeroDia = scanner.nextInt();
-        scanner.nextLine(); // Consumir la nueva línea después de leer un entero
+        scanner.nextLine();
 
         System.out.print("Ingrese el tipo de ingesta (Desayuno, Media mañana, Almuerzo, Merienda, Cena): ");
         String tipoIngesta = scanner.nextLine();
@@ -100,9 +100,15 @@ public class GestorEncuesta {
         for (Dia dia : encuesta.getDias()) {
             System.out.println("Día " + dia.getNumero() + ":");
 
-            for (var entry : dia.getIngesta().entrySet()) {
-                System.out.println("  " + entry.getKey() + ":");
-                for (Alimento alimento : entry.getValue()) {
+            List<String> tiposIngesta = dia.getTiposIngesta();
+            List<List<Alimento>> alimentosPorTipo = dia.getAlimentosPorTipo();
+
+            for (int i = 0; i < tiposIngesta.size(); i++) {
+                String tipoIngesta = tiposIngesta.get(i);
+                List<Alimento> alimentos = alimentosPorTipo.get(i);
+
+                System.out.println("  " + tipoIngesta + ":");
+                for (Alimento alimento : alimentos) {
                     System.out.println("      " + alimento.getNombre());
                 }
             }
