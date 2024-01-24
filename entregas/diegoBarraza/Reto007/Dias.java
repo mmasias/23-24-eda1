@@ -23,12 +23,19 @@ public class Dias {
 
     public String toString() {
         StringBuilder sb = new StringBuilder("Día " + diaIndex + ":\n");
-        ingestasTree.printInOrder(sb);
+        for (String tipoIngesta : getTiposIngestaValidos()) {
+            Node<IngestaTipo> ingestaTipoNode = ingestasTree.find(tipoIngesta.hashCode());
+            if (ingestaTipoNode != null) {
+                sb.append(ingestaTipoNode.getData().toString()).append("\n");
+            }
+        }
         return sb.toString();
     }
 
     private static String[] getTiposIngestaValidos() {
         return new String[]{"Desayuno", "Media Mañana", "Almuerzo", "Merienda", "Cena"};
     }
+   
+
     
 }

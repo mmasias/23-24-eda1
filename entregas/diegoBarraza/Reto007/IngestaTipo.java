@@ -20,5 +20,5 @@ class IngestaTipo {
     public String toString() {
         return "Ingesta " + tipo + ": " + ingestas.toString();
     }
-    
+   
 }
