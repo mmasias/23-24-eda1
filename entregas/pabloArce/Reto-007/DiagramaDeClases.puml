@@ -1,0 +1,22 @@
+@startuml
+
+    title Diagrama de clases
+
+    class Encuesta
+
+    class Paciente
+
+    class Dia
+
+    class Ingesta
+
+    class Alimento
+
+    class AlimentoData
+
+    Paciente -* Encuesta
+    Dia -* Ingesta
+    Ingesta -* Alimento
+    AlimentoData ..> Alimento
+
+@enduml
