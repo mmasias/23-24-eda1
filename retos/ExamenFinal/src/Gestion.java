@@ -9,6 +9,7 @@ public class Gestion {
     private List<Paciente> pacientes;
     private Scanner sc;
     private DateTimeFormatter formato;
+    private int ultimoPacienteIndex;
 
     public Gestion() {
         this.pacientes = new ArrayList<>();
@@ -56,15 +57,7 @@ public class Gestion {
         pacientes.get(pacientes.size() - 1).addEncuesta(encuesta);
     }
 
-    public void insertarDia() {
-        int ultimoPacienteIndex = pacientes.size() - 1;
-        List<Dia> dias = pacientes.get(ultimoPacienteIndex).getEncuestas().get(0).getDias();
-
-        for (int i = 1; i <= 5; i++) {
-            Dia dia = new Dia(i);
-            dias.add(dia);
-        }
-    }
+    List<Dia> dias = pacientes.get(ultimoPacienteIndex).getEncuestas()[0].getDias();
 
     public void insertarIngesta() {
         boolean ok;
@@ -72,7 +65,7 @@ public class Gestion {
         int opcion = 0;
         String opcion2 = "";
         Horario horario = null;
-        
+
         do {
             do {
                 System.out.println("Seleccione el dia: (1/5) / (0 para salir)");
@@ -88,9 +81,7 @@ public class Gestion {
                 break;
             }
 
-            Dia diaSeleccionado = pacientes.get(pacientes.size() - 1)
-                    .getEncuestas().get(0)
-                    .getDias().get(dia - 1);
+            Dia diaSeleccionado = obtenerDiaSeleccionado(dia);
 
             do {
                 ok = true;
@@ -138,6 +129,20 @@ public class Gestion {
         } while (true);
     }
 
+    private Dia obtenerDiaSeleccionado(int dia) {
+        Dia diaSeleccionado = null;
+
+        if (!pacientes.isEmpty() && pacientes.get(pacientes.size() - 1).getEncuestas() != null && pacientes.get(pacientes.size() - 1).getEncuestas().length > 0) {
+            Encuesta ultimaEncuesta = pacientes.get(pacientes.size() - 1).getEncuestas()[0];
+
+            if (ultimaEncuesta.getDias() != null && ultimaEncuesta.getDias().size() > 0 && dia >= 1 && dia <= ultimaEncuesta.getDias().size()) {
+                diaSeleccionado = ultimaEncuesta.getDias().get(dia - 1);
+            }
+        }
+
+        return diaSeleccionado;
+    }
+
     private void ingresarAlimento(Ingesta ing) {
         boolean ok;
         String opcion2;
@@ -174,6 +179,76 @@ public class Gestion {
         insertarEncuesta();
         insertarDia();
         insertarIngesta();
+    }
+
+    private void insertarDia() {
+        boolean ok;
+        int dia = 0;
+        int opcion = 0;
+        String opcion2 = "";
+        Horario horario = null;
+
+        do {
+            do {
+                System.out.println("Seleccione el dia: (1/5) / (0 para salir)");
+                try {
+                    dia = sc.nextInt();
+                } catch (Exception e) {
+                    dia = -1;
+                    System.out.println("Dia no existente");
+                }
+            } while (dia < 0 || dia > 5);
+
+            if (dia == 0) {
+                break;
+            }
+
+            Dia diaSeleccionado = obtenerDiaSeleccionado(dia);
+
+            do {
+                ok = true;
+                System.out.println("Selecciona la ingesta: 1. (Desayuno) / 2. (Media mañana) / 3. (Almuerzo) / 4. (Merienda) / 5. (Cena) / -1. (Menu anterior)");
+                try {
+                    opcion = sc.nextInt();
+                } catch (NumberFormatException e) {
+                    System.out.println("Opcion incorrecta");
+                    ok = false;
+                }
+
+                switch (opcion) {
+                    case 1:
+                        horario = Horario.DESAYUNO;
+                        break;
+                    case 2:
+                        horario = Horario.MEDIA_MAÑANA;
+                        break;
+                    case 3:
+                        horario = Horario.ALMUERZO;
+                        break;
+                    case 4:
+                        horario = Horario.MERIENDA;
+                        break;
+                    case 5:
+                        horario = Horario.CENA;
+                        break;
+                    case -1:
+                        break;
+                    default:
+                        ok = false;
+                        System.out.println("Opcion incorrecta");
+                        break;
+                }
+            } while (!ok);
+
+            if (opcion != -1) {
+                Ingesta ing = new Ingesta(horario);
+                ingresarAlimento(ing);
+
+                if (diaSeleccionado != null) {
+                    diaSeleccionado.addIngesta(ing);
+                }
+            }
+        } while (true);
     }
 
     public void mostrar() {

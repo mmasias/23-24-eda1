@@ -3,6 +3,5 @@ public class Main {
         Gestion gestion = new Gestion();
         gestion.capturarDatos();
         gestion.mostrar();
-        gestion.estadisticas();
     }
 }

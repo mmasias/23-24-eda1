@@ -44,4 +44,9 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAlimentos'");
     }
+
+    public Horario getHorario() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getHorario'");
+    }
 }

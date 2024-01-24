@@ -40,35 +40,5 @@ public class Lista<T extends DatosArbol> {
         }
     }
 
-    public int totalCalorias(Lista<T> nodo) {
-        if (nodo != null) {
-            int total = 0;
-            if (nodo.getValue() instanceof Ingesta) {
-                Ingesta ingesta = (Ingesta) nodo.getValue();
-                total += ingesta.totalCaloriasI();
-            }
-            for (Lista<T> hijo : nodo.getHijos()) {
-                total += totalCalorias(hijo);
-            }
-            return total;
-        } else {
-            return 0;
-        }
-    }
-
-    public int totalTipo(Lista<T> nodo, String nombre) {
-        if (nodo != null) {
-            int total = 0;
-            if (nodo.getValue() instanceof Ingesta) {
-                Ingesta ingesta = (Ingesta) nodo.getValue();
-                total += ingesta.totalTipoI(nombre);
-            }
-            for (Lista<T> hijo : nodo.getHijos()) {
-                total += totalTipo(hijo, nombre);
-            }
-            return total;
-        } else {
-            return 0;
-        }
-    }
+   
 }
