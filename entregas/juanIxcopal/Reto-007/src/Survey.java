@@ -1,4 +1,4 @@
-public class Week {
+public class Survey {
     private DayNode first = null;
 
     private int size = 0;
@@ -30,18 +30,8 @@ public class Week {
             }
             iterator = iterator.getNextDay();
         }
-        System.out.println("Day not found: " + day);
+        System.out.println("Día no encontrado: " + day);
     }
-
-    public void listWeek() {
-        DayNode iterator = first;
-        while (iterator != null) {
-            System.out.println(iterator.getDay());
-            iterator.getFoodRegimen().listFoodRegimen();
-            iterator = iterator.getNextDay();
-        }
-    }
-
 
     public DayNode getDayNode(String day) {
         DayNode iterator = first;
@@ -55,31 +45,14 @@ public class Week {
         return null;
     }
 
-
-
-    public ListFoodRegimen getFoodRegimenForDay(String day) {
-        DayNode iterator = first;
-        while (iterator != null) {
-            if (iterator.getDay().equalsIgnoreCase(day)) {
-                return iterator.getFoodRegimen();
-            }
-            iterator = iterator.getNextDay();
-        }
-        System.out.println("Day not found: " + day);
-        return null;
-    }
-
-    public String[] listDays() {
-        String[] list = new String[this.size()];
+    public void listAllDaysWithFoodRegimenAndFood() {
         DayNode iterator = this.first;
-        int count = 0;
         while (iterator != null) {
-            list[count] = iterator.getDay();
-            System.out.println(iterator.getDay());
-            count++;
+            System.out.println(iterator.getDay() + ":");
+
+            iterator.getFoodRegimen().listFoodRegimen();
+
             iterator = iterator.getNextDay();
         }
-        return list;
     }
-
 }

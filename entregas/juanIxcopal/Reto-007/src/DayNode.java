@@ -31,13 +31,4 @@ public class DayNode {
     public ListFoodRegimen getFoodRegimen() {
         return foodRegimen;
     }
-
-    public String listMeals() {
-        StringBuilder result = new StringBuilder();
-        String[] meals = foodRegimen.listFoodRegimen();
-        for (String meal : meals) {
-            result.append(meal).append(", ");
-        }
-        return result.toString();
-    }
 }

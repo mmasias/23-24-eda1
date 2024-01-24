@@ -22,6 +22,11 @@ public class ListUsers {
     }
 
     public String[] listAllUsers() {
+        if (this.size() == 0) {
+            System.out.println("Sin usuarios");
+            return new String[0];
+        }
+
         String[] list = new String[this.size()];
         UserNode iterator = this.first;
         int count = 0;
@@ -42,6 +47,6 @@ public class ListUsers {
             }
             iterator = iterator.getNextUser();
         }
-        return null; // Retorna null si el usuario no se encuentra
+        return null;
     }
 }

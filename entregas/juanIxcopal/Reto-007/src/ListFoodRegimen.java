@@ -23,14 +23,13 @@ public class ListFoodRegimen {
             }
             iterator = iterator.getNextRegimenNode();
         }
-        System.out.println("Meal not found: " + mealName);
+        System.out.println("Régimen de comida no encontrada: " + mealName);
     }
 
     public String[] listFoodRegimen() {
         FoodRegimenNode iterator = firstMeal;
         while (iterator != null) {
             System.out.println("\t" + iterator.getFoodRegimen());
-            //System.out.println(iterator.getFoodRegimen() + ":");
             String[] foods = iterator.listFoods();
             for (String food : foods) {
                 System.out.println("\t" + "\t" + food);

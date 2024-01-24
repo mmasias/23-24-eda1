@@ -5,12 +5,12 @@ public class UserNode {
     private String name;
     private LocalDate dischargeDate;
     private UserNode next;
-    private Week week;
+    private Survey survey;
 
     public UserNode(String value){
         this.setValueUser(value);
         this.setDischargeDate(LocalDate.now());
-        this.week = new Week();
+        this.survey = new Survey();
     }
 
     public String getName(){
@@ -26,10 +26,6 @@ public class UserNode {
         return next;
     }
 
-    public Week getWeek() {
-        return week;
-    }
-
     public void setValueUser(String newValue) {
         this.name = newValue;
     }
@@ -40,5 +36,9 @@ public class UserNode {
 
     public void setNextUser(UserNode next){
         this.next = next;
+    }
+
+    public Survey getSurvey() {
+        return survey;
     }
 }
