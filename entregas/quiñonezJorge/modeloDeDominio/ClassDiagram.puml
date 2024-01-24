@@ -3,14 +3,58 @@
 interface DataProvider{
  + void printData()
 }
-class World{}
-class Client{}
-class Survey{}
+class World{
+ - boolean isOpen
+ - Client client
+ + World()
+ + void main()
+ + void open()
+ + void close()
+ - void start()
+ - void printMenu()
+ - void clearTerminal()
+ - void printWelcome()
+ - void printOptions()
+ - void manageInput(int input)
+ - void registerAsClient()
+ - void manageSurveyCreation()
+ - void openSurvey()
+ - void showResults()
+ - void invalidOption()
+ - boolean existingClient()
+}
+class Client{
+ - String name
+ - Survey survey
+
+ + Client(String name)
+ + String getName()
+ + Survey getSurvey()
+ + void createSurvey()
+ + void openSurvey()
+ + void showSurvey()
+}
+class Survey{
+ - boolean isOpen
+ - List<Day> week
+
+ + Survey()
+ + void open()
+ + void close()
+ - void printMenu()
+ - void clearTerminal()
+ - void printInstructions()
+ - void printOptions()
+ - void manageInput(int input)
+ - void createDay(Day day, int index)
+ - void openDay(int index)
+ + void showDays()
+ - void invalidOption()
+}
 class Day{}
 class Brunch{}
 class Food{}
 class Nutrient{}
-' class Tree<T>{}
 class Node<T>{}
 class List<T>{}
 
