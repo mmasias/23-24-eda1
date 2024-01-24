@@ -3,8 +3,6 @@ package modelo.arbol;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.estructuras.GenericList;
-
 public class NodoArbol<T extends DatosArbol> implements Comparable<NodoArbol<T>> {
     private T valor;
     private List<NodoArbol<T>> hijos;

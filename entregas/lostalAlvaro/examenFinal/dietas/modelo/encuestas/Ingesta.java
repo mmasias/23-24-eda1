@@ -7,7 +7,6 @@ import modelo.Horario;
 import modelo.alimentos.Alimento;
 import modelo.alimentos.Informacion;
 import modelo.arbol.DatosArbol;
-import modelo.estructuras.GenericList;
 
 public class Ingesta implements Comparable<Ingesta>, DatosArbol {
     private Horario horario;

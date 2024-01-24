@@ -15,7 +15,6 @@ import modelo.arbol.NodoArbol;
 import modelo.encuestas.Dia;
 import modelo.encuestas.Encuesta;
 import modelo.encuestas.Ingesta;
-import modelo.estructuras.GenericList;
 import modelo.pacientes.Paciente;
 
 public class Gestion {
