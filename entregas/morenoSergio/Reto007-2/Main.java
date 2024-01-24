@@ -22,7 +22,7 @@ public class Main {
         while (true) {
             System.out.println("\nMenú:");
             System.out.println("1. Seleccionar día");
-            System.out.println("2. Registrar comida");
+            System.out.println("2. Registrar comida en el día anteriormente seleccionado");
             System.out.println("3. Mostrar datos");
             System.out.println("4. Salir");
 
@@ -73,7 +73,7 @@ public class Main {
                                 tipoIngesta = "Cena";
                                 break;
                             default:
-                                System.out.println("Opción no válida. Intente nuevamente.");
+                                System.out.println("Opción no válida. Intente de nuevo.");
                                 opcionIngesta = scanner.nextInt();
                                 scanner.nextLine(); 
                                 break;
@@ -91,14 +91,14 @@ public class Main {
                         break;
 
                     case 4:
-                        System.out.println("Saliendo del programa. ¡Hasta luego!");
+                        System.out.println("Saliendo del programa.");
                         System.exit(0);
 
                     default:
-                        System.out.println("Opción no válida. Intente nuevamente.");
+                        System.out.println("Opción no válida. Intente de nuevo.");
                 }
             } else {
-                System.out.println("Opción no válida. Intente nuevamente.");
+                System.out.println("Opción no válida. Intente de nuevo.");
                 opcion = scanner.nextInt();
                 scanner.nextLine();
             }
