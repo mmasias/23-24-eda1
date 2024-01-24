@@ -1,6 +1,6 @@
 @startuml
 class Clinic {
-- bolean startMenu;
+- boolean startMenu;
 - Patient patient;
 + void Start();
 - void printStartMenu();
@@ -132,5 +132,16 @@ void printData();
 }
 
 Node --|> Data
-
+TreeManage --|> Data
+TreeManage --> Node
+List --|> Data
+List --> Node
+FoodManage --|> Data
+EatingTime --|> Data
+EatingTime --> List
+DayManage --|> Data
+DayManage --> TreeManage
+Evaluation --> TreeManage
+Patient --> Evaluation
+Clinic --> Patient
 @enduml
