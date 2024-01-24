@@ -1,12 +1,13 @@
 import java.util.Scanner;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class SistemaEncuestas {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Crear una lista de encuestas
-        ListaEncuestas listaEncuestas = new ListaEncuestas();
+        // Lista de encuestas
+        List<Encuesta> encuestas = new ArrayList<>();
 
         // Pedir el nombre del paciente
         System.out.print("Ingrese el nombre del paciente: ");
@@ -23,7 +24,7 @@ public class SistemaEncuestas {
 
             switch (opcion) {
                 case 1:
-                    ingresarEncuesta(scanner, listaEncuestas, nombrePaciente);
+                    ingresarEncuesta(scanner, encuestas);
                     break;
                 case 2:
                     System.out.println("Saliendo del programa.");
@@ -34,7 +35,7 @@ public class SistemaEncuestas {
         } while (opcion != 2);
     }
 
-    private static void ingresarEncuesta(Scanner scanner, ListaEncuestas listaEncuestas, String nombrePaciente) {
+    private static void ingresarEncuesta(Scanner scanner, List<Encuesta> encuestas) {
         // Crear una nueva encuesta
         Encuesta encuesta = new Encuesta();
 
@@ -52,27 +53,35 @@ public class SistemaEncuestas {
         System.out.println("Ingrese datos para el día " + numeroDia);
 
         // Ingresar datos para una ingesta específica
-        System.out.println("Seleccione ingesta:");
-        System.out.println("1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menu anterior)");
-        int numeroIngesta = scanner.nextInt();
+        int numeroIngesta;
+        do {
+            System.out.println("Seleccione ingesta:");
+            System.out.println("1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menu anterior)");
+            numeroIngesta = scanner.nextInt();
 
-        // Validar el rango de la ingesta
-        if (numeroIngesta < 1 || numeroIngesta > 5) {
-            System.out.println("Número de ingesta no válido.");
-            return;
-        }
+            // Validar el rango de la ingesta
+            if (numeroIngesta < 1 || numeroIngesta > 5) {
+                System.out.println("Número de ingesta no válido.");
+            } else {
+                Ingesta ingesta = new Ingesta();
+                System.out.println("Ingrese alimentos para " + obtenerNombreIngesta(numeroIngesta) + " del día " + numeroDia);
 
-        Ingesta ingesta = new Ingesta();
-        System.out.println("Ingrese alimentos para " + obtenerNombreIngesta(numeroIngesta) + " del día " + numeroDia);
+                // Ingresar alimentos
+                ingresarAlimentos(scanner, ingesta);
 
-        // Ingresar alimentos
-        ingresarAlimentos(scanner, ingesta);
+                // Agregar la ingesta al día
+                dia.agregarIngesta(ingesta);
 
-        dia.agregarIngesta(ingesta);
+                System.out.println("Ingesta ingresada exitosamente.");
+            }
+        } while (numeroIngesta != -1);
+
+        // Agregar el día a la encuesta
         encuesta.agregarDia(dia);
 
         // Agregar la encuesta a la lista
-        listaEncuestas.agregarEncuesta(encuesta);
+        encuestas.add(encuesta);
+
         System.out.println("Encuesta ingresada exitosamente.");
     }
 
