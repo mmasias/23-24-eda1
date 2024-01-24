@@ -1,43 +1,30 @@
-from structures.node import Node
-from typing import List
-
-class Food(Node): 
+from structures.list import CustomList
+class Food: 
     def __init__(self, name: str):
-        super().__init__(data=name)
+        self.name = name
 
-class Intake(Node): 
+class Intake: 
     def __init__(self, type: str):
-        super().__init__(data=type)
-        self.foods: List[Food] = []
+        self.type = type
+        self.foods = CustomList()
 
     def add_food(self, food: Food):
-        self.add_child(food)
         self.foods.append(food)
 
-class Day(Node): 
+class Day: 
     def __init__(self, number: int):
-        super().__init__(data=f"Day {number}")
-        self.intakes: List[Intake] = [Intake("Breakfast"), Intake("Mid-morning"), Intake("Lunch"), Intake("Snack"), Intake("Dinner")]
+        self.number = number
+        self.intakes = CustomList([Intake("Breakfast"), Intake("Mid-morning"), Intake("Lunch"), Intake("Snack"), Intake("Dinner")])
 
-    def add_intake(self, intake: Intake):
-        self.add_child(intake)
-        self.intakes.append(intake)
-
-class Survey(Node):
+class Survey:
     def __init__(self):
-        super().__init__(data="Survey")
-        self.days: List[Day] = [Day(i) for i in range(1, 7)]
+        self.days = CustomList([Day(i) for i in range(1, 7)])
 
-    def add_day(self, day: Day):
-        self.add_child(day)
-        self.days.append(day)
-
-class Patient(Node):
+class Patient:
     def __init__(self, name: str, discharge_date: str):
-        super().__init__(data=name)
-        self.discharge_date: str = ""
-        self.surveys: List[Survey] = []
+        self.name = name
+        self.discharge_date = discharge_date
+        self.surveys = CustomList()
 
     def add_survey(self, survey: Survey):
-        self.add_child(survey)
         self.surveys.append(survey)
