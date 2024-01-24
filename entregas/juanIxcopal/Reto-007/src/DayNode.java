@@ -27,8 +27,8 @@ public class DayNode {
         this.nextDay = nextDay;
     }
 
-    public void addMeal(String mealName){
-        listFoodRegimen.addFood(mealName);
+    public void addFoodRegimen(String foodRegimenName){
+        listFoodRegimen.addFoodRegimenToList(foodRegimenName);
     }
 
 }

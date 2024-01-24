@@ -21,11 +21,11 @@ public class Survey {
         this.size ++;
     }
 
-    public void addMealToDay(String day, String mealName){
+    public void addFoodRegimenToDay(String day, String foodRegimenName){
         DayNode iterator = first;
         while (iterator != null) {
             if (iterator.getDay().equalsIgnoreCase(day)) {
-                iterator.addMeal(mealName);
+                iterator.addFoodRegimen(foodRegimenName);
                 return;
             }
             iterator = iterator.getNextDay();

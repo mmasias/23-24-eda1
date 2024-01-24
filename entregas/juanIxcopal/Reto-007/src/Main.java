@@ -80,15 +80,15 @@ public class Main {
                                                     dayNodePrueba.getFoodRegimen().listFoodRegimen();
 
                                                     System.out.println("Ingrese la categoría de la comida (Desayuno, Almuerzo, Cena, etc.) (o 'return' para volver):");
-                                                    String categoria = scanner.nextLine();
+                                                    String foodRegimen = scanner.nextLine();
 
-                                                    while (!categoria.equalsIgnoreCase("return")) {
+                                                    while (!foodRegimen.equalsIgnoreCase("return")) {
                                                         System.out.println("Ingrese la comida que desea añadir (o 'return' para volver):");
-                                                        String nuevaComida = scanner.nextLine();
-                                                        if (nuevaComida.equalsIgnoreCase("return")) {
+                                                        String newFoodConsumed = scanner.nextLine();
+                                                        if (newFoodConsumed.equalsIgnoreCase("return")) {
                                                             break;
                                                         }
-                                                        dayNodePrueba.getFoodRegimen().addFoodToMeal(categoria, nuevaComida);
+                                                        dayNodePrueba.getFoodRegimen().addFoodConsumedToFoodRemigen(foodRegimen, newFoodConsumed);
                                                         System.out.println("Comida añadida con éxito.");
 
                                                     }

@@ -18,12 +18,12 @@ public class FoodRegimenNode {
         return nextFoodRegimen;
     }
 
-    public void setNextRegimen(FoodRegimenNode nextFoodRegimen) {
-        this.nextFoodRegimen = nextFoodRegimen;
+    public void setNextRegimen(FoodRegimenNode newFoodRegimen) {
+        this.nextFoodRegimen = newFoodRegimen;
     }
 
-    public void addFood(String food) {
-        FoodConsumedNode newFoodConsumed = new FoodConsumedNode(food);
+    public void addFoodConsumed(String foodConsumed) {
+        FoodConsumedNode newFoodConsumed = new FoodConsumedNode(foodConsumed);
         if (firstFoodConsumed == null) {
             firstFoodConsumed = newFoodConsumed;
         } else {
@@ -35,13 +35,13 @@ public class FoodRegimenNode {
         }
     }
 
-    public String[] listFoods() {
-        List<String> foodsList = new ArrayList<>();
+    public String[] listRegimenFoods() {
+        List<String> listRegimenFoods = new ArrayList<>();
         FoodConsumedNode foodConsumedIterator = firstFoodConsumed;
         while (foodConsumedIterator != null) {
-            foodsList.add(foodConsumedIterator.getFoodConsumed());
+            listRegimenFoods.add(foodConsumedIterator.getFoodConsumed());
             foodConsumedIterator = foodConsumedIterator.getNextFoodConsumed();
         }
-        return foodsList.toArray(new String[0]);
+        return listRegimenFoods.toArray(new String[0]);
     }
 }

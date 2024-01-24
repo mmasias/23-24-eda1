@@ -8,34 +8,34 @@ public class LoadData {
         survey.insertDay("Viernes");
 
         // Añadir comidas a diferentes días de la semana
-        survey.addMealToDay("Lunes", "Desayuno");
-        survey.addMealToDay("Lunes", "Media Mañana");
-        survey.addMealToDay("Lunes", "Almuerzo");
-        survey.addMealToDay("Lunes", "Merienda");
-        survey.addMealToDay("Lunes", "Cena");
+        survey.addFoodRegimenToDay("Lunes", "Desayuno");
+        survey.addFoodRegimenToDay("Lunes", "Media Mañana");
+        survey.addFoodRegimenToDay("Lunes", "Almuerzo");
+        survey.addFoodRegimenToDay("Lunes", "Merienda");
+        survey.addFoodRegimenToDay("Lunes", "Cena");
 
-        survey.addMealToDay("Martes", "Desayuno");
-        survey.addMealToDay("Martes", "Media Mañana");
-        survey.addMealToDay("Martes", "Almuerzo");
-        survey.addMealToDay("Martes", "Merienda");
-        survey.addMealToDay("Martes", "Cena");
+        survey.addFoodRegimenToDay("Martes", "Desayuno");
+        survey.addFoodRegimenToDay("Martes", "Media Mañana");
+        survey.addFoodRegimenToDay("Martes", "Almuerzo");
+        survey.addFoodRegimenToDay("Martes", "Merienda");
+        survey.addFoodRegimenToDay("Martes", "Cena");
 
-        survey.addMealToDay("Miercoles", "Desayuno");
-        survey.addMealToDay("Miercoles", "Media Mañana");
-        survey.addMealToDay("Miercoles", "Almuerzo");
-        survey.addMealToDay("Miercoles", "Merienda");
-        survey.addMealToDay("Miercoles", "Cena");
+        survey.addFoodRegimenToDay("Miercoles", "Desayuno");
+        survey.addFoodRegimenToDay("Miercoles", "Media Mañana");
+        survey.addFoodRegimenToDay("Miercoles", "Almuerzo");
+        survey.addFoodRegimenToDay("Miercoles", "Merienda");
+        survey.addFoodRegimenToDay("Miercoles", "Cena");
 
-        survey.addMealToDay("Jueves", "Desayuno");
-        survey.addMealToDay("Jueves", "Media Mañana");
-        survey.addMealToDay("Jueves", "Almuerzo");
-        survey.addMealToDay("Jueves", "Merienda");
-        survey.addMealToDay("Jueves", "Cena");
+        survey.addFoodRegimenToDay("Jueves", "Desayuno");
+        survey.addFoodRegimenToDay("Jueves", "Media Mañana");
+        survey.addFoodRegimenToDay("Jueves", "Almuerzo");
+        survey.addFoodRegimenToDay("Jueves", "Merienda");
+        survey.addFoodRegimenToDay("Jueves", "Cena");
 
-        survey.addMealToDay("Viernes", "Desayuno");
-        survey.addMealToDay("Viernes", "Media Mañana");
-        survey.addMealToDay("Viernes", "Almuerzo");
-        survey.addMealToDay("Viernes", "Merienda");
-        survey.addMealToDay("Viernes", "Cena");
+        survey.addFoodRegimenToDay("Viernes", "Desayuno");
+        survey.addFoodRegimenToDay("Viernes", "Media Mañana");
+        survey.addFoodRegimenToDay("Viernes", "Almuerzo");
+        survey.addFoodRegimenToDay("Viernes", "Merienda");
+        survey.addFoodRegimenToDay("Viernes", "Cena");
     }
 }
