@@ -1,155 +1,114 @@
-import org.w3c.dom.Node;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GenericList<T extends Comparable<T>> {
 
-    private GenericNode<T> first = null;
+    private List<ListNode<T>> nodes;
+
+    public GenericList() {
+        this.nodes = new ArrayList<>();
+    }
 
     public int size() {
-        if (this.first == null) {
-            return 0;
-        }
-        int count = 1;
-        GenericNode<T> iterator = first;
-        while (iterator.getNext() != null) {
-            count++;
-            iterator = iterator.getNext();
-        }
-        return count;
+        return this.nodes.size();
     }
 
     public boolean isEmpty() {
-        return this.size() > 0 ? false : true;
+        return this.size() == 0;
     }
 
     public void insertFront(T value) {
-        GenericNode<T> newNode = new GenericNode<T>(value);
-        if (this.first == null)
-            this.first = newNode;
-        else {
-            newNode.setNext(this.first);
-            this.first = newNode;
+        ListNode<T> newNode = new ListNode<>(value);
+        if (!this.isEmpty()) {
+            newNode.addNextNode(nodes.get(0));
         }
+        nodes.add(0, newNode);
     }
 
     public void insertEnd(T value) {
-        GenericNode<T> newNode = new GenericNode<T>(value);
-        if (this.first == null)
-            this.first = newNode;
-        else {
-            GenericNode<T> iterator = this.first;
-            while (iterator.getNext() != null) {
-                iterator = iterator.getNext();
-            }
-            iterator.setNext(newNode);
+        ListNode<T> newNode = new ListNode<>(value);
+        if (!this.isEmpty()) {
+            ListNode<T> lastNode = nodes.get(nodes.size() - 1);
+            lastNode.addNextNode(newNode);
         }
+        nodes.add(newNode);
     }
 
     public void deleteFront() {
-        if (this.first != null) {
-            this.first = this.first.getNext();
+        if (!this.isEmpty()) {
+            nodes.remove(0);
         }
     }
 
-    public GenericNode<T> getFirst() {
-        return this.first;
+    public ListNode<T> getFirst() {
+        return this.isEmpty() ? null : nodes.get(0);
     }
 
-    public GenericNode<T> getLast() {
-        GenericNode<T> iterator = this.first;
-        while (iterator.getNext() != null) {
-            iterator = iterator.getNext();
-        }
-        return iterator;
+    public ListNode<T> getLast() {
+        return this.isEmpty() ? null : nodes.get(nodes.size() - 1);
     }
 
-    public Object[] listarTodo() {
-        Object[] list = new Object[this.size()];
-        GenericNode<T> iterator = this.first;
-
-        if (iterator == null)
-            return list;
-
-        int count = 0;
-        while (iterator != null) {
-            list[count] = iterator.getValue();
-            count++;
-            iterator = iterator.getNext();
+    public List<T> listarTodo() {
+        List<T> list = new ArrayList<>();
+        for (ListNode<T> node : nodes) {
+            list.add(node.getValue());
         }
         return list;
     }
 
     public void insertarOrdenado(T value) {
-        GenericNode<T> newNode = new GenericNode<T>(value);
+        ListNode<T> newNode = new ListNode<>(value);
 
-        if (this.first == null || value.compareTo(this.first.getValue()) < 0) {
-            newNode.setNext(this.first);
-            this.first = newNode;
+        if (this.isEmpty() || value.compareTo(nodes.get(0).getValue()) < 0) {
+            newNode.addNextNode(nodes.get(0));
+            nodes.add(0, newNode);
         } else {
-            GenericNode<T> current = this.first;
-            GenericNode<T> previous = null;
-            while (current != null && value.compareTo(current.getValue()) >= 0) {
-                previous = current;
-                current = current.getNext();
+            int index = 0;
+            while (index < nodes.size() && value.compareTo(nodes.get(index).getValue()) >= 0) {
+                index++;
             }
-            newNode.setNext(current);
-            if (previous != null) {
-                previous.setNext(newNode);
-
+            if (index < nodes.size()) {
+                ListNode<T> current = nodes.get(index);
+                nodes.add(index, newNode);
+                if (index > 0) {
+                    ListNode<T> previous = nodes.get(index - 1);
+                    previous.addNextNode(newNode);
+                }
+                newNode.addNextNode(current);
+            } else {
+                // Insert at the end
+                nodes.add(newNode);
+                ListNode<T> previous = nodes.get(nodes.size() - 2);
+                previous.addNextNode(newNode);
             }
         }
     }
 
     public T getObjeto(int posicion) {
-        int contador = 0;
-        if (first == null) {
+        if (posicion < 0 || posicion >= this.size()) {
             throw new IndexOutOfBoundsException();
         }
-        GenericNode<T> actual = first;
-        do {
-
-            if (posicion == contador) {
-                return actual.getValue();
-            }
-            contador++;
-            actual = actual.getNext();
-
-        } while (actual != null);
-        throw new IndexOutOfBoundsException();
+        return nodes.get(posicion).getValue();
     }
 
     public void vaciar() {
-        this.first = null;
+        nodes.clear();
     }
 
     public T getValorPorPosicion(int posicion) {
-        if (this.first == null)
+        if (posicion < 0 || posicion >= this.size()) {
             throw new IndexOutOfBoundsException();
-        GenericNode<T> actual = this.first;
-        int contador = 0;
-        do {
-            if (contador == posicion) {
-                return actual.getValue();
-            }
-            contador++;
-            actual = actual.getNext();
-        } while (actual != null);
-        throw new IndexOutOfBoundsException();
+        }
+        return nodes.get(posicion).getValue();
     }
 
     public int indexOf(T value) {
-        GenericNode<T> iterator = this.first;
-        int index = 0;
-        while (iterator != null) {
-            if (iterator.getValue().equals(value)) {
+        for (int index = 0; index < nodes.size(); index++) {
+            if (nodes.get(index).getValue().equals(value)
+                    || (nodes.get(index).getValue() instanceof String
+                            && ((String) nodes.get(index).getValue()).equalsIgnoreCase((String) value))) {
                 return index;
             }
-            if (iterator.getValue() instanceof String) {
-                if (((String) iterator.getValue()).equalsIgnoreCase((String) value)) {
-                    return index;
-                }
-            }
-            iterator = iterator.getNext();
-            index++;
         }
         return -1;
     }
