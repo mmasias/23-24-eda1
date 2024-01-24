@@ -1,20 +1,21 @@
 import java.time.LocalTime;
-import java.util.Comparator;
-import java.util.StringJoiner;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ingesta {
     private String tipoComida;
     private LocalTime horario;
-    private DatosArbol<Alimento> alimentos;
+    private List<Alimento> alimentos;
 
     public Ingesta(String tipoComida, LocalTime horario) {
         this.tipoComida = tipoComida;
         this.horario = horario;
-        this.alimentos = new DatosArbol<>(Comparator.comparing(Alimento::getNombre));
+        this.alimentos = new ArrayList<>();
     }
 
     public void agregarAlimento(Alimento alimento) {
-        alimentos.insertar(alimento);
+        alimentos.add(alimento);
     }
 
     public String getTipoComida() {
@@ -26,9 +27,11 @@ public class Ingesta {
     }
 
     public String listarAlimentos() {
-        StringJoiner joiner = new StringJoiner("\n");
-        alimentos.recorrerInOrden(a -> joiner.add("                " + a.toString()));
-        return joiner.toString();
+        StringBuilder sb = new StringBuilder();
+        for (Alimento alimento : alimentos) {
+            sb.append("                ").append(alimento.toString()).append("\n");
+        }
+        return sb.toString();
     }
 
     @Override
@@ -36,12 +39,10 @@ public class Ingesta {
         StringBuilder sb = new StringBuilder();
         sb.append("            ").append(tipoComida);
         if (horario != null) {
-            sb.append(" a las ").append(horario);
+            sb.append(" a las ").append(horario.format(DateTimeFormatter.ofPattern("HH:mm"))); // Formatea la hora
         }
-        sb.append("\n").append(listarAlimentos());
-
-        sb.append("\n");
-
+        sb.append("\n").append(listarAlimentos()).append("\n");
         return sb.toString();
     }
 }
+

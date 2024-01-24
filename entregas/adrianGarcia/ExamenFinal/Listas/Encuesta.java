@@ -29,10 +29,8 @@ public class Encuesta {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Encuesta realizada el ").append(fechaEncuesta)
-                .append(" a las ").append(horaEncuesta).append("\n");
+        sb.append("Encuesta realizada el ").append(fechaEncuesta).append("\n");
 
-        // Agregar información de todos los días, incluso si no hay datos ingresados
         for (int i = 1; i <= 7; i++) {
             Dia dia = buscarDia(i);
             sb.append("    Día ").append(i).append(": ");
@@ -66,3 +64,4 @@ public class Encuesta {
         return dias;
     }
 }
+

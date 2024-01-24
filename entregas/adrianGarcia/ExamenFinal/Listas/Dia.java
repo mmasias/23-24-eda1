@@ -3,12 +3,11 @@ import java.util.List;
 
 public class Dia {
     private int numeroDia;
-    private List<Ingesta> ingestas; // Lista para almacenar ingestas
+    private List<Ingesta> ingestas;
 
     public Dia(int numeroDia) {
         this.numeroDia = numeroDia;
         this.ingestas = new ArrayList<>();
-        // Agrega ingestas vacías para todas las comidas del día
         agregarIngesta(new Ingesta("Desayuno", null));
         agregarIngesta(new Ingesta("Media mañana", null));
         agregarIngesta(new Ingesta("Almuerzo", null));
@@ -38,7 +37,6 @@ public class Dia {
         StringBuilder sb = new StringBuilder();
         sb.append("        Dia ").append(numeroDia).append("\n");
 
-        // Ordena las ingestas según el orden especificado
         String[] comidas = {"Desayuno", "Media mañana", "Almuerzo", "Merienda", "Cena"};
         for (String comida : comidas) {
             Ingesta ingesta = buscarIngesta(comida);
@@ -46,6 +44,5 @@ public class Dia {
         }
         return sb.toString();
     }
-    // Otros métodos según sean necesarios
 }
 

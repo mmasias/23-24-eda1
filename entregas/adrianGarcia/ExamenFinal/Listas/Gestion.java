@@ -16,18 +16,22 @@ public class Gestion {
         Scanner scanner = new Scanner(System.in);
         Paciente paciente = buscarOCrearPaciente(scanner);
 
-        LocalDate fechaAlta = null;
-        while (fechaAlta == null) {
-            System.out.print("Ingrese la fecha de alta del paciente (formato dd/MM/yyyy): ");
+        LocalDate fechaAlta = paciente.getFechaAlta();
+
+        LocalDate fechaEncuesta;
+        while (true) {
+            System.out.print("Ingrese la fecha de la encuesta (formato dd/MM/yyyy) o 'salir' para terminar: ");
+            String input = scanner.nextLine();
+            if ("salir".equalsIgnoreCase(input)) break;
+
             try {
-                fechaAlta = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                paciente.setFechaAlta(fechaAlta);
+                fechaEncuesta = LocalDate.parse(input, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                Encuesta encuesta = buscarOCrearEncuesta(paciente, fechaEncuesta);
+                manejarDias(scanner, encuesta);
             } catch (Exception e) {
                 System.out.println("Formato de fecha inválido. Por favor, intente de nuevo.");
             }
         }
-
-        manejarEncuestas(scanner, paciente);
 
         System.out.println(paciente);
         scanner.close();
@@ -56,25 +60,17 @@ public class Gestion {
         nuevoPaciente.setDni(scanner.next());
         scanner.nextLine(); // Limpiar buffer
 
+        System.out.print("Ingrese la fecha de alta del paciente (formato dd/MM/yyyy): ");
+        try {
+            LocalDate fechaAlta = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            nuevoPaciente.setFechaAlta(fechaAlta);
+        } catch (Exception e) {
+            System.out.println("Formato de fecha de alta inválido. Se usará la fecha actual.");
+            nuevoPaciente.setFechaAlta(LocalDate.now());
+        }
+
         pacientes.add(nuevoPaciente);
         return nuevoPaciente;
-    }
-
-    private void manejarEncuestas(Scanner scanner, Paciente paciente) {
-        LocalDate fechaEncuesta;
-        while (true) {
-            System.out.print("Ingrese la fecha de la encuesta (formato dd/MM/yyyy) o 'salir' para terminar: ");
-            String input = scanner.nextLine();
-            if ("salir".equalsIgnoreCase(input)) break;
-
-            try {
-                fechaEncuesta = LocalDate.parse(input, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                Encuesta encuesta = buscarOCrearEncuesta(paciente, fechaEncuesta);
-                manejarDias(scanner, encuesta);
-            } catch (Exception e) {
-                System.out.println("Formato de fecha inválido. Por favor, intente de nuevo.");
-            }
-        }
     }
 
     private Encuesta buscarOCrearEncuesta(Paciente paciente, LocalDate fecha) {
@@ -168,4 +164,11 @@ public class Gestion {
             default: return "Otra";
         }
     }
+
+    public static void main(String[] args) {
+        Gestion gestion = new Gestion();
+        gestion.iniciarInterfazUsuario();
+    }
 }
+
+
