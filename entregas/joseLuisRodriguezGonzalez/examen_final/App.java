@@ -3,9 +3,9 @@ package entregas.joseLuisRodriguezGonzalez.examen_final;
 import java.util.Scanner;
 
 public class App {
-    private Scanner scanner;
     private Client client;
     private Survey encuesta;
+    private Scanner scanner;
 
     public App(Client client) {
         this.scanner = new Scanner(System.in);
@@ -15,7 +15,7 @@ public class App {
     public void showMainMenu() {
         int option;
         do {
-            imprimirMenu();
+            printMenu();
             option = getValidOption();
 
             switch (option) {
@@ -65,7 +65,7 @@ public class App {
         encuesta.getDietInfo();
     }
 
-    private void imprimirMenu() {
+    private void printMenu() {
         System.out.println("Menu:");
         System.out.println("1. Register new client");
         System.out.println("2. Create new survey");
