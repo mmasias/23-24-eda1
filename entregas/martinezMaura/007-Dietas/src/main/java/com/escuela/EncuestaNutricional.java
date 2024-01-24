@@ -1,44 +1,64 @@
 package com.escuela;
 
-import java.util.TreeMap;
-
 class EncuestaNutricional {
     String nombrePaciente;
-    TreeMap<Integer, Dia> diasEncuestados;
+    Dia raiz;
 
     public EncuestaNutricional(String nombrePaciente) {
         this.nombrePaciente = nombrePaciente;
-        this.diasEncuestados = new TreeMap<>();
+        this.raiz = null;
     }
 
     public void agregarDia(int numeroDia) {
-        if (diasEncuestados.size() < 5) {
-            Dia dia = new Dia(numeroDia);
-            diasEncuestados.put(numeroDia, dia);
+        if (raiz == null) {
+            raiz = new Dia(numeroDia);
         } else {
-            System.out.println("No se pueden agregar más de 5 días a la encuesta.");
+            System.out.println("Ya existe un día en la encuesta. No se pueden agregar más.");
         }
     }
 
     public void registrarAlimento(int numeroDia, String tipoIngesta, String nombreAlimento) {
-        Dia dia = diasEncuestados.get(numeroDia);
-        if (dia != null) {
-            dia.registrarAlimento(tipoIngesta, nombreAlimento);
+        if (raiz != null) {
+            Dia dia = buscarDia(raiz, numeroDia);
+            if (dia != null) {
+                dia.registrarAlimento(tipoIngesta, nombreAlimento);
+            } else {
+                System.out.println("No se encontró el día especificado.");
+            }
         } else {
-            System.out.println("No se encontró el día especificado.");
+            System.out.println("No hay días en la encuesta. Primero, agregue un día.");
         }
     }
 
     public void mostrarEncuesta() {
-        if (diasEncuestados.isEmpty()) {
+        if (raiz != null) {
+            System.out.println("Encuesta Nutricional para " + nombrePaciente + ":");
+            mostrarDia(raiz);
+        } else {
             System.out.println("No hay datos de encuesta para mostrar.");
-            return;
+        }
+    }
+
+    private Dia buscarDia(Dia nodo, int numeroDia) {
+        if (nodo == null) {
+            return null;
         }
 
-        System.out.println("Encuesta Nutricional para " + nombrePaciente + ":");
+        if (nodo.numeroDia == numeroDia) {
+            return nodo;
+        }
 
-        for (Dia dia : diasEncuestados.values()) {
-            dia.mostrarDia();
+        Dia izquierda = buscarDia(nodo.izquierda, numeroDia);
+        Dia derecha = buscarDia(nodo.derecha, numeroDia);
+
+        return (izquierda != null) ? izquierda : derecha;
+    }
+
+    private void mostrarDia(Dia nodo) {
+        if (nodo != null) {
+            mostrarDia(nodo.izquierda);
+            nodo.mostrarDia();
+            mostrarDia(nodo.derecha);
         }
     }
 }
