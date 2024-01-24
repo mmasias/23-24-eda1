@@ -15,7 +15,6 @@ public class Alimento {
         return cantidad;
     }
 
-    @Override
     public String toString() {
         return nombre + " - " + cantidad + " gramos";
     }
