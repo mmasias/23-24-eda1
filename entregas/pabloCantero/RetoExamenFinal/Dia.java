@@ -9,6 +9,7 @@ public class Dia implements DatosLista {
         this.fecha = fecha;
         this.ingestas = new ArrayList<>();
     }
+    
 
     public int getFecha() {
         return fecha;

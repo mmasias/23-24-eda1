@@ -16,6 +16,10 @@ public class Encuesta implements DatosLista {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+    public List<Dia> getDias() {
+        return dias;
+    }
+
     @Override
     public String getInformacion() {
         return "Fecha de la encuesta: "+fecha.toString();

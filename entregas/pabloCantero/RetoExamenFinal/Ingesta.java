@@ -24,7 +24,7 @@ public class Ingesta implements Comparable<Ingesta>, DatosLista{
     }
 
     public void insertarAlimento(Alimento alimento){
-        this.alimentos.insert(alimento, -1);
+        this.alimentos.add(0, alimento);
     }
 
     @Override
@@ -39,14 +39,16 @@ public class Ingesta implements Comparable<Ingesta>, DatosLista{
     }
 
     public String getInformacion(){
-        String texto ="\t"+horario.getDescription();
-        for (int i = 0; i < alimentos.size(); i++) {
-            texto+=alimentos.getObjeto(i).toString();
+        StringBuilder texto = new StringBuilder("\t" + horario.getDescription());
+    
+        for (Alimento alimento : alimentos) {
+            texto.append(alimento.toString());
         }
-        return texto;
+        
+        return texto.toString();
     }
     public void vaciar (){
-        this.alimentos.vaciar();
+        this.alimentos.clear();
     }
 }
 

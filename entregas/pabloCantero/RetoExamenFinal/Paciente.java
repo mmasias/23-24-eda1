@@ -8,10 +8,9 @@ public class Paciente implements DatosLista{
     private Encuesta encuesta;
 
     
-    public Paciente(LocalDate fechaDeAlta, String nombre, Encuesta encuesta) {
+    public Paciente(LocalDate fechaDeAlta, String nombre) {
         this.fechaDeAlta = fechaDeAlta;
         this.nombre = nombre;
-        this.encuesta = encuesta;
     }
     public LocalDate getFechaDeAlta() {
         return fechaDeAlta;
