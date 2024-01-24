@@ -53,6 +53,7 @@ public class Gestion {
     public void insertarEncuesta() {
         LocalDate fecha = null;
         boolean ok = true;
+        
         do {
             System.out.println("Introduzca la fecha de la encuesta (dd-mm-aaaa): ");
             try {
