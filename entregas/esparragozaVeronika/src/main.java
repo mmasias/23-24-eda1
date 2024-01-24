@@ -1,4 +1,4 @@
-package arbolReto6;
+package arbolReto6.src;
 
 public class main {
     public static Lista<String> listaComidasPorDias = new Lista<>();
@@ -26,3 +26,5 @@ public class main {
         }
     }
 }
+
+

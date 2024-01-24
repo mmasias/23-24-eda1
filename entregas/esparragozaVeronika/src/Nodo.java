@@ -1,4 +1,4 @@
-package arbolReto6;
+package arbolReto6.src;
 public class Nodo<T> {
     private Nodo<T> siguiente;
     private T dato;

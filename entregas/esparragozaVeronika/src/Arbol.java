@@ -1,4 +1,7 @@
-package arbolReto6;
+package arbolReto6.src;
+
+import arbolReto6.src.Lista;
+import arbolReto6.src.Nodo;
 
 public class Arbol<T> {
     private Nodo<T> raiz;

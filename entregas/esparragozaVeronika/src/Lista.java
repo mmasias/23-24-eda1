@@ -1,4 +1,4 @@
-package arbolReto6;
+package arbolReto6.src;
 
 public class Lista<T> {
     private Nodo<T> primero;
