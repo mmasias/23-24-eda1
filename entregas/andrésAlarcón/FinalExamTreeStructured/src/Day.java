@@ -12,7 +12,6 @@ class Day {
     public Intake getIntake(String intakeType) {
         for (int i = 0; i < intakes.size(); i++) {
             Intake intake = (Intake) intakes.get(i);
-            // Intake types are case-insensitive
             if (intakeType.equalsIgnoreCase(intake.getIntakeType())) {
                 return intake;
             }

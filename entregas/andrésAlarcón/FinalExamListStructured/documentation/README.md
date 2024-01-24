@@ -1,27 +1,27 @@
-# Project Overview - Nutrimet / Patient Survey System
+# Patient Survey System
 
-This project is a console-based Java application that allows a patient to fill out a survey about their food intake over a period of five days. The application provides an interactive menu for the user to fill out the survey for a specific day, display the current structure of the survey, or exit the program.
+This is a simple console-based application in Java that allows a patient to fill out a survey about their food intake over a period of five days.
 
-## Class Descriptions
-`Main`: This is the entry point of the application. It creates an instance of the SurveySystem class and starts the execution.
+## Features
 
-`SurveySystem`: This class handles the interaction with the user. It provides a menu for the user to fill out a survey for a day, display the current structure of the survey, or exit the program.
+- The patient can fill out a survey for each day, specifying the type of intake (Breakfast, Mid-morning, Lunch, Snack, Dinner) and the foods they had for that intake.
+- The patient can view the current structure of their survey data, which shows the patient's name, the survey day, the type of intake, and the foods for each intake.
+- The patient's name and survey data are stored in a `Patient` object. Each day's data is represented as a `List` of intakes, and each intake is a `List` that starts with the intake type and is followed by the foods for that intake.
 
-`Patient`: This class represents a patient. It contains the patient’s name and a list of Day objects representing each day of the survey.
+## Classes
 
-`Day`: This class represents a day in the survey. It contains a list of Intake objects representing each type of intake (Breakfast, Mid-morning, Lunch, Snack, Dinner) for that day.
-
-`Intake`: This class represents a type of intake. It contains a list of Food objects representing each food item consumed during that intake.
-
-`Food`: This class represents a food item. It contains the name of the food item.
+- `Node`: Represents a node in a singly linked list.
+- `List`: A singly linked list that stores the survey data.
+- `Patient`: Represents a patient with a name and survey data.
+- `SurveySystem`: The main class that handles the user interaction and manages the survey data.
+- `Main`: The entry point of the application.
 
 ## How to Run
-To run the application, compile all the .java files and then run the Main class. The application will start in the console. Follow the prompts to interact with the application.
 
-## Note
-This is a simple application and does not persist data between runs. Once the application is closed, all data will be lost.
+Compile and run the `Main` class. Follow the prompts in the console to enter the patient's name, fill out the survey for a day, or display the current structure of the survey data.
 
+## PlantUM Diagram
 
-## UML Diagram
+Here’s a simple class diagram for the program:
 
-![](firstDiagram.svg)
+![](Diagram.svg)
