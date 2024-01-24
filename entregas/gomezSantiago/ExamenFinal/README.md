@@ -6,10 +6,7 @@ de proporcionarles una dieta balanceada con respecto a los alimentos que consume
 ## Visión
 ### El proyecto esta diseñado para que:
 * Se registre un paciente
-  :arrow_down:
 * Se registren los alimentos que se han consumido (Esto dependiendo del día y el tiempo de comida)
-  :arrow_down:
-
 * Y finalmente se puedan ver los resultados
 
 ## Diagrama
