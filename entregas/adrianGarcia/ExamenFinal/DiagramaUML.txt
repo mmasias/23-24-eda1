@@ -1,0 +1,40 @@
++------------------+
+|     Alimento     |
++------------------+
+| - nombre: String |
+| - cantidad: double |
++------------------+
+| + getNombre(): String |
+| + getCantidad(): double |
+| + toString(): String |
++------------------+
++------------------+
+|     Arbol<T>     |
++------------------+
+| - raiz: NodoArbol<T> |
+| - comparador: Comparator<T> |
++------------------+
+| + insertar(T): void |
+| + buscar(T): T |
+| + recorrerInOrden(Consumer<T>): void |
++------------------+
++----------------------+
+|   DatosArbol<T>      |
++----------------------+
+| - arbol: Arbol<T>    |
++----------------------+
+| + insertar(T): void  |
+| + buscar(T): T       |
+| + recorrerInOrden(Consumer<T>): void |
++----------------------+
++--------------+
+|     Dia      |
++--------------+
+| - numeroDia: int |
+| - ingestas: DatosArbol<Ingesta> |
++--------------+
+| + agregarIngesta(Ingesta): void |
+| + buscarIngesta(String): Ingesta |
+| + getNumeroDia(): int |
+| + toString(): String |
++--------------+
