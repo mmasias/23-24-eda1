@@ -1,43 +1,39 @@
 class MealNode {
     String meal;
-    MealNode[] children;
     Food food;
 
     public MealNode(String meal) {
         this.meal = meal;
-        this.children = new MealNode[5];
         this.food = new Food();
     }
 
-    public Food food() {
+    public Food getFood() {
         return food;
     }
-
 }
 
-class MealsTree {
-    MealNode root;
+class MealsList {
+    List<MealNode> meals;
 
-    MealsTree(String rootMeal) {
-        root = new MealNode(rootMeal);
-        initializeMealsTree(this.root);
+    MealsList() {
+        meals = new List<>();
+        initializeMealsList();
     }
 
-    private void initializeMealsTree(MealNode root) {
-        root.children[0] = new MealNode("Breakfast");
-        root.children[1] = new MealNode("Morning Snack");
-        root.children[2] = new MealNode("Lunch");
-        root.children[3] = new MealNode("Late Snack");
-        root.children[4] = new MealNode("Dinner");
+    private void initializeMealsList() {
+        meals.insert(new MealNode("Breakfast"), -1);
+        meals.insert(new MealNode("Morning Snack"), -1);
+        meals.insert(new MealNode("Lunch"), -1);
+        meals.insert(new MealNode("Late Snack"), -1);
+        meals.insert(new MealNode("Dinner"), -1);
     }
 
     public MealNode getMeal(String mealName) {
-        for (MealNode child : root.children) {
-            if (child.meal.equalsIgnoreCase(mealName)) {
-                return child;
+        for (MealNode meal : meals) {
+            if (meal.meal.equalsIgnoreCase(mealName)) {
+                return meal;
             }
         }
         return null;
     }
-
 }

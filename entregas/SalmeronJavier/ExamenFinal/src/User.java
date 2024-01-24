@@ -3,12 +3,12 @@ import java.time.LocalDate;
 public class User {
     private String name;
     private LocalDate date;
-    private DaysTree days;
+    private DaysList days;
 
     User(String name) {
         this.name = name;
         this.date = LocalDate.now();
-        this.days = new DaysTree(name);
+        this.days = new DaysList();
     }
 
     public String getName() {

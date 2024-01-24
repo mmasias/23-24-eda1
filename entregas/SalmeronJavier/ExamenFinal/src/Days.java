@@ -1,43 +1,39 @@
 class DayNode {
     String day;
-    DayNode[] children;
-    MealsTree meals;
+    MealsList meals;
 
     public DayNode(String day) {
         this.day = day;
-        this.children = new DayNode[5];
-        this.meals = new MealsTree(day);
+        this.meals = new MealsList();
     }
 
     public MealNode getMeal(String mealName) {
         return meals.getMeal(mealName);
     }
-
 }
 
-class DaysTree {
-    DayNode root;
+class DaysList {
+    List<DayNode> days;
 
-    DaysTree(String rootDay) {
-        root = new DayNode(rootDay);
-        initializeDaysTree(this.root);
+    DaysList() {
+        days = new List<>();
+        initializeDaysList();
     }
 
-    private void initializeDaysTree(DayNode root) {
-        root.children[0] = new DayNode("Monday");
-        root.children[1] = new DayNode("Tuesday");
-        root.children[2] = new DayNode("Wednesday");
-        root.children[3] = new DayNode("Thursday");
-        root.children[4] = new DayNode("Friday");
+    private void initializeDaysList() {
+        days.insert(new DayNode("Monday"), -1);
+        days.insert(new DayNode("Tuesday"), -1);
+        days.insert(new DayNode("Wednesday"), -1);
+        days.insert(new DayNode("Thursday"), -1);
+        days.insert(new DayNode("Friday"), -1);
     }
 
     public DayNode getDay(String dayName) {
-        for (DayNode child : root.children) {
-            if (child.day.equalsIgnoreCase(dayName)) {
-                return child;
+        for (DayNode day : days) {
+            if (day.day.equalsIgnoreCase(dayName)) {
+                return day;
             }
         }
         return null;
     }
-
 }
