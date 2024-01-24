@@ -18,7 +18,7 @@ public class Ingesta {
         GenericNode<Alimento> iterator = this.alimentos.getFirst();
     
         while (iterator != null) {
-            System.out.println("      " + iterator.getValue().getNombre());
+            System.out.println("        " + iterator.getValue().getNombre());
             iterator = iterator.getNext();
         }
     }

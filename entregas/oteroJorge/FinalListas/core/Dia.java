@@ -25,8 +25,10 @@ public class Dia {
 
     public void imprimirIngestas() {
         GenericNode<Ingesta> iterator = this.ingestas.getFirst();
+
         while (iterator != null) {
-            System.out.println("   " + iterator.getValue().getNombre());
+            System.out.println("     " + iterator.getValue().getNombre());
+            iterator.getValue().imprimirAlimentos();
 
             iterator = iterator.getNext();
         }

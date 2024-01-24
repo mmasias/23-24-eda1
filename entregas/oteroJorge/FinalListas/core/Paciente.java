@@ -30,16 +30,12 @@ public class Paciente {
         return dias;
     }
 
-    public void imprimirDias() {
+    public void imprimirLista() {
         GenericNode<Dia> iterator = this.dias.getFirst();
-        GenericNode<Ingesta> iterator2 = iterator.getValue().getIngestas().getFirst();
+
         while (iterator != null) {
             System.out.println("   " + iterator.getValue().getDia());
             iterator.getValue().imprimirIngestas();
-            while (iterator2 != null) {
-                iterator2.getValue().imprimirAlimentos();
-                iterator2 = iterator2.getNext();
-            }
 
             iterator = iterator.getNext();
         }

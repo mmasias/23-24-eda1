@@ -13,7 +13,7 @@ public class Encuesta {
     public void mostrarArbol(Paciente paciente){
         System.out.println("Paciente: " + paciente.getNombre() );
         System.out.println("Fecha de alta: " + getFechaDeAlta());
-        paciente.imprimirDias();
+        paciente.imprimirLista();
         
 
     }
