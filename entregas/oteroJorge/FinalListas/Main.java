@@ -10,7 +10,7 @@ public class Main {
         encuesta.mostrarArbol(paciente);
         System.out.println();
 
-        insertarAlimentos(paciente, exit, getInt(mensajeDia()), getInt(mensajeIngesta()), getString(nombreAlimento()));
+        insertarAlimentos(paciente, exit);
         
         encuesta.mostrarArbol(paciente);
         System.out.println("Fin del programa");
@@ -18,16 +18,18 @@ public class Main {
 
     }
 
-    static void insertarAlimentos(Paciente paciente,boolean exit, int dia, int ingesta, String nombreAlimento){
+    static void insertarAlimentos(Paciente paciente,boolean exit){
         
         do{
             System.out.println("Insertando alimentos");
-            paciente.getDias().get(dia).getIngestas().get(ingesta).addAlimento(new Alimento(nombreAlimento));
+            paciente.getDias().get(getInt(mensajeDia())-1).getIngestas().get(getInt(mensajeIngesta())-1).addAlimento(new Alimento(getString(nombreAlimento())));
             System.out.println();
             if(getInt(mensajeSalir()) == 1){
                 exit = true;
+            }else{
+                exit = false;
             }
-        }while(!exit);
+        }while(exit == false);
     }
 
 
