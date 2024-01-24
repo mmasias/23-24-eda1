@@ -196,7 +196,7 @@ public class Gestion {
     }
 
     public void mostrar() {
-        arbol.preOrden(arbol.getRaiz());
+        
     }
     
     

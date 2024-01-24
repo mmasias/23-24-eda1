@@ -31,4 +31,7 @@ public class Dia implements DatosLista {
     public String getInformacion() {
         return "Dia: " + this.fecha;
     }
+    public void addIngesta(Ingesta ingesta) {
+        ingestas.add(ingesta);
+    }
 }
