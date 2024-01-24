@@ -31,7 +31,7 @@ public class Simulacion {
     public void opcionesFormularioInicial(int opcion){
         switch (opcion) {
             case 1:
-                System.out.println("######### Creando nuevo paciente #########");
+                System.out.println("Creando nuevo paciente");
                 creacionPacientes(nombresUsuarios);
                 break;
             case 2:
@@ -44,7 +44,6 @@ public class Simulacion {
         }
     }
 
-    // ############################
     public String vistaCreacionPacientes(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("¿Cual es el nombre del usuario a agregar?");
@@ -53,16 +52,13 @@ public class Simulacion {
     }
     public void creacionPacientes(Lista<String> nombresUsuarios){
         nombresUsuarios.agregar(new Nodo<>(vistaCreacionPacientes()));
-        //nombresUsuarios.imprimirLista(nombresUsuarios);
         imprimirFormularioFinal();
     }
 
-    // ###########################
     public void imprimirFormularioFinal(){
         System.out.println("¿Que deseas hacer ahora?");
         System.out.println("1. Terminar el programa");
         System.out.println("2. Volver al menu principal");
-        //System.out.println("3. Revisar arboles del paciente");
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("-> ");
@@ -78,30 +74,12 @@ public class Simulacion {
                 System.out.println("######### Volviendo al menu principal #########");
                 imprimirFormularioInicial();
                 break;
-            case 3:
-                System.out.println("######### Ver arbol del paciente #########");
-                elegirArbolPaciente();
-                break;
             default:
                 System.out.println("Opcion no valida");
                 break;
         }
     }
 
-    public void elegirArbolPaciente(){
-        System.out.println("¿Que paciente deseas ver?");
-        for (int indexArbol = 0; indexArbol < listaArbolesCreados.size(); indexArbol++) {
-//            System.out.println((indexArbol + 1) + ". " + listaArbolesCreados.get(indexArbol).getDato().getRaiz());
-        }
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("-> ");
-        int usuarioElegido = scanner.nextInt() - 1;
-//        System.out.println("Elegiste al paciente: " + listaArbolesCreados.get(usuarioElegido).getDato().getRaiz());
-
-//        listaArbolesCreados.get(usuarioElegido).getDato().imprimirArbol(listaArbolesCreados.get(usuarioElegido).getDato().getRaiz(), 0);
-    }
-    // ############################
     public void imprimirFormularioInscripcion(){
         System.out.println("¿Que usuario deseas ingresar la ingesta de comidas?");
         for (int nombresInscritos = 0; nombresInscritos < nombresUsuarios.size(); nombresInscritos++) {
@@ -114,79 +92,45 @@ public class Simulacion {
         System.out.println("Elegiste al paciente: " + nombresUsuarios.get(usuarioElegido).getDato());
 
         crearArbolPaciente(nombresUsuarios.get(usuarioElegido).getDato());
-
-
-
-
-        System.out.println("Ya pasaste por aqui, en imprimirFormularioInscripcion");
     }
 
     public Lista<Lista> crearArbolPaciente(String nombreUsuario) {
         Lista<Lista> nuevaListaPaciente = new Lista<>();
-
-
         poblandoListaPaciente(nuevaListaPaciente);
-
-        nuevaListaPaciente.imprimirLista(nuevaListaPaciente);
-
-
-        //listaArbolesCreados.agregar(new Nodo<> (nuevaListaPaciente));
-
-
-
-
-
-        System.out.println("#############################");
-        System.out.println("Aqui se agrega algo, pero no se que es, mala suerte");
-        System.out.println("#############################");
-
-
-
-
-
-
-
-
-
-
-
-
         return listaArbolesCreados;
     }
 
-    public void poblandoListaPaciente(Lista<Lista> nuevaListaPaciente){
-
+    public void poblandoListaPaciente(Lista<Lista> nuevaListaPaciente) {
+        Lista<Lista> listaComidasPorDiasPorPaciente = null;
         for (int i = 1; i <= cantidadDias; i++) {
-            Lista<Lista> listaComidasPorDiasPorPaciente = new Lista();
+            listaComidasPorDiasPorPaciente = new Lista(new Nodo("Dia " + i));
+            añadiendoComidas(listaComidasPorDiasPorPaciente);
             nuevaListaPaciente.agregar(listaComidasPorDiasPorPaciente);
-
-            //nuevaListaPaciente.imprimirLista(nuevaListaPaciente);
-            for (int j = 0; j < listaComidasPorDias.size(); j++) {
-                listaComidasPorDiasPorPaciente.agregar(new Nodo(listaComidasPorDias.get(j)).getHijos());
-            }
-            listaComidasPorDiasPorPaciente.imprimirLista(listaComidasPorDiasPorPaciente);
-           //System.out.println("PASAMOSSS");
         }
-        añadirAlimentos(formularioInscripcionPorDias(nuevaListaPaciente), nuevaListaPaciente);
+        añadirAlimentos(formularioInscripcionPorDias(nuevaListaPaciente, listaComidasPorDiasPorPaciente), nuevaListaPaciente);
         imprimirFormularioFinal();
     }
 
-
-    public Nodo formularioInscripcionPorDias(Lista paciente){
-        System.out.println("Elige el dia que deseas ingresar la ingesta de comidas");
-        System.out.println("Aqui vamos" + paciente.size());
-        for (int diaActual = 0; diaActual < paciente.size(); diaActual++) {
-            System.out.println((diaActual + 1) + ". " + paciente.get(diaActual).getDato());
+    public void añadiendoComidas(Lista listaComidasPorDiasPorPaciente){
+        for (int j = 0; j < listaComidasPorDias.size(); j++) {
+            listaComidasPorDiasPorPaciente.agregar(new Lista(new Nodo(listaComidasPorDias.get(j).getDato())));
         }
+        listaComidasPorDiasPorPaciente.imprimirLista(listaComidasPorDiasPorPaciente);
+    }
 
+
+    public Nodo formularioInscripcionPorDias(Lista paciente, Lista listaComidasPorDiasPorPaciente){
+        System.out.println("Elige la ingesta de comidas que deseas ingresar");
+        for (int diaActual = 1; diaActual < listaComidasPorDiasPorPaciente.size(); diaActual++) {
+            System.out.println((diaActual) + ". " + paciente.get(diaActual).getDato());
+        }
         Scanner scanner = new Scanner(System.in);
         System.out.print("-> ");
         int diaElegido = scanner.nextInt();
 
-        Nodo<String> nodoDeDiaElegido = paciente.get(diaElegido - 1);
+        Nodo<String> nodoDeDiaElegido = paciente.get(diaElegido);
         System.out.println("Elegiste el dia: " + nodoDeDiaElegido.getDato());
 
-        System.out.println(paciente.get(0).getHijos().get(Integer.parseInt(0 + "    Size dentro de  formularioInscripcionPorDias")));
 
 
 

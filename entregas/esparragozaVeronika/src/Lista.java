@@ -6,6 +6,9 @@ public class Lista<T> {
     public Lista() {
         this.primero = null;
     }
+    public Lista(Nodo<T> primero) {
+        this.primero = primero;
+    }
 
     public Nodo<T> getPrimero() {
         return primero;
