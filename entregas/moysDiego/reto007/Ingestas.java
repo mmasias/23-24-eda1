@@ -1,11 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Ingestas {
     private List<Alimentos> alimentos;
 
     public Ingestas() {
-        this.alimentos = new ArrayList<>();
+        this.alimentos = new List<>();
     }
 
     public void agregarAlimento(Alimentos alimento) {
@@ -13,8 +10,23 @@ public class Ingestas {
     }
 
     public void mostrarAlimentos() {
-        for (Alimentos alimento : alimentos) {
-            System.out.println("             - " + alimento.getNombre());
+        Node<Alimentos> current = alimentos.getHead();
+        while (current != null) {
+            System.out.println("             - " + current.getData().getNombre());
+            current = current.getNext();
         }
+    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node<Alimentos> current = alimentos.getHead();
+        while (current != null) {
+            sb.append(current.getData().getNombre());
+            if (current.getNext() != null) {
+                sb.append(", ");
+            }
+            current = current.getNext();
+        }
+        return sb.toString();
     }
 }

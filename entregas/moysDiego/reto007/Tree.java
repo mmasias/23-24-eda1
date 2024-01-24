@@ -9,31 +9,66 @@ public class Tree<T> {
         return root;
     }
 
-    public void printInOrder() {
-        printInOrder(root);
-    }
-
-    private void printInOrder(Node<T> node) {
-        if (node != null) {
-            printInOrder(node.getLeft());
-            System.out.println(node.getData());
-            printInOrder(node.getRight());
-        }
-    }
-
     public void insert(Node<T> newNode) {
-        this.root = recursiveInsert(this.root, newNode);
+        if (root == null) {
+            root = newNode;
+        } else {
+            insertRecursive(root, newNode);
+        }
     }
 
-    private Node<T> recursiveInsert(Node<T> actualNode, Node<T> newNode) {
-        if (actualNode == null) {
-            return newNode;
+    private void insertRecursive(Node<T> current, Node<T> newNode) {
+        if (newNode.getIndex() < current.getIndex()) {
+            if (current.getLeft() == null) {
+                current.setLeft(newNode);
+            } else {
+                insertRecursive(current.getLeft(), newNode);
+            }
+        } else if (newNode.getIndex() > current.getIndex()) {
+            if (current.getRight() == null) {
+                current.setRight(newNode);
+            } else {
+                insertRecursive(current.getRight(), newNode);
+            }
         }
-        if (newNode.getIndex() < actualNode.getIndex()) {
-            actualNode.setLeft(recursiveInsert(actualNode.getLeft(), newNode));
-        } else if (newNode.getIndex() > actualNode.getIndex()) {
-            actualNode.setRight(recursiveInsert(actualNode.getRight(), newNode));
+        
+    }
+
+    public Node<T> find(int index) {
+        return findRecursive(root, index);
+    }
+
+    private Node<T> findRecursive(Node<T> current, int index) {
+        if (current == null) {
+            return null;
         }
-        return actualNode;
+        if (index == current.getIndex()) {
+            return current;
+        }
+        return index < current.getIndex() ? findRecursive(current.getLeft(), index) : findRecursive(current.getRight(), index);
+    }
+
+    public void printInOrder() {
+        printInOrderRecursive(root);
+    }
+
+    private void printInOrderRecursive(Node<T> node) {
+        if (node != null) {
+            printInOrderRecursive(node.getLeft());
+            System.out.println(node.getData());
+            printInOrderRecursive(node.getRight());
+        }
+    }
+
+    public void printInOrder(StringBuilder sb) {
+        printInOrderRecursive(root, sb);
+    }
+
+    private void printInOrderRecursive(Node<T> node, StringBuilder sb) {
+        if (node != null) {
+            printInOrderRecursive(node.getLeft(), sb);
+            sb.append(node.getData().toString()).append("\n");
+            printInOrderRecursive(node.getRight(), sb);
+        }
     }
 }

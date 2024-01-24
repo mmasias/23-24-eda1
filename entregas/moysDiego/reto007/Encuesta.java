@@ -1,31 +1,25 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class Encuesta {
-    private Map<Integer, Dias> dias;
+    private Tree<Dias> diasTree;
 
     public Encuesta() {
-        this.dias = new HashMap<>();
+        this.diasTree = new Tree<>();
         for (int i = 1; i <= 5; i++) {
-            dias.put(i, new Dias());
+            diasTree.insert(new Node<>(new Dias(i), i));
         }
     }
 
     public void agregarAlimento(Alimentos alimento, int dia, String tipoIngesta) {
-        Dias diaSeleccionado = dias.get(dia);
-
-        if (diaSeleccionado == null) {
+        Node<Dias> diaNode = diasTree.find(dia);
+        if (diaNode != null) {
+            diaNode.getData().agregarAlimento(alimento, tipoIngesta);
+        } else {
             System.out.println("Error: Día no válido.");
-            return;
         }
-
-        diaSeleccionado.agregarAlimento(alimento, tipoIngesta);
     }
 
-    public void mostrarDias() {
-        for (Map.Entry<Integer, Dias> entry : dias.entrySet()) {
-            System.out.println("    Día " + entry.getKey() + ":");
-            entry.getValue().mostrarIngestas();
-        }
+    public void obtenerInfoDieta() {
+        StringBuilder sb = new StringBuilder();
+        diasTree.printInOrder(sb);
+        System.out.println(sb.toString());
     }
 }
