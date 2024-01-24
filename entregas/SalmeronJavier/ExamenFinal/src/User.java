@@ -35,11 +35,11 @@ public class User {
     }
 
     public void printAll() {
-        for (DayNode dayNode : days.root.children) {
+        for (DayNode dayNode : days.days) {
             boolean showDay = false;
 
-            for (MealNode mealNode : dayNode.meals.root.children) {
-                if (mealNode != null && !mealNode.food.getItems().isEmpty()) {
+            for (MealNode mealNode : dayNode.meals.meals) {
+                if (mealNode != null && !mealNode.getFood().getItems().isEmpty()) {
                     showDay = true;
                     break;
                 }
@@ -48,11 +48,11 @@ public class User {
             if (showDay) {
                 System.out.println("\u25BC Day: " + dayNode.day);
 
-                for (MealNode mealNode : dayNode.meals.root.children) {
-                    if (mealNode != null && !mealNode.food.getItems().isEmpty()) {
+                for (MealNode mealNode : dayNode.meals.meals) {
+                    if (mealNode != null && !mealNode.getFood().getItems().isEmpty()) {
                         System.out.println("   \u25B6 Meal: " + mealNode.meal);
 
-                        List<String> foodItems = mealNode.food.getItems();
+                        List<String> foodItems = mealNode.getFood().getItems();
                         System.out.println("      \u25CF Food Items:");
                         for (String item : foodItems) {
                             System.out.println("        - " + item);
@@ -67,7 +67,7 @@ public class User {
         while (true) {
             System.out.print("Select day: ");
             boolean first = true;
-            for (DayNode dayNode : days.root.children) {
+            for (DayNode dayNode : days.days) {
                 if (!first) System.out.print(", ");
                 System.out.print(dayNode.day);
                 first = false;
@@ -82,7 +82,7 @@ public class User {
 
             System.out.print("Select meal: ");
             first = true;
-            for (MealNode mealNode : day.meals.root.children) {
+            for (MealNode mealNode : day.meals.meals) {
                 if (!first) System.out.print(", ");
                 System.out.print(mealNode.meal);
                 first = false;
@@ -104,7 +104,7 @@ public class User {
                     break;
                 }
 
-                meal.food.addItem(item);
+                meal.getFood().addItem(item);
             }
             
             String answer = UserIO.getInput("Add more food? (Yes/No): ");
