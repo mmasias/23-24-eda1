@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class MenuInteractivo {
     private Scanner scanner;
     private Cliente cliente;
+    private Encuesta encuesta;
 
     public MenuInteractivo(Cliente cliente) {
         this.scanner = new Scanner(System.in);
@@ -48,7 +49,8 @@ public class MenuInteractivo {
     }
 
     private void crearNuevaEncuesta() {
-        cliente = new Cliente(cliente.getNombre());  // Reiniciar la instancia del Cliente
+        cliente = new Cliente(cliente.getNombre()); 
+        encuesta = new Encuesta();
         ingresarAlimentos();
         System.out.println("Encuesta creada exitosamente para el cliente " + cliente.getNombre() + ".");
     }
@@ -60,7 +62,7 @@ public class MenuInteractivo {
 
     private void mostrarResultados() {
         System.out.println("Resultados para " + cliente.getNombre() + ":");
-        cliente.mostrarDieta();
+        encuesta.obtenerInfoDieta();
     }
 
     private void imprimirMenu() {
@@ -101,7 +103,7 @@ public class MenuInteractivo {
 
             if (dia == -2) {
                 System.out.println("Alimentos ingresados:");
-                cliente.mostrarDieta();
+                encuesta.obtenerInfoDieta();
                 continue;
             }
 
@@ -136,7 +138,7 @@ public class MenuInteractivo {
                     }
 
                     Alimentos alimento = new Alimentos(nombreAlimento);
-                    cliente.agregarAlimento(alimento, dia, tipoIngesta);
+                    encuesta.agregarAlimento(alimento, dia, tipoIngesta);
                 }
             } while (true);
 

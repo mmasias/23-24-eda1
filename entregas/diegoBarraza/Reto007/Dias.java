@@ -1,59 +1,34 @@
 package Reto007;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Dias {
-    private Map<String, Ingestas> ingestas;
+    private int diaIndex;
+    private Tree<IngestaTipo> ingestasTree;
 
-    public Dias() {
-        this.ingestas = new HashMap<>();
-        // Inicializar las ingestas con tipos válidos
+    public Dias(int diaIndex) {
+        this.diaIndex = diaIndex;
+        this.ingestasTree = new Tree<>();
         for (String tipoIngesta : getTiposIngestaValidos()) {
-            ingestas.put(tipoIngesta, new Ingestas());
+            ingestasTree.insert(new Node<>(new IngestaTipo(tipoIngesta, new Ingestas()), tipoIngesta.hashCode()));
         }
     }
 
     public void agregarAlimento(Alimentos alimento, String tipoIngesta) {
-        if (esTipoIngestaValido(tipoIngesta)) {
-            ingestas.get(tipoIngesta).agregarAlimento(alimento);
+        Node<IngestaTipo> ingestaTipoNode = ingestasTree.find(tipoIngesta.hashCode());
+        if (ingestaTipoNode != null) {
+            ingestaTipoNode.getData().getIngestas().agregarAlimento(alimento);
         } else {
             System.out.println("Error: Tipo de ingesta no válido.");
         }
     }
 
-    public void mostrarIngestasEnOrden() {
-        // Mostrar las ingestas en el orden deseado
-        mostrarIngesta("Desayuno");
-        mostrarIngesta("Media Mañana");
-        mostrarIngesta("Almuerzo");
-        mostrarIngesta("Merienda");
-        mostrarIngesta("Cena");
-    }
-
-    public void mostrarIngestas() {
-        for (Map.Entry<String, Ingestas> entry : ingestas.entrySet()) {
-            System.out.println("        " + "Ingesta " + entry.getKey() + ":");
-            entry.getValue().mostrarAlimentos();
-        }
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Día " + diaIndex + ":\n");
+        ingestasTree.printInOrder(sb);
+        return sb.toString();
     }
 
     private static String[] getTiposIngestaValidos() {
         return new String[]{"Desayuno", "Media Mañana", "Almuerzo", "Merienda", "Cena"};
     }
-
-    private void mostrarIngesta(String tipoIngesta) {
-        System.out.println("        " + "Ingesta " + tipoIngesta + ":");
-        ingestas.get(tipoIngesta).mostrarAlimentos();
-    }
-
-    private boolean esTipoIngestaValido(String tipoIngesta) {
-        String[] tiposValidos = getTiposIngestaValidos();
-        for (String tipoValido : tiposValidos) {
-            if (tipoValido.equalsIgnoreCase(tipoIngesta)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 }
