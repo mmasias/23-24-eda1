@@ -1,5 +1,4 @@
 package entregas.puenteDaniel.ExamenFinal;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public class Gestion {
             }
         } while (!ok);
 
-        EncuestaLista e = new Encuesta(fecha);
+        EncuestaLista e = new EncuestaLista();
         datos.add(e);
     }
 
@@ -86,7 +85,7 @@ public class Gestion {
             if (dia == 0) {
                 break;
             }
-            
+
             EncuestaLista encuesta = (EncuestaLista) datos.get(datos.size() - 1);
             Dia diaSeleccionado = encuesta.obtenerDiaPorNumero(dia);
 
@@ -138,7 +137,7 @@ public class Gestion {
                 } else if (!opcion2.equals("-1")) {
                     System.out.println("Introduzca la cantidad de gramos: ");
                     int gramos = escaner.nextInt();
-                    ing.insertarAlimento(new Alimento(opcion2, gramos));
+                    ing.agregarAlimento(new Alimento(opcion2, gramos));
                 }
             } while (!opcion2.equals("-1"));
 
@@ -156,15 +155,30 @@ public class Gestion {
         insertarIngestas();
     }
 
-    public void mostrar() {
-        for (DatosLista dato : datos) {
+    public Scanner mostrar() {
+        for (DatosLista dato : (List<DatosLista>) datos) {
             System.out.println(dato.getInformacion());
         }
+        return escaner;
     }
 
-    public static void main(String[] args) {
-        Gestion gestion = new Gestion();
-        gestion.capturarDatos();
-        gestion.mostrar();
+    public void setEscaner(Scanner escaner) {
+        this.escaner = escaner;
+    }
+
+    public List getDatos() {
+        return datos;
+    }
+
+    public void setDatos(List datos) {
+        this.datos = datos;
+    }
+
+    public DateTimeFormatter getFormato() {
+        return formato;
+    }
+
+    public void setFormato(DateTimeFormatter formato) {
+        this.formato = formato;
     }
 }

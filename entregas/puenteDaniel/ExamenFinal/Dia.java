@@ -7,11 +7,15 @@ public class Dia {
     private LocalDate fecha;
     private List<Ingesta> ingestas;
 
-    public Dia(LocalDate fecha) {
-        this.fecha = fecha;
+    public Dia(LocalDate i) {
+        this.fecha = i;
         this.ingestas = new ArrayList<>();
     }
 
+    public Dia(int i) {
+        //TODO Auto-generated constructor stub
+    }
+    
     public LocalDate getFecha() {
         return fecha;
     }
@@ -40,10 +44,10 @@ public class Dia {
         Alimento alimento2 = new Alimento("Pollo", 300);
 
         Ingesta ingesta1 = new Ingesta(Horario.DESAYUNO);
-        ingesta1.insertarAlimento(alimento1);
+        ingesta1.agregarAlimento(alimento1);
 
         Ingesta ingesta2 = new Ingesta(Horario.ALMUERZO);
-        ingesta2.insertarAlimento(alimento2);
+        ingesta2.agregarAlimento(alimento2);
 
         dia.getIngestas().add(ingesta1);
         dia.getIngestas().add(ingesta2);
@@ -52,5 +56,10 @@ public class Dia {
         for (Ingesta ingesta : dia.getIngestas()) {
             System.out.println(ingesta.getInformacion());
         }
+    }
+
+    public void insertarIngesta(Ingesta ing) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insertarIngesta'");
     }
 }

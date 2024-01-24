@@ -12,7 +12,7 @@ public class EncuestaLista {
     }
 
     public void agregarEncuesta(LocalDate fecha) {
-        EncuestaLista encuesta = new Encuesta(fecha);
+        EncuestaLista encuesta = new EncuestaLista();
         encuestas.add(encuesta);
     }
 
@@ -36,6 +36,10 @@ public class EncuestaLista {
             }
         }
         return null;
+    }
+
+    private Object getFecha() {
+        throw new UnsupportedOperationException("Unimplemented method 'getFecha'");
     }
 
     public List<EncuestaLista> obtenerTodasLasEncuestas() {
@@ -68,5 +72,20 @@ public class EncuestaLista {
         for (EncuestaLista encuesta : todasLasEncuestas) {
             System.out.println(encuesta.getInformacion());
         }
+    }
+
+    private char[] getInformacion() {
+
+        throw new UnsupportedOperationException("Unimplemented method 'getInformacion'");
+    }
+
+    public void insertarDia(Dia d) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insertarDia'");
+    }
+
+    public Dia obtenerDiaPorNumero(int dia) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'obtenerDiaPorNumero'");
     }
 }
