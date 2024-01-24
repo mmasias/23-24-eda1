@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class Day implements DataProvider {
 
   private String name;
-  private Tree<Brunch> brunches;
+  private List<Brunch> brunches;
   private boolean isOpen = false;
 
   public Day(String name) {
     this.name = name;
-    this.brunches = new Tree<Brunch>();
+    this.brunches = new List<Brunch>();
   }
 
   public String getName() {
@@ -103,7 +103,7 @@ public class Day implements DataProvider {
   private void createBrunch(Brunch brunch, int index) {
     Node<Brunch> node = new Node<Brunch>(brunch, index);
     if (!this.brunches.has(node)) {
-      this.brunches.insert(node);
+      this.brunches.add(node);
       this.openBrunch(index);
     } else {
       this.openBrunch(index);
@@ -119,7 +119,7 @@ public class Day implements DataProvider {
 
   private void showBrunches() {
     System.out.println("        " + this.name);
-    this.brunches.printInOrder(this.brunches.getRoot());
+    this.brunches.printAll();
   }
 
   private void invalidOption() {

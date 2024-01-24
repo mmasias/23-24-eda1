@@ -13,7 +13,7 @@ public class Survey {
     this.open();
     int input;
     do {
-      this.printInterface();
+      this.printMenu();
       input = new Scanner(System.in).nextInt();
       this.manageInput(input);
     } while (input != 0);
@@ -27,11 +27,11 @@ public class Survey {
     this.isOpen = false;
   }
 
-  private void printInterface() {
+  private void printMenu() {
     if (this.isOpen) {
       this.clearTerminal();
       this.printInstructions();
-      this.printMenu();
+      this.printOptions();
     }
   }
 
@@ -51,7 +51,7 @@ public class Survey {
     System.out.println("Please, be as accurate as possible.");
   }
 
-  private void printMenu() {
+  private void printOptions() {
     System.out.println("--------------------");
     System.out.println("Menu:");
     System.out.println("1. Monday");

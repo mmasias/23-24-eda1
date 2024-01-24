@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class List<T extends DataProvider> {
 
  private Node<T> first = null;
@@ -44,10 +46,8 @@ public class List<T extends DataProvider> {
  public T get(int index) {
   if (this.first != null) {
    Node<T> iterator = this.first;
-   int count = 0;
-   while (count < index - 1) {
+   while (iterator.getIndex() != index) {
     iterator = iterator.getNext();
-    count++;
    }
    return iterator.getData();
   } else {

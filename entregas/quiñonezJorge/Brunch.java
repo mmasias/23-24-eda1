@@ -87,7 +87,7 @@ public class Brunch implements DataProvider {
       input = new Scanner(System.in).nextLine();
       if (!input.equals("0")) {
         if (!input.equals("")) {
-          this.food.add(new Node<Food>(new Food(input)));
+          this.food.add(new Node<Food>(new Food(input), this.food.getSize() + 1));
         }
       }
     } while (!input.equals("0"));

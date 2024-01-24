@@ -103,7 +103,7 @@ public class Food implements DataProvider {
       input = new Scanner(System.in).nextLine();
       if (!input.equals("0")) {
         if (!input.equals("")) {
-          this.nutrients.add(new Node<Nutrient>(new Nutrient(input)));
+          this.nutrients.add(new Node<Nutrient>(new Nutrient(input), this.nutrients.getSize() + 1));
         }
       }
     } while (!input.equals("0"));
