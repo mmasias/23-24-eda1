@@ -35,7 +35,7 @@ public class Clinic {
 
     private void displayOptions() {
         System.out.println("+------------------------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| Seleccione una opcion: ( 1 [Registrar Paciente] / 2 [Crear evaluacion] / 3 [Ver evaluacion] / 4 [Ver Resultados] / 0 [Salir]) |");
+        System.out.println("| Seleccione una opcion: ( 1 [Registrar Paciente] / 2 [Crear evaluacion] / 3 [Ver resultados de la evaluacion] /  0 [Salir]) |");
         System.out.println("+------------------------------------------------------------------------------------------------------------------------------+");
         System.out.println(" ");
     }
@@ -89,19 +89,6 @@ public class Clinic {
         }
     }
 
-    private void viewResults() {
-        if (this.registeredPatient() && this.patient.getEvaluation() != null) {
-            this.startMenu = false;
-            this.patient.showEvaluation();
-            this.startMenu = true;
-        } else {
-            System.out.println("+-------------------------------------------------------------------+");
-            System.out.println("| No se puede ver un los resultados sin haber creado una evaluacion |");
-            System.out.println("+-------------------------------------------------------------------+");
-            new Scanner(System.in).nextLine();
-        }
-    }
-
     private void optionNotFound() {
         System.out.println("+-----------------------------------------+");
         System.out.println("| Por favor seleccionar una opcion valida |");
@@ -120,9 +107,6 @@ public class Clinic {
                 break;
             case 3:
                 this.viewEvaluation();
-                break;
-            case 4:
-                this.viewResults();
                 break;
             case 0:
                 break;
