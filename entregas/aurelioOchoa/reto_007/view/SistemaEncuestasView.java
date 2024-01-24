@@ -1,5 +1,5 @@
-package entregas.aurelioOchoa.reto_007.view;
-import entregas.aurelioOchoa.reto_007.model.*;
+package reto_007.view;
+import reto_007.model.*;
 import java.util.*;
 
 public class SistemaEncuestasView {

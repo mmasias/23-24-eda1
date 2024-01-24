@@ -1,4 +1,4 @@
-package entregas.aurelioOchoa.reto_007.model;
+package reto_007.model;
 import java.util.ArrayList;
 import java.util.List;
 

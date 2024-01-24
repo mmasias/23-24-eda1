@@ -1,4 +1,4 @@
-package entregas.aurelioOchoa.reto_007.model;
+package reto_007.model;
 
 public class Alimento {
     public String nombre;
