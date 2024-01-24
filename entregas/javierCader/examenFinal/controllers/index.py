@@ -1,8 +1,10 @@
 from models.index import Patient, Day, Intake, Food
 from views.index import View
+from structures.tree import Tree
 
 class Clinic_Controller:
-    def __init__(self, patient: Patient):
+    def __init__(self, patient_tree: Tree, patient: Patient):
+        self.patient_tree = patient_tree
         self.patient = patient
         self.is_running = True 
 
@@ -36,9 +38,6 @@ class Clinic_Controller:
         View.print_patient_data(self.patient) 
         print(View.BOLD + "Exiting the application." + View.ENDC)
 
-        View.print_patient_data(self.patient) 
-        print("Exiting the application.")
-
     def select_day(self, patient: Patient) -> int:
         View.display_prompt(f"Patient: {patient.data} / To exit enter -1 / To list all data enter -2")
         for day in patient.surveys[0].days:
@@ -50,7 +49,7 @@ class Clinic_Controller:
         for i, intake in enumerate(day.intakes):
             print(f"{i + 1}. {intake.data}")
         return self.get_validated_input("Enter number: ", len(day.intakes))
-    
+
     def get_validated_input(self, prompt: str, max_value: int) -> int:
         while True:
             try:
@@ -70,7 +69,9 @@ class Clinic_Controller:
             elif food_name == "-2":
                 View.print_foods(intake)
             else:
-                intake.add_food(Food(food_name))
+                food = Food(food_name)
+                intake.add_food(food)
+                self.patient_tree.add_node(intake, food)  # Add food as a child node to the intake
 
     def ask_for_food(self, intake: Intake):
         return input(f"{View.BOLD}Input a food for {intake.data} (-1 to exit / -2 to list the foods): {View.ENDC}")
