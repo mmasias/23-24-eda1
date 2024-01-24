@@ -50,19 +50,21 @@
     Tree --|> IDataStructure
     List --|> IDataStructure
     TreeNode -|> IDataStructure
+    TreeNode --> List
 
     TreeObjects --|> TreeObject
 
     Manager --> Tree
     Manager --* TreeObjects
     Manager -> Client
+    Manager --> FoodData
+
 
     Tree --* TreeNode
     List --* ListNode
 
     FoodData --* Food
-    FoodData -> List
-    Manager --> FoodData
+    FoodData --> List
 
 
 @enduml

@@ -128,6 +128,7 @@
     Tree --|> IDataStructure
     List --|> IDataStructure
     TreeNode -|> IDataStructure
+    TreeNode --> List
 
     TreeObjects --|> TreeObject
 
