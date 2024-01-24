@@ -149,7 +149,7 @@ public class ManagerListVersion {
                 for (Intake intake:day.getChildren()) {
                     if (intake.toString().equals(intakeString)) {
                         intake.addChild(foodData);
-                        return;
+                        break;
                     }
                 }
             }
@@ -173,7 +173,7 @@ public class ManagerListVersion {
                         for (Food food:intake.getChildren()) {
                             if(food.toString().equals(foodString)){
                                 intake.deleteByIndex(cont);
-                                return;
+                                break;
                             }
                             cont ++;
                         }
