@@ -1,36 +1,21 @@
-
-# Encuestas de Dietas 
-EL proyecto consiste en desarrollar un programa sencillo que realice un encuesta alimentaria al usuario, recolectando los alimentos ingeridos en cada ingesta (Desayuno, almuerzo, comida, merienda y cena) sobre 5 días.
-
-### Main
-La clase **Main** es la clase principal del programa. Esta clase se encarga de crear una instancia de la clase **InterfazUsuario** para interactuar con el usuario y luego ejecutar la encuesta alimentaria a través de una instancia de la clase EncuestaAlimentaria.
+# Encuesta Dieta
+Se han realizado ciertos cambios en el codigo para lograr cambiar toda la estructura de arbol a listas
 ___
-### EncuestaAlimentaria
-Esta clase maneja la lógica de la encuesta alimentaria. Se encarga de iniciar la encuesta, recopilar información sobre la alimentación diaria del paciente y mostrar un resumen al final. Mantiene una asociación con la clase **Paciente**, ya que necesita datos del paciente para la encuesta.
-___
-### InterfazUsuario
-Esta clase se ocupa de la interacción con el **usuario**. Muestra instrucciones, recopila información del usuario (como nombre, edad, peso, etc.) y valida estas entradas. Actúa como **intermediaria entre el usuario** y el resto del programa.
-___
+## Clases Actualizadas
 ### Paciente
-Representa a un paciente en el sistema. Almacena datos personales como nombre, edad, altura, peso y frecuencia de ejercicio. Esta clase es crucial para personalizar la experiencia de la encuesta según las características del paciente.
+Los cambios en el codigo de la clase Paciente han sido muy basicos, unicamente he actualizado la estructura de Tree a List para ello el cambio ha sido:
+*List<DiaAlimentacion>*, además he actualizado la forma de busquedaDiaAlimentacion para que se recorra toda la lista.
 ___
 ### DiaAlimentacion
-Se encarga de representar un día específico en la **encuesta alimentaria**. Contiene un **conjunto de Ingesta**, cada una representando una comida o momento de ingesta (como desayuno, almuerzo, etc.) durante ese día.
+Pasa igual que en paciente, anteriormente se recorria con una estructura de arbol, ahora se cambio a lista: List<Ingesta>.
 ___
-### Ingesta
-Representa una ingesta específica de alimentos (por ejemplo, el desayuno). Contiene una **lista de Alimento**, que son los diferentes alimentos consumidos en esa ingesta.
+### Tree Y TreeNode
+Estas clases eran mas tecnicas y se encargaban de manejar una estructura en arbol, han sido eliminadas del programa porque ya no tienen utilidad.
 ___
-### Alimento
-Esta clase representa un **alimento individual**. Básicamente, es la ***unidad más pequeña*** de información en nuestra encuesta, detallando un ítem específico de comida o bebida.
+### EncuestaAlimentaria
+Esta clase ha presentado problemas a la hora de mostrar el resumen final, se ha actualizado dicho metodo para que siga una estructura de lista.
 ___
-### Tree y TreeNode
-Estas clases son un poco más técnicas y se utilizan para **almacenar y organizar los datos** en una estructura de **árbol**. Tree es una **estructura genérica** que puede almacenar diferentes tipos de datos **(como DiaAlimentacion e Ingesta)**, y TreeNode representa cada **nodo** en este árbol, conteniendo datos y referencias a otros nodos **(hijos)**.
-___
-### List y Node
-La **clase List** es una implementación genérica de una lista enlazada.
-**Atributo head:** Es el primer **nodo** (o elemento) de la lista. Si la lista está vacía, head es null.
-**Método add(T data):** Permite **agregar un nuevo elemento al final de la lista**. Si la lista está vacía (es decir, head es null), el nuevo nodo se convierte en el head. Si no, recorre la lista hasta encontrar el último nodo y agrega el nuevo nodo allí.
-**Método getFirst():** **Devuelve** los datos almacenados en el **primer nodo** de la lista. Si la lista está vacía, devuelve null o podría manejarse de otra manera según sea necesario.
-
-La clase **Node** representa un nodo individual en una **lista enlazada**. Cada nodo contiene datos y una referencia al siguiente nodo en la lista.
-
+### Mas
+Mencionar que el programa base tenia una estructura de arbol, pero la clase ingesta y alimento estaba bajo una estructura de listas, 
+por lo tanto no ha sido necesario actualizar nada de dichas clases.
+Por otro lado, mencionar que el ejercicio mantiene las bases anteriores y la interfaz sigue siendo la misma.
