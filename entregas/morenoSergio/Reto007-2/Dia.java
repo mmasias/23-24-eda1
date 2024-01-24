@@ -1,42 +1,19 @@
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Dia {
-    private int numeroDia;
-    private DatosArbol<Ingesta> ingestas;
+class Dia {
 
-    public Dia(int numeroDia) {
-        this.numeroDia = numeroDia;
-        this.ingestas = new DatosArbol<>(Comparator.comparing(Ingesta::getTipoComida));
-    }
+  int numeroDia;
+  List<Ingesta> ingestas;
 
-    public void agregarIngesta(Ingesta ingesta) {
-        ingestas.insertar(ingesta);
-    }
+  public Dia(int numeroDia) {
+    this.numeroDia = numeroDia;
+    this.ingestas = new ArrayList<>();
+  }
 
-    public Ingesta buscarIngesta(String tipoComida) {
-        return ingestas.buscar(new Ingesta(tipoComida, null));
-    }
-
-    public int getNumeroDia() {
-        return numeroDia;
-    }
-
-    public DatosArbol<Ingesta> getIngestas() {
-        return ingestas;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("        Dia ").append(numeroDia).append("\n");
-        for (String tipoIngesta : new String[]{"Desayuno", "Media mañana", "Almuerzo", "Merienda", "Cena"}) {
-            Ingesta ingesta = this.ingestas.buscar(new Ingesta(tipoIngesta, null));
-            if (ingesta == null) {
-                sb.append("            ").append(tipoIngesta).append(": Sin datos\n");
-            } else {
-                sb.append(ingesta.toString());
-            }
-        }
-        return sb.toString();
-    }
+  public Ingesta agregarIngesta(String tipo) {
+    Ingesta ingesta = new Ingesta(tipo);
+    ingestas.add(ingesta);
+    return ingesta;
+  }
 }

@@ -1,22 +1,9 @@
-public class Alimento {
-    private String nombre;
-    private double cantidad; // En gramos
+class Alimento {
 
-    public Alimento(String nombre, double cantidad) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
+    String nombre;
+  
+    public Alimento(String nombre) {
+      this.nombre = nombre;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public double getCantidad() {
-        return cantidad;
-    }
-
-    public String toString() {
-        return nombre + " - " + cantidad + " gramos";
-    }
-}
-
+  }
+  
