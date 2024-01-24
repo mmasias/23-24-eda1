@@ -5,7 +5,7 @@ public class Patient {
 
     public Patient(String name) {
         this.name = name;
-        dischargeDate = new CustomDate((int) (Math.random()*30+1), (int) (Math.random()*12+1), 2023);
+        dischargeDate = new CustomDate((int) (Math.random() * 30 + 1), (int) (Math.random() * 12 + 1), 2023);
         days = new List<>();
     }
 
@@ -43,7 +43,6 @@ public class Patient {
         dischargeDate.showData();
         Node<Day> currentDay = days.getFirst();
 
-        // Lista de todos los nombres de ingestas que deberían mostrarse
         List<String> allIntakeNames = new List<>();
         allIntakeNames.insert("Desayuno", -1);
         allIntakeNames.insert("Media mañana", -1);
@@ -51,25 +50,39 @@ public class Patient {
         allIntakeNames.insert("Merienda", -1);
         allIntakeNames.insert("Cena", -1);
 
+        List<String> allDayNames = new List<>();
+        allDayNames.insert("1", -1);
+        allDayNames.insert("2", -1);
+        allDayNames.insert("3", -1);
+        allDayNames.insert("4", -1);
+        allDayNames.insert("5", -1);
+
+        int dayCounter = 0;
+
         while (currentDay != null) {
             Day day = currentDay.getData();
-            System.out.println("  " + day.getName());
+            String dayName = day.getName();
 
-            Node<Intakes> currentIntake = day.getIntakes().getFirst();
+            if (allDayNames.size() > 0 && dayName.equals(allDayNames.listData()[0])) {
+                allDayNames.remove(0);
+            }
 
-            // Recorre la lista de nombres de ingestas utilizando índices
+            System.out.println(dayName);
+
             for (int i = 0; i < allIntakeNames.size(); i++) {
                 String intakeName = (String) allIntakeNames.listData()[i];
                 boolean intakeFound = false;
 
+                Node<Intakes> currentIntake = day.getIntakes().getFirst();
+
                 while (currentIntake != null) {
                     Intakes intakes = currentIntake.getData();
                     if (intakes.getName().equals(intakeName)) {
-                        System.out.println("    " + intakes.getName());
-
                         Node<Food> currentFood = intakes.getFoods().getFirst();
                         while (currentFood != null) {
                             Food food = currentFood.getData();
+                            System.out.println("    " + intakeName);
+
                             System.out.println("      " + food.getName() + " (" + food.getKcal() + " kcal)");
                             currentFood = currentFood.getNext();
                         }
@@ -79,16 +92,21 @@ public class Patient {
                     currentIntake = currentIntake.getNext();
                 }
 
-                // Si no se encontró la ingesta en el día, muestra un mensaje
                 if (!intakeFound) {
                     System.out.println("    " + intakeName);
                 }
-
-                // Reinicia el puntero de ingestas para la próxima iteración
-                currentIntake = day.getIntakes().getFirst();
             }
+
             currentDay = currentDay.getNext();
+            dayCounter++;
+        }
+
+        while (dayCounter < allDayNames.size()) {
+            String dayName = (String) allDayNames.listData()[dayCounter];
+            System.out.println("  Dia " + dayName);
+            dayCounter++;
         }
     }
+
 }
 
