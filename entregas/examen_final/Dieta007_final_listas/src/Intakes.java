@@ -40,6 +40,15 @@ public class Intakes {
 
     }
 
+    void showData() {
+        System.out.println("    " + name);
+        Node<Food> currentFood = foods.getFirst();
+        while (currentFood != null) {
+            System.out.println("      " + currentFood.getData().getName() + " (" + currentFood.getData().getKcal() + " kcal)");
+            currentFood = currentFood.getNext();
+        }
+    }
+
 
 
 }

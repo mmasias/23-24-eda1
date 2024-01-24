@@ -46,7 +46,6 @@ public class Menu {
 
     private static void addPatient() {
         System.out.print("Nombre del Paciente: ");
-        textos.nextLine();
         String nombrePaciente = textos.nextLine();
         Patient nuevoPaciente = new Patient(nombrePaciente);
         patients.insert(nuevoPaciente, -1);
@@ -63,7 +62,6 @@ public class Menu {
         }
 
         Patient nuevoPaciente = new Patient(nombrePaciente);
-        patients.insert(nuevoPaciente, -1);
 
         System.out.print("Seleccione día (1-5): ");
         int dia = numeros.nextInt();
@@ -85,7 +83,9 @@ public class Menu {
         }
 
         nuevoPaciente.addDay(day);
+        patients.insert(nuevoPaciente, -1);
     }
+
 
     private static String obtenerNombreIngesta(int ingesta) {
         switch (ingesta) {
@@ -114,7 +114,6 @@ public class Menu {
     }
     private static void findAndShowPatient() {
         System.out.print("Introduce el nombre del Paciente: ");
-        textos.nextLine();
         String nombrePaciente = textos.nextLine();
         Node<Patient> pacienteNode = findPatientNode(nombrePaciente);
         if (pacienteNode != null) {
@@ -147,7 +146,6 @@ public class Menu {
             } else {
                 System.out.print("Ingrese las kcal para " + nombreAlimento + ": ");
                 int kcal = numeros.nextInt();
-                textos.nextLine(); // Limpiar el buffer del scanner
                 intakes.addFood(new Food(nombreAlimento, kcal));
             }
         }
@@ -155,7 +153,6 @@ public class Menu {
 
     private static void removePatient() {
         System.out.print("Nombre del paciente a eliminar: ");
-        textos.nextLine();
         String nombrePaciente = textos.nextLine();
         boolean eliminado = removePatientFromList(nombrePaciente);
         if (eliminado) {

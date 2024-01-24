@@ -26,4 +26,13 @@ public class Day {
     void addIntake(Intakes intake) {
         intakes.insert(intake, -1);
     }
+
+    void showData() {
+        System.out.println("  " + name);
+        Node<Intakes> currentIntake = intakes.getFirst();
+        while (currentIntake != null) {
+            currentIntake.getData().showData();
+            currentIntake = currentIntake.getNext();
+        }
+    }
 }
