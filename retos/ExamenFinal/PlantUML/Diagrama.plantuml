@@ -28,7 +28,7 @@ class Arbol<T extends DatosArbol> {
 interface DatosArbol {
   + getInformacion(): String
 }
-class Dia implements DatosArbol, Comparable<Dia> {
+class Dia implements DatosArbol {
   - fecha: int
 
   + Dia(fecha: int)
@@ -96,7 +96,7 @@ class Gestion {
   + comprobarSiExiste(dia: int, horario: Horario): NodoArbol<DatosArbol>
   + estadisticas(): void
 }
-class Ingesta implements Comparable<Ingesta>, DatosArbol {
+class Ingesta implements DatosArbol {
   - horario: Horario
   - alimentos: GenericList<Alimento>
 
@@ -110,7 +110,7 @@ class Ingesta implements Comparable<Ingesta>, DatosArbol {
   + totalTipoI(nombreTipo: String): int
   + totalCaloriasI(): double
 }
-class NodoArbol<T extends DatosArbol> implements Comparable<NodoArbol<T>> {
+class NodoArbol<T extends DatosArbol> {
   - value: T
   - hijos: GenericList<NodoArbol<T>>
 
@@ -133,7 +133,7 @@ class Paciente implements DatosArbol {
   + setNombre(nombre: String): void
   + getInformacion(): String
 }
-class ValoresNutricionales implements Comparable<ValoresNutricionales> {
+class ValoresNutricionales {
   - calorias: int
   - azucar: int
   - proteinas: int
@@ -156,4 +156,22 @@ class ValoresNutricionales implements Comparable<ValoresNutricionales> {
 class Informacion {
   + getDatos(nombre: String): ValoresNutricionales
 }
+Alimento --> Comparable
+Dia --> Comparable
+Encuesta --> Comparable
+GenericList --> Comparable
+GenericNode --> Comparable
+Gestion --> Arbol
+Gestion --> Paciente
+Gestion --> Encuesta
+Gestion --> Dia
+Gestion --> Ingesta
+Ingesta --> Comparable
+NodoArbol --> Comparable
+ValoresNutricionales --> Comparable
+Informacion --> ValoresNutricionales
+Gestion --> Horario
+Ingesta --> Informacion
+Ingesta --> Horario
+
 @enduml
