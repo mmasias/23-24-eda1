@@ -1,14 +1,13 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ingestas {
     private int numeroIngesta;
     private List<Alimentos> alimentos;
-    private String fecha; 
 
-    public Ingestas(int numeroIngesta, String fecha) {
+    public Ingestas(int numeroIngesta) {
         this.numeroIngesta = numeroIngesta;
-        this.fecha = fecha;
         this.alimentos = new ArrayList<>();
     }
 
@@ -22,9 +21,5 @@ public class Ingestas {
 
     public List<Alimentos> getAlimentos() {
         return alimentos;
-    }
-
-    public String getFecha() {
-        return fecha;
     }
 }

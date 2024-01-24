@@ -31,7 +31,7 @@ public class Main {
             informe.append("+--------------+\n");
 
             for (int i = 1; i <= 3; i++) {
-                Ingestas ingesta = new Ingestas(i, fechaEncuesta);
+                Ingestas ingesta = new Ingestas(i);
 
                 System.out.println("Ingrese datos para el día " + dia + ", ingesta " + i);
 
@@ -51,6 +51,7 @@ public class Main {
                         scanner.nextLine();
                     }
                 }
+
                 System.out.print("Método de preparación: ");
                 String metodoPreparacion = scanner.nextLine();
 

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Encuesta {
     private int dia;
-    private String fechaEncuesta; 
+    private String fechaEncuesta;
     private List<Dias> dias;
 
     public Encuesta(int dia, String fechaEncuesta) {
