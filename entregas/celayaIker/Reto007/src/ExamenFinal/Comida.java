@@ -38,5 +38,66 @@ public class Comida {
             alimentos = sc.nextLine();
         }
     }
+
+    public void creamedia() {
+        lista.clear();
+        System.out.println("Ingrese un alimento de media mañana del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
+        Scanner sc = new Scanner(System.in);
+        alimentos = sc.nextLine();
+        while (!alimentos.equals("-1")) {
+            if (alimentos.equals("-2")) {
+                mostrarAlimentos();
+            } else {
+                añadirAlimento(alimentos);
+            }
+            alimentos = sc.nextLine();
+        }
+    }
+
+    public void creaalmu() {
+        lista.clear();
+        System.out.println("Ingrese un alimento del almuerzo del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
+        Scanner sc = new Scanner(System.in);
+        alimentos = sc.nextLine();
+        while (!alimentos.equals("-1")) {
+            if (alimentos.equals("-2")) {
+                mostrarAlimentos();
+            } else {
+                añadirAlimento(alimentos);
+            }
+            alimentos = sc.nextLine();
+        }
+    }
+
+    public void creamerienda() {
+        lista.clear();
+        System.out.println("Ingrese un alimento de la merienda del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
+        Scanner sc = new Scanner(System.in);
+        alimentos = sc.nextLine();
+        while (!alimentos.equals("-1")) {
+            if (alimentos.equals("-2")) {
+                mostrarAlimentos();
+            } else {
+                añadirAlimento(alimentos);
+            }
+            alimentos = sc.nextLine();
+        }
+    }
+
+    public void creacena() {
+        lista.clear();
+        System.out.println("Ingrese un alimento del Comida del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
+        Scanner sc = new Scanner(System.in);
+        alimentos = sc.nextLine();
+        while (!alimentos.equals("-1")) {
+            if (alimentos.equals("-2")) {
+                mostrarAlimentos();
+            } else {
+                añadirAlimento(alimentos);
+            }
+            alimentos = sc.nextLine();
+        }
+    }
+    
 }
 

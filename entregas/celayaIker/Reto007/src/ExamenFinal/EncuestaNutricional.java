@@ -26,7 +26,7 @@ public class EncuestaNutricional {
     public void rellenadias() {
         System.out.println("Indique qué día va ha añadir (1-5)");
         Scanner sc = new Scanner(System.in);
-        dia = sc.nextInt();
+        int dia = sc.nextInt();
         comida.dia = dia;
         switch (dia) {
             case 1:
