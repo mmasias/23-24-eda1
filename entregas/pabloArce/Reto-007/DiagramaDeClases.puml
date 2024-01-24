@@ -2,21 +2,36 @@
 
     title Diagrama de clases
 
-    class Encuesta
+    class Client
 
-    class Paciente
+    class FoodData
 
-    class Dia
+    class Manager {
+        - Tree<TreeObject> tree
+    }
 
-    class Ingesta
+    package TreeObjects{
+        class Intake
+        class Food
+        class Day
+        class Survey
 
-    class Alimento
+    }
+    package utils {
+        interface IDataStructure
+        class List
+        class ListNode
+        class Shortcut
+        class Tree
+        class TreeNode
+        interface TreeObject
+    }
 
-    class AlimentoData
 
-    Paciente -* Encuesta
-    Dia -* Ingesta
-    Ingesta -* Alimento
-    AlimentoData ..> Alimento
+
+    Tree --|> IDataStructure
+    List --|> IDataStructure
+
+    TreeObjects --|> TreeObject
 
 @enduml
