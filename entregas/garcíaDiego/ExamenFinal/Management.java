@@ -84,7 +84,7 @@ public class Management {
             if (day == 0) {
                 break;
             }
-            TreeNode<TreeData> dayNode = tree.getFirst().getNodeChildren().getObject(0).getNodeChildren().getObject(day - 1);
+            TreeNode<TreeData> dayNode = tree.getObject(day - 1);
             int option = 0;
             do {
                 ok = true;
@@ -146,7 +146,7 @@ public class Management {
             } while (!option2.equals("-1"));
 
             if (intake != null) {
-                dayNode.insertChildren(new TreeNode<TreeData>(intake));
+                dayNode.insertInOrder(new GenericNode<TreeData>(intake));
             }
 
         } while (true);
