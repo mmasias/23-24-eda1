@@ -61,7 +61,7 @@ public class List<T> implements IDataStructure<T> {
         return this;
     }
 
-    public void removeFirst() {
+    void removeFirst() {
         first = getFirst().getNext();
     }
 
