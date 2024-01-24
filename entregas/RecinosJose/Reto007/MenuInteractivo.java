@@ -49,7 +49,8 @@ public class MenuInteractivo {
     }
 
     private void crearNuevaEncuesta() {
-        cliente = new Cliente(cliente.getNombre());  // Reiniciar la instancia del Cliente
+        cliente = new Cliente(cliente.getNombre()); 
+        encuesta = new Encuesta();
         ingresarAlimentos();
         System.out.println("Encuesta creada exitosamente para el cliente " + cliente.getNombre() + ".");
     }

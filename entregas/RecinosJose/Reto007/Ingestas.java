@@ -18,4 +18,17 @@ public class Ingestas {
             current = current.getNext();
         }
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node<Alimentos> current = alimentos.getHead();
+        while (current != null) {
+            sb.append(current.getData().getNombre());
+            if (current.getNext() != null) {
+                sb.append(", ");
+            }
+            current = current.getNext();
+        }
+        return sb.toString();
+    }
 }

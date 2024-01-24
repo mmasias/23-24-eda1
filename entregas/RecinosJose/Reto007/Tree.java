@@ -33,7 +33,7 @@ public class Tree<T> {
                 insertRecursive(current.getRight(), newNode);
             }
         }
-        // Si el índice es igual, no hacemos nada para evitar duplicados
+        
     }
 
     public Node<T> find(int index) {
