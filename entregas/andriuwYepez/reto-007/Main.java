@@ -10,10 +10,8 @@ public class Main {
         System.out.print("Ingrese el nombre del paciente: ");
         String nombrePaciente = scanner.nextLine();
 
-        // Acumulador para todas las tablas
         StringBuilder todasLasTablas = new StringBuilder();
 
-        // Acumulador para todos los informes
         StringBuilder todosLosInformes = new StringBuilder();
 
         for (int dia = 1; dia <= 2; dia++) {
@@ -27,7 +25,6 @@ public class Main {
             tabla.append(String.format("| %-12s | %-9s | %-9s | %-9s | %-9s |\n", "Fecha", "Paciente", "Día", "Ingesta", "Alimentos"));
             tabla.append("+--------------+-----------+-----------+-----------+-----------+\n");
 
-            // Acumulador para el informe
             StringBuilder informe = new StringBuilder();
             informe.append("+--------------+\n");
             informe.append("| Informe Día ").append(dia).append(" |").append("\n");
@@ -82,12 +79,10 @@ public class Main {
                     encuesta.agregarDia(nuevoDia);
                 }
 
-                // Acumular las líneas en la variable tabla
                 tabla.append(String.format("| %-12s | %-9s | %-9s | %-9s | %-9s |\n",
                         fechaEncuesta, nombrePaciente, dia, i, alimento.getNombreAlimento()));
                 tabla.append("+--------------+-----------+-----------+-----------+-----------+\n");
 
-                // Acumular las líneas en la variable informe
                 informe.append("INGESTA NUMERO ").append(i).append("\n");
                 informe.append("Fecha: ").append(fechaEncuesta).append("\n");
                 informe.append("Nombre del alimento: ").append(alimento.getNombreAlimento()).append("\n");
@@ -97,21 +92,16 @@ public class Main {
                 informe.append("Tamaño de porción: ").append(alimento.getTamañoPorcion()).append("\n\n");
             }
 
-            // Acumular las líneas de la tabla en todasLasTablas
             todasLasTablas.append(tabla.toString());
 
-            // Acumular las líneas del informe en todosLosInformes
             todosLosInformes.append(informe.toString());
 
             paciente.agregarEncuesta(encuesta);
         }
 
-        // Mostrar todas las tablas al final
         System.out.println(todasLasTablas.toString());
 
-        // Mostrar todos los informes al final
         System.out.println(todosLosInformes.toString());
 
-        // Resto del código para acceder y mostrar los datos
     }
 }

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Dias {
     private int numeroDia;
-    private String fecha; // Nuevo campo para almacenar la fecha
+    private String fecha;
     private List<Ingestas> ingestas;
     private ArbolIngestas arbolIngestas;
 

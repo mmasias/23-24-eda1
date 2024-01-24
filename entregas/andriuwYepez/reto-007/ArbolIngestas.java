@@ -10,7 +10,6 @@ public class ArbolIngestas {
             return new NodoIngesta(ingesta);
         }
 
-        // Comparar la fecha u otro criterio para decidir en qué rama insertar
         if (ingesta.getFecha().compareTo(nodo.getIngesta().getFecha()) < 0) {
             nodo.setIzquierda(insertarRec(nodo.getIzquierda(), ingesta));
         } else if (ingesta.getFecha().compareTo(nodo.getIngesta().getFecha()) > 0) {
@@ -19,6 +18,4 @@ public class ArbolIngestas {
 
         return nodo;
     }
-
-    // Puedes añadir otros métodos según sea necesario
 }

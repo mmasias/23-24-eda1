@@ -4,7 +4,7 @@ import java.util.List;
 public class Ingestas {
     private int numeroIngesta;
     private List<Alimentos> alimentos;
-    private String fecha;  // Agregamos la fecha a la clase Ingestas
+    private String fecha; 
 
     public Ingestas(int numeroIngesta, String fecha) {
         this.numeroIngesta = numeroIngesta;
