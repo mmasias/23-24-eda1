@@ -1,6 +1,7 @@
 package ExamenFinal;
-
-public class List<T> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+public class List<T> implements Iterable<T>  {
     private Node<T> head;
     private int size;
 
@@ -85,5 +86,26 @@ public class List<T> {
             current = current.getNext();
         }
         return sb.toString();
+    }
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                T data = current.getData();
+                current = current.getNext();
+                return data;
+            }
+        };
     }
 }

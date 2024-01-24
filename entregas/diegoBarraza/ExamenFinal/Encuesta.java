@@ -1,19 +1,19 @@
 package ExamenFinal;
 
 public class Encuesta {
-    private Tree<Dias> diasTree;
+    private List<Dias> diasList;
 
     public Encuesta() {
-        this.diasTree = new Tree<>();
+        this.diasList = new List<>();
         for (int i = 1; i <= 5; i++) {
-            diasTree.insert(new Node<>(new Dias(i), i));
+            diasList.add(new Dias(i));
         }
     }
 
     public void agregarAlimento(Alimentos alimento, int dia, String tipoIngesta) {
-        Node<Dias> diaNode = diasTree.find(dia);
-        if (diaNode != null) {
-            diaNode.getData().agregarAlimento(alimento, tipoIngesta);
+        Dias diaObj = getDia(dia);
+        if (diaObj != null) {
+            diaObj.agregarAlimento(alimento, tipoIngesta);
         } else {
             System.out.println("Error: Día no válido.");
         }
@@ -21,7 +21,18 @@ public class Encuesta {
 
     public void obtenerInfoDieta() {
         StringBuilder sb = new StringBuilder();
-        diasTree.printInOrder(sb);
+        for (Dias dia : diasList) {
+            sb.append(dia.toString());
+        }
         System.out.println(sb.toString());
+    }
+
+    private Dias getDia(int diaIndex) {
+        for (Dias dia : diasList) {
+            if (dia.diaIndex == diaIndex) {
+                return dia;
+            }
+        }
+        return null;
     }
 }
