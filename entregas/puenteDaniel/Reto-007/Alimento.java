@@ -32,7 +32,4 @@ public class Alimento implements Comparable<Alimento> {
     public String toString(){
         return " Nombre: "+nombre+" Gramos: "+gramos;
     }
-    
-
-    
 }
