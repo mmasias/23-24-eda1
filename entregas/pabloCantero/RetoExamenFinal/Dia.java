@@ -1,11 +1,10 @@
-package RetoExamenFinal;
-
-public class Dia implements DatosLista{
+public class Dia implements DatosLista {
     private int fecha;
-    private GenericList<Ingesta> ingestas;
+    private List<Ingesta> ingestas;
+
     public Dia(int fecha) {
         this.fecha = fecha;
-        this.ingestas = new GenericList<Ingesta>();
+        this.ingestas = new ArrayList<>();
     }
 
     public int getFecha() {
@@ -16,16 +15,16 @@ public class Dia implements DatosLista{
         this.fecha = fecha;
     }
 
-    public GenericList<Ingesta> getIngestas() {
+    public List<Ingesta> getIngestas() {
         return ingestas;
     }
-    public void setIngestas(GenericList<Ingesta> ingestas) {
+
+    public void setIngestas(List<Ingesta> ingestas) {
         this.ingestas = ingestas;
     }
 
     @Override
     public String getInformacion() {
-        return "Dia: "+this.fecha;
+        return "Dia: " + this.fecha;
     }
-    
 }

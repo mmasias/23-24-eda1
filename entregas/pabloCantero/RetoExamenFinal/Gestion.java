@@ -4,15 +4,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Gestion {
 
     private Scanner escaner;
-    private Lista<DatosLista> arbol;
+    private List<DatosLista> listaPrimaria;
     private DateTimeFormatter formato;
 
     public Gestion() {
-        this.arbol = new Arbol<DatosArbol>(null);
+        this.listaPrimaria = new ArrayList<>();
         this.escaner = new Scanner(System.in);
         this.formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
@@ -36,40 +38,40 @@ public class Gestion {
 
         Paciente p = new Paciente(fechaAlta, nombre);
 
-        NodoArbol<DatosArbol> Nodopaciente = new NodoArbol<>(p);
-        arbol.setRaiz(Nodopaciente);
+        listaPrimaria.add(p);
+        
+        
     }
 
     public void insertarEncuesta() {
         LocalDate fechaEncuesta = null;
         boolean ok = true;
-        LocalDate fechaAlta = ((Paciente) arbol.getRaiz().getValor()).getFechaDeAlta();
+        LocalDate fechaAlta = ((Paciente) listaPrimaria.get(0)).getFechaDeAlta();
 
         do {
             System.out.println("Introduzca la fecha de la encuesta con el siguiente formato (dd/MM/yyyy): ");
             try {
                 ok = true;
-                fechaEncuesta = LocalDate.parse(escaner.nextLine(), formato);
+                fechaEncuesta = LocalDate.parse(scanner.nextLine(), formato);
                 if (fechaEncuesta.isBefore(fechaAlta)) {
                     System.out.println("Error: La fecha de la encuesta no puede ser anterior a la fecha de alta.");
                     ok = false;
                 }
             } catch (Exception e) {
-                System.out.println("Fecha incorrecta, escriba una valida");
+                System.out.println("Fecha incorrecta, escriba una válida");
                 ok = false;
             }
-        } while (ok == false);
+        } while (!ok);
 
         Encuesta e = new Encuesta(fechaEncuesta);
-        arbol.getRaiz().insertarHijos(new NodoArbol<>(e));
+        ((Paciente) listaPrimaria.get(0)).setEncuesta(e);
     }
 
     public void insertarDias() {
-        NodoArbol<DatosArbol> nodoEncuesta = arbol.getRaiz().getHijos().getObjeto(0);
+        List<DatosLista> hijosEncuesta = ((Encuesta) ((Paciente) listaPrimaria.get(0)).getEncuesta()).getDias();
         for (int i = 1; i <= 5; i++) {
             Dia d = new Dia(i);
-            nodoEncuesta.insertarHijos(new NodoArbol<DatosArbol>(d));
-            
+            hijosEncuesta.add(d);
         }
     }
 
@@ -97,11 +99,11 @@ public class Gestion {
                 }
             
 
-            } while (dia < 0 || dia > arbol.getRaiz().getHijos().getObjeto(0).getHijos().size());
+            } while (dia < 0 || dia > ((Encuesta) ((Paciente) listaPrimaria.get(0)).getEncuesta()).getDias().size());
             if (dia == 0) {
                 break;
             }
-            NodoArbol<DatosArbol> nodoDia = arbol.getRaiz().getHijos().getObjeto(0).getHijos().getObjeto(dia - 1);
+            List<DatosLista> hijosDia = ((Dia) ((Encuesta) ((Paciente) listaPrimaria.get(0)).getEncuesta()).getDias().get(dia - 1)).getIngestas();
             int opcion = 0;
             do {
                 ok = true;
