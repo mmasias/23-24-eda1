@@ -1,9 +1,8 @@
 class Alimento {
 
-    String nombre;
-  
-    public Alimento(String nombre) {
-      this.nombre = nombre;
-    }
+  String nombre;
+
+  public Alimento(String nombre) {
+    this.nombre = nombre;
   }
-  
+}
