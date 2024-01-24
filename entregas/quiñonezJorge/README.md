@@ -1,4 +1,4 @@
-# Proyecto Dietas examen final
+# Proyecto Dietas Examen Final Jorge Quiñonez
 
 Desarrollar un sistema para gestionar encuestas de 24 horas que recopilen datos sobre la ingesta alimentaria de individuos. Utilizaremos las estructuras de datos vistas en la asignatura para organizar y almacenar los datos de las encuestas.
 
