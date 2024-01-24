@@ -9,9 +9,9 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        boolean continue = true;
+        boolean continueProgram = true;
 
-        while (continue) {
+        while (continueProgram) {
             printLine();
             System.out.println("Seleccione una opción:");
             System.out.println("1. Consultar Encuestas");
@@ -21,15 +21,15 @@ public class Main {
             printLine();
 
             System.out.print(": ");
-            int opcionMenuPrincipal = scanner.nextInt();
+            int mainMenuOption = scanner.nextInt();
             scanner.nextLine();
 
 
-            switch (opcionMenuPrincipal) {
+            switch (mainMenuOption) {
                 case 1:
-                    boolean menuEncuestas = true;
+                    boolean surveyMenu = true;
 
-                    while (menuEncuestas) {
+                    while (surveyMenu) {
                         printLine();
                         System.out.println("Seleccione una opción:");
                         System.out.println("1. Consultar encuesta de un usuario");
@@ -37,18 +37,18 @@ public class Main {
                         printLine();
 
                         System.out.print(": ");
-                        int opcionMenuEncuestas = scanner.nextInt();
+                        int surveyMenuOption = scanner.nextInt();
                         scanner.nextLine();
 
-                        switch (opcionMenuEncuestas) {
+                        switch (surveyMenuOption) {
                             case 1:
                                 System.out.println("Ingrese el nombre del usuario para consultar la encuesta:");
-                                String nombreUsuario = scanner.nextLine();
-                                UserNode usuario = listUsers.getUserNode(nombreUsuario);
+                                String userName = scanner.nextLine();
+                                UserNode user = listUsers.getUserNode(userName);
 
-                                if (usuario != null) {
-                                    boolean continuarEncuesta = true;
-                                    while (continuarEncuesta) {
+                                if (user != null) {
+                                    boolean continueSurvey = true;
+                                    while (continueSurvey) {
                                         printLine();
                                         System.out.println("Seleccione una opción:");
                                         System.out.println("1. Mostrar encuesta del usuario");
@@ -57,27 +57,28 @@ public class Main {
                                         printLine();
 
                                         System.out.print(": ");
-                                        int opcionEncuesta = scanner.nextInt();
+                                        int optionSurvey = scanner.nextInt();
                                         scanner.nextLine();
 
-                                        switch (opcionEncuesta) {
+                                        switch (optionSurvey) {
                                             case 1:
-                                                System.out.println("Encuesta de " + nombreUsuario + ":");
+                                                System.out.println("Encuesta de " + userName + ":");
                                                 survey.listAllDaysWithFoodRegimenAndFood();
                                                 break;
                                             case 2:
-                                                System.out.println("Agregar comida a la encuesta de " + nombreUsuario + ":");
+                                                System.out.println("Agregar comida a la encuesta de " + userName);
+                                                survey.listAllSurveyDays();
                                                 System.out.println("Ingrese el día:");
-                                                String surveyDay = scanner.nextLine();
+                                                String inputSurveyDay = scanner.nextLine();
 
-                                                DayNode dayNodePrueba = survey.getSurveyDay(surveyDay);
+                                                DayNode surveyDay = survey.getSurveyDay(inputSurveyDay);
 
-                                                if(dayNodePrueba != null){
-                                                    System.out.println(dayNodePrueba.getDay() + ":");
+                                                if(surveyDay != null){
+                                                    System.out.println(surveyDay.getDay() + ":");
 
-                                                    dayNodePrueba.getFoodRegimen().listFoodRegimen();
+                                                    surveyDay.getFoodRegimen().listFoodRegimen();
 
-                                                    System.out.println("Ingrese la categoría de la comida (Desayuno, Almuerzo, Cena, etc.) (o 'return' para volver):");
+                                                    System.out.println("Ingrese el régimen de la comida (Desayuno, Almuerzo, Cena, etc.) (o 'return' para volver):");
                                                     String foodRegimen = scanner.nextLine();
 
                                                     while (!foodRegimen.equalsIgnoreCase("return")) {
@@ -86,51 +87,50 @@ public class Main {
                                                         if (newFoodConsumed.equalsIgnoreCase("return")) {
                                                             break;
                                                         }
-                                                        dayNodePrueba.getFoodRegimen().addFoodConsumedToFoodRemigen(foodRegimen, newFoodConsumed);
-                                                        System.out.println("Comida añadida con éxito.");
-
+                                                        surveyDay.getFoodRegimen().addFoodConsumedToFoodRemigen(foodRegimen, newFoodConsumed);
+                                                        System.out.println("!!***** Comida añadida con éxito *****!!");
                                                     }
 
-                                                    dayNodePrueba.getFoodRegimen().listFoodRegimen();
+                                                    surveyDay.getFoodRegimen().listFoodRegimen();
                                                 }else {
-                                                    System.out.println("Día no encontrado.");
+                                                    System.out.println("!!----- Día no encontrado -----!!");
                                                 }
                                                 break;
                                             case 3:
-                                                continuarEncuesta = false;
+                                                continueSurvey = false;
                                                 break;
                                             default:
-                                                System.out.println("Opción no válida. Inténtelo de nuevo.");
+                                                System.out.println("!!----- Opción no válida. Inténtelo de nuevo -----!!");
                                         }
                                     }
                                 } else {
-                                    System.out.println("Usuario no encontrado.");
+                                    System.out.println("!!----- Usuario no encontrado -----!!");
                                 }
                                 break;
                             case 2:
-                                menuEncuestas = false;
+                                surveyMenu = false;
                                 break;
                             default:
-                                System.out.println("Opción no válida. Inténtelo de nuevo.");
+                                System.out.println("!!----- Opción no válida. Inténtelo de nuevo -----!!");
                         }
                     }
                     break;
                 case 2:
                     System.out.println("Ingrese el nombre del nuevo usuario:");
-                    String nuevoUsuario = scanner.nextLine();
-                    listUsers.insertUser(nuevoUsuario);
-                    System.out.println("Usuario creado con éxito.");
+                    String newUser = scanner.nextLine();
+                    listUsers.insertUser(newUser);
+                    System.out.println("!!***** Usuario creado con éxito *****!!");
                     break;
                 case 3:
                     System.out.println("Todos los usuarios:");
                     listUsers.listAllUsers();
                     break;
                 case 4:
-                    continue = false;
+                    continueProgram = false;
                     System.out.println("Saliendo del programa.");
                     break;
                 default:
-                    System.out.println("Opción no válida. Inténtelo de nuevo.");
+                    System.out.println("!!----- Opción no válida. Inténtelo de nuevo -----!!");
             }
         }
 

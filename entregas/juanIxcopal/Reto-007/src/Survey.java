@@ -51,4 +51,12 @@ public class Survey {
             dayNodeIterator = dayNodeIterator.getNextDay();
         }
     }
+
+    public void listAllSurveyDays(){
+        DayNode dayNodeIterator = this.firstDay;
+        while (dayNodeIterator != null) {
+            System.out.println(dayNodeIterator.getDay());
+            dayNodeIterator = dayNodeIterator.getNextDay();
+        }
+    }
 }
