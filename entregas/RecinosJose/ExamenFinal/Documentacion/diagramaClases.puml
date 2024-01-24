@@ -121,6 +121,12 @@ Cliente --> Encuesta
 Encuesta --> Dias
 Dias --> IngestaTipo
 IngestaTipo --> Ingestas
-
+Ingestas --> Alimentos: Contiene
+Ingestas --> List: Contiene
+List --> Node: Contiene
+Node ..> Node: Siguiente
+Node ..> Node: Izquierda
+Node ..> Node: Derecha
+Tree --> Node
 
 @enduml
