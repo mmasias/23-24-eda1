@@ -1,12 +1,11 @@
 package Arboles.model;
 
 public class Dia {
-    public Ingesta desayuno, mediaManana ,almuerzo ,merienda ,cena;
-    public Dia siguiente;
+    public int numero;
+    public int nombre;
 
-    public Dia() {
-        this.desayuno = this.mediaManana = this.almuerzo = this.merienda = this.cena = null;
-        this.siguiente = null;
+    public Dia(int numeroDia) {
+        NaryTreeNode diaRoot = new NaryTreeNode(null, numeroDia)
     }
 }
 

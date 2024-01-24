@@ -2,15 +2,12 @@ package Arboles.model;
 
 public class Paciente {
   public String nombre;
-  public Encuesta encuestas;
+  public Encuesta encuesta;
 
   public Paciente(String nombre) {
-      this.nombre = nombre;
-      this.encuestas = new Encuesta();
-  }
-
-  public void agregarEncuesta(Dia dia) {
-      this.encuestas.agregarDia(dia);
+    this.nombre = nombre;
+    NaryTreeNode root = new NaryTreeNode(nombre, 1);
+    this.encuesta = new Encuesta(root);
   }
 }
 

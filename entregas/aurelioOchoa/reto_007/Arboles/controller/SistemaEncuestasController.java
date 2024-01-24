@@ -95,7 +95,7 @@ public class SistemaEncuestasController {
 
     // Método auxiliar para mostrar las ingestas de un día
     private static void mostrarIngestas(Dia dia) {
-        System.out.println("Ingestas del día:");
+        System.out.println("Ingestas del día " + dia);
         mostrarIngesta(dia.desayuno, "Desayuno");
         mostrarIngesta(dia.mediaManana, "Media mañana");
         mostrarIngesta(dia.almuerzo, "Almuerzo");

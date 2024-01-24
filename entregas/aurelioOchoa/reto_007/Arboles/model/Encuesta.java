@@ -1,25 +1,12 @@
 package Arboles.model;
 
 public class Encuesta {
-    public Dia root;
+    public Dia lunes, martes, miercoles, jueves, viernes;
 
-    public Encuesta() {
-        this.root = null;
-    }
-
-    public void agregarDia(Dia dia) {
-        this.root = agregarDiaRec(this.root, dia);
-    }
-
-    private Dia agregarDiaRec(Dia root, Dia dia) {
-        if (root == null) {
-            root = dia;
-            return root;
-        }
-
-        // Implementa la lógica para agregar días si es necesario
-        // Puedes utilizar algún criterio para decidir la posición del nuevo día en el árbol
-
-        return root;
+    public Encuesta(NaryTreeNode pacienteRoot) {
+        NaryTreeNode encuestaRoot = new NaryTreeNode("Encuesta", 5);
+        encuestaRoot.addChild(0, new NaryTreeNode("lunes", 5));
+        pacienteRoot.addChild(0, encuestaRoot);
+        pacienteRoot.children[0].addChild(0, encuestaRoot);
     }
 }
