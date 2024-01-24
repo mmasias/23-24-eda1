@@ -24,6 +24,6 @@ public class Day {
     }
 
     void addIntake(Intakes intake) {
-        intakes.insert(intake, -1); 
+        intakes.insert(intake, -1);
     }
 }

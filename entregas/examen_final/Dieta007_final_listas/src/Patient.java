@@ -39,5 +39,14 @@ public class Patient {
 
 
     void showData() {
+        System.out.println("Nombre del paciente: " + name);
+        System.out.println("Fecha de alta: " + dischargeDate.getDay() + "/" + dischargeDate.getMonth() + "/" + dischargeDate.getYear());
+        Node<Day> currentDay = days.getFirst();
+        while (currentDay != null) {
+            Day day = currentDay.getData();
+            System.out.println("Día: " + day.getName());
+            currentDay = currentDay.getNext();
+        }
     }
+
 }
