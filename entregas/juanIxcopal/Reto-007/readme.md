@@ -45,6 +45,13 @@ Desarrollar un sistema para gestionar encuestas de 24 horas que recopilen datos 
 |:-----------------------------------:|
 | ![Imagen](Image/diagramaClases.png) |
 
+## Casos de uso
+
+|                                   |                                           |
+|-----------------------------------|-------------------------------------------|
+| Crear usuario                     | Añadir comida a la encuesta de un usuario |
+| Listar usuarios                   | Listar encuesta del usuario               |
+| Gestionar encuestas de un usuario |                                           |
 
 
 ## Propuesta de interfaz
@@ -76,8 +83,7 @@ Seleccione una opción:
 Encuesta de Rene:
 Lunes:
 	Desayuno
-		Huevos fritos
-		Zumo de naranja
+		Huevos Fritos
 	Media Mañana
 	Almuerzo
 	Merienda
@@ -106,4 +112,11 @@ Viernes:
 	Almuerzo
 	Merienda
 	Cena
+---------------------------------------------------------
+Seleccione una opción:
+1. Mostrar encuesta del usuario
+2. Agregar comida a la encuesta
+3. Volver al menú anterior
+---------------------------------------------------------
+: 
 ```
