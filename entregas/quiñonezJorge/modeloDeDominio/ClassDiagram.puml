@@ -124,8 +124,37 @@ class Nutrient{
  + String getName()
  + void printData()
 }
-class Node<T>{}
-class List<T>{}
+class Node<T>{
+ - T data
+ - int index
+ - Node<T> next
+ - Node<T> left
+ - Node<T> right
+ + Node(T data)
+ + Node(T data, int index)
+ + int getIndex()
+ + void setIndex()
+ + T getData()
+ + void setData(T data)
+ + Node<T> getNext()
+ + void setNext(Node<T> next)
+ + Node<T> getLeft()
+ + void setLeft(Node<T> left)
+ + Node<T> getRight()
+ + void setRight(Node<T> right)
+}
+class List<T>{
+ - Node<T> first
+ - int size
+ + int getSize()
+ + boolean isEmpty()
+ + Node<T> getFirst()
+ + void add(Node<T> node)
+ + void delete()
+ + T get(int index)
+ + boolean has(Node<T> node)
+ + void printAll(Node<T> node)
+}
 
 
 World -- Client : has
