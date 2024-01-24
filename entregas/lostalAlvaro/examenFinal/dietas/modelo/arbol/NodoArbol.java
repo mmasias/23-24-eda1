@@ -1,14 +1,17 @@
 package modelo.arbol;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modelo.estructuras.GenericList;
 
 public class NodoArbol<T extends DatosArbol> implements Comparable<NodoArbol<T>> {
     private T valor;
-    private GenericList<NodoArbol<T>> hijos;
+    private List<NodoArbol<T>> hijos;
 
     public NodoArbol(T valor) {
         this.valor = valor;
-        this.hijos = new GenericList<>();
+        this.hijos = new ArrayList<>();
     }
 
     @Override
@@ -24,16 +27,16 @@ public class NodoArbol<T extends DatosArbol> implements Comparable<NodoArbol<T>>
         this.valor = valor;
     }
 
-    public GenericList<NodoArbol<T>> getHijos() {
+    public List<NodoArbol<T>> getHijos() {
         return hijos;
     }
 
-    public void setHijos(GenericList<NodoArbol<T>> hijos) {
+    public void setHijos(List<NodoArbol<T>> hijos) {
         this.hijos = hijos;
     }
 
-    public void insertarHijos(NodoArbol<T> hijo) {
-        hijos.insertEnd(hijo);
+    public void insertarHijos(List<NodoArbol<T>> hijos) {
+        this.hijos.addAll(hijos);
     }
 
 }

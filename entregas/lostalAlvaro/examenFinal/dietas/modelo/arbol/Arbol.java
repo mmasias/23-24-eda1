@@ -1,20 +1,24 @@
 package modelo.arbol;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modelo.encuestas.Ingesta;
 
 public class Arbol<T extends DatosArbol> {
-    private NodoArbol<T> raiz;
+    private List<NodoArbol<T>> hijos;
 
     public Arbol(NodoArbol<T> raiz) {
-        this.raiz = raiz;
+        this.hijos = new ArrayList<>();
+        this.hijos.add(raiz);
     }
 
-    public NodoArbol<T> getRaiz() {
-        return raiz;
+    public List<NodoArbol<T>> getHijos() {
+        return hijos;
     }
 
-    public void setRaiz(NodoArbol<T> raiz) {
-        this.raiz = raiz;
+    public void setHijos(List<NodoArbol<T>> hijos) {
+        this.hijos = hijos;
     }
 
     public void preOrden(NodoArbol<T> raiz, String nivel) {
