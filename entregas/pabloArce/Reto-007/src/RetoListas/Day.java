@@ -23,6 +23,9 @@ public class Day implements IDataStructure {
     public void addIntakeChild(Intake newIntake){
         this.intakeList.insert(newIntake, -1);
     }
+    public List<Intake> getChildren(){
+        return this.intakeList;
+    }
 
     @Override
     public boolean isEmpty() {

@@ -22,7 +22,7 @@ public class ManagerListVersion {
             int option = mainMenuDisplay();
             switch (option){
                 case 1:
-                    tree.printTree(true);
+                    printTree();
                     break;
                 case 2:
                     addIntake();
@@ -89,6 +89,24 @@ public class ManagerListVersion {
             tree.addDayChild(new Day(String.valueOf(i+1)), -1);
         }
     }
+    static void printTree(){
+        tree.toString();
+        for (Day day:tree.getChildren()) {
+            System.out.print("    └─--");
+            day.toString();
+            System.out.println("");
+            for (Intake intake:day.getChildren()) {
+                System.out.print("    └─--");
+                intake.toString();
+                System.out.println("");
+                for (Food food:intake.getChildren()) {
+                    System.out.print("    └─--");
+                    food.toString();
+                    System.out.println("");
+                }
+            }
+        }
+    }
     static void addIntake(){
         if (tree.getChildren().peek().size() >= 5) {
             print("No puedes añadir más comidas");
@@ -125,11 +143,19 @@ public class ManagerListVersion {
     static void askDayAndIntake(Food foodData){
         Scanner input = new Scanner(System.in);
         System.out.print("Introduce el dia: ");
-        String day = input.nextLine();
+        String dayString = input.nextLine();
         System.out.print("Introduce la comida: ");
-        String intake = input.nextLine();
-        tree.addFoodByParentsData(foodData, day, intake);
-        updateCalories(day, intake);
+        String intakeString = input.nextLine();
+        for (Day day:tree.getChildren()) {
+            if (day.toString() == dayString){
+                for (Intake intake:day.getChildren()) {
+                    if (intake.toString() == intakeString) {
+                        intake.addChild(foodData);
+                    }
+                }
+            }
+        }
+        //updateCalories(day, intake);
     }
 
     static void deleteFood(){
@@ -140,11 +166,11 @@ public class ManagerListVersion {
         String intake = input.nextLine();
         System.out.print("Introduce el alimento: ");
         String food = input.nextLine();
-        tree.deleteFoodByData(day, intake, food);
-        updateCalories(day, intake);
+        //tree.deleteFoodByData(day, intake, food);
+        //updateCalories(day, intake);
     }
 
-    static void updateCalories(String dayD, String intakeD) {
+    /*static void updateCalories(String dayD, String intakeD) {
         TreeNode node = tree.getTreeNodeByTwoData(dayD, intakeD);
         if (node == null) {
             return;
@@ -168,5 +194,5 @@ public class ManagerListVersion {
             caloriesSum += intake.getTotalCalories() ;
         }
         day.setTotalCalories(caloriesSum);
-    }
+    }*/
 }

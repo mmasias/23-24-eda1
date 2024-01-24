@@ -23,6 +23,12 @@ public class Intake implements IDataStructure {
     public void setTotalCalories(int totalCalories) {
         this.totalCalories = totalCalories;
     }
+    public List<Food> getChildren(){
+        return this.foodList;
+    }
+    public void addChild (Food food){
+        this.foodList.insert(food, -1);
+    }
 
     @Override
     public boolean isEmpty() {
