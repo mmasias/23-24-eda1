@@ -8,45 +8,40 @@ public class EncuestaNutricional {
     List<String> nodos = new ArrayList<>();
     Comida comida = new Comida();
 
-    public void añadirNodo(String dato) {
-        nodos.add(dato);
-    }
-
     public void creaEncuestaNutricional() {
-        System.out.println("EncuestaNutricional sobre alimentación");
-        System.out.println("Indique su nombre o el del paciente");
+        System.out.println("¡Bienvenido a la Encuesta Nutricional del UNEATLANTICO!");
+        System.out.print("Indique su nombre o el del paciente: ");
         Scanner sc = new Scanner(System.in);
         String nombre = sc.nextLine();
-        System.out.println("Se procede a realizar la EncuestaNutricional para " + nombre);
-        añadirNodo("EncuestaNutricional");
-        rellenadias();
+        System.out.println("Vamos a realizarle la Encuesta Nutricional a " + nombre);
+        añadeDias();
         sc.close();
     }
 
-    public void rellenadias() {
-        System.out.println("Indique qué día va ha añadir (1-5)");
+    public void añadeDias() {
+        System.out.print("Seleccione un día (1-5): ");
         Scanner sc = new Scanner(System.in);
         int dia = sc.nextInt();
         comida.dia = dia;
         switch (dia) {
             case 1:
-                System.out.println("Seleccione ingesta: 1 (Comida) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
+                System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
                 int ingesta = sc.nextInt();
                 switch (ingesta) {
                     case 1:
-                        comida.creaComida();
+                        comida.creaDesayuno();
                         break;
                     case 2:
-                        comida.creamedia();
+                        comida.creaMedia();
                         break;
                     case 3:
-                        comida.creaalmu();
+                        comida.creaAlmuerzo();
                         break;
                     case 4:
-                        comida.creamerienda();
+                        comida.creaMerienda();
                         break;
                     case 5:
-                        comida.creacena();
+                        comida.creaCena();
                         break;
                     case -1:
                         System.out.println("Menú anterior");
@@ -54,28 +49,28 @@ public class EncuestaNutricional {
                         break;
                     default:
                         System.out.println("Opcion no valida");
-                        rellenadias();
+                        añadeDias();
                         break;
                 }
                 break;
             case 2:
-                System.out.println("Seleccione ingesta: 1 (Comida) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
+                System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
                 int ingesta2 = sc.nextInt();
                 switch (ingesta2) {
                     case 1:
-                        comida.creaComida();
+                        comida.creaDesayuno();
                         break;
                     case 2:
-                        comida.creamedia();
+                        comida.creaMedia();
                         break;
                     case 3:
-                        comida.creaalmu();
+                        comida.creaAlmuerzo();
                         break;
                     case 4:
-                        comida.creamerienda();
+                        comida.creaMerienda();
                         break;
                     case 5:
-                        comida.creacena();
+                        comida.creaCena();
                         break;
                     case -1:
                         System.out.println("Menú anterior");
@@ -83,28 +78,28 @@ public class EncuestaNutricional {
                         break;
                     default:
                         System.out.println("Opcion no valida");
-                        rellenadias();
+                        añadeDias();
                         break;
                 }
                 break;
             case 3:
-            System.out.println("Seleccione ingesta: 1 (Comida) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
+            System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
             int ingesta3 = sc.nextInt();
             switch (ingesta3) {
                 case 1:
-                    comida.creaComida();
+                    comida.creaDesayuno();
                     break;
                 case 2:
-                    comida.creamedia();
+                    comida.creaMedia();
                     break;
                 case 3:
-                    comida.creaalmu();
+                    comida.creaAlmuerzo();
                     break;
                 case 4:
-                    comida.creamerienda();
+                    comida.creaMerienda();
                     break;
                 case 5:
-                    comida.creacena();
+                    comida.creaCena();
                     break;
                 case -1:
                     System.out.println("Menú anterior");
@@ -112,28 +107,28 @@ public class EncuestaNutricional {
                     break;
                 default:
                     System.out.println("Opcion no valida");
-                    rellenadias();
+                    añadeDias();
                     break;
             }
                 break;
             case 4:
-            System.out.println("Seleccione ingesta: 1 (Comida) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
+            System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
             int ingesta4 = sc.nextInt();
             switch (ingesta4) {
                 case 1:
-                    comida.creaComida();
+                    comida.creaDesayuno();
                     break;
                 case 2:
-                    comida.creamedia();
+                    comida.creaMedia();
                     break;
                 case 3:
-                    comida.creaalmu();
+                    comida.creaAlmuerzo();
                     break;
                 case 4:
-                    comida.creamerienda();
+                    comida.creaMerienda();
                     break;
                 case 5:
-                    comida.creacena();
+                    comida.creaCena();
                     break;
                 case -1:
                     System.out.println("Menú anterior");
@@ -141,28 +136,28 @@ public class EncuestaNutricional {
                     break;
                 default:
                     System.out.println("Opcion no valida");
-                    rellenadias();
+                    añadeDias();
                     break;
             }
                 break;
             case 5:
-            System.out.println("Seleccione ingesta: 1 (Comida) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
+            System.out.println("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú Anterior)");
             int ingesta5 = sc.nextInt();
             switch (ingesta5) {
                 case 1:
-                    comida.creaComida();
+                    comida.creaDesayuno();
                     break;
                 case 2:
-                    comida.creamedia();
+                    comida.creaMedia();
                     break;
                 case 3:
-                    comida.creaalmu();
+                    comida.creaAlmuerzo();
                     break;
                 case 4:
-                    comida.creamerienda();
+                    comida.creaMerienda();
                     break;
                 case 5:
-                    comida.creacena();
+                    comida.creaCena();
                     break;
                 case -1:
                     System.out.println("Menú anterior");
@@ -170,13 +165,13 @@ public class EncuestaNutricional {
                     break;
                 default:
                     System.out.println("Opcion no valida");
-                    rellenadias();
+                    añadeDias();
                     break;
             }
                 break;
             default:
                 System.out.println("Día no válido");
-                rellenadias();
+                añadeDias();
                 break;
         }
     }

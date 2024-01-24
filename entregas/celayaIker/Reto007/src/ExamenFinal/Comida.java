@@ -24,7 +24,7 @@ public class Comida {
         return lista.toString();
     }
 
-    public void creaComida() {
+    public void creaDesayuno() {
         lista.clear();
         System.out.println("Ingrese un alimento del Comida del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
         Scanner sc = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class Comida {
         }
     }
 
-    public void creamedia() {
+    public void creaMedia() {
         lista.clear();
         System.out.println("Ingrese un alimento de media mañana del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
         Scanner sc = new Scanner(System.in);
@@ -54,7 +54,7 @@ public class Comida {
         }
     }
 
-    public void creaalmu() {
+    public void creaAlmuerzo() {
         lista.clear();
         System.out.println("Ingrese un alimento del almuerzo del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
         Scanner sc = new Scanner(System.in);
@@ -69,7 +69,7 @@ public class Comida {
         }
     }
 
-    public void creamerienda() {
+    public void creaMerienda() {
         lista.clear();
         System.out.println("Ingrese un alimento de la merienda del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
         Scanner sc = new Scanner(System.in);
@@ -84,7 +84,7 @@ public class Comida {
         }
     }
 
-    public void creacena() {
+    public void creaCena() {
         lista.clear();
         System.out.println("Ingrese un alimento del Comida del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados)");
         Scanner sc = new Scanner(System.in);
