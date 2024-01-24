@@ -9,11 +9,11 @@ class IntakeType {
         this.intakes = intakes;
     }
 
-    public String getTipo() {
+    public String getType() {
         return type;
     }
 
-    public Intakes getIngestas() {
+    public Intakes getIntakes() {
         return intakes;
     }
 

@@ -15,7 +15,7 @@ public class Days {
     public void addFood(Food food, String intakeType) {
         Node<IntakeType> ingestaTipoNode = intakeTree.find(intakeType.hashCode());
         if (ingestaTipoNode != null) {
-            ingestaTipoNode.getData().getIngestas().agregarAlimento(food);
+            ingestaTipoNode.getData().getIntakes().addFood(food);
         } else {
             System.out.println("Invalid Intake Type");
         }
@@ -34,7 +34,7 @@ public class Days {
             Node<IntakeType> ingestaTipoNode = intakeTree.find(intakeType.hashCode());
             if (ingestaTipoNode != null) {
                 sb.append(" ").append("Ingesta ").append(intakeType).append(":\n");
-                sb.append(ingestaTipoNode.getData().getIngestas().toStringIndented());
+                sb.append(ingestaTipoNode.getData().getIntakes().toStringIndented());
             }
         }
     

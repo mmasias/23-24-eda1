@@ -7,8 +7,8 @@ public class Intakes {
         this.fooList = new List<>();
     }
 
-    public void agregarAlimento(Food alimento) {
-        fooList.add(alimento);
+    public void addFood(Food food) {
+        fooList.add(food);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class Intakes {
         StringBuilder sb = new StringBuilder();
         Node<Food> current = fooList.getHead();
         while (current != null) {
-            sb.append(current.getData().getNombre());
+            sb.append(current.getData().getName());
             if (current.getNext() != null) {
                 sb.append(", ");
             }
@@ -28,7 +28,7 @@ public class Intakes {
     public void listFood() {
         Node<Food> current = fooList.getHead();
         while (current != null) {
-            System.out.println("\t - " + current.getData().getNombre());
+            System.out.println("\t - " + current.getData().getName());
             current = current.getNext();
         }
     }
@@ -37,7 +37,7 @@ public class Intakes {
         StringBuilder sb = new StringBuilder();
         Node<Food> current = fooList.getHead();
         while (current != null) {
-            sb.append("    ").append("- ").append(current.getData().getNombre()).append("\n");
+            sb.append("    ").append("- ").append(current.getData().getName()).append("\n");
             current = current.getNext();
         }
         return sb.toString();

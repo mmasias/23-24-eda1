@@ -1,0 +1,59 @@
+@startuml
+class Main {
+    +main(args: String[]): void
+}
+
+class Client {
+    -name: String
+    -survey: Survey
+
+    +Client(name: String)
+    +getNombre(): String
+    +getSurvey(): String
+}
+
+class Food {
+    -name: String
+
+    +Food(name: String)
+    +getName(): String
+}
+
+class Intakes {
+    -fooList: List<Food>
+
+    +Intakes()
+    +addFood(food: Food): void
+    +listFood(): void
+    +toStringIndented(): String
+    +toString(): String
+    
+}
+
+class IntakeType {
+    -type: String
+    -intakes: Intakes
+
+    +IntakeType(tipo: String, ingestas: Ingestas)
+    +getType(): String
+    +getIntakes(): Intakes
+    +toString(): String
+}
+
+class Days {
+    -dayIndex: int
+    -intakeTree: Tree<IntakeType>
+
+    +Days(dayIndex: int)
+    +addFood(food: Food, intakeType: String): void
+    +toString(): String
+    +getValidInktakeType(): String[]
+}
+
+class Survey {
+    -daysTree: Tree<Days>
+
+    +Survey()
+    +getDietInfo(): void
+    +addFood(food: Food, day: int, intakeType: String): void
+}
