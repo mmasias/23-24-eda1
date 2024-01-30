@@ -1,5 +1,10 @@
 {
     "githubPullRequests.ignoredPullRequestBranches": [
         "main"
+    ],
+    "java.project.sourcePaths": [
+        "entregas/oteroJorge/FinalListas/core",
+        "entregas/oteroJorge/Carrefour/src",
+        "entregas/oteroJorge/FinalListas"
     ]
 }
