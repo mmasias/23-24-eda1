@@ -1,0 +1,45 @@
+@startuml
+class Node {
+    Object data
+    Node next
+}
+
+class List {
+    Node head
+    void add(Object data)
+    void add(int index, Object data)
+    int indexOf(Object data)
+    Object get(int index)
+    int size()
+}
+
+class TreeNode {
+    Object data
+    List children
+    void addChild(Object childData)
+}
+
+class Tree {
+    TreeNode root
+}
+
+class SurveySystem {
+    Tree patient
+    Scanner scanner
+    void execute()
+    void fillOutSurvey()
+    void fillIntake(TreeNode day, String intakeType)
+    void displayStructure()
+    List getIntakeTypes()
+}
+
+class Main {
+    void main(String[] args)
+}
+
+Node --> List
+TreeNode --> List
+Tree --> TreeNode
+SurveySystem --> Tree
+Main --> SurveySystem
+@enduml
