@@ -1,0 +1,147 @@
+@startuml
+class Clinic {
+- boolean startMenu;
+- Patient patient;
++ void Start();
+- void printStartMenu();
+- void printInitMessage();
+- void displayOptions();
+- void registerNewPatient();
+- void createNewEvaluation();
+- void viewEvaluation();
+- void viewResults();
+- void optionNotFound();
+- void inputManage(int input);
+- boolean registeredPatient();
+}
+
+class Patient {
+- String name;
+- Evaluation evaluation;
++ Patient(String name);
++ String getName();
++ Evaluation getEvaluation();
++ void createEvaluation();
++ void openEvaluation();
++ void showEvaluation();
+}
+
+class Evaluation{
+- boolean attending;
+- TreeManage<DayManage> week;
++ Evaluation();
++ void attending();
++ void close();
+- void display();
+- void printIndex();
+- void printOptions();
+- void manageInput(int input);
+- void insertDay(DayManage day, int count);
+- void displayDay(int count);
+- void showEvaluationDays();
+- void optionNotFound();
+}
+
+class DayManage{
+- String name;
+- TreeManage<EatingTime> eatingTime;
+- boolean attending;
++ DayManage(String name);
++ String getName();
++ void setName(String name);
++ void attending();
++ void previousMenu();
+- void printOptions();
+- void manageInput(int input);
+- void createEatingTime (EatingTime eatingTime, int count);
++ void currentEatingTime (int count);
++ void listEatingTime();
+- void optionNotFound();
+- void printMenu();
++ void printData();
+}
+
+class EatingTime{
+- String name;
+- List<FoodManage> food;
+- boolean attending;
++ EatingTime(String name);
++ void attending();
+- void previousMenu();
+- void printOptions();
+- void insertFood();
+- void listFood();
+- void printList();
+- void optionNotFound();
+- void manageInput(int input);
+- void printMenu();
++ void printData();
+}
+
+class FoodManage{
+- String foodName;
++ FoodManage(String foodName);
++ String getFoodName();
++ void printData();
+}
+
+class List{
+- Node<T> first;
+- int length;
++ int getLength();
++ boolean isEmpty();
++ void insert(Node<T> node);
++ void remove();
++ void display();
+}
+
+class TreeManage{
+- Node<T> source;
++ Node<T> getSource();
++ void outputSequentially (Node<T> node);
+- T indexedGet(Node<T> source, int count);
++ T get(int count);
++ boolean iterateOwn (Node<T> source, Node<T> node);
++ boolean own(Node<T> node);
++ void add(Node<T> newNode);
++ Node<T> iteratorAdd (Node<T> currentNode, Node<T> incomingNode);
+}
+
+class Node{
+- T data;
+- int count;
+- Node<T> next;
+- Node<T> left;
+- Node<T> right;
++ Node(T data);
++ Node(T data, int count);
++ int getCount();
++ void setCount(int count);
++ T getData();
++ void setData(T data);
++ Node<T> getNext();
++ void setNext(Node<T> next);
++ Node<T> getLeft();
++ void setLeft(Node<T> left);
++ Node<T> getRight();
++ void setRight(Node<T> right);
+}
+
+interface Data{
+void printData();
+}
+
+Node --|> Data
+TreeManage --|> Data
+TreeManage --> Node
+List --|> Data
+List --> Node
+FoodManage --|> Data
+EatingTime --|> Data
+EatingTime --> List
+DayManage --|> Data
+DayManage --> TreeManage
+Evaluation --> TreeManage
+Patient --> Evaluation
+Clinic --> Patient
+@enduml
