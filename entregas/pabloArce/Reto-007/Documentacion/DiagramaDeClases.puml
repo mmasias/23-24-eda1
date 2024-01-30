@@ -1,0 +1,147 @@
+@startuml
+
+    title Diagrama de clases
+
+    class Client {
+       - String name
+       - String Surname
+    }
+
+    class FoodData {
+      - foodList: List<Food>
+
+       +FoodData()
+      -initFood(): void
+      +listFood(): void
+      +getFoodByIndex(index: int): Food
+      +exportFoodData(): List<Food>
+    }
+
+    class Manager {
+      - tree: Tree<TreeObject>
+
+      {static} +main(args: String[]): void
+      {static} +init(): Client
+      {static} +welcome(): void
+      {static} +mainMenuDisplay(): int
+      {static} +initTree(): void
+      {static} +addIntake(): void
+      {static} +addFood(foodData: FoodData): void
+      {static} +addFoodManually(): void
+      {static} +askDayAndIntake(foodData: Food): void
+      {static} +deleteFood(): void
+      {static} +updateCalories(dayD: String, intakeD: String): void
+    }
+
+    package TreeObjects{
+        class Intake {
+            - int totalCalories
+            - String name
+            - String time
+        }
+        class Food {
+            - String name
+            - int calories
+        }
+        class Day {
+            - int index
+            - int totalCalories
+        }
+        class Survey {
+            - String name
+        }
+    }
+    package utils {
+        interface IDataStructure
+        class List {
+          - first: ListNode<T>
+
+          +peek(): T
+          +insert(data: T, index: int): List<T>
+          -insertFirst(listNode: ListNode<T>): void
+          -insertLast(listNode: ListNode<T>): void
+          -insertAt(listNode: ListNode<T>, index: int): void
+          +remove(index: int): List<T>
+          -removeFirst(): void
+          -removeLast(): void
+          -removeAt(index: int): void
+          +getFirst(): ListNode<T>
+          +isEmpty(): boolean
+          +size(): int
+          +listData(): Object[]
+          +iterator(): Iterator<T>
+        }
+        class ListNode<T> {
+          - data: T
+          - next: ListNode<T>
+
+          +ListNode(data: T)
+          +getData(): T
+          +setData(data: T): void
+          +getNext(): ListNode<T>
+          +setNext(next: ListNode<T>): void
+          +count(): int
+        }
+        class Shortcut {
+           - void print()
+        }
+        class Tree<T extends TreeObject> {
+          - root: TreeNode<T>
+
+          + Tree(rootData: T)
+          +getRoot(): TreeNode<T>
+          +addChildByParentIndex(data: T, parentNumber: int): void
+          +addChildByParentData(data: T, d1: String): void
+          +addFoodByParentsData(data: T, d1: String, d2: String): void
+          +deleteFoodByData(d1: String, d2: String, food: String): void
+          +getTreeNodeByData(d1: String): TreeNode<T>
+          +getTreeNodeByTwoData(d1: String, d2: String): TreeNode<T>
+          +addChildToTreeNode(data: T, parent: TreeNode<T>): void
+          +printTree(order: boolean): void
+          +printTreePreOrder(): void
+          +printTreePostOrder(): void
+          +isEmpty(): boolean
+          +size(): int
+          +listData(): Object[]
+        }
+        class TreeNode<T extends TreeObject> {
+          - parent: ListNode<T>
+          - children: List<TreeNode<T>>
+
+          +TreeNode()
+          +TreeNode(parent: ListNode<T>)
+          +setData(data: T): void
+          +setChildren(children: List<TreeNode<T>>): void
+          +deleteChildren(): void
+          +deleteChildByIndex(index: int): void
+          +deleteChild(data: T): void
+          +addChild(data: T): void
+          +getData(): T
+          +getChildren(): List<TreeNode<T>>
+          +childrenSize(): int
+        }
+        interface TreeObject {
+            + getDetails: String
+        }
+    }
+
+    Tree --|> IDataStructure
+    List --|> IDataStructure
+    TreeNode -|> IDataStructure
+    TreeNode --> List
+
+    TreeObjects --|> TreeObject
+
+    Manager --> Tree
+    Manager --* TreeObjects
+    Manager -> Client
+
+    Tree --* TreeNode
+    List --* ListNode
+
+    FoodData --* Food
+    FoodData -> List
+    Manager --> FoodData
+
+
+@enduml
