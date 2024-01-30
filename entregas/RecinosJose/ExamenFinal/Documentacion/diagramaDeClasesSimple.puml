@@ -1,0 +1,30 @@
+@startuml
+
+class Cliente {
+  nombre
+}
+
+class Encuesta {
+  fecha
+}
+
+class Día {
+  fecha
+  númeroDía
+}
+
+class Ingesta {
+  tipoIngesta
+}
+
+class Alimento {
+  nombre
+  cantidad
+}
+
+Cliente  --  Encuesta : Completa >
+Encuesta  --  Día : Incluye >
+Día  --  Ingesta : Contiene >
+Ingesta  --  Alimento : Incluye >
+
+@enduml
