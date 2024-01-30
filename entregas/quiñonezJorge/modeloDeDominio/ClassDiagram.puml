@@ -1,0 +1,175 @@
+@startuml class diagram
+
+interface DataProvider{
+ + void printData()
+}
+class World{
+ - boolean isOpen
+ - Client client
+ + World()
+ + void main()
+ + void open()
+ + void close()
+ - void start()
+ - void printMenu()
+ - void clearTerminal()
+ - void printWelcome()
+ - void printOptions()
+ - void manageInput(int input)
+ - void registerAsClient()
+ - void manageSurveyCreation()
+ - void openSurvey()
+ - void showResults()
+ - void invalidOption()
+ - boolean existingClient()
+}
+class Client{
+ - String name
+ - Survey survey
+
+ + Client(String name)
+ + String getName()
+ + Survey getSurvey()
+ + void createSurvey()
+ + void openSurvey()
+ + void showSurvey()
+}
+class Survey{
+ - boolean isOpen
+ - List<Day> week
+
+ + Survey()
+ + void open()
+ + void close()
+ - void printMenu()
+ - void clearTerminal()
+ - void printInstructions()
+ - void printOptions()
+ - void manageInput(int input)
+ - void createDay(Day day, int index)
+ - void openDay(int index)
+ + void showDays()
+ - void invalidOption()
+}
+class Day{
+ - String name
+ - List<Brunch> brunches
+ - boolean isOpen
+
+ + Day(String name)
+ + String getName()
+ + void start()
+ + void open()
+ + void close()
+ - void printMenu()
+ - void clearTerminal()
+ - void printOptions()
+ - void manageInput(int input)
+ - void createBrunch(Brunch brunch, int index)
+ - void openBrunch(int index)
+ - void showBrunches()
+ - void invalidOption()
+ + void printData()
+}
+class Brunch{
+ - String name
+ - List<Food> food
+ - boolean isOpen
+
+ + Brunch(String name)
+ + void start()
+ + void open()
+ + void close()
+ - void printMenu()
+ - void clearTerminal()
+ - void printOptions()
+ - void manageInput(int input)
+ - void addFood()
+ - void openFood()
+ - void showFood()
+ - void printList()
+ - void invalidOption()
+ + void printData()
+}
+class Food{
+ - String name
+ - List<Nutrient> nutrients
+ - String preparationMethod
+ - String amount
+ - String brand
+ - String portionSize
+ - boolean isOpen
+ + Food(String name)
+ + String getName()
+ + void start()
+ + void open()
+ + void close()
+ - void printMenu()
+ - void clearTerminal()
+ - void printOptions()
+ - void manageInput(int input)
+ - void addNutrient()
+ - void addPreparationMethod()
+ - void addAmount()
+ - void addBrand()
+ - void addPortionSize()
+ - void showInformation()
+ - void printList()
+ - void invalidOption()
+ + void printData()
+}
+class Nutrient{
+ - String name
+ + Nutrient(String name)
+ + String getName()
+ + void printData()
+}
+class Node<T>{
+ - T data
+ - int index
+ - Node<T> next
+ - Node<T> left
+ - Node<T> right
+ + Node(T data)
+ + Node(T data, int index)
+ + int getIndex()
+ + void setIndex()
+ + T getData()
+ + void setData(T data)
+ + Node<T> getNext()
+ + void setNext(Node<T> next)
+ + Node<T> getLeft()
+ + void setLeft(Node<T> left)
+ + Node<T> getRight()
+ + void setRight(Node<T> right)
+}
+class List<T>{
+ - Node<T> first
+ - int size
+ + int getSize()
+ + boolean isEmpty()
+ + Node<T> getFirst()
+ + void add(Node<T> node)
+ + void delete()
+ + T get(int index)
+ + boolean has(Node<T> node)
+ + void printAll(Node<T> node)
+}
+
+
+World -- Client : has
+Client -- Survey : has
+Survey -- "1..*" Day : has
+Survey .. List : uses
+Day .. List : uses
+Day -- "1..*" Brunch : has
+Day .. DataProvider
+Brunch .. List : uses
+Brunch -- "1..*" Food : has
+Brunch .left. DataProvider
+Food .. List : uses
+Food -- "1..*" Nutrient : has
+Food .left. DataProvider
+' Tree -- Node : has
+List -- Node : has
+@enduml
