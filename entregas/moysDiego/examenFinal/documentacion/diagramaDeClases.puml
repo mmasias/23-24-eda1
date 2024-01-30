@@ -1,0 +1,138 @@
+@startuml
+class Main {
+    +main(args: String[]): void
+}
+
+class Cliente {
+    -nombre: String
+    -encuesta: Encuesta
+
+    +Cliente(nombre: String)
+    +getNombre(): String
+}
+
+class Alimentos {
+    -nombre: String
+
+    +Alimentos(nombre: String)
+    +getNombre(): String
+}
+
+class Ingestas {
+    -alimentos: List<Alimentos>
+
+    +Ingestas()
+    +agregarAlimento(alimento: Alimentos): void
+    +mostrarAlimentos(): void
+    +toString(): String
+    +toStringIndented(): String
+}
+
+class IngestaTipo {
+    -tipo: String
+    -ingestas: Ingestas
+
+    +IngestaTipo(tipo: String, ingestas: Ingestas)
+    +getTipo(): String
+    +getIngestas(): Ingestas
+    +toString(): String
+}
+
+class Dias {
+    -diaIndex: int
+    -ingestasTree: Tree<IngestaTipo>
+
+    +Dias(diaIndex: int)
+    +agregarAlimento(alimento: Alimentos, tipoIngesta: String): void
+    +toString(): String
+}
+
+class Encuesta {
+    -diasTree: Tree<Dias>
+
+    +Encuesta()
+    +agregarAlimento(alimento: Alimentos, dia: int, tipoIngesta: String): void
+    +obtenerInfoDieta(): void
+}
+
+class List<T> {
+    -head: Node<T>
+    -size: int
+
+    +List()
+    +add(data: T): void
+    +isEmpty(): boolean
+    +get(index: int): T
+    +remove(index: int): void
+    +clear(): void
+    +contains(data: T): boolean
+    +getHead(): Node<T>
+    +size(): int
+    +toString(): String
+}
+
+class Node<T> {
+    -data: T
+    -index: int
+    -next: Node<T>
+    -left: Node<T>
+    -right: Node<T>
+
+    +Node(data: T, index: int)
+    +getIndex(): int
+    +getData(): T
+    +getLeft(): Node<T>
+    +setLeft(left: Node<T>): void
+    +getRight(): Node<T>
+    +setRight(right: Node<T>): void
+    +getNext(): Node<T>
+    +setNext(next: Node<T>): void
+}
+
+class Tree<T> {
+    -root: Node<T>
+
+    +Tree()
+    +getRoot(): Node<T>
+    +insert(newNode: Node<T>): void
+    +find(index: int): Node<T>
+    +printInOrder(): void
+    +printInOrder(sb: StringBuilder): void
+
+    -insertRecursive(current: Node<T>, newNode: Node<T>): void
+    -findRecursive(current: Node<T>, index: int): Node<T>
+    -printInOrderRecursive(node: Node<T>): void
+    -printInOrderRecursive(node: Node<T>, sb: StringBuilder): void
+}
+
+class MenuInteractivo {
+    -scanner: Scanner
+    -cliente: Cliente
+    -encuesta: Encuesta
+
+    +MenuInteractivo(cliente: Cliente)
+    +mostrarMenuPrincipal(): void
+    -registrarNuevoCliente(): void
+    -crearNuevaEncuesta(): void
+    -abrirEncuestaExistente(): void
+    -mostrarResultados(): void
+    -imprimirMenu(): void
+    -obtenerOpcionValida(): int
+    -ingresarAlimentos(): void
+    -imprimirOpcionesIngesta(): void
+    -obtenerTipoIngesta(opcion: int): String
+    -obtenerNumeroValido(): int
+}
+
+Main --> MenuInteractivo
+MenuInteractivo --> Cliente
+MenuInteractivo --> Encuesta : Maneja
+Cliente --> Encuesta : Rellena
+Encuesta --> Dias : Contiene
+Dias --> IngestaTipo
+IngestaTipo --> Ingestas
+Ingestas --> Alimentos: Contiene
+Ingestas --> List: Contiene
+List --> Node: Contiene
+Tree --> Node
+@enduml

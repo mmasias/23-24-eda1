@@ -1,5 +1,12 @@
 {
     "githubPullRequests.ignoredPullRequestBranches": [
         "main"
+    ],
+
+    "java.project.sourcePaths": [
+        "src",
+        "entregas/moysDiego/reto007",
+        "entregas/moysDiego/reto004",
+        "entregas/moysDiego/examenFinal"
     ]
 }
