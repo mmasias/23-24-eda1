@@ -1,7 +1,7 @@
-public class Alimento {
+public class Alimentos {
     private String nombre;
 
-    public Alimento(String nombre) {
+    public Alimentos(String nombre) {
         this.nombre = nombre;
     }
 

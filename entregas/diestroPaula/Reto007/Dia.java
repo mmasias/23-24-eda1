@@ -35,6 +35,5 @@ public class Dia {
 
     public void agregarIngesta(Ingesta ingesta) {
         // Este método se encarga de agregar una ingesta específica al día.
-        // Puedes implementarlo según tus necesidades.
     }
 }

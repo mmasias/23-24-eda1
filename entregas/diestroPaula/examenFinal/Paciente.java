@@ -1,19 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Paciente {
     private String nombre;
-    private List<Encuesta> encuestas = new ArrayList<>();
-
     public Paciente(String nombre) {
         this.nombre = nombre;
+        new Encuesta();
     }
 
-    public void agregarEncuesta(Encuesta encuesta) {
-        encuestas.add(encuesta);
-    }
-
-    public List<Encuesta> getEncuestas() {
-        return encuestas;
-    }
+    public String getNombre() {
+        return nombre;
+    }   
 }
