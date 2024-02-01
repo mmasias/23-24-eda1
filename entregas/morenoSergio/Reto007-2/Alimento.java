@@ -1,8 +1,12 @@
-class Alimento {
+public class Alimento {
+    String nombre;
 
-  String nombre;
+    public Alimento(String nombre) {
+        this.nombre = nombre;
+    }
 
-  public Alimento(String nombre) {
-    this.nombre = nombre;
-  }
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
