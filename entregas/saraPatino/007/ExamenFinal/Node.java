@@ -6,7 +6,6 @@ class Node<T> {
 
     public Node(T data) {
         setData(data);
-        setNext(null); // Inicializamos el siguiente nodo como nulo
     }
 
     public T getData() {
@@ -31,9 +30,5 @@ class Node<T> {
         } else {
             return 1 + getNext().count();
         }
-    }
-
-    public String getValue() {
-        return null;
     }
 }

@@ -2,17 +2,17 @@ package ExamenFinal;
 
 public class List<T> {
 
-    private Node<T> first;
+    Node<T> first;
 
     public List<T> insert(T data, int index) {
         if (first == null && (index == 0 || index == -1)) {
-            first = new Node<>(data);
+            first = new Node<T>(data);
         } else if (index == 0) {
-            insertFirst(new Node<>(data));
+            insertFirst(new Node<T>(data));
         } else if (index == -1) {
-            insertLast(new Node<>(data));
+            insertLast(new Node<T>(data));
         } else if (index > 0) {
-            insertAt(new Node<>(data), index);
+            insertAt(new Node<T>(data), index);
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -25,15 +25,11 @@ public class List<T> {
     }
 
     private void insertLast(Node<T> node) {
-        if (first == null) {
-            first = node;
-        } else {
-            Node<T> last = first;
-            while (last.getNext() != null) {
-                last = last.getNext();
-            }
-            last.setNext(node);
+        Node<T> last = first;
+        while (last.getNext() != null) {
+            last = last.getNext();
         }
+        last.setNext(node);
     }
 
     private void insertAt(Node<T> node, int index) {
@@ -60,29 +56,26 @@ public class List<T> {
             } else {
                 removeAt(index);
             }
+
         } else {
             throw new IndexOutOfBoundsException();
         }
         return this;
     }
 
-    private void removeFirst() {
-        if (first != null) {
-            first = first.getNext();
-        }
+    void removeFirst() {
+        first = getFirst().getNext();
     }
 
     private void removeLast() {
-        if (first != null) {
-            if (first.getNext() != null) {
-                Node<T> oneBeforeLast = first;
-                while (oneBeforeLast.getNext() != null && oneBeforeLast.getNext().getNext() != null) {
-                    oneBeforeLast = oneBeforeLast.getNext();
-                }
-                oneBeforeLast.setNext(null);
-            } else {
-                first = null;
+        if (getFirst().getNext() != null) {
+            Node<T> oneBeforeLast = getFirst();
+            while (oneBeforeLast.getNext() != null && oneBeforeLast.getNext().getNext() != null) {
+                oneBeforeLast = oneBeforeLast.getNext();
             }
+            oneBeforeLast.setNext(null);
+        } else {
+            first = null;
         }
     }
 
@@ -105,7 +98,7 @@ public class List<T> {
     }
 
     public boolean isEmpty() {
-        return first == null;
+        return getFirst() == null;
     }
 
     public int size() {
@@ -116,17 +109,13 @@ public class List<T> {
         }
     }
 
-    public String[] listData() {
-        String[] array = new String[size()];
-
+    public Object[] listData() {
+        Object[] array = new Object[size()];
         Node<T> node = first;
-        int i = 0;
-        while (node != null) {
-            array[i++] = String.valueOf(node.getData());
+        for (int i = 0; i < array.length; ++i) {
+            array[i] = node.getData();
             node = node.getNext();
         }
-
         return array;
     }
-
 }
