@@ -1,14 +1,10 @@
-package RetoExamenFinal;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Ingesta implements Comparable<Ingesta>, DatosLista{
     private Horario horario;
-    private List<Alimento> alimentos;
+    private GenericList<Alimento> listaAlimentos;
 
     public Ingesta(Horario horario) {
         this.horario = horario;
-        this.alimentos = new ArrayList<>();
+        this.listaAlimentos = new GenericList<>();
     }
 
     public Horario getHorario() {
@@ -19,12 +15,12 @@ public class Ingesta implements Comparable<Ingesta>, DatosLista{
         this.horario = horario;
     }
 
-    public List<Alimento> getAlimentos() {
-        return alimentos;
+    public GenericList<Alimento> getAlimentos() {
+        return listaAlimentos;
     }
 
     public void insertarAlimento(Alimento alimento){
-        this.alimentos.add(0, alimento);
+        this.listaAlimentos.insertarEnOrden(alimento);
     }
 
     @Override
@@ -39,17 +35,14 @@ public class Ingesta implements Comparable<Ingesta>, DatosLista{
     }
 
     public String getInformacion(){
-        StringBuilder texto = new StringBuilder("\t" + horario.getDescription());
-    
-        for (Alimento alimento : alimentos) {
-            texto.append(alimento.toString());
+        String texto ="\t"+horario.getDescription();
+        for (int i = 0; i < listaAlimentos.size(); i++) {
+            texto+=listaAlimentos.getObjeto(i).toString();
         }
-        
-        return texto.toString();
+        return texto;
     }
     public void vaciar (){
-        this.alimentos.clear();
+        this.listaAlimentos.vaciar();
     }
 }
-
 

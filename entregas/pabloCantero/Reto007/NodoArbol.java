@@ -1,4 +1,4 @@
-public class NodoArbol<T extends DatosArbol> implements Comparable<NodoArbol<T>> {
+public class NodoArbol<T extends DatosLista> implements Comparable<NodoArbol<T>> {
     private T valor;
     private GenericList<NodoArbol<T>> hijos;
 

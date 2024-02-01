@@ -1,15 +1,13 @@
-package RetoExamenFinal;
-import java.util.List;
-import java.util.ArrayList;
-public class Dia implements DatosLista {
+import java.time.LocalDate;
+
+public class Dia implements DatosLista, Comparable<Dia>  {
     private int fecha;
-    private List<Ingesta> ingestas;
+    private GenericList<Ingesta> ingestas;
 
     public Dia(int fecha) {
         this.fecha = fecha;
-        this.ingestas = new ArrayList<>();
+        this.ingestas = new GenericList<Ingesta>();
     }
-    
 
     public int getFecha() {
         return fecha;
@@ -19,19 +17,23 @@ public class Dia implements DatosLista {
         this.fecha = fecha;
     }
 
-    public List<Ingesta> getIngestas() {
+    public GenericList<Ingesta> getIngestas() {
         return ingestas;
     }
-
-    public void setIngestas(List<Ingesta> ingestas) {
+    public void setIngestas(GenericList<Ingesta> ingestas) {
         this.ingestas = ingestas;
+    }
+    
+    @Override
+    public int compareTo(Dia otro) {
+        return Integer.compare(this.fecha, otro.fecha);
     }
 
     @Override
     public String getInformacion() {
-        return "Dia: " + this.fecha;
+        return "Dia: "+this.fecha;
     }
-    public void addIngesta(Ingesta ingesta) {
-        ingestas.add(ingesta);
+    public void agregarIngesta(Ingesta ingesta) {
+        this.ingestas.insertEnd(ingesta);
     }
 }

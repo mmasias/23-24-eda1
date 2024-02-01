@@ -1,5 +1,3 @@
-package RetoExamenFinal;
-
 public enum Horario {
 
     DESAYUNO (1, "Desayuno"),

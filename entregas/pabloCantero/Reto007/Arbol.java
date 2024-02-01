@@ -1,4 +1,4 @@
-public class Arbol<T extends DatosArbol> {
+public class Arbol<T extends DatosLista> {
     private NodoArbol<T> raiz;
 
     public NodoArbol<T> getRaiz() {

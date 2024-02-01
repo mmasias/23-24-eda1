@@ -1,29 +1,42 @@
-package RetoExamenFinal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Encuesta implements DatosLista {
+public class Encuesta implements DatosLista{
+    private GenericList<Dia> dias;
     private LocalDate fecha;
-    private List<Dia> dias;
     public Encuesta(LocalDate fecha){
         this.fecha= fecha;
-        this.dias = new ArrayList();
+        this.dias = new GenericList<Dia>();
+        
     }
+    public Encuesta(){
+        this.dias = new GenericList<Dia>();
+        
+    }
+
     public LocalDate getFecha() {
         return this.fecha;
     }
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
-    public List<Dia> getDias() {
+    public GenericList<Dia> getDias() {
         return dias;
     }
-
+    public void setDias(GenericList<Dia> dias) {
+        this.dias = dias;
+    }
     @Override
     public String getInformacion() {
         return "Fecha de la encuesta: "+fecha.toString();
         
     }
     
+    public void insertarDias(Dia d) {
+        
+
+        dias.insertEnd(d);
+    }
+    
+    
 }
+
