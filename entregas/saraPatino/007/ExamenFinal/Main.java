@@ -3,7 +3,7 @@ package ExamenFinal;
 import java.util.Scanner;
 
 public class Main {
-    static List<Patient> patients = new List<>();
+    static List<User> patients = new List<>();
     static List<Food> alimentos = new List<>();
     static Scanner numeros = new Scanner(System.in);
     static Scanner textos = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class Main {
         String nombrePaciente = textos.nextLine();
 
 
-        Patient paciente = new Patient(nombrePaciente);
+        User paciente = new User(nombrePaciente);
 
         System.out.print("Seleccione día (1-5): ");
         int dia = numeros.nextInt();
@@ -89,7 +89,7 @@ public class Main {
 
 
     private static void showData() {
-        Node<Patient> current = patients.getFirst();
+        Node<User> current = patients.getFirst();
         while (current != null) {
             current.getData().showData();
             current = current.getNext();

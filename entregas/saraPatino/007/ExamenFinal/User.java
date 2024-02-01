@@ -1,10 +1,10 @@
 package ExamenFinal;
 
-public class Patient {
+public class User {
     String name;
     List<Day> days;
 
-    public Patient(String name) {
+    public User(String name) {
         this.name = name;
         days = new List<>();
     }
