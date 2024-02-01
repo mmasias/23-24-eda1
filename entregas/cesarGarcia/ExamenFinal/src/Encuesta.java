@@ -1,14 +1,12 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Encuesta implements DatosArbol {
+public class Encuesta implements Comparable<Encuesta>{
     private LocalDate fecha;
     private List<Dia> dias;
 
     public Encuesta(LocalDate fecha) {
         this.fecha = fecha;
-        this.dias = new ArrayList<>();
+        this.dias = new List<>();
     }
 
     public void setFecha(LocalDate fecha) {
@@ -18,17 +16,23 @@ public class Encuesta implements DatosArbol {
     public LocalDate getFecha() {
         return this.fecha;
     }
-
     public List<Dia> getDias() {
-        return this.dias;
+        return dias;
     }
-
+    public void setDias(List<Dia> dias) {
+        this.dias = dias;
+    }
     public void addDia(Dia dia) {
-        this.dias.add(dia);
+        this.dias.insertEnd(dia);
+    }
+    @Override
+    public int compareTo (Encuesta o) {
+        return this.fecha.compareTo(o.fecha);
+    }
+    public String getInformacion() {
+        String texto = "";
+        System.out.println("Fecha del inicio de la encuesta: " + this.fecha);
+        return texto;
     }
 
-    @Override
-    public String getInformacion() {
-        return "Fecha de la encuesta: " + fecha.toString();
-    }
 }

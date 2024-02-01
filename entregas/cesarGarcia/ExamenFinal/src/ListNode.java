@@ -1,10 +1,9 @@
-/*
-public class GenericNode<T> {
+public class ListNode<T> {
 
     private T value;
-    private GenericNode<T> next;
+    private ListNode<T> next;
 
-    public GenericNode(T value) {
+    public ListNode(T value) {
         this.setValue(value);
     }
 
@@ -16,12 +15,11 @@ public class GenericNode<T> {
         this.value = newValue;
     }
 
-    public GenericNode<T> getNext() {
+    public ListNode<T> getNext() {
         return next;
     }
 
-    public void setNext(GenericNode<T> siguiente) {
+    public void setNext(ListNode<T> siguiente) {
         this.next = siguiente;
     }
 }
-*/

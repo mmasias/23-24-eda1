@@ -1,3 +1,4 @@
+/*
 public enum Horario {
     DESAYUNO(1,"Desayuno"), 
     MEDIA_MAÑANA(2, "Media mañana"), 
@@ -25,3 +26,4 @@ public enum Horario {
     }
     
 }
+*/

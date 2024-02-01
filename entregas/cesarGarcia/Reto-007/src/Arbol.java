@@ -1,3 +1,4 @@
+/*
 public class Arbol<T extends DatosArbol> {
     private NodoArbol<T> raiz;
 
@@ -62,3 +63,4 @@ public class Arbol<T extends DatosArbol> {
         }
     }
 }
+*/

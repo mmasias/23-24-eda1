@@ -1,21 +1,29 @@
-/*
-public class Ingesta implements Comparable<Ingesta>, DatosArbol {
+public class Ingesta implements Comparable<Ingesta> {
     private Horario horario;
-    private GenericList<Alimento> alimentos;
+    private List<Alimento> alimentos;
 
     public Ingesta(Horario horario) {
         this.horario = horario;
-        this.alimentos = new GenericList<Alimento>();
+        this.alimentos = new List<Alimento>();
     }
 
     public void setHorario(String nombre) {
-        this.horario = horario;
+        this.horario = Horario.getHorarioPorNombre(nombre);
     }
 
     public Horario getHorario() {
         return this.horario;
     }
-
+    
+    public List<Alimento> getAlimentos() {
+        return alimentos;
+    }
+    public void setAlimentos(List<Alimento> alimentos) {
+        this.alimentos = alimentos;
+    }
+    public void addAlimento(Alimento alimento) {
+        this.alimentos.insertarOrdenado(alimento);
+    }
     public void insertarAlimento(Alimento alimento) {
         this.alimentos.insertarOrdenado(alimento);
     }
@@ -31,9 +39,14 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
         }
     }
 
-    @Override
     public String getInformacion() {
-        String texto = this.getHorario().getDescription() + ":";
+        String texto = "";
+        if (this.getHorario() != null) {
+            texto = this.getHorario().getDescription() + ":";
+        } else {
+            texto = "Horario no especificado:";
+        }
+        
         for (int i = 0; i < alimentos.size(); i++) {
             Alimento alimento = alimentos.getValorPorPosicion(i);
             texto += alimento.getNombre() + "(" + alimento.getGramos() + "g), ";
@@ -42,16 +55,17 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
                 int grasa = Informacion.getDatos(alimento.getNombre()).getGrasas();
                 int proteina = Informacion.getDatos(alimento.getNombre()).getProteinas();
                 int azucar = Informacion.getDatos(alimento.getNombre()).getAzucar();
-
+    
                 texto += "Calorias: " + (caloria * alimento.getGramos()) / 100 + " Grasas: "
                         + (grasa * alimento.getGramos()) / 100 + " Proteinas: "
-                        + (proteina * alimento.getGramos()) / 100 + " Azucar: " + (azucar * alimento.getGramos());
+                        + (proteina * alimento.getGramos()) / 100 + " Azucar: " + (azucar * alimento.getGramos()) / 100 + "\n";
             } else {
                 texto += "Faltan valores nutricionales. ";
             }
         }
         return texto.substring(0, texto.length() - 2);
     }
+    
 
     public void vaciar() {
         this.alimentos.vaciar();
@@ -85,4 +99,3 @@ public class Ingesta implements Comparable<Ingesta>, DatosArbol {
         return total;
     }
 }
-*/

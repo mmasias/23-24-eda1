@@ -1,8 +1,7 @@
-/*
 public class Informacion {
     public static ValoresNutricionales getDatos(String nombre) {
-        GenericList<String> productos = new GenericList<>();
-        GenericList<ValoresNutricionales> datos = new GenericList<>();
+        List<String> productos = new List<>();
+        List<ValoresNutricionales> datos = new List<>();
 
         productos.insertEnd("Aceitunas negras");
         datos.insertEnd(new ValoresNutricionales(349, 210, 493, 47, "Verdura"));
@@ -624,4 +623,3 @@ public class Informacion {
         return null;
     }
 }
-    /*/

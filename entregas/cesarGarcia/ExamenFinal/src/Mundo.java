@@ -1,7 +1,7 @@
-public class Main {
+public class Mundo {
     public static void main(String[] args) {
         Gestion gestion = new Gestion();
         gestion.capturarDatos();
-        gestion.mostrar();
+        gestion.listarResultados();
     }
 }

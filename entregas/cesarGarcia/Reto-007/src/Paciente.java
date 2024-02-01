@@ -1,4 +1,4 @@
-import java.time.LocalDate;
+/*import java.time.LocalDate;
 
 public class Paciente implements DatosArbol{
     private LocalDate fechaDeAlta;
@@ -25,3 +25,4 @@ public class Paciente implements DatosArbol{
     }
     
 }
+*/

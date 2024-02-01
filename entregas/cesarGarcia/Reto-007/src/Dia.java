@@ -1,3 +1,4 @@
+/*
 public class Dia implements DatosArbol, Comparable<Dia>{
     private int fecha;
     public Dia(int fecha) {
@@ -25,3 +26,4 @@ public class Dia implements DatosArbol, Comparable<Dia>{
     }
     
 }
+*/

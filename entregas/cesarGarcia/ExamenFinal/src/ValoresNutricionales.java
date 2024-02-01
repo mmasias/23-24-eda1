@@ -1,4 +1,4 @@
-/*public class ValoresNutricionales implements Comparable<ValoresNutricionales>{
+public class ValoresNutricionales implements Comparable<ValoresNutricionales>{
     public int calorias;
     public int azucar;
     public int proteinas;
@@ -49,4 +49,3 @@
     
     
 }
-*/

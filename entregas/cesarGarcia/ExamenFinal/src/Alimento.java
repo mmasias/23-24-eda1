@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Alimento implements Comparable<Alimento>{
     private String nombre;
     private int gramos;
@@ -9,7 +6,7 @@ public class Alimento implements Comparable<Alimento>{
     public Alimento(String nombre, int gramos) {
         this.nombre = nombre;
         this.gramos = gramos;
-        this.alimentos = new ArrayList<>();
+        this.alimentos = new List<>();
     }
 
     public void setNombre(String nombre) {
@@ -33,7 +30,7 @@ public class Alimento implements Comparable<Alimento>{
     }
 
     public void addAlimento(Alimento alimento) {
-        this.alimentos.add(alimento);
+        this.alimentos.insertarOrdenado(alimento);
     }
 
     @Override

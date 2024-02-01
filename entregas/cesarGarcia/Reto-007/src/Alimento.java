@@ -1,3 +1,4 @@
+/*
 public class Alimento implements Comparable<Alimento>{
     private String nombre;
     private int gramos;
@@ -34,3 +35,4 @@ public class Alimento implements Comparable<Alimento>{
         //return this.getNombre().compareTo(o.getNombre());
     }
 }
+*/

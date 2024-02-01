@@ -23,5 +23,13 @@ public enum Horario {
     public void setDescription(String description) {
         this.description = description;
     }
+    public static Horario getHorarioPorNombre(String nombre) {
+        for (Horario horario : Horario.values()) {
+            if (horario.getDescription().equals(nombre)) {
+                return horario;
+            }
+        }
+        return null;
+    }
     
 }

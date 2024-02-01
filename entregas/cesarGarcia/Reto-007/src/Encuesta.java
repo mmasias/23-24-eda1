@@ -1,3 +1,4 @@
+/*
 import java.time.LocalDate;
 
 public class Encuesta implements DatosArbol{
@@ -16,3 +17,4 @@ public class Encuesta implements DatosArbol{
         return "Fecha de la encuesta: "+ fecha.toString();
     }
 }
+*/

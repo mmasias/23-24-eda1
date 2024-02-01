@@ -1,16 +1,13 @@
-/*
-import org.w3c.dom.Node;
+public class List<T extends Comparable<T>> {
 
-public class GenericList<T extends Comparable<T>> {
-
-    private GenericNode<T> first = null;
+    private ListNode<T> first = null;
 
     public int size() {
         if (this.first == null) {
             return 0;
         }
         int count = 1;
-        GenericNode<T> iterator = first;
+        ListNode<T> iterator = first;
         while (iterator.getNext() != null) {
             count++;
             iterator = iterator.getNext();
@@ -23,7 +20,7 @@ public class GenericList<T extends Comparable<T>> {
     }
 
     public void insertFront(T value) {
-        GenericNode<T> newNode = new GenericNode<T>(value);
+        ListNode<T> newNode = new ListNode<T>(value);
         if (this.first == null)
             this.first = newNode;
         else {
@@ -33,11 +30,11 @@ public class GenericList<T extends Comparable<T>> {
     }
 
     public void insertEnd(T value) {
-        GenericNode<T> newNode = new GenericNode<T>(value);
+        ListNode<T> newNode = new ListNode<T>(value);
         if (this.first == null)
             this.first = newNode;
         else {
-            GenericNode<T> iterator = this.first;
+            ListNode<T> iterator = this.first;
             while (iterator.getNext() != null) {
                 iterator = iterator.getNext();
             }
@@ -51,12 +48,12 @@ public class GenericList<T extends Comparable<T>> {
         }
     }
 
-    public GenericNode<T> getFirst() {
+    public ListNode<T> getFirst() {
         return this.first;
     }
 
-    public GenericNode<T> getLast() {
-        GenericNode<T> iterator = this.first;
+    public ListNode<T> getLast() {
+        ListNode<T> iterator = this.first;
         while (iterator.getNext() != null) {
             iterator = iterator.getNext();
         }
@@ -65,7 +62,7 @@ public class GenericList<T extends Comparable<T>> {
 
     public Object[] listarTodo() {
         Object[] list = new Object[this.size()];
-        GenericNode<T> iterator = this.first;
+        ListNode<T> iterator = this.first;
 
         if (iterator == null)
             return list;
@@ -80,14 +77,14 @@ public class GenericList<T extends Comparable<T>> {
     }
 
     public void insertarOrdenado(T value) {
-        GenericNode<T> newNode = new GenericNode<T>(value);
+        ListNode<T> newNode = new ListNode<T>(value);
 
         if (this.first == null || value.compareTo(this.first.getValue()) < 0) {
             newNode.setNext(this.first);
             this.first = newNode;
         } else {
-            GenericNode<T> current = this.first;
-            GenericNode<T> previous = null;
+            ListNode<T> current = this.first;
+            ListNode<T> previous = null;
             while (current != null && value.compareTo(current.getValue()) >= 0) {
                 previous = current;
                 current = current.getNext();
@@ -105,7 +102,7 @@ public class GenericList<T extends Comparable<T>> {
         if (first == null) {
             throw new IndexOutOfBoundsException();
         }
-        GenericNode<T> actual = first;
+        ListNode<T> actual = first;
         do {
 
             if (posicion == contador) {
@@ -125,7 +122,7 @@ public class GenericList<T extends Comparable<T>> {
     public T getValorPorPosicion(int posicion) {
         if (this.first == null)
             throw new IndexOutOfBoundsException();
-        GenericNode<T> actual = this.first;
+        ListNode<T> actual = this.first;
         int contador = 0;
         do {
             if (contador == posicion) {
@@ -138,7 +135,7 @@ public class GenericList<T extends Comparable<T>> {
     }
 
     public int indexOf(T value) {
-        GenericNode<T> iterator = this.first;
+        ListNode<T> iterator = this.first;
         int index = 0;
         while (iterator != null) {
             if (iterator.getValue().equals(value)) {
@@ -155,4 +152,3 @@ public class GenericList<T extends Comparable<T>> {
         return -1;
     }
 }
-*/
