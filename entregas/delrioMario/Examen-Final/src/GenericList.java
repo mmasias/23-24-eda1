@@ -1,4 +1,4 @@
-public class GenericList<T extends DatosArbol & Comparable<T>> implements Comparable<NodoArbol<T>>{
+public class GenericList<T extends Comparable<T>> {
 
     private GenericNode<T> first = null;
 
@@ -17,10 +17,6 @@ public class GenericList<T extends DatosArbol & Comparable<T>> implements Compar
 
     public boolean isEmpty() {
         return this.size() > 0 ? false : true;
-    }
-
-    public void vaciar() {
-        this.first = null;
     }
 
     public void insertFront(T value) {
@@ -114,9 +110,14 @@ public class GenericList<T extends DatosArbol & Comparable<T>> implements Compar
         }
     }
 
+    public void vaciar() {
+        this.first = null;
+    }
+
     public T getValorPorPosicion(int pos) {
-        if (this.first == null)
+        if (this.first == null) {
             throw new IndexOutOfBoundsException();
+        }
         GenericNode<T> actual = this.first;
         int contador = 0;
         do {
@@ -126,16 +127,42 @@ public class GenericList<T extends DatosArbol & Comparable<T>> implements Compar
             contador++;
             actual = actual.getNext();
         } while (actual != null);
-        // Si llego aqui no la he encontrado
         throw new IndexOutOfBoundsException();
-
     }
 
-    @Override
-    public int compareTo(NodoArbol<T> o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    public int indexOf(T value) {
+        GenericNode<T> iterator = this.first;
+        int index = 0;
+        while (iterator != null) {
+            if (iterator.getValue().equals(value)) {
+                return index;
+            }
+            if (iterator.getValue() instanceof String) {
+                if (( (String) iterator.getValue() ).equalsIgnoreCase((String) value)) {
+                    return index;
+                }
+            }
+            iterator = iterator.getNext();
+            index++;
+        }
+
+        return -1;
     }
 
-    
+    public void actualizarPorPosicion(int posicion, T newValue) {
+        if (this.first == null || posicion < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        GenericNode<T> actual = this.first;
+        int contador = 0;
+        while (actual != null) {
+            if (contador == posicion) {
+                actual.setValue(newValue); // Actualizar el valor del nodo en la posición dada
+                return;
+            }
+            contador++;
+            actual = actual.getNext();
+        }
+        throw new IndexOutOfBoundsException();
+    }    
 }

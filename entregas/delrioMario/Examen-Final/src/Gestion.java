@@ -1,18 +1,16 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Gestion {
 
     private Scanner sc;
-    private List<NodoArbol<DatosArbol>> arbol;
+    private Paciente paciente;
     DateTimeFormatter formato;
 
     public Gestion() {
-        this.arbol = new LinkedList<>();
+        this.paciente = new Paciente();
         this.sc = new Scanner(System.in);
         this.formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
@@ -22,7 +20,7 @@ public class Gestion {
         LocalDate fecha = null;
         System.out.println("Introduzca el nombre: ");
         nombre = sc.nextLine();
-
+        this.paciente.setNombre(nombre);
         boolean okey = true;
         do {
             System.out.println("Introduzca la fecha(dd/MM/aaaa): ");
@@ -30,14 +28,12 @@ public class Gestion {
                 fecha = LocalDate.parse(sc.nextLine(), formato);
                 okey = true;
             } catch (Exception e) {
-                System.out.println("Fecha incorrecta, escriba una válida(dd/MM/aaaa)");
+                System.out.println("Fecha incorrecta, escriba una valida(dd/MM/aaaa)");
                 okey = false;
             }
         } while (!okey);
+        this.paciente.setFechaDeAlta(fecha);
 
-        Paciente p = new Paciente(nombre, fecha);
-        NodoArbol<DatosArbol> nodoPaciente = new NodoArbol<>(p);
-        arbol.add(nodoPaciente);
     }
 
     public void insertarEncuesta() {
@@ -50,55 +46,60 @@ public class Gestion {
                 fecha = LocalDate.parse(sc.nextLine(), formato);
                 okey = true;
             } catch (Exception e) {
-                System.out.println("Fecha incorrecta, escriba una válida(dd/MM/aaaa)");
+                System.out.println("Fecha incorrecta, escriba una valida(dd/MM/aaaa)");
                 okey = false;
             }
         } while (!okey);
-        Encuesta e = new Encuesta(fecha);
-        arbol.get(0).insertarHijos(new NodoArbol<>(e));
+
+        this.paciente.getEncuesta().setFecha(fecha);
+
     }
 
     public void insertarDias() {
-        NodoArbol<DatosArbol> nodoEncuesta = arbol.get(0).getHijos().get(0);
+
         for (int i = 1; i <= 5; i++) {
             Dia d = new Dia(i);
-            nodoEncuesta.insertarHijos(new NodoArbol<>(d));
+            this.paciente.getEncuesta().insertarDia(d);
+
         }
     }
 
     public void insertarIngestas() {
-        boolean okey;
+        boolean okey = true;
         Ingesta ing = null;
         Horario horario = null;
-        String opcion2;
-        int dia;
+        String opcion2 = null;
+        int dia = 0;
 
         do {
 
             do {
-                System.out.println("Seleccione día (1-5): (0 para salir)");
+                System.out.println("Seleccione dia(1-5): (0 para salir)");
                 try {
                     dia = sc.nextInt();
                 } catch (NumberFormatException e) {
                     dia = -1;
-                    System.out.println("Seleccione un día válido (1-5)");
+                    System.out.println("Seleccione un día válido(1-5)");
                 }
-            } while (dia < 0 || dia > arbol.get(0).getHijos().get(0).getHijos().size());
+            } while (dia < 0 || dia > 5);
 
             if (dia == 0)
                 break;
 
-            NodoArbol<DatosArbol> nodoDia = arbol.get(0).getHijos().get(0).getHijos().get(dia - 1);
+            Dia d = this.paciente.getEncuesta().getDias().getValorPorPosicion(dia - 1);
+            // NodoArbol<DatosArbol> nodoDia =
+            // arbol.getRaiz().getHijos().getObjeto(0).getHijos().getObjeto(dia - 1);
             int opcion = 0;
 
             do {
                 okey = true;
-                System.out.println("Seleccione ingesta: 1(Desayuno)/2(Mediamanãna)/3(Almuerzo)/4(Merienda)/5(Cena)/-1(Menu Anterior)");
+                System.out.println(
+                        "Seleccione ingesta: 1(Desayuno)/2(Mediamañana)/3(Almuerzo)/4(Merienda)/5(Cena)/-1(Menu Anterior)");
                 try {
                     opcion = sc.nextInt();
                 } catch (NumberFormatException e) {
                     okey = false;
-                    System.out.println("Escoja una opción correcta");
+                    System.out.println("Escoge una opción correcta");
                 }
 
                 switch (opcion) {
@@ -123,19 +124,21 @@ public class Gestion {
                         okey = false;
                         System.out.println("Opción incorrecta, elija otra opción");
                         break;
+
                 }
             } while (!okey);
 
-            NodoArbol<DatosArbol> nodoIngesta = existeNodoIngesta(dia, horario);
-            if (nodoIngesta != null) {
-                ing = (Ingesta) nodoIngesta.getValor();
+            int pos = existeIngesta(dia, horario);
+            if (pos >=0) {
+                ing = d.getIngestas().getValorPorPosicion(pos);
             } else {
                 ing = new Ingesta(horario);
             }
 
             do {
                 int gramos = 0;
-                System.out.println("Ingrese un alimento del " + ing.getHorario().getDescription() + " del día " + dia + " (-1 para terminar / -2 para listar alimentos ingresados / -3 para vaciar la lista)");
+                System.out.println("Ingrese un alimento del " + ing.getHorario().getDescription() + " del dia " + dia
+                        + " (-1 para terminar / -2 para listar alimentos ingresados / -3 para vaciar la lista)");
                 sc = new Scanner(System.in);
                 opcion2 = sc.nextLine();
                 if (opcion2.equals("-2")) {
@@ -155,11 +158,13 @@ public class Gestion {
 
             } while (!opcion2.equals("-1"));
 
-            if (ing != null && nodoIngesta == null) {
-                nodoDia.insertarHijos(new NodoArbol<>(ing));
+            if (ing != null && pos  <0) {
+                d.insertarIngesta(ing);
+                //// nodoDia.insertarHijos(new NodoArbol<DatosArbol>(ing));
             }
-            if (nodoIngesta != null) {
-                nodoIngesta.setValor(ing);
+            if (pos>=0) {
+                GenericList<Ingesta> misIngestas = this.paciente.getEncuesta().getDias().getValorPorPosicion(dia).getIngestas();
+                misIngestas.actualizarPorPosicion(pos, ing);
             }
 
         } while (true);
@@ -173,21 +178,35 @@ public class Gestion {
     }
 
     public void mostrar() {
-        arbol.get(0).getHijos();
+        System.out.println(this.paciente.getInfo());
+        Encuesta e = this.paciente.getEncuesta();
+        System.out.println(e.getInfo());
+        GenericList<Dia> dias = e.getDias();
+        for(int i= 0; i<dias.size();i++){
+            Dia d= dias.getValorPorPosicion(i);
+            System.out.println(d.getInfo());
+            GenericList<Ingesta> ingestas= d.getIngestas();
+            for(int j=0; j< ingestas.size();j++){
+                Ingesta ing = ingestas.getValorPorPosicion(j);
+                System.out.println(ing.getInfo());
+            }
+        }
+
     }
 
-    public NodoArbol<DatosArbol> existeNodoIngesta(int dia, Horario horario) {
-        NodoArbol<DatosArbol> result = null;
+    public int existeIngesta(int dia, Horario horario) {
+        int result = -1;
+        GenericList<Ingesta> misIngestas = this.paciente.getEncuesta().getDias().getValorPorPosicion(dia).getIngestas();
 
-        NodoArbol<DatosArbol> nodoDia = arbol.get(0).getHijos().get(0).getHijos().get(dia - 1);
-        List<NodoArbol<DatosArbol>> nodosIngesta = nodoDia.getHijos();
-        for (int i = 0; i < nodosIngesta.size(); i++) {
-            Ingesta ing = (Ingesta) nodosIngesta.get(i).getValor();
+        for (int i = 0; i < misIngestas.size(); i++) {
+            Ingesta ing = misIngestas.getValorPorPosicion(i);
             if (ing.getHorario() == horario) {
-                result = nodosIngesta.get(i);
+                result = i;
                 break;
             }
         }
         return result;
     }
+
+    
 }

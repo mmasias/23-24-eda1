@@ -1,8 +1,9 @@
 import java.time.LocalDate;
 
-public class Paciente implements DatosArbol {
+public class Paciente {
     private String nombre;
     private LocalDate fechaDeAlta;
+    private Encuesta encuesta;
 
     public String getNombre() {
         return nombre;
@@ -23,10 +24,23 @@ public class Paciente implements DatosArbol {
     public Paciente(String nombre, LocalDate fechaDeAlta) {
         this.nombre = nombre;
         this.fechaDeAlta = fechaDeAlta;
+        this.encuesta= new Encuesta();
     }
 
-    @Override
+    public Paciente(){
+        this.encuesta= new Encuesta();
+    }
+
+    
     public String getInfo() {
         return "Fecha y nombre del paciente: " + this.nombre + " " + this.fechaDeAlta.toString();
+    }
+
+    public Encuesta getEncuesta() {
+        return encuesta;
+    }
+
+    public void setEncuesta(Encuesta encuesta) {
+        this.encuesta = encuesta;
     }
 }
