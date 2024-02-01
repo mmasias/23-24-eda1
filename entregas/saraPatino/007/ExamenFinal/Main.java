@@ -53,16 +53,16 @@ public class Main {
 
         while (true) {
             System.out.print("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Salir): ");
-            int ingesta = numeros.nextInt();
-            if (ingesta == -1) {
+            int ingestaNumero = numeros.nextInt();
+            if (ingestaNumero == -1) {
                 break;
             }
 
-            String nombreIngesta = obtenerNombreIngesta(ingesta);
-            Ingesta intakes = new Ingesta(nombreIngesta);
+            String nombreIngesta = obtenerNombreIngesta(ingestaNumero);
+            Ingesta ingesta = new Ingesta(nombreIngesta);
 
-            agregarAlimentosAIngesta(intakes);
-            day.addIngesta(intakes);
+            agregarAlimentosAIngesta(ingesta);
+            day.addIngesta(ingesta);
         }
 
         paciente.addDay(day);
@@ -96,7 +96,7 @@ public class Main {
         }
     }
 
-    private static void agregarAlimentosAIngesta(Ingesta intakes) {
+    private static void agregarAlimentosAIngesta(Ingesta ingesta) {
         String nombreAlimento;
         while (true) {
             System.out.println("Ingrese un alimento (-1 para terminar / -2 para listar alimentos ingresados):");
@@ -105,9 +105,9 @@ public class Main {
             if (nombreAlimento.equals("-1")) {
                 break;
             } else if (nombreAlimento.equals("-2")) {
-                intakes.showMenu();
+                ingesta.showMenu();
             } else {
-                intakes.addFood(new Food(nombreAlimento));
+                ingesta.addFood(new Food(nombreAlimento));
             }
         }
     }
