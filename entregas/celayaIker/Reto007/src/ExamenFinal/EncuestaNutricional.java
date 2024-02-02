@@ -1,11 +1,10 @@
 package ExamenFinal;
 
-import java.util.ArrayList;
-import java.util.List;
+import ExamenFinal.utils.generica.GenericList;
 import java.util.Scanner;
 
 public class EncuestaNutricional {
-    List<String> nodos = new ArrayList<>();
+    GenericList<Comida> comidasDelDia = new GenericList<>();
     Comida comida = new Comida();
 
     public void creaEncuestaNutricional() {
@@ -174,6 +173,7 @@ public class EncuestaNutricional {
                 añadeDias();
                 break;
         }
+        sc.close();
     }
     
 }
