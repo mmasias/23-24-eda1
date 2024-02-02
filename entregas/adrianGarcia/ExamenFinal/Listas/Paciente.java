@@ -1,6 +1,4 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Paciente {
     private String nombre;
@@ -10,14 +8,12 @@ public class Paciente {
     private char sexo;
     private String dni;
     private LocalDate fechaAlta;
-    private List<Encuesta> encuestas;
+    private GenericList<Encuesta> encuestas;
 
     public Paciente(String nombre) {
         this.nombre = nombre;
-        this.encuestas = new ArrayList<>();
+        this.encuestas = new GenericList<>();
     }
-
-
 
     public double calcularIMC() {
         double alturaEnMetros = altura / 100.0;
@@ -25,14 +21,16 @@ public class Paciente {
     }
 
     public void agregarEncuesta(Encuesta encuesta) {
-        encuestas.add(encuesta);
+        encuestas.insertEnd(encuesta);
     }
 
     public Encuesta buscarEncuesta(LocalDate fecha) {
-        for (Encuesta encuesta : encuestas) {
-            if (encuesta.getFechaEncuesta().equals(fecha)) {
-                return encuesta;
+        GenericNode<Encuesta> node = encuestas.getFirst();
+        while (node != null) {
+            if (node.getValue().getFechaEncuesta().equals(fecha)) {
+                return node.getValue();
             }
+            node = node.getNext();
         }
         return null;
     }
@@ -41,22 +39,23 @@ public class Paciente {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Paciente: ").append(nombre).append("\n")
-                .append("Peso: ").append(peso).append(" kg\n")
-                .append("Altura: ").append(altura).append(" cm\n")
-                .append("Edad: ").append(edad).append("\n")
-                .append("Sexo: ").append(sexo).append("\n")
-                .append("DNI: ").append(dni).append("\n")
-                .append("IMC: ").append(String.format("%.2f", calcularIMC())).append("\n")
-                .append("Fecha de alta: ").append(fechaAlta).append("\n");
+          .append("Peso: ").append(peso).append(" kg\n")
+          .append("Altura: ").append(altura).append(" cm\n")
+          .append("Edad: ").append(edad).append("\n")
+          .append("Sexo: ").append(sexo).append("\n")
+          .append("DNI: ").append(dni).append("\n")
+          .append("IMC: ").append(String.format("%.2f", calcularIMC())).append("\n")
+          .append("Fecha de alta: ").append(fechaAlta).append("\n");
 
-        for (Encuesta encuesta : encuestas) {
-            sb.append(encuesta.toString()).append("\n");
+        GenericNode<Encuesta> node = encuestas.getFirst();
+        while (node != null) {
+            sb.append(node.getValue().toString()).append("\n");
+            node = node.getNext();
         }
         return sb.toString();
     }
 
-
-
+    // Getters and Setters
     public String getNombre() {
         return nombre;
     }
@@ -113,8 +112,8 @@ public class Paciente {
         this.fechaAlta = fechaAlta;
     }
 
-    public List<Encuesta> getEncuestas() {
+    public GenericList<Encuesta> getEncuestas() {
         return encuestas;
     }
-    
 }
+

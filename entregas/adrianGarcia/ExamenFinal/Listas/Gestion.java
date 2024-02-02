@@ -1,50 +1,50 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Gestion {
-    private List<Paciente> pacientes;
+    private GenericList<Paciente> pacientes;
 
     public Gestion() {
-        pacientes = new ArrayList<>();
+        pacientes = new GenericList<>();
     }
 
     public void iniciarInterfazUsuario() {
         Scanner scanner = new Scanner(System.in);
-        Paciente paciente = buscarOCrearPaciente(scanner);
-
-        LocalDate fechaAlta = paciente.getFechaAlta();
-
-        LocalDate fechaEncuesta;
         while (true) {
-            System.out.print("Ingrese la fecha de la encuesta (formato dd/MM/yyyy) o 'salir' para terminar: ");
+            System.out.print("Ingrese el nombre del paciente o 'salir' para terminar: ");
             String input = scanner.nextLine();
             if ("salir".equalsIgnoreCase(input)) break;
 
-            try {
-                fechaEncuesta = LocalDate.parse(input, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                Encuesta encuesta = buscarOCrearEncuesta(paciente, fechaEncuesta);
-                manejarDias(scanner, encuesta);
-            } catch (Exception e) {
-                System.out.println("Formato de fecha inválido. Por favor, intente de nuevo.");
+            Paciente paciente = buscarOCrearPaciente(scanner, input);
+
+            LocalDate fechaEncuesta;
+            while (true) {
+                System.out.print("Ingrese la fecha de la encuesta (formato dd/MM/yyyy) o 'salir' para terminar: ");
+                String fechaInput = scanner.nextLine();
+                if ("salir".equalsIgnoreCase(fechaInput)) break;
+
+                try {
+                    fechaEncuesta = LocalDate.parse(fechaInput, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    Encuesta encuesta = buscarOCrearEncuesta(paciente, fechaEncuesta);
+                    manejarDias(scanner, encuesta);
+                } catch (Exception e) {
+                    System.out.println("Formato de fecha inválido. Por favor, intente de nuevo.");
+                }
             }
         }
-
-        System.out.println(paciente);
         scanner.close();
     }
 
-    private Paciente buscarOCrearPaciente(Scanner scanner) {
-        System.out.print("Ingrese el nombre del paciente: ");
-        String nombre = scanner.nextLine();
-
-        for (Paciente p : pacientes) {
+    private Paciente buscarOCrearPaciente(Scanner scanner, String nombre) {
+        GenericNode<Paciente> current = pacientes.getFirst();
+        while (current != null) {
+            Paciente p = current.getValue();
             if (p.getNombre().equalsIgnoreCase(nombre)) {
                 return p;
             }
+            current = current.getNext();
         }
 
         Paciente nuevoPaciente = new Paciente(nombre);
@@ -69,106 +69,109 @@ public class Gestion {
             nuevoPaciente.setFechaAlta(LocalDate.now());
         }
 
-        pacientes.add(nuevoPaciente);
+        pacientes.insertEnd(nuevoPaciente);
         return nuevoPaciente;
     }
 
     private Encuesta buscarOCrearEncuesta(Paciente paciente, LocalDate fecha) {
-        for (Encuesta encuesta : paciente.getEncuestas()) {
+        GenericList<Encuesta> encuestas = paciente.getEncuestas();
+        GenericNode<Encuesta> current = encuestas.getFirst();
+        while (current != null) {
+            Encuesta encuesta = current.getValue();
             if (encuesta.getFechaEncuesta().equals(fecha)) {
                 return encuesta;
             }
+            current = current.getNext();
         }
+
         Encuesta nuevaEncuesta = new Encuesta(fecha);
         paciente.agregarEncuesta(nuevaEncuesta);
         return nuevaEncuesta;
     }
-
+    
     private void manejarDias(Scanner scanner, Encuesta encuesta) {
-        int numeroDia;
+        System.out.println("Manejando días para la encuesta.");
         while (true) {
-            System.out.print("Seleccione un día para ingresar datos (1-7) o -1 para terminar: ");
-            numeroDia = scanner.nextInt();
-            if (numeroDia == -1) break;
+            System.out.print("Ingrese el número del día para añadir datos (1-7), o 0 para finalizar: ");
+            int numeroDia = scanner.nextInt();
+            if (numeroDia == 0) {
+                break;
+            }
             if (numeroDia < 1 || numeroDia > 7) {
-                System.out.println("Número de día inválido. Por favor, seleccione un número entre 1 y 7.");
+                System.out.println("Número de día inválido. Por favor, ingrese un número entre 1 y 7.");
                 continue;
             }
-            Dia dia = buscarOCrearDia(encuesta, numeroDia);
+    
+            Dia dia = encuesta.buscarDia(numeroDia);
+            if (dia == null) {
+                dia = new Dia(numeroDia);
+                encuesta.agregarDia(dia);
+            }
             manejarIngestas(scanner, dia);
         }
     }
-
-    private Dia buscarOCrearDia(Encuesta encuesta, int numeroDia) {
-        for (Dia dia : encuesta.getDias()) {
-            if (dia.getNumeroDia() == numeroDia) {
-                return dia;
-            }
-        }
-        Dia nuevoDia = new Dia(numeroDia);
-        encuesta.agregarDia(nuevoDia);
-        return nuevoDia;
-    }
-
+    
     private void manejarIngestas(Scanner scanner, Dia dia) {
+        System.out.println("Manejando ingestas para el día: " + dia.getNumeroDia());
+        scanner.nextLine(); // Limpiar buffer después de leer números
         while (true) {
-            System.out.print("Seleccione ingesta: 1 (Desayuno) / 2 (Media mañana) / 3 (Almuerzo) / 4 (Merienda) / 5 (Cena) / -1 (Menú anterior): ");
-            int opcion = scanner.nextInt();
-            if (opcion == -1) break;
-            if (opcion < 1 || opcion > 5) {
-                System.out.println("Número inválido. Las opciones válidas son -1, 1, 2, 3, 4, 5. Intente de nuevo.");
-                continue;
+            System.out.print("Ingrese el tipo de ingesta (Desayuno, Almuerzo, etc.), o 'salir' para finalizar: ");
+            String tipoIngesta = scanner.nextLine();
+            if ("salir".equalsIgnoreCase(tipoIngesta)) {
+                break;
             }
-
-            String tipoIngesta = tipoIngestaSegunOpcion(opcion);
-            System.out.print("Ingrese la hora para el " + tipoIngesta + " (formato HH:mm): ");
-            LocalTime horaIngesta = LocalTime.parse(scanner.next(), DateTimeFormatter.ofPattern("HH:mm"));
+    
+            System.out.print("Ingrese la hora de la ingesta (HH:mm): ");
+            String horaIngestaStr = scanner.nextLine();
+            LocalTime horaIngesta = LocalTime.parse(horaIngestaStr, DateTimeFormatter.ofPattern("HH:mm"));
+    
             Ingesta ingesta = dia.buscarIngesta(tipoIngesta);
             if (ingesta == null) {
                 ingesta = new Ingesta(tipoIngesta, horaIngesta);
                 dia.agregarIngesta(ingesta);
+            } else {
+                ingesta.setHorario(horaIngesta); // Actualizar la hora si la ingesta ya existe
             }
-
+    
             manejarAlimentos(scanner, ingesta);
         }
     }
-
+    
     private void manejarAlimentos(Scanner scanner, Ingesta ingesta) {
+        System.out.println("Añadiendo alimentos a " + ingesta.getTipoComida());
         while (true) {
-            System.out.print("Ingrese un alimento para " + ingesta.getTipoComida() + " (-1 para terminar / -2 para listar alimentos ingresados): ");
-            String input = scanner.next();
-            if ("-1".equals(input)) break;
-            if ("-2".equals(input)) {
-                System.out.println(ingesta.listarAlimentos());
-                continue;
+            System.out.print("Ingrese el nombre del alimento (o 'salir' para terminar): ");
+            String nombreAlimento = scanner.nextLine();
+            if ("salir".equalsIgnoreCase(nombreAlimento)) {
+                break;
             }
-
-            double cantidad;
-            while (true) {
-                System.out.print("Ingrese la cantidad del alimento (en gramos, solo números positivos): ");
-                cantidad = scanner.nextDouble();
-                if (cantidad > 0) break;
-                System.out.println("Por favor, ingrese un valor positivo.");
-            }
-            ingesta.agregarAlimento(new Alimento(input, cantidad));
+    
+            System.out.print("Ingrese la cantidad de " + nombreAlimento + " en gramos: ");
+            double cantidad = scanner.nextDouble();
+            scanner.nextLine(); // Limpiar buffer después de leer números
+    
+            Alimento alimento = new Alimento(nombreAlimento, cantidad);
+            ingesta.agregarAlimento(alimento);
         }
+
+
     }
 
-    private String tipoIngestaSegunOpcion(int opcion) {
-        switch (opcion) {
-            case 1: return "Desayuno";
-            case 2: return "Media mañana";
-            case 3: return "Almuerzo";
-            case 4: return "Merienda";
-            case 5: return "Cena";
-            default: return "Otra";
+    public void mostrarPacientes() {
+        System.out.println("Pacientes registrados:");
+        GenericNode<Paciente> current = pacientes.getFirst();
+        while (current != null) {
+            Paciente paciente = current.getValue();
+            System.out.println(paciente.toString());
+            current = current.getNext();
         }
     }
-
+    // Suponiendo que esta es la estructura de tus clases Dia, Ingesta, y Alimento.
+    // Las clases Paciente y Encuesta deben tener métodos como agregarEncuesta(), buscarDia(), agregarDia(), buscarIngesta() y agregarIngesta() adecuadamente implementados.
+    
     public static void main(String[] args) {
         Gestion gestion = new Gestion();
         gestion.iniciarInterfazUsuario();
+        gestion.mostrarPacientes();
     }
 }
-
-

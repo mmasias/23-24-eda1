@@ -1,27 +1,26 @@
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Encuesta {
     private LocalDate fechaEncuesta;
-    private LocalTime horaEncuesta;
-    private List<Dia> dias;
+    private GenericList<Dia> dias;
 
     public Encuesta(LocalDate fechaEncuesta) {
         this.fechaEncuesta = fechaEncuesta;
-        this.dias = new ArrayList<>();
+        this.dias = new GenericList<>();
     }
 
     public void agregarDia(Dia dia) {
-        dias.add(dia);
+        dias.insertEnd(dia);
     }
 
     public Dia buscarDia(int numeroDia) {
-        for (Dia dia : dias) {
+        GenericNode<Dia> current = dias.getFirst();
+        while (current != null) {
+            Dia dia = current.getValue();
             if (dia.getNumeroDia() == numeroDia) {
                 return dia;
             }
+            current = current.getNext();
         }
         return null;
     }
@@ -31,19 +30,18 @@ public class Encuesta {
         StringBuilder sb = new StringBuilder();
         sb.append("Encuesta realizada el ").append(fechaEncuesta).append("\n");
 
-        for (int i = 1; i <= 7; i++) {
-            Dia dia = buscarDia(i);
-            sb.append("    Día ").append(i).append(": ");
+        GenericNode<Dia> current = dias.getFirst();
+        while (current != null) {
+            Dia dia = current.getValue();
             if (dia != null) {
-                sb.append("\n").append(dia.toString());
-            } else {
-                sb.append("No se ingresaron datos para este día.\n");
+                sb.append(dia.toString()).append("\n");
             }
+            current = current.getNext();
         }
-
         return sb.toString();
     }
 
+    // Getters and Setters
     public LocalDate getFechaEncuesta() {
         return fechaEncuesta;
     }
@@ -52,16 +50,14 @@ public class Encuesta {
         this.fechaEncuesta = fechaEncuesta;
     }
 
-    public LocalTime getHoraEncuesta() {
-        return horaEncuesta;
-    }
-
-    public void setHoraEncuesta(LocalTime horaEncuesta) {
-        this.horaEncuesta = horaEncuesta;
-    }
-
-    public List<Dia> getDias() {
+    public GenericList<Dia> getDias() {
         return dias;
     }
+
+    public void setDias(GenericList<Dia> dias) {
+        this.dias = dias;
+    }
 }
+
+
 

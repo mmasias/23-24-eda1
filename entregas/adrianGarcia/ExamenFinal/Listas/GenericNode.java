@@ -3,8 +3,8 @@ public class GenericNode<T> {
     private T value;
     private GenericNode<T> next;
 
-    public GenericNode(T value) {
-        this.value = value;
+    public GenericNode(T value2) {
+        this.value = value2;
         this.next = null;
     }
 

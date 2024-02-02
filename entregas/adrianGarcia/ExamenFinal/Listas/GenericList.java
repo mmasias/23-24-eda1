@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-
 public class GenericList<T> {
 
     private GenericNode<T> first = null;
@@ -50,9 +48,8 @@ public class GenericList<T> {
         return this.first;
     }
 
-    public T[] listAll(Class<T> type) {
-        @SuppressWarnings("unchecked")
-        T[] list = (T[]) Array.newInstance(type, this.size());
+    public Object[] listAll() {
+        Object[] list = new Object[this.size()];
         GenericNode<T> iterator = this.first;
 
         int count = 0;

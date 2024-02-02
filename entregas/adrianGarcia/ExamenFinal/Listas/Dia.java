@@ -1,13 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Dia {
     private int numeroDia;
-    private List<Ingesta> ingestas;
+    private GenericList<Ingesta> ingestas;
 
     public Dia(int numeroDia) {
         this.numeroDia = numeroDia;
-        this.ingestas = new ArrayList<>();
+        this.ingestas = new GenericList<>();
         agregarIngesta(new Ingesta("Desayuno", null));
         agregarIngesta(new Ingesta("Media mañana", null));
         agregarIngesta(new Ingesta("Almuerzo", null));
@@ -16,14 +13,17 @@ public class Dia {
     }
 
     public void agregarIngesta(Ingesta ingesta) {
-        ingestas.add(ingesta);
+        ingestas.insertEnd(ingesta);
     }
 
     public Ingesta buscarIngesta(String tipoComida) {
-        for (Ingesta ingesta : ingestas) {
+        GenericNode<Ingesta> current = ingestas.getFirst();
+        while (current != null) {
+            Ingesta ingesta = current.getValue();
             if (ingesta.getTipoComida().equalsIgnoreCase(tipoComida)) {
                 return ingesta;
             }
+            current = current.getNext();
         }
         return null;
     }
@@ -40,7 +40,9 @@ public class Dia {
         String[] comidas = {"Desayuno", "Media mañana", "Almuerzo", "Merienda", "Cena"};
         for (String comida : comidas) {
             Ingesta ingesta = buscarIngesta(comida);
-            sb.append(ingesta.toString());
+            if (ingesta != null) { // Asegurar que la ingesta no es null antes de llamar a toString
+                sb.append(ingesta.toString());
+            }
         }
         return sb.toString();
     }

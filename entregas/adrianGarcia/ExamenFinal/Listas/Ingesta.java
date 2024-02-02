@@ -1,35 +1,28 @@
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Ingesta {
     private String tipoComida;
     private LocalTime horario;
-    private List<Alimento> alimentos;
+    private GenericList<Alimento> alimentos;
 
     public Ingesta(String tipoComida, LocalTime horario) {
         this.tipoComida = tipoComida;
         this.horario = horario;
-        this.alimentos = new ArrayList<>();
+        this.alimentos = new GenericList<>();
     }
 
     public void agregarAlimento(Alimento alimento) {
-        alimentos.add(alimento);
-    }
-
-    public String getTipoComida() {
-        return tipoComida;
-    }
-
-    public LocalTime getHorario() {
-        return horario;
+        alimentos.insertEnd(alimento);
     }
 
     public String listarAlimentos() {
         StringBuilder sb = new StringBuilder();
-        for (Alimento alimento : alimentos) {
-            sb.append("                ").append(alimento.toString()).append("\n");
+        // Aquí cambiamos el enfoque para iterar directamente sobre la lista
+        GenericNode<Alimento> current = alimentos.getFirst();
+        while (current != null) {
+            sb.append(current.getValue().toString()).append("\n");
+            current = current.getNext();
         }
         return sb.toString();
     }
@@ -37,12 +30,42 @@ public class Ingesta {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("            ").append(tipoComida);
+        sb.append(tipoComida);
         if (horario != null) {
-            sb.append(" a las ").append(horario.format(DateTimeFormatter.ofPattern("HH:mm"))); // Formatea la hora
+            sb.append(" a las ").append(horario.format(DateTimeFormatter.ofPattern("HH:mm")));
         }
-        sb.append("\n").append(listarAlimentos()).append("\n");
-        return sb.toString();
+        sb.append("\n").append(listarAlimentos());
+        return sb.toString().trim(); // Trim para eliminar espacio extra al final
+    }
+
+    // Getters and Setters
+    public String getTipoComida() {
+        return tipoComida;
+    }
+
+    public void setTipoComida(String tipoComida) {
+        this.tipoComida = tipoComida;
+    }
+
+    public LocalTime getHorario() {
+        return horario;
+    }
+
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
+    }
+
+    public GenericList<Alimento> getAlimentos() {
+        return alimentos;
+    }
+
+    public void setAlimentos(GenericList<Alimento> alimentos) {
+        this.alimentos = alimentos;
     }
 }
+
+
+
+
+
 
