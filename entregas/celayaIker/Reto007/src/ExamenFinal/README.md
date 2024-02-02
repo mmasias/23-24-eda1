@@ -18,7 +18,7 @@ Sigue las instrucciones en pantalla para completar la encuesta nutricional.
 
 A continuación se muestra el diagrama de clases UML del programa, ilustrando la estructura y las relaciones entre las clases `Alimento`, `Comida`, `EncuestaNutricional`, `GenericList` y `GenericNode`.
 
-![Diagrama de Clases UML](Documentación/plantUML.png)
+![Diagrama de Clases UML](Documentacion/plantUML.png)
 
 ## Clases del Proyecto
 
@@ -29,5 +29,3 @@ A continuación, se proporcionan enlaces simulados a las clases del proyecto. De
 - [EncuestaNutricional.java](EncuestaNutricional.java)
 - [GenericList.java](utils/generica/GenericList.java)
 - [GenericNode.java](utils/generica/GenericNode.java)
-
-Nota: Los enlaces a las clases y la imagen del diagrama UML deben ser actualizados con las rutas correctas y URLs donde se alojen estos recursos.
