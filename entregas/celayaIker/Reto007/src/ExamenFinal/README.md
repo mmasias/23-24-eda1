@@ -1,6 +1,7 @@
 # Encuesta Nutricional
 
 ## Descripción
+--Para una mejor jerarquización sería conveniente hacer uso de más clases, pero con la base propuesta para este examen, esta es mi propuesta de mejora.
 
 Este programa es una aplicación de consola diseñada para realizar encuestas nutricionales. Permite a los usuarios introducir y revisar sus hábitos alimenticios diarios, registrando diferentes tipos de comidas y los alimentos específicos consumidos en cada una. La aplicación facilita la recolección de datos dietéticos de manera estructurada, apoyando una evaluación nutricional efectiva.
 
