@@ -1,5 +1,11 @@
 {
     "githubPullRequests.ignoredPullRequestBranches": [
         "main"
-    ]
+    ],
+    "java.project.sourcePaths": [
+        "src",
+        "entregas/RecinosJose/reto-003",
+        "entregas/RecinosJose/reto-004"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }
