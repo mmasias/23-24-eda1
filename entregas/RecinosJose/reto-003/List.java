@@ -1,50 +1,33 @@
-package listas.basica;
-
 public class List {
 
     private Node first = null;
+    private int size = 0;
 
     public int size() {
-        if (this.first == null) {
-            return 0;
-        }
-        int count = 1;
-        Node iterator = first;
-        while (iterator.getNext() != null) {
-            count++;
-            iterator = iterator.getNext();
-        }
-        return count;
+        return this.size;
     }
 
     public boolean isEmpty() {
-        return this.size() > 0 ? false : true;
+        return this.size == 0;
     }
 
-    public void insertEnd(String value) {
-        Node newNode = new Node(value);
-        if (this.first == null)
-        this.first = newNode;
-        else {
+    public String insert(String value) {
+        Node nodoQueEntra = new Node(value);
+        if (this.first == null) {
+            this.first = nodoQueEntra;
+        } else {
             Node iterator = this.first;
             while (iterator.getNext() != null) {
                 iterator = iterator.getNext();
             }
-            iterator.setNext(newNode);
+            iterator.setNext(nodoQueEntra);
         }
-    }
-    
-    public void insertFront(String value) {
-        Node n = new Node(value);
-        if (this.first == null)
-            this.first = n;
-        else {
-            n.setNext(this.first);
-            this.first = n;
-        }
+        this.size++; 
+        return value;
     }
 
-    public void delete() {
+    public String delete() {
+        String removedValue = null;
         if (this.first != null) {
             Node iterator = this.first;
             Node previous = null;
@@ -52,10 +35,16 @@ public class List {
                 previous = iterator;
                 iterator = iterator.getNext();
             }
-            previous.setNext(null);
+            removedValue = iterator.getValue();
+            if (previous == null) { 
+                this.first = null;
+            } else {
+                previous.setNext(null);
+            }
+            this.size--;
         }
+        return removedValue;
     }
-
     public String[] listAll() {
         String[] list = new String[this.size()];
         Node iterator = this.first;
