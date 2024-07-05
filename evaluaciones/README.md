@@ -21,4 +21,4 @@ Enunciado|Entrega
 
 |||
 |-|-|
-[Enunciado](examenExtraordinario.md)|[Entrega](https://classroom.github.com/a/MsDEUqfH)
+[Enunciado](https://github.com/mmasias/23-24-pyBurguer/blob/main/testEDA1.md)|[Entrega](https://classroom.github.com/a/MsDEUqfH)
